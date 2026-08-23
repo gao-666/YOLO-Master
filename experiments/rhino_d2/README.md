@@ -1,0 +1,47 @@
+# D2 Foundation 蒸馏绿地：8.24 准入包
+
+本目录把仓库已有的 Foundation Distillation alpha 收敛为一个可审计的 D2 最小实验。它不声称新增整套蒸馏框架，也不在 smoke 结果上声称精度提升。
+
+## 准入状态
+
+| 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Conda `yolo-master-d2`；Python 3.11；PyTorch CUDA 12.8；`pip install -e ".[foundation,dev]"` | YOLO-Master-N 的 P4 与冻结 Foundation Teacher 特征对齐；真实检测 task loss 与 KD loss 共同反传，固定单 batch KD loss 下降 | 见“复现命令” | [`configs/d2_p0.yaml`](configs/d2_p0.yaml)、[`configs/d2_off.yaml`](configs/d2_off.yaml)、[`configs/d2_on.yaml`](configs/d2_on.yaml)、[`configs/d2_smoke.yaml`](configs/d2_smoke.yaml) | [`results/d2_p0_train_smoke.json`](results/d2_p0_train_smoke.json)（真实 task+KD）；[`results/d2_alignment_smoke.json`](results/d2_alignment_smoke.json)（对齐逐 step）；[`results/pytest-foundation.xml`](results/pytest-foundation.xml)（54 tests）；[`env/environment.json`](env/environment.json) | 总 loss 分解、学生/投影梯度、教师冻结、教师不在 optimizer、teacher revision/权重 hash、[`results/d2_config_pair_validation.json`](results/d2_config_pair_validation.json) | [`design.md`](design.md)、[`P0_HANDOVER.md`](P0_HANDOVER.md) | [`limitations.md`](limitations.md) | 本目录；上游基线 commit 见 `env/environment.json` |
+
+## 复现命令
+
+以下命令从仓库根目录执行。Windows 必须使用 `workers=0`。
+
+```powershell
+conda activate yolo-master-d2
+python experiments/rhino_d2/scripts/record_environment.py
+python experiments/rhino_d2/scripts/validate_pair.py
+python experiments/rhino_d2/scripts/d2_alignment_smoke.py --config experiments/rhino_d2/configs/d2_smoke.yaml
+python experiments/rhino_d2/scripts/d2_p0_train_smoke.py --config experiments/rhino_d2/configs/d2_p0.yaml
+pytest experiments/rhino_d2/tests/test_admission_contract.py -v
+pytest tests/test_foundation_taps.py tests/test_foundation_projectors.py tests/test_foundation_losses.py tests/test_foundation_distill_model.py -v
+```
+
+首次运行真实 DINOv2 smoke 会从 Hugging Face 下载公开教师权重到本目录的 `cache/`；缓存不进入 Git。复跑时追加 `--offline`，强制只使用已锁定的本地 snapshot。
+
+## 同预算 on/off
+
+`d2_off.yaml` 与 `d2_on.yaml` 只允许以下字段不同：`name`、`foundation_enabled`、`foundation_teacher`、`foundation_model`、`foundation_loss_weight`。`validate_pair.py` 会失败关闭（fail closed），防止 epoch、batch、imgsz、seed、模型、数据、优化器或增广发生混杂。
+
+当前 on 配置指向官方 DINOv3 模型。DINOv3 权重受控访问，必须由实验者在官方模型页接受许可后自行获取；未完成许可前，准入 smoke 使用 Apache-2.0 的 DINOv2，不把社区镜像作为正式教师资产。
+
+## 8.24 汇报口径
+
+1. 锁定 YOLO-Master commit、Python/PyTorch/CUDA、学生配置和教师 revision/hash。
+2. 展示 YOLO-Master P4 与教师 dense feature 的原始 shape，以及投影后相同 shape。
+3. 展示固定单 batch 的 task/KD/total loss，证明 KD 真正进入 total loss，学生和 projector 收到梯度且 KD loss 下降；不声称检测 total loss 单调。
+4. 展示 on/off 配置差异审计结果为通过。
+5. 明确 smoke 只证明链路，不证明 mAP；P1 采用相同预算、至少 3 seed 的成对实验。
+
+## Go / No-Go 判读线
+
+- P0 go：对齐 shape 合法、教师冻结、学生投影层有梯度、KD loss 有限且下降、配置对照无混杂。
+- P1 go：蒸馏相对 baseline 的 `mAP50-95` 平均增益至少 0.003（即 0.3 个百分点），且成对差值的 95% 置信区间不包含 0。
+- P1 no-go：`|ΔmAP| < 0.003` 且 95% 置信区间包含 0；保持判读线不变，转入容量/维度/优化/数据诊断。
+
+注意：Ultralytics 的指标通常用 0–1 表示，任务书中的“0.3”按 0.3 个百分点解释为 `0.003`，该口径需在 8.24 与导师确认。

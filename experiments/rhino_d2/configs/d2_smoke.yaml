@@ -1,0 +1,14 @@
+experiment_id: d2_alignment_smoke_20260824
+student_model: ultralytics/cfg/models/26/yolo26-master-n.yaml
+student_level: p4
+teacher_model: facebook/dinov2-small
+teacher_revision: ed25f3a31f01632728cabb09d1542f84ab7b0056
+teacher_license: apache-2.0
+image: ultralytics/assets/bus.jpg
+imgsz: 224
+align_dim: 64
+loss: cosine
+steps: 20
+learning_rate: 0.05
+seed: 20260824
+device: cuda:0
