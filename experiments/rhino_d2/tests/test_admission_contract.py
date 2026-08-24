@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import csv
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -67,3 +69,22 @@ def test_environment_manifest_tracks_commit_dirty_state_and_input_hashes():
     assert git["experiment_inputs_state"]["dirty"] is False
     assert "experiments\\rhino_d2\\scripts\\d2_p0_train_smoke.py" in evidence["scripts"]
     assert "ultralytics\\nn\\foundation\\teachers\\dinov2.py" in evidence["implementation"]
+
+
+def test_loss_curve_artifacts_match_source_evidence():
+    manifest = json.loads((ROOT / "results" / "d2_p0_loss_curves_manifest.json").read_text(encoding="utf-8"))
+    p0 = json.loads((ROOT / "results" / "d2_p0_train_smoke.json").read_text(encoding="utf-8"))
+    alignment = json.loads((ROOT / "results" / "d2_alignment_smoke.json").read_text(encoding="utf-8"))
+    with (ROOT / "results" / "d2_p0_loss_curves.csv").open(encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert manifest["claim"] == "visualization_of_committed_p0_smoke_evidence_no_accuracy_claim"
+    assert manifest["points"] == len(rows) == 36
+    assert manifest["summary"]["single_stage"] == "p4"
+    assert manifest["summary"]["integrated_kd_initial"] == p0["steps"][0]["foundation_loss"]
+    assert manifest["summary"]["integrated_kd_final"] == p0["steps"][-1]["foundation_loss"]
+    assert manifest["summary"]["alignment_final"] == alignment["optimization"]["history"][-1]
+    for relative_path, expected in manifest["sources"].items():
+        assert hashlib.sha256((ROOT / relative_path).read_bytes()).hexdigest() == expected
+    for relative_path, expected in manifest["outputs"].items():
+        assert hashlib.sha256((ROOT / relative_path).read_bytes()).hexdigest() == expected
+    assert (ROOT / "results" / "d2_p0_loss_curves.png").read_bytes().startswith(b"\x89PNG\r\n\x1a\n")

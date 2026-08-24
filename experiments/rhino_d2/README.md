@@ -2,7 +2,7 @@
 
 本目录把仓库已有的 Foundation Distillation alpha 收敛为一个可审计的 D2 最小实验。它不声称新增整套蒸馏框架，也不在 smoke 结果上声称精度提升。
 
-8.24 在线表格的简版状态和审核备注见 [`submission_824.md`](submission_824.md)。
+8.24 在线表格的简版状态和审核备注见 [`submission_824.md`](submission_824.md)。“单 stage 原型 + loss 曲线 + 设计依据”的集中验收页见 [`P0_EVIDENCE.md`](P0_EVIDENCE.md)。
 
 ## 准入状态
 
@@ -20,6 +20,7 @@ python experiments/rhino_d2/scripts/record_environment.py
 python experiments/rhino_d2/scripts/validate_pair.py
 python experiments/rhino_d2/scripts/d2_alignment_smoke.py --config experiments/rhino_d2/configs/d2_smoke.yaml
 python experiments/rhino_d2/scripts/d2_p0_train_smoke.py --config experiments/rhino_d2/configs/d2_p0.yaml
+python experiments/rhino_d2/scripts/plot_p0_loss_curves.py
 $env:PYTHONUTF8="1"
 pytest experiments/rhino_d2/tests/test_admission_contract.py tests/test_foundation_taps.py tests/test_foundation_projectors.py tests/test_foundation_losses.py tests/test_foundation_distill_model.py tests/test_foundation_config.py tests/test_foundation_dinov2.py tests/test_default_config_integrity.py --junitxml=experiments/rhino_d2/results/pytest-foundation.xml -v
 ```
