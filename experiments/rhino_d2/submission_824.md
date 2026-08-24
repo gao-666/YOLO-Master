@@ -20,4 +20,3 @@
 | 风险与降级 | DINOv3 权重受控访问；未授权时 P0 明确降级 DINOv2-small（Apache-2.0），不使用社区镜像；P0 不声称 mAP 提升；OOM 同时降低 on/off batch；结果按多 seed/CI 判定。 |
 | 代码/方案链接 | `https://github.com/gao-666/YOLO-Master/tree/rhino-d2-foundation-distillation/experiments/rhino_d2` |
 
-“检查结论、审核人、审核时间”属于导师审核字段，不自行填写“通过”。
