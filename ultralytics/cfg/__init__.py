@@ -513,7 +513,7 @@ CFG_STR_KEYS = frozenset(
         "foundation_siglip2_weights",
     }
 ) | MIXTURE_STR_KEYS
-FOUNDATION_TEACHERS = frozenset({"none", "dinov3", "siglip2", "multi"})
+FOUNDATION_TEACHERS = frozenset({"none", "dinov2", "dinov3", "siglip2", "multi"})
 FOUNDATION_BACKENDS = frozenset({"transformers", "local"})
 FOUNDATION_LOSSES = frozenset({"cosine", "l2", "relational", "hybrid"})
 FOUNDATION_RELATION_MODES = frozenset({"sampled", "full"})
@@ -886,9 +886,11 @@ def validate_foundation_config(cfg: dict) -> None:
             raise ValueError(f"'{key}={value}' is invalid. Foundation loss weights must be >= 0.")
 
     model = cfg.get("foundation_model")
+    revision = cfg.get("foundation_revision")
     weights = cfg.get("foundation_weights")
     for key, value in (
         ("foundation_model", model),
+        ("foundation_revision", revision),
         ("foundation_weights", weights),
         ("foundation_dinov3_model", cfg.get("foundation_dinov3_model")),
         ("foundation_siglip2_model", cfg.get("foundation_siglip2_model")),

@@ -70,6 +70,20 @@ def test_siglip2_foundation_teacher_is_valid():
     assert args.foundation_teacher == "siglip2"
 
 
+def test_dinov2_foundation_teacher_and_revision_are_valid():
+    args = get_cfg(
+        overrides={
+            "foundation_enabled": True,
+            "foundation_teacher": "dinov2",
+            "foundation_model": "facebook/dinov2-small",
+            "foundation_revision": "locked-revision",
+            "foundation_loss_weight": 0.0,
+        }
+    )
+    assert args.foundation_teacher == "dinov2"
+    assert args.foundation_revision == "locked-revision"
+
+
 def test_enabled_without_teacher_is_rejected():
     with pytest.raises(ValueError, match="requires 'foundation_teacher'"):
         get_cfg(overrides={"foundation_enabled": True})

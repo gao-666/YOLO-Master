@@ -7,7 +7,10 @@ from typing import Sequence
 import torch
 import torch.nn.functional as F
 
-
+# Keep family-specific names even when two teacher families currently share ImageNet normalization. This makes the
+# preprocessing contract auditable and prevents a future DINOv2/DINOv3 change from silently affecting the other.
+DINOV2_IMAGE_MEAN = (0.485, 0.456, 0.406)
+DINOV2_IMAGE_STD = (0.229, 0.224, 0.225)
 DINOV3_IMAGE_MEAN = (0.485, 0.456, 0.406)
 DINOV3_IMAGE_STD = (0.229, 0.224, 0.225)
 
@@ -63,4 +66,10 @@ def prepare_image_tensor(
     return (images - mean_tensor) / std_tensor
 
 
-__all__ = ["DINOV3_IMAGE_MEAN", "DINOV3_IMAGE_STD", "prepare_image_tensor"]
+__all__ = [
+    "DINOV2_IMAGE_MEAN",
+    "DINOV2_IMAGE_STD",
+    "DINOV3_IMAGE_MEAN",
+    "DINOV3_IMAGE_STD",
+    "prepare_image_tensor",
+]

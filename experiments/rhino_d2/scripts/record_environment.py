@@ -41,6 +41,22 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _status_summary(arguments: list[str]) -> dict:
+    """Return dirty-state evidence without publishing local file names."""
+    status = _run(["git", "status", "--porcelain=v1", "--untracked-files=all", "--", *arguments])
+    lines = [] if not status else status.splitlines()
+    return {
+        "dirty": bool(lines),
+        "entry_count": len(lines),
+        "porcelain_sha256": hashlib.sha256((status or "").encode()).hexdigest(),
+    }
+
+
+def _hash_group(paths: list[Path]) -> dict[str, str]:
+    """Hash an explicit set of version-sensitive experiment inputs."""
+    return {str(path.relative_to(REPO_ROOT)): _sha256(path) for path in sorted(paths) if path.is_file()}
+
+
 def _redact_home(value: str) -> str:
     """将路径中的本机用户目录替换为稳定占位符。
 
@@ -58,9 +74,26 @@ def main() -> None:
     发现依赖版本、驱动或配置变化造成的指标漂移，并为 D2 on/off 对照提供
     可审计上下文。它不改变训练结果，也不宣称提升精度。
     """
-    configs = {}
-    for path in sorted((EXPERIMENT_ROOT / "configs").glob("*.yaml")):
-        configs[str(path.relative_to(REPO_ROOT))] = _sha256(path)
+    configs = _hash_group(list((EXPERIMENT_ROOT / "configs").glob("*.yaml")))
+    scripts = _hash_group(list((EXPERIMENT_ROOT / "scripts").glob("*.py")))
+    protocols = _hash_group([EXPERIMENT_ROOT / "experiment_matrix.csv"])
+    tests = _hash_group(
+        [
+            *list((EXPERIMENT_ROOT / "tests").glob("*.py")),
+            REPO_ROOT / "tests" / "test_foundation_dinov2.py",
+            REPO_ROOT / "tests" / "test_foundation_config.py",
+            REPO_ROOT / "tests" / "test_foundation_distill_model.py",
+        ]
+    )
+    implementation = _hash_group(
+        [
+            REPO_ROOT / "ultralytics" / "nn" / "foundation" / "preprocessing.py",
+            REPO_ROOT / "ultralytics" / "nn" / "foundation" / "teachers" / "dinov2.py",
+            REPO_ROOT / "ultralytics" / "nn" / "foundation_distill_model.py",
+            REPO_ROOT / "ultralytics" / "cfg" / "default.yaml",
+            REPO_ROOT / "ultralytics" / "cfg" / "models" / "26" / "yolo26-master-n.yaml",
+        ]
+    )
     packages = {}
     for name in ("ultralytics", "torch", "torchvision", "transformers", "huggingface-hub", "pytest", "pyyaml"):
         try:
@@ -68,11 +101,29 @@ def main() -> None:
         except importlib.metadata.PackageNotFoundError:
             packages[name] = None
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "git": {
+            "base_commit": _run(["git", "merge-base", "HEAD", "origin/main"]),
+            "experiment_commit": _run(["git", "rev-parse", "HEAD"]),
             "commit": _run(["git", "rev-parse", "HEAD"]),
             "branch": _run(["git", "branch", "--show-current"]),
             "origin": _run(["git", "remote", "get-url", "origin"]),
+            "repository_state": _status_summary([]),
+            "experiment_inputs_state": _status_summary(
+                [
+                    "experiments/rhino_d2/configs",
+                    "experiments/rhino_d2/experiment_matrix.csv",
+                    "experiments/rhino_d2/scripts",
+                    "experiments/rhino_d2/tests",
+                    "ultralytics/nn/foundation",
+                    "ultralytics/nn/foundation_distill_model.py",
+                    "ultralytics/cfg/default.yaml",
+                    "ultralytics/cfg/__init__.py",
+                    "tests/test_foundation_dinov2.py",
+                    "tests/test_foundation_config.py",
+                    "tests/test_foundation_distill_model.py",
+                ]
+            ),
         },
         "runtime": {
             "python": sys.version,
@@ -90,6 +141,10 @@ def main() -> None:
             ),
         },
         "configs": configs,
+        "scripts": scripts,
+        "protocols": protocols,
+        "tests": tests,
+        "implementation": implementation,
         "redaction": "No environment variables, credentials, tokens, or user-home contents are recorded.",
     }
     # 环境清单可提交或归档，用于复现时核对软件、硬件和配置身份。

@@ -29,7 +29,9 @@ from ultralytics.cfg import get_cfg
 from ultralytics.nn.foundation_distill_model import FoundationDistillationModel
 
 
-def _batch(image: torch.Tensor, batch_size: int) -> dict[str, torch.Tensor]:
+def _batch(
+    image: torch.Tensor, batch_size: int, *, target_class: int, target_bbox_xywh: list[float]
+) -> dict[str, torch.Tensor]:
     """构造确定性的检测 batch，并为每张图片放置一个归一化框。
 
     该 batch 不用于衡量真实数据集精度，而是为检测损失提供最小、稳定的
@@ -37,11 +39,13 @@ def _batch(image: torch.Tensor, batch_size: int) -> dict[str, torch.Tensor]:
     蒸馏损失能否同时计算并反向传播，避免正式训练数小时后才发现标签格式
     或 batch 组装错误。它不直接提升 mAP，但能提高实验迭代效率。
     """
+    if len(target_bbox_xywh) != 4:
+        raise ValueError("target_bbox_xywh must contain four normalized xywh values")
     images = image.repeat(batch_size, 1, 1, 1)
     return {
         "img": images,
-        "cls": torch.zeros(batch_size, 1, device=image.device),
-        "bboxes": torch.tensor([[0.5, 0.5, 0.35, 0.55]], device=image.device).repeat(batch_size, 1),
+        "cls": torch.full((batch_size, 1), float(target_class), device=image.device),
+        "bboxes": torch.tensor([target_bbox_xywh], device=image.device).repeat(batch_size, 1),
         "batch_idx": torch.arange(batch_size, device=image.device, dtype=torch.float32),
     }
 
@@ -126,6 +130,10 @@ def main() -> None:
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+    if bool(config.get("deterministic", False)):
+        torch.use_deterministic_algorithms(True)
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True
     device = torch.device(str(config["device"]))
     # 配置声明 CUDA 时必须确保当前环境真的可用。
     if device.type == "cuda" and not torch.cuda.is_available():
@@ -135,14 +143,21 @@ def main() -> None:
         snapshot_download(
             repo_id=str(config["teacher_model"]),
             revision=str(config["teacher_revision"]),
-            allow_patterns=["config.json", "model.safetensors", "pytorch_model.bin"],
+            allow_patterns=["config.json", "preprocessor_config.json", "model.safetensors", "pytorch_model.bin"],
             local_files_only=args.offline,
         )
     ).resolve()
-    teacher = DINOv2Teacher(snapshot, device, str(config["teacher_model"]))
+    teacher = DINOv2Teacher(
+        model_id=str(config["teacher_model"]),
+        revision=str(config["teacher_revision"]),
+        weights_path=snapshot,
+        device=device,
+        local_files_only=True,
+    )
     student_path = _resolve_inside_repo(str(config["student_model"]))
     image_path = _resolve_inside_repo(str(config["image"]))
     image = _load_image(image_path, int(config["imgsz"]), device)
+    teacher_metadata = teacher.encode(image[:1]).metadata
     student = YOLO(str(student_path)).model.to(device).train()
     # DetectionModel constructed directly from YAML keeps ``args`` as a plain dict. The formal Trainer replaces it
     # with the validated default namespace before the criterion is built; mirror that one required integration step.
@@ -154,7 +169,12 @@ def main() -> None:
     optimizer_parameter_ids = {id(parameter) for parameter in trainable}
     teacher_not_in_optimizer = not bool(teacher_parameter_ids & optimizer_parameter_ids)
     optimizer = torch.optim.AdamW(trainable, lr=float(config["learning_rate"]), weight_decay=0.0)
-    batch = _batch(image, int(config["batch_size"]))
+    batch = _batch(
+        image,
+        int(config["batch_size"]),
+        target_class=int(config["target_class"]),
+        target_bbox_xywh=[float(value) for value in config["target_bbox_xywh"]],
+    )
 
     # 每一步都记录任务项、蒸馏项、梯度和指标，便于定位集成问题。
     records = []
@@ -204,7 +224,7 @@ def main() -> None:
     payload = {
         "schema_version": 1,
         "status": status,
-        "claim": "p0_task_plus_foundation_single_batch_training_only_no_accuracy_claim",
+        "claim": "p0_real_yolo_loss_synthetic_target_fixed_batch_smoke_no_accuracy_claim",
         "experiment_id": config["experiment_id"],
         "config": {"path": str(config_path.relative_to(REPO_ROOT)), "sha256": _sha256(config_path), **config},
         "student": {
@@ -217,7 +237,17 @@ def main() -> None:
             "requested_revision": config["teacher_revision"],
             "resolved_revision": snapshot.name,
             "license": config["teacher_license"],
+            "metadata": teacher_metadata,
             "assets": _teacher_assets(snapshot),
+        },
+        "data_contract": {
+            "image": str(image_path.relative_to(REPO_ROOT)),
+            "image_repeated": int(config["batch_size"]),
+            "target_source": str(config["target_source"]),
+            "target_class": int(config["target_class"]),
+            "target_bbox_format": "normalized_xywh",
+            "target_bbox_xywh": [float(value) for value in config["target_bbox_xywh"]],
+            "purpose": "gradient_chain_smoke_not_accuracy_evaluation",
         },
         "checks": checks,
         "steps": records,

@@ -18,6 +18,7 @@ ALLOWED_DIFFERENCES = {
     "foundation_enabled",
     "foundation_loss_weight",
     "foundation_model",
+    "foundation_revision",
     "foundation_teacher",
     "name",
 }

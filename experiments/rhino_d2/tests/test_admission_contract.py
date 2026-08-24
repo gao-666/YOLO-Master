@@ -50,5 +50,20 @@ def test_single_batch_projector_loss_decreases_offline():
 def test_real_p0_task_plus_kd_evidence_passes_every_redline():
     evidence = json.loads((ROOT / "results" / "d2_p0_train_smoke.json").read_text(encoding="utf-8"))
     assert evidence["status"] == "passed"
-    assert evidence["claim"] == "p0_task_plus_foundation_single_batch_training_only_no_accuracy_claim"
+    assert evidence["claim"] == "p0_real_yolo_loss_synthetic_target_fixed_batch_smoke_no_accuracy_claim"
     assert all(evidence["checks"].values())
+    assert evidence["data_contract"]["target_source"] == "deterministic_synthetic"
+    assert evidence["data_contract"]["purpose"] == "gradient_chain_smoke_not_accuracy_evaluation"
+    assert evidence["teacher"]["metadata"]["preprocessing"]["contract"] == "dinov2_dense_spatial_preserving_v1"
+
+
+def test_environment_manifest_tracks_commit_dirty_state_and_input_hashes():
+    evidence = json.loads((ROOT / "env" / "environment.json").read_text(encoding="utf-8"))
+    git = evidence["git"]
+    assert evidence["schema_version"] == 2
+    assert git["base_commit"]
+    assert git["experiment_commit"]
+    assert isinstance(git["repository_state"]["dirty"], bool)
+    assert git["experiment_inputs_state"]["dirty"] is False
+    assert "experiments\\rhino_d2\\scripts\\d2_p0_train_smoke.py" in evidence["scripts"]
+    assert "ultralytics\\nn\\foundation\\teachers\\dinov2.py" in evidence["implementation"]

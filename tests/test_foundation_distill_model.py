@@ -7,7 +7,7 @@ import pytest
 import torch
 from torch import nn
 
-from ultralytics.nn.foundation import FoundationFeatures
+from ultralytics.nn.foundation import DINOv2Teacher, FoundationFeatures
 from ultralytics.nn.foundation_distill_model import FoundationDistillationModel, build_foundation_distillation_wrapper
 from ultralytics.nn.modules.head import Detect
 
@@ -73,23 +73,23 @@ class DummyTeacher(nn.Module):
 
 
 def config(**overrides):
-    values = dict(
-        foundation_enabled=True,
-        foundation_loss_weight=1.0,
-        foundation_target_levels=["p4"],
-        foundation_multiscale=False,
-        foundation_align_dim=4,
-        foundation_loss="hybrid",
-        foundation_cosine_weight=1.0,
-        foundation_relation_weight=1.0,
-        foundation_relation_mode="sampled",
-        foundation_relation_samples=2,
-        foundation_foreground_weighting=False,
-        foundation_foreground_weight=1.5,
-        foundation_boundary_weight=1.0,
-        foundation_background_weight=0.25,
-        imgsz=64,
-    )
+    values = {
+        "foundation_enabled": True,
+        "foundation_loss_weight": 1.0,
+        "foundation_target_levels": ["p4"],
+        "foundation_multiscale": False,
+        "foundation_align_dim": 4,
+        "foundation_loss": "hybrid",
+        "foundation_cosine_weight": 1.0,
+        "foundation_relation_weight": 1.0,
+        "foundation_relation_mode": "sampled",
+        "foundation_relation_samples": 2,
+        "foundation_foreground_weighting": False,
+        "foundation_foreground_weight": 1.5,
+        "foundation_boundary_weight": 1.0,
+        "foundation_background_weight": 0.25,
+        "imgsz": 64,
+    }
     values.update(overrides)
     return SimpleNamespace(**values)
 
@@ -115,6 +115,34 @@ def test_builder_accepts_injected_siglip2_teacher_manager():
     )
     assert isinstance(wrapper, FoundationDistillationModel)
     assert wrapper.checkpoint_metadata()["teacher"] == "siglip2"
+
+
+def test_builder_constructs_dinov2_with_locked_revision():
+    class DummyDINOv2Backbone(nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.config = SimpleNamespace(patch_size=4, hidden_size=10)
+            self.scale = nn.Parameter(torch.ones(()))
+
+        def forward(self, pixel_values):
+            batch, _, height, width = pixel_values.shape
+            tokens = 1 + height // 4 * (width // 4)
+            hidden = self.scale * torch.ones(batch, tokens, 10, device=pixel_values.device)
+            return SimpleNamespace(last_hidden_state=hidden)
+
+    wrapper = build_foundation_distillation_wrapper(
+        TinyStudent(),
+        config(
+            foundation_teacher="dinov2",
+            foundation_model="facebook/dinov2-small",
+            foundation_revision="locked-revision",
+        ),
+        model_loader=lambda model_id, weights_path: DummyDINOv2Backbone(),
+    )
+
+    assert isinstance(wrapper.teacher_manager, DINOv2Teacher)
+    assert wrapper.checkpoint_metadata()["teacher"] == "dinov2"
+    assert wrapper.checkpoint_metadata()["revision"] == "locked-revision"
 
 
 def test_builder_accepts_offline_injected_teacher_manager():

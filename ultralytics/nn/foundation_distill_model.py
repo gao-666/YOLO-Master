@@ -15,28 +15,30 @@ import torch.nn.functional as F
 from torch import nn
 
 from ultralytics.nn.foundation import (
+    DEFAULT_DINOV2_MODEL,
     DEFAULT_DINOV3_MODEL,
     DEFAULT_SIGLIP2_MODEL,
+    DINOv2Teacher,
     DINOv3Teacher,
     FoundationFeatures,
     MultiFoundationTeacher,
     P4AlignmentProjector,
+    RegionSemanticProjector,
     SigLIP2Teacher,
     StudentFeatureTap,
     cosine_kd_loss,
     foreground_token_weights,
-    relational_kd_loss,
-    RegionSemanticProjector,
     positive_region_pool,
+    relational_kd_loss,
     semantic_distillation_loss,
 )
-from ultralytics.nn.modules.routing_protocol import publish_aux_loss
 from ultralytics.nn.foundation.routing import (
     FoundationTeacherRouter,
     foundation_multiteacher_summary,
     foundation_teacher_summary,
     routing_kd_loss,
 )
+from ultralytics.nn.modules.routing_protocol import publish_aux_loss
 
 
 def _get(config: Any, name: str, default: Any = None) -> Any:
@@ -571,12 +573,8 @@ class FoundationDistillationModel(nn.Module):
             with torch.no_grad():
                 teacher_probs = F.softmax(teacher_logits.float() / self.router_temperature, dim=-1)
                 student_probs = F.softmax(student_logits.detach().float() / self.router_temperature, dim=-1)
-                teacher_entropies.append(
-                    float((-(teacher_probs * teacher_probs.clamp_min(1e-12).log()).sum(-1).mean()))
-                )
-                student_entropies.append(
-                    float((-(student_probs * student_probs.clamp_min(1e-12).log()).sum(-1).mean()))
-                )
+                teacher_entropies.append(float(-(teacher_probs * teacher_probs.clamp_min(1e-12).log()).sum(-1).mean()))
+                student_entropies.append(float(-(student_probs * student_probs.clamp_min(1e-12).log()).sum(-1).mean()))
         if not losses:
             zero = teacher_summary.sum() * 0.0
             return zero, {
@@ -1114,16 +1112,26 @@ class FoundationDistillationModel(nn.Module):
                     }
                 )
         teacher_name = str(_get(self.config, "foundation_teacher", getattr(teacher, "name", "none"))).lower()
+        default_model = {
+            "dinov2": DEFAULT_DINOV2_MODEL,
+            "dinov3": DEFAULT_DINOV3_MODEL,
+            "siglip2": DEFAULT_SIGLIP2_MODEL,
+        }.get(teacher_name, DEFAULT_DINOV3_MODEL)
         router_kind = "multi_foundation_image_level" if teacher_name == "multi" else "latent_mixture_image_level"
-        router_teachers = list(
+        router_teachers = [
             str(name).lower()
             for name in (_get(self.config, "foundation_router_teachers", self.router_teachers) or self.router_teachers)
-        )
+        ]
         dino_model = _get(self.config, "foundation_dinov3_model", None) or _get(self.config, "foundation_model", None)
         siglip_model = _get(self.config, "foundation_siglip2_model", None) or DEFAULT_SIGLIP2_MODEL
         if teacher_name == "multi" and teacher is not None:
             dino_model = dino_model or getattr(getattr(teacher, "dinov3", None), "model_id", None)
             siglip_model = siglip_model or getattr(getattr(teacher, "siglip2", None), "model_id", None)
+        teacher_models = (
+            {"dinov2": str(_get(self.config, "foundation_model", None) or DEFAULT_DINOV2_MODEL)}
+            if teacher_name == "dinov2"
+            else {"dinov3": str(dino_model or DEFAULT_DINOV3_MODEL), "siglip2": str(siglip_model)}
+        )
         return {
             "schema_version": 1,
             # Deep-copied EMA/checkpoint wrappers intentionally have no live teacher, but still describe the
@@ -1156,20 +1164,21 @@ class FoundationDistillationModel(nn.Module):
                     getattr(
                         teacher,
                         "model_id",
-                        DEFAULT_SIGLIP2_MODEL
-                        if str(_get(self.config, "foundation_teacher", "dinov3")).lower() == "siglip2"
-                        else DEFAULT_DINOV3_MODEL,
+                        default_model,
                     ),
                 )
                 or getattr(
                     teacher,
                     "model_id",
-                    DEFAULT_SIGLIP2_MODEL
-                    if str(_get(self.config, "foundation_teacher", "dinov3")).lower() == "siglip2"
-                    else DEFAULT_DINOV3_MODEL,
+                    default_model,
                 )
             ),
-            "models": {"dinov3": str(dino_model or DEFAULT_DINOV3_MODEL), "siglip2": str(siglip_model)},
+            "revision": str(
+                _get(self.config, "foundation_revision", getattr(teacher, "revision", None))
+                or getattr(teacher, "revision", "")
+                or ""
+            ),
+            "models": teacher_models,
             "weights": str(
                 _get(self.config, "foundation_weights", None) or getattr(teacher, "weights_path", None) or ""
             ),
@@ -1482,11 +1491,16 @@ def build_foundation_distillation_wrapper(
                 processor_loader=processor_loader,
             )
             teacher_manager = MultiFoundationTeacher(dinov3=dino, siglip2=siglip)
-        elif teacher_name in {"dinov3", "siglip2"}:
-            model_id = _get(args, "foundation_model", None) or (
-                DEFAULT_SIGLIP2_MODEL if teacher_name == "siglip2" else DEFAULT_DINOV3_MODEL
+        elif teacher_name in {"dinov2", "dinov3", "siglip2"}:
+            model_id = (
+                _get(args, "foundation_model", None)
+                or {
+                    "dinov2": DEFAULT_DINOV2_MODEL,
+                    "dinov3": DEFAULT_DINOV3_MODEL,
+                    "siglip2": DEFAULT_SIGLIP2_MODEL,
+                }[teacher_name]
             )
-            teacher_cls = SigLIP2Teacher if teacher_name == "siglip2" else DINOv3Teacher
+            teacher_cls = {"dinov2": DINOv2Teacher, "dinov3": DINOv3Teacher, "siglip2": SigLIP2Teacher}[teacher_name]
             teacher_kwargs = {
                 "model_id": model_id,
                 "dtype": dtype,
@@ -1494,11 +1508,13 @@ def build_foundation_distillation_wrapper(
                 "weights_path": _get(args, "foundation_weights", None),
                 "model_loader": model_loader,
             }
+            if teacher_name == "dinov2":
+                teacher_kwargs["revision"] = _get(args, "foundation_revision", None)
             if teacher_name == "siglip2":
                 teacher_kwargs["processor_loader"] = processor_loader
             teacher_manager = teacher_cls(**teacher_kwargs)
         else:
-            raise ValueError(f"Unsupported foundation_teacher={teacher_name!r}; use dinov3, siglip2, or multi.")
+            raise ValueError(f"Unsupported foundation_teacher={teacher_name!r}; use dinov2, dinov3, siglip2, or multi.")
     elif str(_get(args, "foundation_teacher", "none")).lower() == "multi":
         if not isinstance(teacher_manager, MultiFoundationTeacher):
             if isinstance(teacher_manager, Mapping):

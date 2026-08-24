@@ -109,9 +109,10 @@ dis: 6.0 # (float) distillation loss weight
 
 # Foundation teacher distillation (training-only, opt-in; does not affect deployment) -------------------------------
 foundation_enabled: False # (bool) enable Foundation Teacher distillation during training
-foundation_teacher: none # (str) teacher family: none, dinov3, siglip2, or multi
+foundation_teacher: none # (str) teacher family: none, dinov2, dinov3, siglip2, or multi
 foundation_backend: transformers # (str) teacher backend: transformers or local
 foundation_model: # (str, optional) Foundation model id or local model path
+foundation_revision: # (str, optional) exact Hugging Face model revision/commit for reproducible teacher loading
 foundation_weights: # (str, optional) optional local Foundation teacher weights path
 foundation_dinov3_model: # (str, optional) F14 DINOv3 model id; falls back to foundation_model
 foundation_siglip2_model: google/siglip2-base-patch16-512 # (str) F14 SigLIP2 model id

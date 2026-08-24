@@ -1,4 +1,4 @@
-# D2 paired treatment. Official DINOv3 access/license acceptance is required before execution.
+# D2 paired treatment. DINOv2 is the executable P1 main route after DINOv3 access was rejected.
 model: ultralytics/cfg/models/26/yolo26-master-n.yaml
 data: coco128.yaml
 task: detect
@@ -20,9 +20,10 @@ save: true
 project: runs/rhino_d2/p1
 name: on-s20260824
 foundation_enabled: true
-foundation_teacher: dinov3
+foundation_teacher: dinov2
 foundation_backend: transformers
-foundation_model: facebook/dinov3-vits16-pretrain-lvd1689m
+foundation_model: facebook/dinov2-small
+foundation_revision: ed25f3a31f01632728cabb09d1542f84ab7b0056
 foundation_target_levels: [p4]
 foundation_align_dim: 64
 foundation_loss: hybrid

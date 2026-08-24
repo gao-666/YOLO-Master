@@ -17,7 +17,6 @@ import torch
 import torch.nn.functional as F
 import yaml
 from PIL import Image
-from torch import nn
 
 # 将实验产物与模型缓存固定在仓库内，便于复现实验并避免污染用户级配置。
 EXPERIMENT_ROOT = Path(__file__).resolve().parents[1]
@@ -31,107 +30,14 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from huggingface_hub import snapshot_download
-from transformers import Dinov2Model
 
 from ultralytics import YOLO
 from ultralytics.nn.foundation import (
-    FoundationFeatures,
+    DINOv2Teacher,
     P4AlignmentProjector,
     StudentFeatureTap,
     cosine_kd_loss,
 )
-from ultralytics.nn.foundation.preprocessing import (
-    DINOV3_IMAGE_MEAN,
-    DINOV3_IMAGE_STD,
-    prepare_image_tensor,
-)
-
-
-class DINOv2Teacher(nn.Module):
-    """将本地 DINOv2 适配为 YOLO-Master 的基础模型教师接口。
-
-    该适配器把 DINOv2 的 token 输出转换为统一的 ``FoundationFeatures``，
-    让学生模型可以读取教师的密集 P4 特征。教师参数和推理模式始终冻结，
-    避免教师与学生同时变化。它不会直接提高 mAP，但为后续蒸馏提供稳定、
-    可复现的监督目标，并检查特征形状与冻结状态是否满足实验契约。
-    """
-
-    name = "dinov2"
-
-    def __init__(self, snapshot: Path, device: torch.device, model_id: str) -> None:
-        super().__init__()
-        # 教师只负责提供目标特征，整个模型在 smoke 过程中保持冻结状态。
-        self.snapshot = snapshot
-        self.model_id = model_id
-        self.model = Dinov2Model.from_pretrained(snapshot, local_files_only=True).to(device).eval()
-        self.model.requires_grad_(False)
-        self.patch_size = int(self.model.config.patch_size)
-        self.hidden_size = int(self.model.config.hidden_size)
-        self.device = device
-
-    def freeze(self) -> None:
-        """固定教师的评估行为并关闭所有参数梯度。
-
-        评估模式固定 dropout 和 batch normalization 等行为，关闭梯度则
-        防止教师被优化器更新。稳定的教师目标能让 loss 变化归因于学生
-        学习，而不是教师漂移；这是比较蒸馏前后检测指标的基础。
-        """
-        self.model.eval().requires_grad_(False)
-
-    def train(self, mode: bool = True):
-        """覆盖默认的 ``train`` 行为，防止外层封装意外解冻教师。
-
-        蒸馏封装器可能递归调用子模块的 ``train`` 方法，因此这里强制教师
-        保持 eval 状态，保证 smoke 测试和正式训练拥有一致的冻结语义。
-        """
-        super().train(False)
-        self.freeze()
-        return self
-
-    def preprocess(self, images: torch.Tensor) -> torch.Tensor:
-        """按教师的 patch 约束预处理图像。
-
-        学生和教师必须使用同一输入，但输入尺寸、patch 倍数和归一化规范
-        可能不同。本函数统一这些条件，避免预处理差异制造虚假的蒸馏损失，
-        使 loss 下降更能反映学生对教师表征的学习。
-        """
-        return prepare_image_tensor(
-            images.to(self.device),
-            patch_size=self.patch_size,
-            mean=DINOV3_IMAGE_MEAN,
-            std=DINOV3_IMAGE_STD,
-        )
-
-    @torch.inference_mode()
-    def encode(self, images: torch.Tensor) -> FoundationFeatures:
-        """提取 DINOv2 的密集 patch 特征和全局 pooled 特征。
-
-        DINOv2 输出序列 token，而检测蒸馏需要保留空间布局的 NCHW 特征图。
-        本函数去除 CLS 等前缀 token，并将 patch token 重排为 ``p4`` 特征，
-        为学生 backbone 提供逐位置监督。空间监督通常比单个全局向量更适合
-        目标定位；本 smoke 只验证接口、形状和数值链路，不代表真实精度提升。
-        """
-        pixel_values = self.preprocess(images)
-        output = self.model(pixel_values=pixel_values)
-        tokens = output.last_hidden_state
-        # 去掉 CLS 等前缀 token，仅将 patch token 还原为空间特征图。
-        grid_h = pixel_values.shape[-2] // self.patch_size
-        grid_w = pixel_values.shape[-1] // self.patch_size
-        prefix = tokens.shape[1] - grid_h * grid_w
-        if prefix < 0:
-            raise ValueError("DINOv2 token count is smaller than the expected patch grid")
-        patches = tokens[:, prefix:, :]
-        feature = patches.reshape(tokens.shape[0], grid_h, grid_w, tokens.shape[-1]).permute(0, 3, 1, 2)
-        return FoundationFeatures(
-            dense={"p4": feature.contiguous()},
-            pooled=tokens[:, 0, :],
-            metadata={
-                "model_id": self.model_id,
-                "patch_size": self.patch_size,
-                "prefix_tokens": prefix,
-                "grid_size": [grid_h, grid_w],
-            },
-        )
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -233,7 +139,12 @@ def _teacher_assets(snapshot: Path) -> list[dict[str, Any]]:
     """
     assets = []
     for path in sorted(snapshot.glob("*")):
-        if path.is_file() and path.name in {"config.json", "model.safetensors", "pytorch_model.bin"}:
+        if path.is_file() and path.name in {
+            "config.json",
+            "preprocessor_config.json",
+            "model.safetensors",
+            "pytorch_model.bin",
+        }:
             assets.append({"name": path.name, "size": path.stat().st_size, "sha256": _sha256(path)})
     return assets
 
@@ -277,11 +188,17 @@ def main() -> None:
         snapshot_download(
             repo_id=str(config["teacher_model"]),
             revision=str(config["teacher_revision"]),
-            allow_patterns=["config.json", "model.safetensors", "pytorch_model.bin"],
+            allow_patterns=["config.json", "preprocessor_config.json", "model.safetensors", "pytorch_model.bin"],
             local_files_only=args.offline,
         )
     ).resolve()
-    teacher = DINOv2Teacher(snapshot, device, str(config["teacher_model"]))
+    teacher = DINOv2Teacher(
+        model_id=str(config["teacher_model"]),
+        revision=str(config["teacher_revision"]),
+        weights_path=snapshot,
+        device=device,
+        local_files_only=True,
+    )
     student_path = _resolve_inside_repo(str(config["student_model"]))
     image_path = _resolve_inside_repo(str(config["image"]))
     image = _load_image(image_path, int(config["imgsz"]), device)

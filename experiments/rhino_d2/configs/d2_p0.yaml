@@ -4,13 +4,18 @@ student_level: p4
 teacher_model: facebook/dinov2-small
 teacher_revision: ed25f3a31f01632728cabb09d1542f84ab7b0056
 teacher_license: apache-2.0
+teacher_preprocessing: dinov2_dense_spatial_preserving_v1
 image: ultralytics/assets/bus.jpg
 imgsz: 224
 batch_size: 2
+target_source: deterministic_synthetic
+target_class: 0
+target_bbox_xywh: [0.5, 0.5, 0.35, 0.55]
 align_dim: 64
 foundation_loss: cosine
 foundation_loss_weight: 0.05
 steps: 5
 learning_rate: 0.0003
 seed: 20260824
+deterministic: true
 device: cuda:0
