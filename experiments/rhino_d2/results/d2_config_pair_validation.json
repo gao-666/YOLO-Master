@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "allowed_differences": [
+    "foundation_enabled",
+    "foundation_loss_weight",
+    "foundation_model",
+    "foundation_teacher",
+    "name"
+  ],
+  "observed_differences": {
+    "foundation_enabled": {
+      "off": false,
+      "on": true
+    },
+    "foundation_loss_weight": {
+      "off": 0.0,
+      "on": 0.05
+    },
+    "foundation_model": {
+      "off": null,
+      "on": "facebook/dinov3-vits16-pretrain-lvd1689m"
+    },
+    "foundation_teacher": {
+      "off": "none",
+      "on": "dinov3"
+    },
+    "name": {
+      "off": "off-s20260824",
+      "on": "on-s20260824"
+    }
+  },
+  "unexpected_differences": [],
+  "missing_expected_differences": [],
+  "files": {
+    "off": {
+      "path": "experiments\\rhino_d2\\configs\\d2_off.yaml",
+      "sha256": "53d7eea8820165ebf153cca1e4cf4f46837c2843c97c3ef5ea3b6920a4e46469"
+    },
+    "on": {
+      "path": "experiments\\rhino_d2\\configs\\d2_on.yaml",
+      "sha256": "eb42301457439b9eaec3b83f019661ae7e11375cafc2acc4c5d0508f3ab3be6c"
+    }
+  }
+}

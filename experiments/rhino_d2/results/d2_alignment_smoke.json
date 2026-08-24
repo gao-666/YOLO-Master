@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "claim": "pipeline_smoke_only_no_accuracy_claim",
+  "experiment_id": "d2_alignment_smoke_20260824",
+  "config": {
+    "path": "experiments\\rhino_d2\\configs\\d2_smoke.yaml",
+    "sha256": "30a73c571ae98113f5d70f66d508cf7b2958c15a278f8ee83b05f242bd8492c6",
+    "experiment_id": "d2_alignment_smoke_20260824",
+    "student_model": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
+    "student_level": "p4",
+    "teacher_model": "facebook/dinov2-small",
+    "teacher_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "teacher_license": "apache-2.0",
+    "image": "ultralytics/assets/bus.jpg",
+    "imgsz": 224,
+    "align_dim": 64,
+    "loss": "cosine",
+    "steps": 20,
+    "learning_rate": 0.05,
+    "seed": 20260824,
+    "device": "cuda:0"
+  },
+  "student": {
+    "model": "ultralytics\\cfg\\models\\26\\yolo26-master-n.yaml",
+    "model_yaml_sha256": "be403b10940030d6eb960f3e82cc40b1e142ab28bb8e16010f0ba1d95cb60306",
+    "level": "p4",
+    "source_indices": [
+      16,
+      19,
+      22
+    ],
+    "feature_shape": [
+      1,
+      128,
+      14,
+      14
+    ]
+  },
+  "teacher": {
+    "model": "facebook/dinov2-small",
+    "requested_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "resolved_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "license": "apache-2.0",
+    "feature_shape": [
+      1,
+      384,
+      16,
+      16
+    ],
+    "metadata": {
+      "model_id": "facebook/dinov2-small",
+      "patch_size": 14,
+      "prefix_tokens": 1,
+      "grid_size": [
+        16,
+        16
+      ]
+    },
+    "assets": [
+      {
+        "name": "config.json",
+        "size": 547,
+        "sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d"
+      },
+      {
+        "name": "model.safetensors",
+        "size": 88249960,
+        "sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1"
+      },
+      {
+        "name": "pytorch_model.bin",
+        "size": 88297097,
+        "sha256": "1051e25b2ed69ddad24f3c41e7b6eed6e7f7d012103ea227e47eb82e87dc2050"
+      }
+    ],
+    "frozen": true
+  },
+  "alignment": {
+    "student_aligned_shape": [
+      1,
+      64,
+      14,
+      14
+    ],
+    "teacher_aligned_shape": [
+      1,
+      64,
+      14,
+      14
+    ],
+    "metadata": {
+      "student_size": [
+        14,
+        14
+      ],
+      "teacher_size": [
+        16,
+        16
+      ],
+      "target_size": [
+        14,
+        14
+      ],
+      "teacher_resized": true,
+      "resize_ratio": [
+        0.875,
+        0.875
+      ]
+    },
+    "teacher_projection_frozen": true
+  },
+  "optimization": {
+    "loss": "cosine",
+    "steps": 20,
+    "learning_rate": 0.05,
+    "history": [
+      0.973721444606781,
+      0.494995653629303,
+      0.4596710205078125,
+      0.4428454637527466,
+      0.4321722984313965,
+      0.424443781375885,
+      0.41841840744018555,
+      0.4134945273399353,
+      0.4093427062034607,
+      0.40576303005218506,
+      0.40262657403945923,
+      0.3998446464538574,
+      0.39735323190689087,
+      0.39510399103164673,
+      0.39306002855300903,
+      0.39119136333465576,
+      0.3894726634025574,
+      0.387884259223938,
+      0.38641005754470825,
+      0.3850337266921997,
+      0.3837452530860901
+    ],
+    "initial_loss": 0.973721444606781,
+    "final_loss": 0.3837452530860901,
+    "relative_drop": 0.6058983241957269,
+    "decreased": true
+  },
+  "runtime": {
+    "device": "cuda:0",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "seed": 20260824
+  }
+}

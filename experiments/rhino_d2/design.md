@@ -52,3 +52,7 @@ student 1×1 trainable projection ─┐               ├─ frozen 1×1 teache
 5. 数据：COCO mini 的类别/尺度和样本数是否造成高方差。
 
 只有完成以上证据链后，才能把负结果解释为“当前蒸馏设计 no-go”。
+
+## P0 后续探索边界
+
+统计对齐是记录完毕但尚未实现/宣称有效的后续假设，完整的可证伪设计、实验臂、测试红线和 logit 蒸馏边界见 [`statistical_distillation_proposal.md`](statistical_distillation_proposal.md)。P0/P1 基线不因该设想而改变，避免把多个 loss、动态权重和第二教师同时缝合进一次实验。

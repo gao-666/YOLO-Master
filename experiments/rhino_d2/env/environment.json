@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "git": {
+    "commit": "f9cbfdd24457b49a849c6358c3a692419d39fcc2",
+    "branch": "rhino-d2-foundation-distillation",
+    "origin": "https://github.com/Tencent/YOLO-Master.git"
+  },
+  "runtime": {
+    "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "$USER_HOME\\.conda\\envs\\yolo-master-d2\\python.exe",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "ultralytics": "8.4.101",
+      "torch": "2.11.0+cu128",
+      "torchvision": "0.26.0+cu128",
+      "transformers": "5.15.1",
+      "huggingface-hub": "1.28.0",
+      "pytest": "9.1.1",
+      "pyyaml": "6.0.3"
+    }
+  },
+  "cuda": {
+    "available": true,
+    "runtime": "12.8",
+    "device_count": 1,
+    "devices": [
+      "NVIDIA GeForce RTX 5070 Ti"
+    ],
+    "driver_report": "NVIDIA GeForce RTX 5070 Ti, 610.62, 16303 MiB"
+  },
+  "configs": {
+    "experiments\\rhino_d2\\configs\\d2_off.yaml": "53d7eea8820165ebf153cca1e4cf4f46837c2843c97c3ef5ea3b6920a4e46469",
+    "experiments\\rhino_d2\\configs\\d2_on.yaml": "eb42301457439b9eaec3b83f019661ae7e11375cafc2acc4c5d0508f3ab3be6c",
+    "experiments\\rhino_d2\\configs\\d2_p0.yaml": "31a5ddf1843e8b6efcba786fc2d5dad81a93d8dafaa2354893ed73c512d217b3",
+    "experiments\\rhino_d2\\configs\\d2_smoke.yaml": "30a73c571ae98113f5d70f66d508cf7b2958c15a278f8ee83b05f242bd8492c6"
+  },
+  "redaction": "No environment variables, credentials, tokens, or user-home contents are recorded."
+}

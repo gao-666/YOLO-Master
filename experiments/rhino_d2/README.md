@@ -2,11 +2,13 @@
 
 本目录把仓库已有的 Foundation Distillation alpha 收敛为一个可审计的 D2 最小实验。它不声称新增整套蒸馏框架，也不在 smoke 结果上声称精度提升。
 
+8.24 在线表格的简版状态和审核备注见 [`submission_824.md`](submission_824.md)。
+
 ## 准入状态
 
 | 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Conda `yolo-master-d2`；Python 3.11；PyTorch CUDA 12.8；`pip install -e ".[foundation,dev]"` | YOLO-Master-N 的 P4 与冻结 Foundation Teacher 特征对齐；真实检测 task loss 与 KD loss 共同反传，固定单 batch KD loss 下降 | 见“复现命令” | [`configs/d2_p0.yaml`](configs/d2_p0.yaml)、[`configs/d2_off.yaml`](configs/d2_off.yaml)、[`configs/d2_on.yaml`](configs/d2_on.yaml)、[`configs/d2_smoke.yaml`](configs/d2_smoke.yaml) | [`results/d2_p0_train_smoke.json`](results/d2_p0_train_smoke.json)（真实 task+KD）；[`results/d2_alignment_smoke.json`](results/d2_alignment_smoke.json)（对齐逐 step）；[`results/pytest-foundation.xml`](results/pytest-foundation.xml)（54 tests）；[`env/environment.json`](env/environment.json) | 总 loss 分解、学生/投影梯度、教师冻结、教师不在 optimizer、teacher revision/权重 hash、[`results/d2_config_pair_validation.json`](results/d2_config_pair_validation.json) | [`design.md`](design.md)、[`P0_HANDOVER.md`](P0_HANDOVER.md) | [`limitations.md`](limitations.md) | 本目录；上游基线 commit 见 `env/environment.json` |
+| Conda `yolo-master-d2`；Python 3.11；PyTorch CUDA 12.8；`pip install -e ".[foundation,dev]"` | YOLO-Master-N 的 P4 与冻结 Foundation Teacher 特征对齐；真实检测 task loss 与 KD loss 共同反传，固定单 batch KD loss 下降 | 见“复现命令” | [`configs/d2_p0.yaml`](configs/d2_p0.yaml)、[`configs/d2_off.yaml`](configs/d2_off.yaml)、[`configs/d2_on.yaml`](configs/d2_on.yaml)、[`configs/d2_smoke.yaml`](configs/d2_smoke.yaml) | [`results/d2_p0_train_smoke.json`](results/d2_p0_train_smoke.json)（真实 task+KD）；[`results/d2_alignment_smoke.json`](results/d2_alignment_smoke.json)（对齐逐 step）；[`results/pytest-foundation.xml`](results/pytest-foundation.xml)（54 tests）；[`env/environment.json`](env/environment.json) | 总 loss 分解、学生/投影梯度、教师冻结、教师不在 optimizer、teacher revision/权重 hash、[`results/d2_config_pair_validation.json`](results/d2_config_pair_validation.json) | [`design.md`](design.md)、[`P0_HANDOVER.md`](P0_HANDOVER.md)、[`statistical_distillation_proposal.md`](statistical_distillation_proposal.md) | [`limitations.md`](limitations.md) | 本目录；上游基线 commit 见 `env/environment.json` |
 
 ## 复现命令
 
