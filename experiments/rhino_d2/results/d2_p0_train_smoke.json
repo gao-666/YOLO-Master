@@ -5,7 +5,7 @@
   "experiment_id": "d2_p0_full_loss_smoke_20260824",
   "config": {
     "path": "experiments\\rhino_d2\\configs\\d2_p0.yaml",
-    "sha256": "f465e3152fe1e6127fd128ee7fac7b2202b77a7db310df8d6af431b370f929c8",
+    "sha256": "077cb663e9a574fa78015c4a65caaa2bb40f5e7f530920ffdbafcfdc288a3c6f",
     "experiment_id": "d2_p0_full_loss_smoke_20260824",
     "student_model": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
     "student_level": "p4",

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "claim": "visualization_of_committed_p0_smoke_evidence_no_accuracy_claim",
+  "sources": {
+    "results\\d2_alignment_smoke.json": "96bc9149a17b8501ca19bc9c66cb6eebbf6405662bbe4ab8cd39ad99a30ae141",
+    "results\\d2_p0_train_smoke.json": "e97ac49a89d1b6d3e3ed2df85ab0da664c7c7fbca3720f694df9d3ac1d35499b"
+  },
+  "outputs": {
+    "results\\d2_p0_loss_curves.csv": "699f8a537593dda951e793b57aa41fd4ee5dc71e236392655fafcbf29e1c7209",
+    "results\\d2_p0_loss_curves.png": "301ccbea25fe6f27574be6211f15fd1872c2bf4c357ab536f314276e08b11518"
+  },
+  "points": 36,
+  "summary": {
+    "alignment_initial": 0.973721444606781,
+    "alignment_final": 0.3837452530860901,
+    "integrated_kd_initial": 0.09991300106048584,
+    "integrated_kd_final": 0.0976409763097763,
+    "single_stage": "p4",
+    "target_source": "deterministic_synthetic"
+  }
+}
