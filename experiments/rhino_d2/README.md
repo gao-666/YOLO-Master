@@ -8,7 +8,7 @@
 
 | 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Conda `yolo-master-d2`；Python 3.11；PyTorch CUDA 12.8；`pip install -e ".[foundation,dev]"` | YOLO-Master-N 的 P4 与冻结 Foundation Teacher 特征对齐；真实检测 task loss 与 KD loss 共同反传，固定单 batch KD loss 下降 | 见“复现命令” | [`configs/d2_p0.yaml`](configs/d2_p0.yaml)、[`configs/d2_off.yaml`](configs/d2_off.yaml)、[`configs/d2_on.yaml`](configs/d2_on.yaml)、[`configs/d2_smoke.yaml`](configs/d2_smoke.yaml) | [`results/d2_p0_train_smoke.json`](results/d2_p0_train_smoke.json)（真实 task+KD）；[`results/d2_alignment_smoke.json`](results/d2_alignment_smoke.json)（对齐逐 step）；[`results/pytest-foundation.xml`](results/pytest-foundation.xml)（54 tests）；[`env/environment.json`](env/environment.json) | 总 loss 分解、学生/投影梯度、教师冻结、教师不在 optimizer、teacher revision/权重 hash、[`results/d2_config_pair_validation.json`](results/d2_config_pair_validation.json) | [`design.md`](design.md)、[`P0_HANDOVER.md`](P0_HANDOVER.md)、[`statistical_distillation_proposal.md`](statistical_distillation_proposal.md) | [`limitations.md`](limitations.md) | 本目录；上游基线 commit 见 `env/environment.json` |
+| Conda `yolo-master-d2`；Python 3.11；PyTorch CUDA 12.8；`pip install -e ".[foundation,dev]"` | YOLO-Master-N 的 P4 与冻结 Foundation Teacher 特征对齐；真实 YOLO detection loss 实现 + 确定性合成 target 的 fixed-batch smoke，KD 与检测 loss 共同反传 | 见“复现命令” | [`configs/d2_p0.yaml`](configs/d2_p0.yaml)、[`configs/d2_off.yaml`](configs/d2_off.yaml)、[`configs/d2_on.yaml`](configs/d2_on.yaml)、[`configs/d2_smoke.yaml`](configs/d2_smoke.yaml) | [`results/d2_p0_train_smoke.json`](results/d2_p0_train_smoke.json)（检测实现+合成 target+KD）；[`results/d2_alignment_smoke.json`](results/d2_alignment_smoke.json)（对齐逐 step）；[`results/pytest-foundation.xml`](results/pytest-foundation.xml)（92 tests）；[`env/environment.json`](env/environment.json) | 总 loss 分解、学生/投影梯度、教师冻结、教师不在 optimizer、teacher revision/权重 hash、[`results/d2_config_pair_validation.json`](results/d2_config_pair_validation.json) | [`design.md`](design.md)、[`P0_HANDOVER.md`](P0_HANDOVER.md)、[`statistical_distillation_proposal.md`](statistical_distillation_proposal.md) | [`limitations.md`](limitations.md) | 本目录；base/experiment commit 与 dirty 状态见 `env/environment.json` |
 
 ## 复现命令
 
@@ -20,17 +20,17 @@ python experiments/rhino_d2/scripts/record_environment.py
 python experiments/rhino_d2/scripts/validate_pair.py
 python experiments/rhino_d2/scripts/d2_alignment_smoke.py --config experiments/rhino_d2/configs/d2_smoke.yaml
 python experiments/rhino_d2/scripts/d2_p0_train_smoke.py --config experiments/rhino_d2/configs/d2_p0.yaml
-pytest experiments/rhino_d2/tests/test_admission_contract.py -v
-pytest tests/test_foundation_taps.py tests/test_foundation_projectors.py tests/test_foundation_losses.py tests/test_foundation_distill_model.py -v
+$env:PYTHONUTF8="1"
+pytest experiments/rhino_d2/tests/test_admission_contract.py tests/test_foundation_taps.py tests/test_foundation_projectors.py tests/test_foundation_losses.py tests/test_foundation_distill_model.py tests/test_foundation_config.py tests/test_foundation_dinov2.py tests/test_default_config_integrity.py --junitxml=experiments/rhino_d2/results/pytest-foundation.xml -v
 ```
 
 首次运行真实 DINOv2 smoke 会从 Hugging Face 下载公开教师权重到本目录的 `cache/`；缓存不进入 Git。复跑时追加 `--offline`，强制只使用已锁定的本地 snapshot。
 
 ## 同预算 on/off
 
-`d2_off.yaml` 与 `d2_on.yaml` 只允许以下字段不同：`name`、`foundation_enabled`、`foundation_teacher`、`foundation_model`、`foundation_loss_weight`。`validate_pair.py` 会失败关闭（fail closed），防止 epoch、batch、imgsz、seed、模型、数据、优化器或增广发生混杂。
+`d2_off.yaml` 与 `d2_on.yaml` 只允许以下字段不同：`name`、`foundation_enabled`、`foundation_teacher`、`foundation_model`、`foundation_revision`、`foundation_loss_weight`。`validate_pair.py` 会失败关闭（fail closed），防止 epoch、batch、imgsz、seed、模型、数据、优化器或增广发生混杂。
 
-当前 on 配置指向官方 DINOv3 模型。DINOv3 权重受控访问，必须由实验者在官方模型页接受许可后自行获取；未完成许可前，准入 smoke 使用 Apache-2.0 的 DINOv2，不把社区镜像作为正式教师资产。
+当前 on 配置正式指向 `facebook/dinov2-small` 的锁定 revision。DINOv3 访问申请已被拒绝，因此不再保留为不可执行的主实验；DINOv2 已进入正式构造器，P1 不使用社区镜像或未授权权重。
 
 ## 8.24 汇报口径
 

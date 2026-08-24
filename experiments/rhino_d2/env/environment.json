@@ -1,9 +1,21 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "git": {
-    "commit": "f9cbfdd24457b49a849c6358c3a692419d39fcc2",
+    "base_commit": "22140b74f1fdf7edc5ead18c3dbebce5e611c212",
+    "experiment_commit": "e70d6670fca4f33cda8425c1ed463158bb6fc00a",
+    "commit": "e70d6670fca4f33cda8425c1ed463158bb6fc00a",
     "branch": "rhino-d2-foundation-distillation",
-    "origin": "https://github.com/Tencent/YOLO-Master.git"
+    "origin": "https://github.com/Tencent/YOLO-Master.git",
+    "repository_state": {
+      "dirty": true,
+      "entry_count": 23,
+      "porcelain_sha256": "ce285d74bb84865f145f5d1306c53888ac9af371ebd51f7fc93fb5e470c8b5af"
+    },
+    "experiment_inputs_state": {
+      "dirty": false,
+      "entry_count": 0,
+      "porcelain_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
   },
   "runtime": {
     "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
@@ -30,9 +42,31 @@
   },
   "configs": {
     "experiments\\rhino_d2\\configs\\d2_off.yaml": "53d7eea8820165ebf153cca1e4cf4f46837c2843c97c3ef5ea3b6920a4e46469",
-    "experiments\\rhino_d2\\configs\\d2_on.yaml": "eb42301457439b9eaec3b83f019661ae7e11375cafc2acc4c5d0508f3ab3be6c",
-    "experiments\\rhino_d2\\configs\\d2_p0.yaml": "31a5ddf1843e8b6efcba786fc2d5dad81a93d8dafaa2354893ed73c512d217b3",
-    "experiments\\rhino_d2\\configs\\d2_smoke.yaml": "30a73c571ae98113f5d70f66d508cf7b2958c15a278f8ee83b05f242bd8492c6"
+    "experiments\\rhino_d2\\configs\\d2_on.yaml": "a942261534e678815065471c7add73d5e7158c42357905121aa5b326e7692310",
+    "experiments\\rhino_d2\\configs\\d2_p0.yaml": "f465e3152fe1e6127fd128ee7fac7b2202b77a7db310df8d6af431b370f929c8",
+    "experiments\\rhino_d2\\configs\\d2_smoke.yaml": "6110bde20482bf7c9132a0b128efac8755b589b8f7c24adb0669a103faf48a54"
+  },
+  "scripts": {
+    "experiments\\rhino_d2\\scripts\\d2_alignment_smoke.py": "db751f381cbe386218b4b6e13164add5b820b4b41f53665e76a0e62228356c38",
+    "experiments\\rhino_d2\\scripts\\d2_p0_train_smoke.py": "72299184fc8f8d91759decce4d7fe8aa4048feb4d640674433386de5d8ced2f9",
+    "experiments\\rhino_d2\\scripts\\record_environment.py": "02b4632d17e7ab607f95657939049073d3cd95f4c20b3466b7b04698341b0ae7",
+    "experiments\\rhino_d2\\scripts\\validate_pair.py": "2dd2a95499ef370811d5df842accae95f5c501b8e24ea07a8eadc5df0c870d4a"
+  },
+  "protocols": {
+    "experiments\\rhino_d2\\experiment_matrix.csv": "304ef49e3fc54892d6f1877418dac2b4904ac286507d4e49e361c90e4325f1bf"
+  },
+  "tests": {
+    "experiments\\rhino_d2\\tests\\test_admission_contract.py": "037fc47f1d82cf65ee87e1272daf2dae041fd99b1e2ff435bd8c1611762e9d39",
+    "tests\\test_foundation_config.py": "075b904c61abf3b0c43918ed0f88d897aa9cdaeabdfdb651f6cf500b80423515",
+    "tests\\test_foundation_dinov2.py": "bee85b6fa64cf875a6b4f2b9240e1757186a17342c44a85cc8463d556d4380af",
+    "tests\\test_foundation_distill_model.py": "471da44a078954438037b9b600c8e0327b18f6c100a347b1e7100725c7736570"
+  },
+  "implementation": {
+    "ultralytics\\cfg\\default.yaml": "c7d3161b7ca628151619f667a4114ccdb053c25554a7243ca05e81fdeb5fae92",
+    "ultralytics\\cfg\\models\\26\\yolo26-master-n.yaml": "be403b10940030d6eb960f3e82cc40b1e142ab28bb8e16010f0ba1d95cb60306",
+    "ultralytics\\nn\\foundation\\preprocessing.py": "643449f9484f8dacddfb698789031828de1b237b24c9cbbc138dbd24ba529061",
+    "ultralytics\\nn\\foundation\\teachers\\dinov2.py": "cc49699a902abacad33ee8bc066ce6da6184c72367aa6ac11b95e242e4286b1d",
+    "ultralytics\\nn\\foundation_distill_model.py": "14e735ce0731f8bd174210fedbacd03c2dd0c47d26ad6b55362599938fb0c71e"
   },
   "redaction": "No environment variables, credentials, tokens, or user-home contents are recorded."
 }

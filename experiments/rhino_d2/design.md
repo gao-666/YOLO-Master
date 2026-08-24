@@ -32,10 +32,12 @@ student 1×1 trainable projection ─┐               ├─ frozen 1×1 teache
 
 | 角色 | 模型 | 用途 | 许可/访问 |
 | --- | --- | --- | --- |
-| 主教师 | `facebook/dinov3-vits16-pretrain-lvd1689m` | 正式 on/off | DINOv3 专用许可；Hugging Face 受控访问，需本人接受条款 |
-| 准入降级 | `facebook/dinov2-small` | 真实特征对齐 smoke | Hugging Face 模型卡标注 Apache-2.0，公开下载 |
+| P1 主教师 | `facebook/dinov2-small@ed25f3a31f01632728cabb09d1542f84ab7b0056` | 正式 on/off 与 P0 smoke | Hugging Face 模型卡标注 Apache-2.0，公开下载；revision 锁定 |
+| 已拒绝备选 | `facebook/dinov3-vits16-pretrain-lvd1689m` | 不执行 | 受控访问申请已被拒绝，不使用社区镜像绕过门禁 |
 
 每次 smoke 记录 Hugging Face snapshot commit、模型文件 SHA-256、配置 SHA-256。更换教师或 revision 后旧缓存和旧证据自动视为失效。
+
+DINOv2 预处理契约为 `dinov2_dense_spatial_preserving_v1`：输入 `[0,1]`，使用 DINOv2 自有 mean/std，保留输入分辨率并仅在右侧/底部补齐 patch 倍数。它有意不执行分类预训练常见的 resize-shortest-edge/center-crop，因为检测蒸馏需要保留 P4 的空间对应；该差异写入教师 metadata 和证据 JSON。
 
 ## P1 无混杂变量实验
 

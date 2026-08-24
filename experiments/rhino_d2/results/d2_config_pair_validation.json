@@ -4,6 +4,7 @@
     "foundation_enabled",
     "foundation_loss_weight",
     "foundation_model",
+    "foundation_revision",
     "foundation_teacher",
     "name"
   ],
@@ -18,11 +19,15 @@
     },
     "foundation_model": {
       "off": null,
-      "on": "facebook/dinov3-vits16-pretrain-lvd1689m"
+      "on": "facebook/dinov2-small"
+    },
+    "foundation_revision": {
+      "off": null,
+      "on": "ed25f3a31f01632728cabb09d1542f84ab7b0056"
     },
     "foundation_teacher": {
       "off": "none",
-      "on": "dinov3"
+      "on": "dinov2"
     },
     "name": {
       "off": "off-s20260824",
@@ -38,7 +43,7 @@
     },
     "on": {
       "path": "experiments\\rhino_d2\\configs\\d2_on.yaml",
-      "sha256": "eb42301457439b9eaec3b83f019661ae7e11375cafc2acc4c5d0508f3ab3be6c"
+      "sha256": "a942261534e678815065471c7add73d5e7158c42357905121aa5b326e7692310"
     }
   }
 }

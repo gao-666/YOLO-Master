@@ -39,7 +39,9 @@
 | 6 | `ultralytics/nn/foundation_distill_model.py` | `loss()` | 真实集成点：抓 P4、跑教师、对齐、计算 KD，并加入检测 loss |
 | 7 | `ultralytics/engine/trainer.py` | `_setup_train()` 中 Foundation 部分 | 正式 `yolo train` 如何自动包装学生模型 |
 
-当前 P0 脚本显式注入 DINOv2 教师，是因为正式构造器当前只接受 DINOv3、SigLIP2 或 multi。这个降级必须明确声明，不能把 DINOv2 smoke 冒充成正式 DINOv3 实验。
+正式构造器现在原生接受 DINOv2，并要求记录模型 revision 与 `dinov2_dense_spatial_preserving_v1` 预处理契约。P0 脚本与 P1 配置共用同一个教师类，不再存在“smoke 适配器能跑、正式训练不能跑”的分叉。
+
+P0 中的检测损失函数是仓库真实 YOLO 实现，但监督 target 是确定性合成数据：同一张 `bus.jpg` 重复两次，类别固定为 0，框固定为归一化 `xywh=[0.5,0.5,0.35,0.55]`。它只验证检测损失与 KD 的梯度链，不是 COCO 真实标注 batch，也不用于精度结论。
 
 ## 3. 你需要补到什么程度
 

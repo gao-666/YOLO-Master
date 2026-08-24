@@ -5,13 +5,14 @@
   "experiment_id": "d2_alignment_smoke_20260824",
   "config": {
     "path": "experiments\\rhino_d2\\configs\\d2_smoke.yaml",
-    "sha256": "30a73c571ae98113f5d70f66d508cf7b2958c15a278f8ee83b05f242bd8492c6",
+    "sha256": "6110bde20482bf7c9132a0b128efac8755b589b8f7c24adb0669a103faf48a54",
     "experiment_id": "d2_alignment_smoke_20260824",
     "student_model": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
     "student_level": "p4",
     "teacher_model": "facebook/dinov2-small",
     "teacher_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
     "teacher_license": "apache-2.0",
+    "teacher_preprocessing": "dinov2_dense_spatial_preserving_v1",
     "image": "ultralytics/assets/bus.jpg",
     "imgsz": 224,
     "align_dim": 64,
@@ -49,13 +50,47 @@
       16
     ],
     "metadata": {
-      "model_id": "facebook/dinov2-small",
-      "patch_size": 14,
-      "prefix_tokens": 1,
       "grid_size": [
         16,
         16
-      ]
+      ],
+      "patch_size": 14,
+      "hidden_dim": 384,
+      "num_register_tokens": 0,
+      "prefix_tokens": 1,
+      "feature_maps_available": 0,
+      "input_size": [
+        224,
+        224
+      ],
+      "padded_size": [
+        224,
+        224
+      ],
+      "model_id": "facebook/dinov2-small",
+      "backend": "transformers",
+      "teacher_family": "dinov2",
+      "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+      "preprocessing": {
+        "contract": "dinov2_dense_spatial_preserving_v1",
+        "input_range": [
+          0.0,
+          1.0
+        ],
+        "resize": false,
+        "center_crop": false,
+        "padding": "bottom_right_to_patch_multiple",
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      }
     },
     "assets": [
       {
@@ -67,6 +102,11 @@
         "name": "model.safetensors",
         "size": 88249960,
         "sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1"
+      },
+      {
+        "name": "preprocessor_config.json",
+        "size": 436,
+        "sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
       },
       {
         "name": "pytorch_model.bin",

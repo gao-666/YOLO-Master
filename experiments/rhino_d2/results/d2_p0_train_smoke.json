@@ -1,26 +1,36 @@
 {
   "schema_version": 1,
   "status": "passed",
-  "claim": "p0_task_plus_foundation_single_batch_training_only_no_accuracy_claim",
+  "claim": "p0_real_yolo_loss_synthetic_target_fixed_batch_smoke_no_accuracy_claim",
   "experiment_id": "d2_p0_full_loss_smoke_20260824",
   "config": {
     "path": "experiments\\rhino_d2\\configs\\d2_p0.yaml",
-    "sha256": "31a5ddf1843e8b6efcba786fc2d5dad81a93d8dafaa2354893ed73c512d217b3",
+    "sha256": "f465e3152fe1e6127fd128ee7fac7b2202b77a7db310df8d6af431b370f929c8",
     "experiment_id": "d2_p0_full_loss_smoke_20260824",
     "student_model": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
     "student_level": "p4",
     "teacher_model": "facebook/dinov2-small",
     "teacher_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
     "teacher_license": "apache-2.0",
+    "teacher_preprocessing": "dinov2_dense_spatial_preserving_v1",
     "image": "ultralytics/assets/bus.jpg",
     "imgsz": 224,
     "batch_size": 2,
+    "target_source": "deterministic_synthetic",
+    "target_class": 0,
+    "target_bbox_xywh": [
+      0.5,
+      0.5,
+      0.35,
+      0.55
+    ],
     "align_dim": 64,
     "foundation_loss": "cosine",
     "foundation_loss_weight": 0.05,
     "steps": 5,
     "learning_rate": 0.0003,
     "seed": 20260824,
+    "deterministic": true,
     "device": "cuda:0"
   },
   "student": {
@@ -37,6 +47,49 @@
     "requested_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
     "resolved_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
     "license": "apache-2.0",
+    "metadata": {
+      "grid_size": [
+        16,
+        16
+      ],
+      "patch_size": 14,
+      "hidden_dim": 384,
+      "num_register_tokens": 0,
+      "prefix_tokens": 1,
+      "feature_maps_available": 0,
+      "input_size": [
+        224,
+        224
+      ],
+      "padded_size": [
+        224,
+        224
+      ],
+      "model_id": "facebook/dinov2-small",
+      "backend": "transformers",
+      "teacher_family": "dinov2",
+      "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+      "preprocessing": {
+        "contract": "dinov2_dense_spatial_preserving_v1",
+        "input_range": [
+          0.0,
+          1.0
+        ],
+        "resize": false,
+        "center_crop": false,
+        "padding": "bottom_right_to_patch_multiple",
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      }
+    },
     "assets": [
       {
         "name": "config.json",
@@ -49,11 +102,30 @@
         "sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1"
       },
       {
+        "name": "preprocessor_config.json",
+        "size": 436,
+        "sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+      },
+      {
         "name": "pytorch_model.bin",
         "size": 88297097,
         "sha256": "1051e25b2ed69ddad24f3c41e7b6eed6e7f7d012103ea227e47eb82e87dc2050"
       }
     ]
+  },
+  "data_contract": {
+    "image": "ultralytics\\assets\\bus.jpg",
+    "image_repeated": 2,
+    "target_source": "deterministic_synthetic",
+    "target_class": 0,
+    "target_bbox_format": "normalized_xywh",
+    "target_bbox_xywh": [
+      0.5,
+      0.5,
+      0.35,
+      0.55
+    ],
+    "purpose": "gradient_chain_smoke_not_accuracy_evaluation"
   },
   "checks": {
     "finite_losses": true,
@@ -69,25 +141,25 @@
   "steps": [
     {
       "step": 0,
-      "total_loss": 26.46364974975586,
-      "task_loss": 26.36372184753418,
-      "foundation_loss": 0.09992745518684387,
+      "total_loss": 26.512863159179688,
+      "task_loss": 26.412952423095703,
+      "foundation_loss": 0.09991300106048584,
       "loss_items": [
-        2.7116971015930176,
-        5.893755912780762,
-        0.07964804768562317,
+        2.7320799827575684,
+        5.8961100578308105,
+        0.0803837776184082,
         3.0,
-        0.09992745518684387
+        0.09991300106048584
       ],
-      "student_grad_norm": 3919.1611328125,
-      "projector_grad_norm": 0.03410005196928978,
+      "student_grad_norm": 3883.508056640625,
+      "projector_grad_norm": 0.03409702330827713,
       "foundation_metrics": {
-        "foundation_loss": 0.09992745518684387,
-        "foundation_cosine_loss": 0.09992745518684387,
+        "foundation_loss": 0.09991300106048584,
+        "foundation_cosine_loss": 0.09991300106048584,
         "foundation_relational_loss": 0.0,
-        "foundation_cosine_raw": 0.9992745518684387,
+        "foundation_cosine_raw": 0.9991300106048584,
         "foundation_relational_raw": 0.0,
-        "foundation_task_ratio": 0.011371017963623475,
+        "foundation_task_ratio": 0.011348182451552188,
         "foundation_loss_weight": 0.05,
         "foundation_effective_weight": 0.05,
         "foundation_foreground_enabled": 0.0,
@@ -96,25 +168,25 @@
     },
     {
       "step": 1,
-      "total_loss": 26.209163665771484,
-      "task_loss": 26.110008239746094,
-      "foundation_loss": 0.09915576130151749,
+      "total_loss": 27.02427864074707,
+      "task_loss": 26.925182342529297,
+      "foundation_loss": 0.09909561276435852,
       "loss_items": [
-        2.7992055416107178,
-        5.729135513305664,
-        0.0805777758359909,
+        3.0325927734375,
+        5.976254940032959,
+        0.09455017745494843,
         3.0,
-        0.09915576130151749
+        0.09909561276435852
       ],
-      "student_grad_norm": 3779.4169921875,
-      "projector_grad_norm": 0.041219498962163925,
+      "student_grad_norm": 2713.449951171875,
+      "projector_grad_norm": 0.040495291352272034,
       "foundation_metrics": {
-        "foundation_loss": 0.09915576130151749,
-        "foundation_cosine_loss": 0.09915576130151749,
+        "foundation_loss": 0.09909561276435852,
+        "foundation_cosine_loss": 0.09909561276435852,
         "foundation_relational_loss": 0.0,
-        "foundation_cosine_raw": 0.9915575981140137,
+        "foundation_cosine_raw": 0.9909561276435852,
         "foundation_relational_raw": 0.0,
-        "foundation_task_ratio": 0.011392844438923046,
+        "foundation_task_ratio": 0.01104121834540179,
         "foundation_loss_weight": 0.05,
         "foundation_effective_weight": 0.05,
         "foundation_foreground_enabled": 0.0,
@@ -123,25 +195,25 @@
     },
     {
       "step": 2,
-      "total_loss": 27.595111846923828,
-      "task_loss": 27.49628448486328,
-      "foundation_loss": 0.09882866591215134,
+      "total_loss": 27.943668365478516,
+      "task_loss": 27.84455108642578,
+      "foundation_loss": 0.09911548346281052,
       "loss_items": [
-        3.4521052837371826,
-        6.189899921417236,
-        0.11112331598997116,
+        3.7126708030700684,
+        6.208678245544434,
+        0.11603274941444397,
         3.0,
-        0.09882866591215134
+        0.09911548346281052
       ],
-      "student_grad_norm": 1979.3956298828125,
-      "projector_grad_norm": 0.03968795761466026,
+      "student_grad_norm": 1313.6895751953125,
+      "projector_grad_norm": 0.038951240479946136,
       "foundation_metrics": {
-        "foundation_loss": 0.09882866591215134,
-        "foundation_cosine_loss": 0.09882866591215134,
+        "foundation_loss": 0.09911548346281052,
+        "foundation_cosine_loss": 0.09911548346281052,
         "foundation_relational_loss": 0.0,
-        "foundation_cosine_raw": 0.9882866740226746,
+        "foundation_cosine_raw": 0.9911548495292664,
         "foundation_relational_raw": 0.0,
-        "foundation_task_ratio": 0.010782765864226844,
+        "foundation_task_ratio": 0.010678802091853007,
         "foundation_loss_weight": 0.05,
         "foundation_effective_weight": 0.05,
         "foundation_foreground_enabled": 0.0,
@@ -150,25 +222,25 @@
     },
     {
       "step": 3,
-      "total_loss": 27.321992874145508,
-      "task_loss": 27.224231719970703,
-      "foundation_loss": 0.09776253253221512,
+      "total_loss": 26.50758934020996,
+      "task_loss": 26.409324645996094,
+      "foundation_loss": 0.09826409071683884,
       "loss_items": [
-        3.3404834270477295,
-        6.072998046875,
-        0.10080142319202423,
+        3.235236883163452,
+        5.653812885284424,
+        0.10316170752048492,
         3.0,
-        0.09776253253221512
+        0.09826409071683884
       ],
-      "student_grad_norm": 2429.451416015625,
-      "projector_grad_norm": 0.03897853195667267,
+      "student_grad_norm": 1815.4837646484375,
+      "projector_grad_norm": 0.04112979769706726,
       "foundation_metrics": {
-        "foundation_loss": 0.09776253253221512,
-        "foundation_cosine_loss": 0.09776253253221512,
+        "foundation_loss": 0.09826409071683884,
+        "foundation_cosine_loss": 0.09826409071683884,
         "foundation_relational_loss": 0.0,
-        "foundation_cosine_raw": 0.97762531042099,
+        "foundation_cosine_raw": 0.9826409220695496,
         "foundation_relational_raw": 0.0,
-        "foundation_task_ratio": 0.010773034491457622,
+        "foundation_task_ratio": 0.011162431304172325,
         "foundation_loss_weight": 0.05,
         "foundation_effective_weight": 0.05,
         "foundation_foreground_enabled": 0.0,
@@ -177,25 +249,25 @@
     },
     {
       "step": 4,
-      "total_loss": 26.80048179626465,
-      "task_loss": 26.70250701904297,
-      "foundation_loss": 0.0979747325181961,
+      "total_loss": 25.846477508544922,
+      "task_loss": 25.748836517333984,
+      "foundation_loss": 0.0976409763097763,
       "loss_items": [
-        3.2036688327789307,
-        5.857685565948486,
-        0.10305081307888031,
+        2.785708427429199,
+        5.771890163421631,
+        0.07950450479984283,
         3.0,
-        0.0979747325181961
+        0.0976409763097763
       ],
-      "student_grad_norm": 2782.915283203125,
-      "projector_grad_norm": 0.041805583983659744,
+      "student_grad_norm": 2673.869873046875,
+      "projector_grad_norm": 0.03978041186928749,
       "foundation_metrics": {
-        "foundation_loss": 0.0979747325181961,
-        "foundation_cosine_loss": 0.0979747325181961,
+        "foundation_loss": 0.0976409763097763,
+        "foundation_cosine_loss": 0.0976409763097763,
         "foundation_relational_loss": 0.0,
-        "foundation_cosine_raw": 0.9797472953796387,
+        "foundation_cosine_raw": 0.9764097332954407,
         "foundation_relational_raw": 0.0,
-        "foundation_task_ratio": 0.011007362973354378,
+        "foundation_task_ratio": 0.011376161322201173,
         "foundation_loss_weight": 0.05,
         "foundation_effective_weight": 0.05,
         "foundation_foreground_enabled": 0.0,
