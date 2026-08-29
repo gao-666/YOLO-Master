@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "status": "completed_three_seed_same_budget_pair",
+  "claim": "formal_p1_decision_on_coco128_10_epoch_from_scratch_protocol_not_a_general_accuracy_claim",
+  "protocol": {
+    "seeds": [
+      20260824,
+      20260825,
+      20260826
+    ],
+    "epochs": 10,
+    "imgsz": 256,
+    "batch": 4,
+    "pretrained": false,
+    "paired_metric": "best metrics/mAP50-95(B) within the fixed 10-epoch budget"
+  },
+  "pairs": [
+    {
+      "seed": 20260824,
+      "off_best_epoch": 7,
+      "on_best_epoch": 7,
+      "off_best_map50_95": 2e-05,
+      "on_best_map50_95": 0.00023,
+      "delta": 0.00021
+    },
+    {
+      "seed": 20260825,
+      "off_best_epoch": 5,
+      "on_best_epoch": 6,
+      "off_best_map50_95": 0.00015,
+      "on_best_map50_95": 2e-05,
+      "delta": -0.00013
+    },
+    {
+      "seed": 20260826,
+      "off_best_epoch": 9,
+      "on_best_epoch": 9,
+      "off_best_map50_95": 2e-05,
+      "on_best_map50_95": 1e-05,
+      "delta": -1e-05
+    }
+  ],
+  "arms": {
+    "20260824": {
+      "off": {
+        "arm": "off",
+        "run_dir": "runs\\rhino_d2\\p1\\off-s20260824-2",
+        "epochs_completed": 10,
+        "best_epoch": 7,
+        "best_map50": 0.00012,
+        "best_map50_95": 2e-05,
+        "final_map50_95": 1e-05,
+        "final_foundation_loss": null,
+        "best_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260824-2\\weights\\best.pt",
+          "bytes": 10818173,
+          "sha256": "b981eeca2abe557a170a2cb8b4cff768ef9759a9d11c158140a15d457fcd43c2",
+          "load_verified": true
+        },
+        "healthy_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260824-2\\weights\\last_healthy.pt",
+          "bytes": 32200481,
+          "sha256": "5faa4b4d96c415143ba35dc90619d367ec9f387f5fe331da2155584a39e0cfaa",
+          "load_verified": true
+        },
+        "epoch_checkpoint_count": 10,
+        "epoch_checkpoint_sha256": {
+          "epoch0.pt": "ae8a87035f85ba65b970c0a70b52dfa0b5b5b0000862892e61bd52876b5e570c",
+          "epoch1.pt": "5f17f46378d8bf7dd7f287c418a15dbb11c2087da74f4c3287393e74121e8ff1",
+          "epoch2.pt": "34018caebc0fd8d0ab009d8bb384a6ab315ffb1ed1aa5b61e18b7fcc3631d9a8",
+          "epoch3.pt": "00084b257b184c80eed83d5534537ae24ae26713a803d40ea62c629784c2f617",
+          "epoch4.pt": "a4f99ccf882fdd7801c451ea5faffc45948f9ed8b6ce638609c1499d5c801757",
+          "epoch5.pt": "2b1bae19768e620e6a34c8835c8e28f100f2cdaf09eace70055907126996dfaa",
+          "epoch6.pt": "9c99704b57a540bc2a0e2004e04d8126811c7dfa69a6bdf130a8dd40e58ab580",
+          "epoch7.pt": "4ae1b11f1764735ecbab615c7f93a1e2afcc238835f47d039b82bfc08417b653",
+          "epoch8.pt": "dec88f7acf27244d780938472582b25cb9679160649ab0262976b12b0786ec7e",
+          "epoch9.pt": "10f872f10ae9c9ca5cc26d80fb6d24d13a91b70b4e825e6ba1cf594955aac20b"
+        }
+      },
+      "on": {
+        "arm": "on",
+        "run_dir": "runs\\rhino_d2\\p1\\on-s20260824",
+        "epochs_completed": 10,
+        "best_epoch": 7,
+        "best_map50": 0.00078,
+        "best_map50_95": 0.00023,
+        "final_map50_95": 0.0,
+        "final_foundation_loss": 0.266586,
+        "best_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260824\\weights\\best.pt",
+          "bytes": 10822141,
+          "sha256": "4d0371644448197443d98c37e7f6d2c7806d29bf907be6934fd43272d84d9d06",
+          "load_verified": true
+        },
+        "healthy_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260824\\weights\\last_healthy.pt",
+          "bytes": 32372432,
+          "sha256": "413a6bad688865aab340a03c2190fd5129c46adf7e8062492f3e426a8936bb74",
+          "load_verified": true
+        },
+        "epoch_checkpoint_count": 10,
+        "epoch_checkpoint_sha256": {
+          "epoch0.pt": "f3ab0c8c36bfdc3cfecf9c24cf9232d4a56ef398ddde86418d26e4044db2a365",
+          "epoch1.pt": "fbd8a7b542eac90f07d0eb7535bfaaf5ddc4adf43aca5e331c952b98fc7b84b2",
+          "epoch2.pt": "7615554de97b81db58e138c8ee2fdd891c41c640d5985691374d28aa108236a8",
+          "epoch3.pt": "1b6ff93377399831d2666b082280b7da2d32e5e11969b7c2a70e692dd099193e",
+          "epoch4.pt": "1ed9bd52211c3de697710e970841671e296b18b4583e519b185f604472b91729",
+          "epoch5.pt": "27a82842a8123de985dfa3832eb286daf4bbad67b80a9d501024e72c85f4bf8c",
+          "epoch6.pt": "d92e3c024a3699a5e8e6bae042ebf9fa7022dbb41d00a19b849bf3079728738e",
+          "epoch7.pt": "465ec995c91a70fca297d4e3b239349a6ff0a56667b77fc879fbf40a59b0d61f",
+          "epoch8.pt": "7ff7b5dd27eb6cf9e440aa43826c25b792e64ea693dd7a0fdb6c50f1eb15e89c",
+          "epoch9.pt": "7bd30f1e415bb84ba0277c5558ac9a5d500728c8890d0be8355bdea3594627a2"
+        }
+      }
+    },
+    "20260825": {
+      "off": {
+        "arm": "off",
+        "run_dir": "runs\\rhino_d2\\p1\\off-s20260825",
+        "epochs_completed": 10,
+        "best_epoch": 5,
+        "best_map50": 0.00093,
+        "best_map50_95": 0.00015,
+        "final_map50_95": 0.0,
+        "final_foundation_loss": null,
+        "best_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260825\\weights\\best.pt",
+          "bytes": 10818173,
+          "sha256": "b4bf3e7e0509afbe402b055fee07143085ab2b6a43d2752eb0ea7e696a07a3e6",
+          "load_verified": true
+        },
+        "healthy_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260825\\weights\\last_healthy.pt",
+          "bytes": 32200481,
+          "sha256": "80a155f3963a9c72231ae84d307f36568eac6091489c45c83756317ee6505c21",
+          "load_verified": true
+        },
+        "epoch_checkpoint_count": 10,
+        "epoch_checkpoint_sha256": {
+          "epoch0.pt": "8b096c09ec67da962761ba94d21d6297d2b0c9b6bb37a4dcb698f8696d93af43",
+          "epoch1.pt": "195003676601a4466c28eaff876b627818a7dd70ae81b5d2d11b58c0e9a3dcf4",
+          "epoch2.pt": "20358f30091cb500596244685d29c88992c7e73ef9c20438728fd7027b5808f7",
+          "epoch3.pt": "0e7e19565517b562db8b6c2e2fe9e5df8d0e4f9ad794deb385083bc9aa5b61b6",
+          "epoch4.pt": "ac586464c39b1f838adcb83701fce4eef3544486ef8c894be332a4ccef4af91b",
+          "epoch5.pt": "be000b4178e89143087ef35112efda4aa986a0eaec9a6d597b1c3628c1978e85",
+          "epoch6.pt": "18180234212663eb4e4c5a83422a2ce4f9e8c7d446738b4563a6849ea3a4010b",
+          "epoch7.pt": "1a34d469c061c9e621e7f91bf451d4e7f5f77067570b66e8eb6b2d19afa9b47b",
+          "epoch8.pt": "8d512d40b4a5097fc4da7ace5c67a5c8c395fde3b9863f0bca64fdb1125a29d6",
+          "epoch9.pt": "efe999bbc1097e1a79e35f43399096c55900d949a60f5bf8330c95c83d38bf54"
+        }
+      },
+      "on": {
+        "arm": "on",
+        "run_dir": "runs\\rhino_d2\\p1\\on-s20260825",
+        "epochs_completed": 10,
+        "best_epoch": 6,
+        "best_map50": 0.00012,
+        "best_map50_95": 2e-05,
+        "final_map50_95": 2e-05,
+        "final_foundation_loss": 0.270691,
+        "best_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260825\\weights\\best.pt",
+          "bytes": 10822141,
+          "sha256": "2a1724d6c4fe961ba15bce1c86dcfb35fbf299de369ee8fded8bf3e66060a11a",
+          "load_verified": true
+        },
+        "healthy_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260825\\weights\\last_healthy.pt",
+          "bytes": 32372432,
+          "sha256": "d32bb06ccc81ab152118b195b336a02e89c8010ad532d871b5c5050fe4210418",
+          "load_verified": true
+        },
+        "epoch_checkpoint_count": 10,
+        "epoch_checkpoint_sha256": {
+          "epoch0.pt": "2e2934bafcb109e00e53950d48e69608ac7c0cdcf8a976ff78f97f343f8cf751",
+          "epoch1.pt": "d7460571c16350d244a227ba44eb453a337e94de28b432cce4a2e4b7c1b50ea2",
+          "epoch2.pt": "d48dbd691f2aa455c6baabbd7eb1d989fce0b0071efe527610b78a193faef175",
+          "epoch3.pt": "c37f7f5333d530276059c2753a1a4594bb617688d6485217c847a7f4e5dfbaf5",
+          "epoch4.pt": "593990708c24771165692e49a6172a1f34184625c5105c7d3941b76b946bb597",
+          "epoch5.pt": "b7675dae84eb67adc1657853a3c93a88742b1cc03d739867fd3e655472e146a9",
+          "epoch6.pt": "1821f367382dc729ef48cc803e413ca8103ecc3d01960eaea99d1a5d218294a1",
+          "epoch7.pt": "d923260dcfc5dbc2e92fb1e2e120e3997acea55bbc78924ffb3ba33559a5b3fe",
+          "epoch8.pt": "528cb049e074e3e988e097f09a1f747b74f62e07e2a775fe95c16a01e11270d0",
+          "epoch9.pt": "1c6a992b10943d368567fe995f0fab0b28b3554fd1298595e97550be8196821a"
+        }
+      }
+    },
+    "20260826": {
+      "off": {
+        "arm": "off",
+        "run_dir": "runs\\rhino_d2\\p1\\off-s20260826",
+        "epochs_completed": 10,
+        "best_epoch": 9,
+        "best_map50": 9e-05,
+        "best_map50_95": 2e-05,
+        "final_map50_95": 2e-05,
+        "final_foundation_loss": null,
+        "best_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260826\\weights\\best.pt",
+          "bytes": 10818173,
+          "sha256": "23371a7ec00088321b4ee37ea344c94960e7cca87a10072437ed4b4f67864686",
+          "load_verified": true
+        },
+        "healthy_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260826\\weights\\last_healthy.pt",
+          "bytes": 32200481,
+          "sha256": "92044477ee5f093bcd5a1d8c9acd6f48ec005f202daf18039cb571b07c19e5d6",
+          "load_verified": true
+        },
+        "epoch_checkpoint_count": 10,
+        "epoch_checkpoint_sha256": {
+          "epoch0.pt": "924e37b83f5c086f72b7248b8910767cd97aaf6f32553f478e0ebfbaffdda8d8",
+          "epoch1.pt": "3dea0d3ac7a2fdc13b90e941e104666c8ce958476224278bb89ad593e96daf11",
+          "epoch2.pt": "893ece30f74e5be10be175921f2e8f411eb400c7239e23e832481eccb4a095b2",
+          "epoch3.pt": "f9fb84f67a000e5c7a19fb186a630e97a658b5bd909166684ebc51deb401eb46",
+          "epoch4.pt": "00c1b52a4548489b1c6eb23c0dd07d89eb8d2c188aa26875a85989dc7ee9c965",
+          "epoch5.pt": "030c85b356e97bbae40768f9a0fb158af5cbd1792dbffa596fe8eae0eaf582bc",
+          "epoch6.pt": "2a6ed38f0cfb287525f2188c9e88a7804b272bed492423a2c3531dc89f9ffa35",
+          "epoch7.pt": "942ef2d54d337d26d5823f193a1bd59a48d145af1ceccc2308f6f6930332990b",
+          "epoch8.pt": "cefce92ef92d90b3dfcf2ef12bc212ce86fa6b111e65cbf37d8bce6bca89146f",
+          "epoch9.pt": "9e1f43823af9038296d7727055b4a146c0f138050f1b5f06ecbc7c42149fc5c1"
+        }
+      },
+      "on": {
+        "arm": "on",
+        "run_dir": "runs\\rhino_d2\\p1\\on-s20260826",
+        "epochs_completed": 10,
+        "best_epoch": 9,
+        "best_map50": 7e-05,
+        "best_map50_95": 1e-05,
+        "final_map50_95": 1e-05,
+        "final_foundation_loss": 0.264906,
+        "best_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260826\\weights\\best.pt",
+          "bytes": 10822141,
+          "sha256": "c87e16d7890cd579d66eca1e60cef3b5dd978152c29fc4a9365c3c184e3df1df",
+          "load_verified": true
+        },
+        "healthy_checkpoint": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260826\\weights\\last_healthy.pt",
+          "bytes": 32372432,
+          "sha256": "8c0394018d6cfed8e26d2e3b53d565a1d0cee268965e92abb42dffd291e0f760",
+          "load_verified": true
+        },
+        "epoch_checkpoint_count": 10,
+        "epoch_checkpoint_sha256": {
+          "epoch0.pt": "bb0e6f73e6a927a93284e9a6fb5fe73f5f7f1e4375f75b5882da56114fc88603",
+          "epoch1.pt": "4db8ab8e5046e424d41f564d1d1cebbb9796111b016330645ec51864f074e23e",
+          "epoch2.pt": "44744e9f808866e049d4a1461eecd525dbde5a4bc9c0be8b4795be73446b3a46",
+          "epoch3.pt": "2d99f455ffb003f6964c04de088d2e2d4ab4988c7c150012c8bfecca80acd736",
+          "epoch4.pt": "2886d63e6f5e0870f18f0af5bd088180c9e3daeba399c5ba1b8ffc08f301c13f",
+          "epoch5.pt": "78513c6315f20fa2fc0d1b0b256de4e79af9ff6a34ffdcc51ac4bd09ade09826",
+          "epoch6.pt": "a9c4e398169e95459569b1d780540367812cca2d3b09093f5ec4487a2112eefb",
+          "epoch7.pt": "acdb2141605dc13bddb9555f14e124c27a9f9f0d39656a972856c3ee356aa72e",
+          "epoch8.pt": "3dc855cff3fab313d2619a3738eabe09f45d5c3d6417bbf4cbed5163865f4041",
+          "epoch9.pt": "6436b08d6ff4ce9f4d37d1c4cff2de90aacdfe538acea436144e416f856bd730"
+        }
+      }
+    }
+  },
+  "statistics": {
+    "n": 3,
+    "paired_deltas": [
+      0.00021,
+      -0.00013,
+      -1e-05
+    ],
+    "mean_delta": 2.333333333333334e-05,
+    "sample_standard_deviation": 0.00017243356208503416,
+    "standard_error": 9.955456348712053e-05,
+    "t_critical_95_df2": 4.302652729911275,
+    "confidence_interval_95": [
+      -0.00040501538102965113,
+      0.0004516820476963178
+    ],
+    "confidence_interval_contains_zero": true
+  },
+  "decision": {
+    "status": "no_go",
+    "reason": "absolute mean delta is below 0.003 and the paired 95% CI contains zero",
+    "pre_registered_threshold": 0.003,
+    "threshold_percentage_points": 0.3,
+    "rule_unchanged_after_observing_results": true
+  },
+  "artifacts": {
+    "per_run_csv": {
+      "20260824": {
+        "off": {
+          "path": "experiments\\rhino_d2\\results\\d2_p1_off_s20260824.csv",
+          "sha256": "622be0b92a4c37bb4228478ee42c0ea015fad5fef1634ab15554e41b3aca7e19"
+        },
+        "on": {
+          "path": "experiments\\rhino_d2\\results\\d2_p1_on_s20260824.csv",
+          "sha256": "3f24e781e6f65c8b9634858e33c1535dd71ad0c744564ea8a46c203ae9d9f2e0"
+        }
+      },
+      "20260825": {
+        "off": {
+          "path": "experiments\\rhino_d2\\results\\d2_p1_off_s20260825.csv",
+          "sha256": "0c930294160bf438a10713ea980b9f699e734616d462a5fd5837722abfe726f0"
+        },
+        "on": {
+          "path": "experiments\\rhino_d2\\results\\d2_p1_on_s20260825.csv",
+          "sha256": "8fe39e1c1fe94d258bf1fb93df63c8e4cee8b09629b21c913883a021b0ea297d"
+        }
+      },
+      "20260826": {
+        "off": {
+          "path": "experiments\\rhino_d2\\results\\d2_p1_off_s20260826.csv",
+          "sha256": "a4e008705ffcb4ef3240bf2f4459bd26ad90df6ab11a6838597912d91d095362"
+        },
+        "on": {
+          "path": "experiments\\rhino_d2\\results\\d2_p1_on_s20260826.csv",
+          "sha256": "4eb910c1f69a29f45eda7f3cdff4854e0b9adb5575fee4af1ae36f252134ddb6"
+        }
+      }
+    },
+    "aggregate_csv": {
+      "path": "experiments\\rhino_d2\\results\\d2_p1_three_seed_results.csv",
+      "sha256": "a742ac8802ca41e0a0b06d34f4ab77dbc813935037a3f75ced074f17eaccaceb"
+    },
+    "curve": {
+      "path": "experiments\\rhino_d2\\results\\d2_p1_three_seed_results.png",
+      "sha256": "ace7a3ac8e368acffe4973671f99fa781338d1c2a10d49461a78158c15028047"
+    },
+    "runtime_records": [
+      {
+        "seed": 20260825,
+        "arm": "off",
+        "returncode": 0,
+        "started_utc": "2026-08-29T14:04:35.353291+00:00",
+        "finished_utc": "2026-08-29T14:05:42.952609+00:00",
+        "config_sha256": "25d7ca4d2e872fa9cb5b8267c6340da0bf9bf9f113616756dc4437752a28c35e",
+        "log": "runs\\rhino_d2\\logs\\off-s20260825.log",
+        "log_bytes": 86806,
+        "log_sha256": "5e61862371a618f9e6f1d260e27a7b50da405255abbe12b6bfd31fcc53c59ee1",
+        "log_hash_verified": true
+      },
+      {
+        "seed": 20260825,
+        "arm": "on",
+        "returncode": 0,
+        "started_utc": "2026-08-29T14:05:43.182375+00:00",
+        "finished_utc": "2026-08-29T14:07:02.961853+00:00",
+        "config_sha256": "194adb3e4bb32f9d1fcb913a39828ae3df933a1777d159e2ad5252956782f60d",
+        "log": "runs\\rhino_d2\\logs\\on-s20260825.log",
+        "log_bytes": 90746,
+        "log_sha256": "03b7b356909616bc989d23af8aa18f4c2720e63d26ce65652cf51ff3dc11241f",
+        "log_hash_verified": true
+      },
+      {
+        "seed": 20260826,
+        "arm": "off",
+        "returncode": 0,
+        "started_utc": "2026-08-29T14:07:28.781250+00:00",
+        "finished_utc": "2026-08-29T14:08:40.623659+00:00",
+        "config_sha256": "25d7ca4d2e872fa9cb5b8267c6340da0bf9bf9f113616756dc4437752a28c35e",
+        "log": "runs\\rhino_d2\\logs\\off-s20260826.log",
+        "log_bytes": 87120,
+        "log_sha256": "48e05ecaaa7ef81f5e0db1661a38e84b2285ae4bae72aae4e1a99830e060c400",
+        "log_hash_verified": true
+      },
+      {
+        "seed": 20260826,
+        "arm": "on",
+        "returncode": 0,
+        "started_utc": "2026-08-29T14:08:40.862812+00:00",
+        "finished_utc": "2026-08-29T14:10:01.649535+00:00",
+        "config_sha256": "194adb3e4bb32f9d1fcb913a39828ae3df933a1777d159e2ad5252956782f60d",
+        "log": "runs\\rhino_d2\\logs\\on-s20260826.log",
+        "log_bytes": 91379,
+        "log_sha256": "09161c2b5de21dc1cfb045ede74f7deddf48857f4fe8fd28ceaa51f1351246ca",
+        "log_hash_verified": true
+      }
+    ],
+    "runtime_record_coverage": {
+      "complete_console_tee": [
+        20260825,
+        20260826
+      ],
+      "seed_20260824": "results_csv_args_and_checkpoint_hashes_only; original console was not tee-captured"
+    }
+  }
+}

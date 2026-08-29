@@ -17,6 +17,7 @@ amp: false
 val: true
 plots: false
 save: true
+save_period: 1
 project: runs/rhino_d2/p1
 name: on-s20260824
 foundation_enabled: true

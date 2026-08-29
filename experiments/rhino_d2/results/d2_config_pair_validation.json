@@ -39,11 +39,11 @@
   "files": {
     "off": {
       "path": "experiments\\rhino_d2\\configs\\d2_off.yaml",
-      "sha256": "53d7eea8820165ebf153cca1e4cf4f46837c2843c97c3ef5ea3b6920a4e46469"
+      "sha256": "25d7ca4d2e872fa9cb5b8267c6340da0bf9bf9f113616756dc4437752a28c35e"
     },
     "on": {
       "path": "experiments\\rhino_d2\\configs\\d2_on.yaml",
-      "sha256": "a942261534e678815065471c7add73d5e7158c42357905121aa5b326e7692310"
+      "sha256": "194adb3e4bb32f9d1fcb913a39828ae3df933a1777d159e2ad5252956782f60d"
     }
   }
 }

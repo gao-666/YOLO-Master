@@ -83,6 +83,7 @@ def main() -> None:
             REPO_ROOT / "tests" / "test_foundation_dinov2.py",
             REPO_ROOT / "tests" / "test_foundation_config.py",
             REPO_ROOT / "tests" / "test_foundation_distill_model.py",
+            REPO_ROOT / "tests" / "test_engine.py",
         ]
     )
     implementation = _hash_group(
@@ -90,6 +91,7 @@ def main() -> None:
             REPO_ROOT / "ultralytics" / "nn" / "foundation" / "preprocessing.py",
             REPO_ROOT / "ultralytics" / "nn" / "foundation" / "teachers" / "dinov2.py",
             REPO_ROOT / "ultralytics" / "nn" / "foundation_distill_model.py",
+            REPO_ROOT / "ultralytics" / "engine" / "trainer.py",
             REPO_ROOT / "ultralytics" / "cfg" / "default.yaml",
             REPO_ROOT / "ultralytics" / "cfg" / "models" / "26" / "yolo26-master-n.yaml",
         ]
@@ -122,6 +124,8 @@ def main() -> None:
                     "tests/test_foundation_dinov2.py",
                     "tests/test_foundation_config.py",
                     "tests/test_foundation_distill_model.py",
+                    "tests/test_engine.py",
+                    "ultralytics/engine/trainer.py",
                 ]
             ),
         },

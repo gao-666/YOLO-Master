@@ -1,5 +1,6 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
 
+import builtins
 import sys
 from collections import OrderedDict
 from pathlib import Path
@@ -19,6 +20,36 @@ from ultralytics.nn.distill_model import DistillationModel
 from ultralytics.nn.tasks import DetectionModel, load_checkpoint
 from ultralytics.utils import ASSETS, DEFAULT_CFG, IS_RASPBERRYPI, WEIGHTS_DIR
 from ultralytics.utils.torch_utils import unwrap_model
+
+
+def test_read_results_csv_missing_file(tmp_path):
+    """Checkpoint metadata should tolerate the results file not existing before the first epoch."""
+    trainer = object.__new__(BaseTrainer)
+    trainer.csv = tmp_path / "results.csv"
+
+    assert trainer.read_results_csv() == {}
+
+
+def test_read_results_csv_falls_back_when_polars_import_fails(monkeypatch, tmp_path):
+    """Checkpoint metadata should use the portable reader when Polars fails its native CPU check."""
+    trainer = object.__new__(BaseTrainer)
+    trainer.csv = tmp_path / "results.csv"
+    trainer.csv.write_text("epoch,time,metric,tag\n1,2.5,0.25,baseline\n2,3.5,,distilled\n", encoding="utf-8")
+    real_import = builtins.__import__
+
+    def import_with_broken_polars(name, *args, **kwargs):
+        if name == "polars":
+            raise RuntimeError("unknown feature flag: 'sse3'")
+        return real_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "__import__", import_with_broken_polars)
+
+    assert trainer.read_results_csv() == {
+        "epoch": [1.0, 2.0],
+        "time": [2.5, 3.5],
+        "metric": [0.25, None],
+        "tag": ["baseline", "distilled"],
+    }
 
 
 def test_func(*args, **kwargs):

@@ -1,4 +1,4 @@
-# D2 paired baseline. validate_pair.py enforces equality with d2_on.yaml outside the allowlist.
+# D2 key ablation: remove relational/statistical alignment while keeping the P1 treatment budget fixed.
 model: ultralytics/cfg/models/26/yolo26-master-n.yaml
 data: coco128.yaml
 task: detect
@@ -19,17 +19,18 @@ plots: false
 save: true
 save_period: 1
 project: runs/rhino_d2/p1
-name: off-s20260824
-foundation_enabled: false
-foundation_teacher: none
+name: cosine-only-s20260824
+foundation_enabled: true
+foundation_teacher: dinov2
 foundation_backend: transformers
-foundation_model:
+foundation_model: facebook/dinov2-small
+foundation_revision: ed25f3a31f01632728cabb09d1542f84ab7b0056
 foundation_target_levels: [p4]
 foundation_align_dim: 64
 foundation_loss: hybrid
-foundation_loss_weight: 0.0
+foundation_loss_weight: 0.05
 foundation_cosine_weight: 1.0
-foundation_relation_weight: 1.0
+foundation_relation_weight: 0.0
 foundation_relation_mode: sampled
 foundation_relation_samples: 64
 foundation_teacher_dtype: fp32

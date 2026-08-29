@@ -8,6 +8,7 @@ Usage:
 
 from __future__ import annotations
 
+import csv
 import gc
 import math
 import os
@@ -26,6 +27,7 @@ from torch import distributed as dist
 from torch import nn, optim
 
 from ultralytics.cfg import _YOLO_CLI_COMMAND, get_cfg, get_save_dir
+from ultralytics.data.utils import check_cls_dataset, check_det_dataset, convert_ndjson_to_yolo_if_needed
 from ultralytics.engine.extensions import (
     AdapterRuntimeController,
     MixtureRuntimeController,
@@ -34,7 +36,6 @@ from ultralytics.engine.extensions import (
     validate_adapter_configuration,
 )
 from ultralytics.engine.telemetry import TrainingTelemetry
-from ultralytics.data.utils import check_cls_dataset, check_det_dataset, convert_ndjson_to_yolo_if_needed
 from ultralytics.nn.distill_model import DistillationModel
 from ultralytics.nn.foundation_distill_model import (
     FoundationDistillationModel,
@@ -930,13 +931,39 @@ class BaseTrainer:
             torch.cuda.empty_cache()
 
     def read_results_csv(self):
-        """Read results.csv into a dictionary using polars."""
-        import polars as pl  # scope for faster 'import ultralytics'
-
-        try:
-            return pl.read_csv(self.csv, infer_schema_length=None).to_dict(as_series=False)
-        except Exception:
+        """Read results.csv into a column dictionary, with a standard-library fallback."""
+        if not self.csv.is_file() or self.csv.stat().st_size == 0:
             return {}
+        try:
+            import polars as pl  # scope for faster 'import ultralytics'
+        except (ImportError, OSError, RuntimeError):
+            pl = None
+        if pl is not None:
+            try:
+                return pl.read_csv(self.csv, infer_schema_length=None).to_dict(as_series=False)
+            except (OSError, RuntimeError, ValueError, pl.exceptions.PolarsError):
+                pass
+
+        # Polars may be unavailable or fail its native CPU feature check on otherwise supported hosts. Checkpoint
+        # serialization must still work, so retain the training history through Python's portable CSV reader.
+        try:
+            with self.csv.open(encoding="utf-8", newline="") as file:
+                rows = list(csv.DictReader(file))
+        except (OSError, csv.Error):
+            return {}
+        if not rows:
+            return {}
+
+        def parse(value):
+            value = value.strip()
+            if not value:
+                return None
+            try:
+                return float(value)
+            except ValueError:
+                return value
+
+        return {key: [parse(row.get(key, "")) for row in rows] for key in rows[0]}
 
     def _model_train(self):
         """Set model in training mode."""
