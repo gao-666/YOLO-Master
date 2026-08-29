@@ -4,3 +4,4 @@ __pycache__/
 !results/d2_p0_loss_curves.png
 !results/d2_p1_first_results.png
 !results/d2_p1_three_seed_results.png
+!results/d2_p1_corrected_results.png

@@ -18,6 +18,7 @@ REPO_ROOT = EXPERIMENT_ROOT.parents[1]
 ARM_CONFIGS = {
     "off": EXPERIMENT_ROOT / "configs" / "d2_off.yaml",
     "on": EXPERIMENT_ROOT / "configs" / "d2_on.yaml",
+    "on-calibrated": EXPERIMENT_ROOT / "configs" / "d2_on_calibrated.yaml",
     "cosine-only": EXPERIMENT_ROOT / "configs" / "d2_ablation_cosine_only.yaml",
 }
 
@@ -148,8 +149,20 @@ def main() -> None:
     parser.add_argument("--project", type=Path, default=REPO_ROOT / "runs" / "rhino_d2" / "p1")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-    if any(arm in {"off", "on"} for arm in args.arms):
-        subprocess.run([sys.executable, EXPERIMENT_ROOT / "scripts" / "validate_pair.py"], cwd=REPO_ROOT, check=True)
+    for on_arm in ("on", "on-calibrated"):
+        if on_arm not in args.arms:
+            continue
+        command = [sys.executable, EXPERIMENT_ROOT / "scripts" / "validate_pair.py"]
+        if on_arm == "on-calibrated":
+            command.extend(
+                [
+                    "--on",
+                    ARM_CONFIGS[on_arm],
+                    "--output",
+                    EXPERIMENT_ROOT / "results" / "d2_calibrated_pair_validation.json",
+                ]
+            )
+        subprocess.run(command, cwd=REPO_ROOT, check=True)
     for arm in args.arms:
         print(json.dumps(run_arm(arm, args.seed, args.project.resolve(), args.dry_run), indent=2, ensure_ascii=False))
 

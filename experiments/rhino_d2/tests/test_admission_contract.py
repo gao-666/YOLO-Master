@@ -178,3 +178,46 @@ def test_p1_runner_records_commit_and_dirty_state():
     assert len(state["commit"]) == 40
     assert isinstance(state["dirty"], bool)
     assert len(state["porcelain_sha256"]) == 64
+
+
+def test_post_run_args_audits_pass_for_original_and_corrected_pairs():
+    """Pre-run config equality must be followed by actual resolved-args equality."""
+    for name in ("d2_p1_resolved_args_audit.json", "d2_p1_corrected_resolved_args_audit.json"):
+        evidence = json.loads((ROOT / "results" / name).read_text(encoding="utf-8"))
+        assert evidence["status"] == "passed"
+        assert len(evidence["records"]) == 3
+        for record in evidence["records"]:
+            assert not record["unexpected_differences"]
+            assert all(record["required_equalities"].values())
+            for file in record["files"].values():
+                path = ROOT.parents[1] / file["path"]
+                assert hashlib.sha256(path.read_bytes()).hexdigest() == file["sha256"]
+
+
+def test_weight_calibration_is_ap_blind_and_mechanically_identified():
+    """The corrected weight must be chosen from training signal, not the validation metric."""
+    evidence = json.loads((ROOT / "results" / "d2_p1_weight_calibration.json").read_text(encoding="utf-8"))
+    assert evidence["status"] == "selected"
+    assert evidence["selection_contract"]["uses_validation_metric"] is False
+    assert evidence["selection_contract"]["target_foundation_task_ratio"] == [0.03, 0.06]
+    assert evidence["selected_weight"] == 0.1
+    assert all(record["mechanism_identity"]["passed"] for record in evidence["records"])
+    selected = next(record for record in evidence["records"] if record["weight"] == evidence["selected_weight"])
+    assert 0.03 <= selected["foundation_task_ratio"] <= 0.06
+
+
+def test_corrected_three_seed_result_recomputes_to_no_go():
+    """A visible KD signal must still satisfy the frozen paired decision rule."""
+    evidence = json.loads((ROOT / "results" / "d2_p1_corrected_results.json").read_text(encoding="utf-8"))
+    deltas = [pair["on_best_map50_95"] - pair["off_best_map50_95"] for pair in evidence["pairs"]]
+    assert evidence["correction"]["selection_used_validation_ap"] is False
+    assert evidence["correction"]["selected_weight"] == 0.1
+    assert all(0.03 <= pair["on_mean_foundation_task_ratio"] <= 0.06 for pair in evidence["pairs"])
+    assert math.isclose(sum(deltas) / len(deltas), evidence["statistics"]["mean_delta"], abs_tol=1e-12)
+    low, high = evidence["statistics"]["confidence_interval_95"]
+    assert low <= 0 <= high
+    assert abs(evidence["statistics"]["mean_delta"]) < evidence["decision"]["pre_registered_threshold"]
+    assert evidence["decision"]["status"] == "no_go"
+    assert all(
+        record["returncode"] == 0 and record["log_hash_verified"] for record in evidence["artifacts"]["runtime_records"]
+    )

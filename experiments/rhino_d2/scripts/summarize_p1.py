@@ -115,7 +115,7 @@ def plot_curves(rows_by_arm: dict[str, list[dict]], output: Path) -> None:
     plt.close(fig)
 
 
-def plot_multiseed(pairs: list[dict], output: Path) -> None:
+def plot_multiseed(pairs: list[dict], output: Path, *, title: str = "D2 P1 three-seed same-budget result") -> None:
     """Plot paired best metrics and deltas against the pre-registered threshold."""
     import matplotlib
 
@@ -140,7 +140,7 @@ def plot_multiseed(pairs: list[dict], output: Path) -> None:
     axes[1].legend()
     for axis in axes:
         axis.grid(alpha=0.25)
-    fig.suptitle("D2 P1 three-seed same-budget result")
+    fig.suptitle(title)
     fig.tight_layout()
     fig.savefig(output, dpi=180)
     plt.close(fig)

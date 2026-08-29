@@ -6,6 +6,7 @@
 - 提供严格同预算 off/on 配置，以及只移除 relational 对齐的 cosine-only 关键消融。
 - 增加可复现实验运行器、逐 epoch checkpoint、日志哈希、结果汇总、曲线和 checkpoint 哈希。
 - 提交预注册规则驱动的 [`GO_NO_GO.md`](GO_NO_GO.md)，不以单个正向 seed 代替正式判断。
+- 增加 post-run `args.yaml` 审计和不使用 validation AP 的权重标定；以校准权重 0.10 重跑三 seed treatment。
 - 修复训练首次健康 checkpoint 序列化被 Polars 原生 CPU 特性检查阻断的问题：结果读取失败时使用标准库 CSV fallback。
 
 ## Tests
@@ -16,7 +17,7 @@
 - `pytest tests/test_engine.py -k read_results_csv -q`（2 passed）
 - 完整 `tests/test_engine.py` 已执行；本机离线沙箱中 11 passed、24 failed。失败主要是未缓存的 coco8/imagenet10/DOTA/权重下载，另有仓库既有的 multitask stride 对齐失败；本 PR 的新增 CSV fallback 两测均通过。
 - off/on 三 seed 共 6 个 COCO128 训练，以及 cosine-only 关键消融均完成 10 epoch；每次均生成 `best.pt`、`last.pt`、`last_healthy.pt` 和 10 个 epoch checkpoint。
-- Foundation/checkpoint/DDP 回归合并执行：147 passed、1 skipped；D2 契约与引擎定向回归：12 passed。
+- Foundation/checkpoint/DDP 回归合并执行：147 passed、1 skipped；D2 契约回归：13 passed（[`results/pytest-p1-correction.xml`](results/pytest-p1-correction.xml)）；引擎 CSV 定向回归：2 passed。
 
 ## Ablation
 
@@ -40,11 +41,13 @@ Seed 20260824 的 relational 关键消融：
 
 Hybrid 相对 cosine-only 为 `+0.00015`，仅作为 relational 项的方向性信号，不足以改变三 seed no-go。
 
+权重修正实验：`0.01/0.05/0.10/0.15` 对应第一 epoch foundation/task ratio `0.35%/1.74%/3.50%/5.24%`，按冻结的 3%–6% 区间选择最小权重 `0.10`。修正后三 seed Δ 为 `-0.00001/-0.00006/+0.00045`，mean=`+0.0001267`，95% CI=`[-0.0005717, 0.0008250]`，仍为 no-go。
+
 ## Limitations
 
 - 三 seed CI 已完成，但 n=3 的 t 区间仍较宽；结论只覆盖当前固定预算协议。
 - COCO128 只有 128 张图；学生从零初始化且只训练 10 epoch，absolute mAP 极低，首轮仅验证相对方向和实验闭环。
 - DINOv2 patch-14 dense grid 到 YOLO P4 stride-16 grid 需要插值，可能损伤空间监督；替换教师受模型许可约束。
-- 当前只验证 P4 单 stage、64-d projector、固定权重 0.05；多 stage、align_dim 和 loss-weight 搜索被刻意后置，避免首轮混杂。
+- 当前只验证 P4 单 stage、64-d projector，以及预注册训练信号区间选择的权重 0.10；多 stage 与 align_dim 搜索被刻意后置，避免首轮混杂。
 - 教师权重缓存与训练 checkpoint 不提交 Git；提交的是 revision、配置/结果 CSV 和文件 SHA-256。
 - Seeds 20260825/26 的 4 个 run 有完整 console tee 及校验哈希；最早的 seed 20260824 在统一运行器加入前执行，仅保留 args、逐 epoch CSV 和 checkpoint 哈希，该证据缺口已显式标注。

@@ -4,7 +4,7 @@
 
 8.24 在线表格的简版状态和审核备注见 [`submission_824.md`](submission_824.md)。“单 stage 原型 + loss 曲线 + 设计依据”的集中验收页见 [`P0_EVIDENCE.md`](P0_EVIDENCE.md)。
 
-8.25–9.7 的首轮同预算数字、关键消融、竞争性解释和中期讲稿见 [`P1_MIDTERM.md`](P1_MIDTERM.md)；正式判读见 [`GO_NO_GO.md`](GO_NO_GO.md)；评审四节结构见 [`PR_DRAFT.md`](PR_DRAFT.md)。
+8.25–9.7 的首轮同预算数字、关键消融、竞争性解释和中期讲稿见 [`P1_MIDTERM.md`](P1_MIDTERM.md)；权重标定、事后真实参数审计和修正实验见 [`EXPERIMENT_CORRECTION.md`](EXPERIMENT_CORRECTION.md)；正式判读见 [`GO_NO_GO.md`](GO_NO_GO.md)；评审四节结构见 [`PR_DRAFT.md`](PR_DRAFT.md)。
 
 ## 准入状态
 
@@ -27,6 +27,13 @@ python experiments/rhino_d2/scripts/run_p1.py --arms off on --seed 20260825
 python experiments/rhino_d2/scripts/run_p1.py --arms off on --seed 20260826
 python experiments/rhino_d2/scripts/run_p1.py --arms cosine-only --seed 20260824
 python experiments/rhino_d2/scripts/summarize_p1.py
+python experiments/rhino_d2/scripts/audit_resolved_args.py
+python experiments/rhino_d2/scripts/calibrate_p1_weight.py --weights 0.01,0.05,0.1,0.15
+python experiments/rhino_d2/scripts/run_p1.py --arms on-calibrated --seed 20260824 --project runs/rhino_d2/p1_corrected
+python experiments/rhino_d2/scripts/run_p1.py --arms on-calibrated --seed 20260825 --project runs/rhino_d2/p1_corrected
+python experiments/rhino_d2/scripts/run_p1.py --arms on-calibrated --seed 20260826 --project runs/rhino_d2/p1_corrected
+python experiments/rhino_d2/scripts/audit_resolved_args.py --corrected
+python experiments/rhino_d2/scripts/summarize_corrected_p1.py
 $env:PYTHONUTF8="1"
 pytest experiments/rhino_d2/tests/test_admission_contract.py tests/test_foundation_taps.py tests/test_foundation_projectors.py tests/test_foundation_losses.py tests/test_foundation_distill_model.py tests/test_foundation_config.py tests/test_foundation_dinov2.py tests/test_default_config_integrity.py --junitxml=experiments/rhino_d2/results/pytest-foundation.xml -v
 ```
@@ -58,3 +65,5 @@ pytest experiments/rhino_d2/tests/test_admission_contract.py tests/test_foundati
 ## P1 当前状态（2026-08-29）
 
 Seeds 20260824/25/26 的 off/on 共 6 次训练，以及 seed 20260824 的 cosine-only 消融均已跑完 10 epoch。正式配对统计见 [`results/d2_p1_three_seed_results.json`](results/d2_p1_three_seed_results.json)、[`results/d2_p1_three_seed_results.csv`](results/d2_p1_three_seed_results.csv) 和 [`results/d2_p1_three_seed_results.png`](results/d2_p1_three_seed_results.png)。平均 ΔmAP50-95 为 `+0.0000233`，95% CI `[-0.0004050, 0.0004517]`，满足预注册 no-go 条件。该结论只适用于当前 COCO128、从零初始化、10 epoch 协议，不等于 Foundation 蒸馏在更充分训练下必然无效。
+
+随后完成了不使用 validation AP 的权重标定与修正实验。`weight=0.10` 将 foundation/task ratio 提高到三 seed 平均约 `3.75%`；修正后的 mean Δ=`+0.0001267`、95% CI=`[-0.0005717, 0.0008250]`，仍为 no-go。该结果削弱“权重太小”解释，但 absolute mAP 仍近 0，下一步应先处理训练预算/初始化，而不是直接增加新 loss。修正证据的 13 项契约测试记录见 [`results/pytest-p1-correction.xml`](results/pytest-p1-correction.xml)。

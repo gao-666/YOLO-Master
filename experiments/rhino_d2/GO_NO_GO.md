@@ -6,6 +6,8 @@
 
 该结论仅覆盖 COCO128、从零初始化、10 epoch、imgsz 256、batch 4、KD 权重 0.05、align_dim 64 的实验协议；它不等于 Foundation 蒸馏普遍无效。
 
+补充修正实验已将 KD 权重按不看 validation AP 的训练信号标定为 `0.10`。三 seed mean Δ=`+0.0001267`，95% CI=`[-0.0005717, 0.0008250]`，仍满足 no-go。因此“原权重太小”解释被削弱，但欠拟合/数据方差解释仍未排除。详见 [`EXPERIMENT_CORRECTION.md`](EXPERIMENT_CORRECTION.md)。
+
 ## 预注册规则与证据
 
 - Go：mean ΔmAP50-95 ≥ `0.003`，且 paired 95% CI 不含 0。
@@ -25,9 +27,10 @@
 ## 下一步建议
 
 1. 先处理协议欠拟合风险 H6：增加训练预算或使用 COCO mini/中等集，使 baseline 获得可解释的 absolute mAP。
-2. 若预算只能支持一次单变量诊断，优先将 KD 权重从 `0.05` 降到 `0.01` 检验 H4；保持其他字段不变。
-3. 其次检验 align_dim `64→128` 的 H3。不得同时改权重和维度，否则无法归因。
-4. 只有新协议重新达到 go 条件，才扩展多 stage；若仍 no-go，提交负结果与容量/维度/优化/数据归因，不移动阈值。
+2. 权重 H4 已通过 `0.05→0.10` 校准实验检查，不再重复搜索 validation AP 最好的权重。
+3. baseline 获得任务信号后，优先运行 Counterfactual Response Probe；若 response gap 不预测失败，则停止 Response-Field Loss 路线。
+4. 其次检验 align_dim `64→128` 的 H3。不得同时改权重和维度，否则无法归因。
+5. 只有新协议重新达到 go 条件，才扩展多 stage；若仍 no-go，提交负结果与容量/维度/优化/数据归因，不移动阈值。
 
 ## 风险说明
 

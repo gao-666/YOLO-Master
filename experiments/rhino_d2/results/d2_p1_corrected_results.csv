@@ -1,0 +1,4 @@
+seed,off_best_epoch,on_best_epoch,off_best_map50_95,on_best_map50_95,delta,on_mean_foundation_task_ratio
+20260824,7,5,2e-05,1e-05,-1e-05,0.03746921
+20260825,5,10,0.00015,9e-05,-5.999999999999998e-05,0.03737597
+20260826,9,5,2e-05,0.00047,0.00045,0.03771884

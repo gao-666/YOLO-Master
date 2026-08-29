@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -73,14 +74,20 @@ def main() -> None:
     授权差异或缺少预期差异时以失败退出，阻止不可靠的对照实验继续进行，
     从实验设计层面保护最终指标结论的可信度。
     """
-    result = compare_configs(_load(OFF_PATH), _load(ON_PATH))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--off", type=Path, default=OFF_PATH)
+    parser.add_argument("--on", type=Path, default=ON_PATH)
+    parser.add_argument("--output", type=Path, default=OUTPUT_PATH)
+    args = parser.parse_args()
+    off_path, on_path = args.off.resolve(), args.on.resolve()
+    result = compare_configs(_load(off_path), _load(on_path))
     result["files"] = {
-        "off": {"path": str(OFF_PATH.relative_to(EXPERIMENT_ROOT.parent.parent)), "sha256": _sha256(OFF_PATH)},
-        "on": {"path": str(ON_PATH.relative_to(EXPERIMENT_ROOT.parent.parent)), "sha256": _sha256(ON_PATH)},
+        "off": {"path": str(off_path.relative_to(EXPERIMENT_ROOT.parent.parent)), "sha256": _sha256(off_path)},
+        "on": {"path": str(on_path.relative_to(EXPERIMENT_ROOT.parent.parent)), "sha256": _sha256(on_path)},
     }
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     # 持久化哈希和差异明细，方便审计本次实际比较的文件。
-    OUTPUT_PATH.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
     if result["status"] != "passed":
         raise SystemExit(1)

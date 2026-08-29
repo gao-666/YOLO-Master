@@ -4,6 +4,8 @@
 
 COCO128 三 seed 同预算闭环已完成。三个 paired ΔmAP50-95 为 `+0.00021 / -0.00013 / -0.00001`，平均 `+0.0000233`，95% t CI 为 `[-0.0004050, 0.0004517]`。由于 `|mean Δ| < 0.003` 且区间包含 0，按预注册规则给出 **P1 no-go**：当前 10-epoch、从零初始化协议没有检测到可行动的蒸馏收益。它不是“蒸馏永远无效”的结论。
 
+实验修正后结论不变：不看 validation AP 的权重标定选择 `0.10`，三 seed mean Δ=`+0.0001267`、95% CI=`[-0.0005717, 0.0008250]`，仍为 no-go。修正详情见 [`EXPERIMENT_CORRECTION.md`](EXPERIMENT_CORRECTION.md)。
+
 ## 已完成范围
 
 - 8.25–8.31：COCO128、10 epoch、seeds 20260824/25/26 的 off/on 最小闭环；每个 epoch 都保存可恢复 checkpoint，共 60 个 paired epoch checkpoint。
@@ -51,9 +53,11 @@ COCO128 三 seed 同预算闭环已完成。三个 paired ΔmAP50-95 为 `+0.000
 | H1：教师特征在当前预算下没有增量价值 | 三 seed mean 接近 0 且 CI 含 0，当前协议下暂不支持 | 若扩充训练预算/数据后仍复现 no-go，则增强该解释 | 当前主结论 |
 | H2：DINOv2 patch-14 到 YOLO stride-16 的插值损伤监督 | 当前 teacher grid 必须 resize 到 P4 | 获得许可明确的 patch-16 teacher 后，只替换 teacher/grid；未获许可前不执行 | 受许可阻塞 |
 | H3：64-d 投影瓶颈过窄 | 未检验 | 固定其他变量，align_dim 64 vs 128 | 次高 |
-| H4：KD 权重与 detection task 冲突 | task ratio 约 0.019，但 val cls loss 不稳定 | 固定其他变量，loss_weight 0.05 vs 0.01 | 次高 |
+| H4：KD 权重与 detection task 冲突 | 已将 0.05 标定为 0.10，task ratio 约 3.75% 后仍 no-go | 权重过小解释已削弱；不再按 validation AP 搜权重 | 已检验 |
 | H5：N 型学生容量不足 | 未检验 | 仅在 P1 多 seed 后比较 N/S；不提前扩大搜索空间 | 后置 |
 | H6：COCO128 方差掩盖效应 | absolute mAP 极低 | 保持判读线，扩为 COCO mini/中等集，而不是修改阈值 | 若 CI 过宽则执行 |
+
+修正更新：H4 已用训练信号标定的 `0.10` 权重检验，foundation/task ratio 提高到约 3.75% 后仍 no-go，因此“纯粹权重太小”被削弱；H6 升为下一步最高优先级。
 
 ## 每日 checkpoint / 测试纪律
 

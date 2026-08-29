@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "status": "selected",
+  "question": "what is the smallest KD weight producing a visible but non-dominant training signal?",
+  "selection_contract": {
+    "uses_validation_metric": false,
+    "epochs": 1,
+    "same_seed_and_initialization": true,
+    "target_foundation_task_ratio": [
+      0.03,
+      0.06
+    ],
+    "rule": "smallest candidate inside the frozen ratio band with mechanism identity passing"
+  },
+  "source_state": {
+    "commit": "cadee951c733006bf1df65244984b4e139d8b39b",
+    "dirty": true,
+    "porcelain_sha256": "f788708cabd584914c01cbb4f2c1c5cf99cf3fd05d2ad31ae0f19a0747a8c0a1"
+  },
+  "config": {
+    "path": "experiments\\rhino_d2\\configs\\d2_on.yaml",
+    "sha256": "194adb3e4bb32f9d1fcb913a39828ae3df933a1777d159e2ad5252956782f60d"
+  },
+  "records": [
+    {
+      "weight": 0.01,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\weight_calibration\\calibration-w0p01-s20260824",
+      "args_sha256": "73286d6ef92cf61498e0a22eca9aca2f855cb60a01176fb630cc1d315da9d9e4",
+      "results_sha256": "96305ff18a13afedbc7308c437e529df04c88eedc015028168931cf966c1aef6",
+      "log": "runs\\rhino_d2\\logs\\calibration-w0p01-s20260824.log",
+      "log_sha256": "28163788022722db417d9d0677f308691dc7dff80618719a6162d371fdf98c63",
+      "started_utc": "2026-08-29T14:39:28.050391+00:00",
+      "finished_utc": "2026-08-29T14:39:40.590785+00:00",
+      "foundation_task_ratio": 0.00350043,
+      "foundation_loss": 0.0544199,
+      "mixture_aux_loss": 2.98783,
+      "foundation_to_mixture_ratio": 0.018213854201878956,
+      "mechanism_identity": {
+        "formula": "(cosine_raw + relational_raw) * weight * batch_size = foundation_loss",
+        "reconstructed": 0.054419880000000004,
+        "observed": 0.0544199,
+        "absolute_error": 1.9999999996411777e-08,
+        "passed": true
+      }
+    },
+    {
+      "weight": 0.05,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\weight_calibration\\calibration-w0p05-s20260824",
+      "args_sha256": "35df217126dca8e473e3ec5a412e0c5b463bd2ce3011050e08857e0f5561c33a",
+      "results_sha256": "195082fd9f9aab34c39d3044de9363e6fc61b7623fed856cd615a35a273b0e90",
+      "log": "runs\\rhino_d2\\logs\\calibration-w0p05-s20260824.log",
+      "log_sha256": "84cdc84eecba7fba05d79dd86cb5c54f3820986d7054d54d93062b00d40e299f",
+      "started_utc": "2026-08-29T14:39:40.602824+00:00",
+      "finished_utc": "2026-08-29T14:39:52.924938+00:00",
+      "foundation_task_ratio": 0.0174202,
+      "foundation_loss": 0.271306,
+      "mixture_aux_loss": 2.9877,
+      "foundation_to_mixture_ratio": 0.09080764467650701,
+      "mechanism_identity": {
+        "formula": "(cosine_raw + relational_raw) * weight * batch_size = foundation_loss",
+        "reconstructed": 0.2713062,
+        "observed": 0.271306,
+        "absolute_error": 2.0000000000575113e-07,
+        "passed": true
+      }
+    },
+    {
+      "weight": 0.1,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\weight_calibration\\calibration-w0p1-s20260824",
+      "args_sha256": "2bd8ec9e65bf2dd1ee5148ff4af229d2fc1401d52a327b02fc97c7e33b778066",
+      "results_sha256": "b818b1e87e3a7890a8676f4b2a24bdaa25f844f48cfc75925c0b52d85d365098",
+      "log": "runs\\rhino_d2\\logs\\calibration-w0p1-s20260824.log",
+      "log_sha256": "3c944030df9f0528a5a72f66b4ebe30cf9e441ac619aa9d4540dc84132ed682e",
+      "started_utc": "2026-08-29T14:39:52.935890+00:00",
+      "finished_utc": "2026-08-29T14:40:06.496169+00:00",
+      "foundation_task_ratio": 0.0350084,
+      "foundation_loss": 0.543986,
+      "mixture_aux_loss": 2.98815,
+      "foundation_to_mixture_ratio": 0.18204775530010206,
+      "mechanism_identity": {
+        "formula": "(cosine_raw + relational_raw) * weight * batch_size = foundation_loss",
+        "reconstructed": 0.5439856,
+        "observed": 0.543986,
+        "absolute_error": 4.0000000001150227e-07,
+        "passed": true
+      }
+    },
+    {
+      "weight": 0.15,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\weight_calibration\\calibration-w0p15-s20260824",
+      "args_sha256": "90911a2720521ddc6348de82219f451e48f289e03c1639370d67a4af9980ab03",
+      "results_sha256": "54f9e9e86b4f90710a0e80a62551278e1029a98ff7f57fdeaafcb178da5a6823",
+      "log": "runs\\rhino_d2\\logs\\calibration-w0p15-s20260824.log",
+      "log_sha256": "357f270532f25084f260023cd865bfab1f6eaad0e29ab168e0c46fbde4b22777",
+      "started_utc": "2026-08-29T14:40:06.509224+00:00",
+      "finished_utc": "2026-08-29T14:40:19.671318+00:00",
+      "foundation_task_ratio": 0.0524278,
+      "foundation_loss": 0.816229,
+      "mixture_aux_loss": 2.9882,
+      "foundation_to_mixture_ratio": 0.2731507261896794,
+      "mechanism_identity": {
+        "formula": "(cosine_raw + relational_raw) * weight * batch_size = foundation_loss",
+        "reconstructed": 0.8162286,
+        "observed": 0.816229,
+        "absolute_error": 4.0000000001150227e-07,
+        "passed": true
+      }
+    }
+  ],
+  "selected_weight": 0.1
+}

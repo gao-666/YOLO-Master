@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "allowed_differences": [
+    "foundation_enabled",
+    "foundation_loss_weight",
+    "foundation_model",
+    "foundation_revision",
+    "foundation_teacher",
+    "name"
+  ],
+  "observed_differences": {
+    "foundation_enabled": {
+      "off": false,
+      "on": true
+    },
+    "foundation_loss_weight": {
+      "off": 0.0,
+      "on": 0.1
+    },
+    "foundation_model": {
+      "off": null,
+      "on": "facebook/dinov2-small"
+    },
+    "foundation_revision": {
+      "off": null,
+      "on": "ed25f3a31f01632728cabb09d1542f84ab7b0056"
+    },
+    "foundation_teacher": {
+      "off": "none",
+      "on": "dinov2"
+    },
+    "name": {
+      "off": "off-s20260824",
+      "on": "on-calibrated-s20260824"
+    }
+  },
+  "unexpected_differences": [],
+  "missing_expected_differences": [],
+  "files": {
+    "off": {
+      "path": "experiments\\rhino_d2\\configs\\d2_off.yaml",
+      "sha256": "25d7ca4d2e872fa9cb5b8267c6340da0bf9bf9f113616756dc4437752a28c35e"
+    },
+    "on": {
+      "path": "experiments\\rhino_d2\\configs\\d2_on_calibrated.yaml",
+      "sha256": "127a6f26a2b4aa10a3568510f98b1ed9c328f1af6c3b984303849526f026b542"
+    }
+  }
+}

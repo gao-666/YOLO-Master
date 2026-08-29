@@ -6,3 +6,6 @@ p1-s20260825,on,20260825,yolo26-master-n,coco128,10,256,4,0,true,facebook/dinov2
 p1-s20260826,off,20260826,yolo26-master-n,coco128,10,256,4,0,false,none,hybrid,0.0,completed,best_map50_95_0.00002_paired_delta_-0.00001
 p1-s20260826,on,20260826,yolo26-master-n,coco128,10,256,4,0,true,facebook/dinov2-small@ed25f3a31f01632728cabb09d1542f84ab7b0056,hybrid,0.05,completed,best_map50_95_0.00001_paired_delta_-0.00001
 p1-ablation-s20260824,cosine-only,20260824,yolo26-master-n,coco128,10,256,4,0,true,facebook/dinov2-small@ed25f3a31f01632728cabb09d1542f84ab7b0056,hybrid-cosine1-relation0,0.05,completed,best_map50_95_0.00008_single_seed_no_decision
+p1-calibrated-s20260824,on-calibrated,20260824,yolo26-master-n,coco128,10,256,4,0,true,facebook/dinov2-small@ed25f3a31f01632728cabb09d1542f84ab7b0056,hybrid,0.1,completed,best_map50_95_0.00001_paired_delta_-0.00001
+p1-calibrated-s20260825,on-calibrated,20260825,yolo26-master-n,coco128,10,256,4,0,true,facebook/dinov2-small@ed25f3a31f01632728cabb09d1542f84ab7b0056,hybrid,0.1,completed,best_map50_95_0.00009_paired_delta_-0.00006
+p1-calibrated-s20260826,on-calibrated,20260826,yolo26-master-n,coco128,10,256,4,0,true,facebook/dinov2-small@ed25f3a31f01632728cabb09d1542f84ab7b0056,hybrid,0.1,completed,best_map50_95_0.00047_paired_delta_+0.00045

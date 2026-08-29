@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "question": "did off/on actually run with equal resolved non-distillation settings?",
+  "allowed_differences": [
+    "foundation_enabled",
+    "foundation_loss_weight",
+    "foundation_model",
+    "foundation_revision",
+    "foundation_teacher",
+    "name",
+    "project",
+    "save_dir"
+  ],
+  "records": [
+    {
+      "seed": 20260824,
+      "status": "passed",
+      "resolved_differences": {
+        "foundation_enabled": {
+          "off": false,
+          "on": true
+        },
+        "foundation_loss_weight": {
+          "off": 0.0,
+          "on": 0.05
+        },
+        "foundation_model": {
+          "off": null,
+          "on": "facebook/dinov2-small"
+        },
+        "foundation_revision": {
+          "off": null,
+          "on": "ed25f3a31f01632728cabb09d1542f84ab7b0056"
+        },
+        "foundation_teacher": {
+          "off": "none",
+          "on": "dinov2"
+        },
+        "name": {
+          "off": "off-s20260824-2",
+          "on": "on-s20260824"
+        },
+        "save_dir": {
+          "off": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p1\\off-s20260824-2",
+          "on": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p1\\on-s20260824"
+        }
+      },
+      "unexpected_differences": {},
+      "required_equalities": {
+        "seed": true,
+        "optimizer": true,
+        "effective_optimizer": true,
+        "effective_optimizer_lrs": true,
+        "model": true,
+        "data": true,
+        "epochs": true,
+        "batch": true,
+        "imgsz": true,
+        "pretrained": true
+      },
+      "files": {
+        "off": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260824-2\\args.yaml",
+          "sha256": "3b3910ef78a91174aebce7eea01fa62117e8700cd41b736a0e137e76d688bad4"
+        },
+        "on": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260824\\args.yaml",
+          "sha256": "15ae5673197ede3787a5aedfa605a7e9425efdecc50482aadd94415b08fddd76"
+        }
+      }
+    },
+    {
+      "seed": 20260825,
+      "status": "passed",
+      "resolved_differences": {
+        "foundation_enabled": {
+          "off": false,
+          "on": true
+        },
+        "foundation_loss_weight": {
+          "off": 0.0,
+          "on": 0.05
+        },
+        "foundation_model": {
+          "off": null,
+          "on": "facebook/dinov2-small"
+        },
+        "foundation_revision": {
+          "off": null,
+          "on": "ed25f3a31f01632728cabb09d1542f84ab7b0056"
+        },
+        "foundation_teacher": {
+          "off": "none",
+          "on": "dinov2"
+        },
+        "name": {
+          "off": "off-s20260825",
+          "on": "on-s20260825"
+        },
+        "save_dir": {
+          "off": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p1\\off-s20260825",
+          "on": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p1\\on-s20260825"
+        }
+      },
+      "unexpected_differences": {},
+      "required_equalities": {
+        "seed": true,
+        "optimizer": true,
+        "effective_optimizer": true,
+        "effective_optimizer_lrs": true,
+        "model": true,
+        "data": true,
+        "epochs": true,
+        "batch": true,
+        "imgsz": true,
+        "pretrained": true
+      },
+      "files": {
+        "off": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260825\\args.yaml",
+          "sha256": "c2fa15a3c26d68d8bb0491bf07b4e3bef8a207454649b04f01488572cf4f730f"
+        },
+        "on": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260825\\args.yaml",
+          "sha256": "ba3e89b4ce0bd5055d2c9f5a5e6d6d62a65a6227d6f8d4ea491b45fcba050969"
+        }
+      }
+    },
+    {
+      "seed": 20260826,
+      "status": "passed",
+      "resolved_differences": {
+        "foundation_enabled": {
+          "off": false,
+          "on": true
+        },
+        "foundation_loss_weight": {
+          "off": 0.0,
+          "on": 0.05
+        },
+        "foundation_model": {
+          "off": null,
+          "on": "facebook/dinov2-small"
+        },
+        "foundation_revision": {
+          "off": null,
+          "on": "ed25f3a31f01632728cabb09d1542f84ab7b0056"
+        },
+        "foundation_teacher": {
+          "off": "none",
+          "on": "dinov2"
+        },
+        "name": {
+          "off": "off-s20260826",
+          "on": "on-s20260826"
+        },
+        "save_dir": {
+          "off": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p1\\off-s20260826",
+          "on": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p1\\on-s20260826"
+        }
+      },
+      "unexpected_differences": {},
+      "required_equalities": {
+        "seed": true,
+        "optimizer": true,
+        "effective_optimizer": true,
+        "effective_optimizer_lrs": true,
+        "model": true,
+        "data": true,
+        "epochs": true,
+        "batch": true,
+        "imgsz": true,
+        "pretrained": true
+      },
+      "files": {
+        "off": {
+          "path": "runs\\rhino_d2\\p1\\off-s20260826\\args.yaml",
+          "sha256": "3040e35e17a706aaeb0b3b4b088d04fa761e51ecdda317f3bdd7d7481615142b"
+        },
+        "on": {
+          "path": "runs\\rhino_d2\\p1\\on-s20260826\\args.yaml",
+          "sha256": "123f576cb3e12d5c608f760525d85375e9dbc673b56950a8c8ef12cfb815a0a6"
+        }
+      }
+    }
+  ]
+}
