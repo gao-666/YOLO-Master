@@ -2,8 +2,8 @@
   "schema_version": 2,
   "git": {
     "base_commit": "22140b74f1fdf7edc5ead18c3dbebce5e611c212",
-    "experiment_commit": "01c78835255457e284cf47abd298f658dff58762",
-    "commit": "01c78835255457e284cf47abd298f658dff58762",
+    "experiment_commit": "66e87d06634739060ac5a9c7ec509e38d79ab4a2",
+    "commit": "66e87d06634739060ac5a9c7ec509e38d79ab4a2",
     "branch": "rhino-d2-foundation-distillation",
     "origin": "https://github.com/Tencent/YOLO-Master.git",
     "repository_state": {
@@ -44,23 +44,27 @@
     "experiments\\rhino_d2\\configs\\d2_ablation_cosine_only.yaml": "6f1d1b03a60125cc6ccde58a21cdc5659506eb4481e2743d9aa7470086250286",
     "experiments\\rhino_d2\\configs\\d2_off.yaml": "25d7ca4d2e872fa9cb5b8267c6340da0bf9bf9f113616756dc4437752a28c35e",
     "experiments\\rhino_d2\\configs\\d2_on.yaml": "194adb3e4bb32f9d1fcb913a39828ae3df933a1777d159e2ad5252956782f60d",
+    "experiments\\rhino_d2\\configs\\d2_on_calibrated.yaml": "127a6f26a2b4aa10a3568510f98b1ed9c328f1af6c3b984303849526f026b542",
     "experiments\\rhino_d2\\configs\\d2_p0.yaml": "077cb663e9a574fa78015c4a65caaa2bb40f5e7f530920ffdbafcfdc288a3c6f",
     "experiments\\rhino_d2\\configs\\d2_smoke.yaml": "6a98aad86cab95fe67af5a14a610c2a07a7ec368527a996c49f9c7b3a2ea43d3"
   },
   "scripts": {
+    "experiments\\rhino_d2\\scripts\\audit_resolved_args.py": "7108c5982f82585f354327114cf233a5906d18699b4a29612ec1742921a2b6b7",
+    "experiments\\rhino_d2\\scripts\\calibrate_p1_weight.py": "6408e4bdd3b68e53a8a51268bd7d0ed6641ec817623afc616b9048e92c93442a",
     "experiments\\rhino_d2\\scripts\\d2_alignment_smoke.py": "99ab1105972e295264217d793742b8f522ec0be72c780304ac8f46c59d98adf3",
     "experiments\\rhino_d2\\scripts\\d2_p0_train_smoke.py": "b79ef83e5d6b182914e8b3d3931214bebbb0ade78ea7fc4aa72cf9acae94a35f",
     "experiments\\rhino_d2\\scripts\\plot_p0_loss_curves.py": "04e2b71af7d3016e7d01b10498041d2a3a5d183d68b5b7b6746d8f03165b21b7",
-    "experiments\\rhino_d2\\scripts\\record_environment.py": "5f3b95829161fc2e04274959beb3bb78e4f92b2b98cbbef8b37eb4b20ecdc6d9",
-    "experiments\\rhino_d2\\scripts\\run_p1.py": "81ee46f4ed159af8e819159270e97c06764c5f67db1277a3b63ee14774c1224a",
-    "experiments\\rhino_d2\\scripts\\summarize_p1.py": "761819319cd80584bb733970fda1f0a580c0b24a4934e2556419e50e3fa48f04",
-    "experiments\\rhino_d2\\scripts\\validate_pair.py": "5a0dad7b3e348c81b0e13b0aebe90917975fc3bd981e65f9927cf98fc9a6f0ca"
+    "experiments\\rhino_d2\\scripts\\record_environment.py": "c21fad87e1be7a7d7b3ad3e89f76124e130827bbfa91ae74d525f64f05b8d019",
+    "experiments\\rhino_d2\\scripts\\run_p1.py": "9316d08ac42fc034c7dd166a13aa491c7e9d67926e86fb06e5fd85b6c82f4ee2",
+    "experiments\\rhino_d2\\scripts\\summarize_corrected_p1.py": "15d1ecff834909addfe45fb23c631ffe7c3920b44cd7016a14afc01bd66c4083",
+    "experiments\\rhino_d2\\scripts\\summarize_p1.py": "f030de982a1009e25e413403b7b49a54fb7458948ef473b5877712a0507eb41d",
+    "experiments\\rhino_d2\\scripts\\validate_pair.py": "6ed401740e9f9a133d7567cbd6edbcf0ab74ebaed5071e62ebfb1c4538d5a610"
   },
   "protocols": {
-    "experiments\\rhino_d2\\experiment_matrix.csv": "5ef4bebe000ca7d752162466fba009a4f7262f5aa40088e59db3d5aebb875311"
+    "experiments\\rhino_d2\\experiment_matrix.csv": "18416803fa5a332666c7ab5bbeb1c5eabf46cdfebe77015a32e31dd3ad4076a2"
   },
   "tests": {
-    "experiments\\rhino_d2\\tests\\test_admission_contract.py": "ac285582f52e9c7ce093a4fe4d1bb49a0b06e5625e0f0e8b71908a40f2562680",
+    "experiments\\rhino_d2\\tests\\test_admission_contract.py": "917fd8562bfed39e70714d0600678dbb90a9a3d71372ed1b2b136df8945135b3",
     "tests\\test_engine.py": "d1c64996c51cfa5230d6c85e6e419b2490b48c912726cc8a35a557d1f3edc0be",
     "tests\\test_foundation_config.py": "075b904c61abf3b0c43918ed0f88d897aa9cdaeabdfdb651f6cf500b80423515",
     "tests\\test_foundation_dinov2.py": "ddfd4bc8d2b67eda5964ee259dc9fa8d7dd5e6b86eb94efd183970b2063481b4",
