@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "claim": "teacher_dtype_and_finite_gate_only_no_accuracy_claim",
+  "config": {
+    "path": "experiments\\rhino_d2\\configs\\d2_v3_p0_vitl16.yaml",
+    "sha256": "6ebe094742a1e29e2d24508bafc193eb64f60c43ffbfe3d010f60c04b640c562"
+  },
+  "teacher": {
+    "model_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+    "weights_path": "E:/2026YOLO/model_cache/dinov3-vitl16-pretrain-lvd1689m",
+    "weights_sha256": "dcb2e45127cccbf1601e5f42fef165eea275c8e5213197e8dcf3f48822718179",
+    "license": "DINOv3 License",
+    "license_sha256": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e",
+    "requested_dtype": "bf16",
+    "actual_dtype": "torch.bfloat16",
+    "feature_shape": [
+      2,
+      1024,
+      14,
+      14
+    ],
+    "metadata": {
+      "grid_size": [
+        14,
+        14
+      ],
+      "patch_size": 16,
+      "hidden_dim": 1024,
+      "num_register_tokens": 4,
+      "prefix_tokens": 5,
+      "feature_maps_available": 1,
+      "input_size": [
+        224,
+        224
+      ],
+      "padded_size": [
+        224,
+        224
+      ],
+      "model_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+      "backend": "transformers"
+    }
+  },
+  "checks": {
+    "dense_finite": true,
+    "pooled_finite": true,
+    "hidden_size_matches": true,
+    "patch_size_matches": true,
+    "grid_matches": true,
+    "dtype_matches": true,
+    "teacher_frozen": true
+  },
+  "runtime": {
+    "device": "cuda:0",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "peak_cuda_bytes": 646448640,
+    "torch": "2.11.0+cu128"
+  }
+}

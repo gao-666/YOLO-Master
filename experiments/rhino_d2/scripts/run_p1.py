@@ -20,6 +20,7 @@ ARM_CONFIGS = {
     "on": EXPERIMENT_ROOT / "configs" / "d2_on.yaml",
     "on-calibrated": EXPERIMENT_ROOT / "configs" / "d2_on_calibrated.yaml",
     "cosine-only": EXPERIMENT_ROOT / "configs" / "d2_ablation_cosine_only.yaml",
+    "v3-baseline-sanity": EXPERIMENT_ROOT / "configs" / "d2_v3_off_sanity.yaml",
 }
 
 

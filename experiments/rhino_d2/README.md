@@ -6,6 +6,8 @@
 
 8.25–9.7 的首轮同预算数字、关键消融、竞争性解释和中期讲稿见 [`P1_MIDTERM.md`](P1_MIDTERM.md)；权重标定、事后真实参数审计和修正实验见 [`EXPERIMENT_CORRECTION.md`](EXPERIMENT_CORRECTION.md)；正式判读见 [`GO_NO_GO.md`](GO_NO_GO.md)；评审四节结构见 [`PR_DRAFT.md`](PR_DRAFT.md)。
 
+2026-08-31 起的 DINOv3 复验是独立 protocol，不覆盖上述 DINOv2 历史证据。研究红线和 gate 顺序见 [`DINOv3_PROTOCOL.md`](DINOv3_PROTOCOL.md)，S/L BF16 与 P0 证据见 [`DINOv3_P0_EVIDENCE.md`](DINOv3_P0_EVIDENCE.md)。
+
 ## 准入状态
 
 | 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |

@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "claim": "p0_real_yolo_loss_synthetic_target_fixed_batch_smoke_no_accuracy_claim",
+  "experiment_id": "d2_v3_p0_vitl16_bf16_20260831",
+  "source_state": {
+    "commit": "317f8a97f12262e91c2de07dc5becb731eda5d8a",
+    "dirty": true,
+    "porcelain_sha256": "75a8e57fd2046a03f7568b75d7db0e448273c6834b2ec59f857e21cd2cd8ad5b"
+  },
+  "script_sha256": "af8a03a801a81d1ab93359357d4227656f7d8f6d2bfb0c9729c70d17c3a5161c",
+  "config": {
+    "path": "experiments\\rhino_d2\\configs\\d2_v3_p0_vitl16.yaml",
+    "sha256": "6ebe094742a1e29e2d24508bafc193eb64f60c43ffbfe3d010f60c04b640c562",
+    "experiment_id": "d2_v3_p0_vitl16_bf16_20260831",
+    "output_file": "d2_v3_p0_vitl16.json",
+    "teacher_smoke_output_file": "d2_v3_teacher_vitl16_bf16.json",
+    "student_model": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
+    "student_level": "p4",
+    "teacher_model": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+    "teacher_weights": "E:/2026YOLO/model_cache/dinov3-vitl16-pretrain-lvd1689m",
+    "teacher_source": "ModelScope mentor-provided local asset",
+    "teacher_license": "DINOv3 License",
+    "teacher_dtype": "bf16",
+    "expected_hidden_size": 1024,
+    "expected_patch_size": 16,
+    "image": "ultralytics/assets/bus.jpg",
+    "imgsz": 224,
+    "batch_size": 2,
+    "target_source": "deterministic_synthetic",
+    "target_class": 0,
+    "target_bbox_xywh": [
+      0.5,
+      0.5,
+      0.35,
+      0.55
+    ],
+    "align_dim": 64,
+    "foundation_loss": "cosine",
+    "foundation_loss_weight": 0.05,
+    "steps": 5,
+    "learning_rate": 0.0003,
+    "seed": 20260824,
+    "deterministic": true,
+    "device": "cuda:0"
+  },
+  "student": {
+    "model": "ultralytics\\cfg\\models\\26\\yolo26-master-n.yaml",
+    "model_yaml_sha256": "be403b10940030d6eb960f3e82cc40b1e142ab28bb8e16010f0ba1d95cb60306",
+    "level": "p4",
+    "source_indices": [
+      16,
+      19,
+      22
+    ],
+    "feature_shape": [
+      2,
+      128,
+      14,
+      14
+    ]
+  },
+  "teacher": {
+    "model_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+    "source": "ModelScope mentor-provided local asset",
+    "weights_path": "E:/2026YOLO/model_cache/dinov3-vitl16-pretrain-lvd1689m",
+    "license": "DINOv3 License",
+    "dtype": "torch.bfloat16",
+    "feature_shape": [
+      2,
+      1024,
+      14,
+      14
+    ],
+    "metadata": {
+      "grid_size": [
+        14,
+        14
+      ],
+      "patch_size": 16,
+      "hidden_dim": 1024,
+      "num_register_tokens": 4,
+      "prefix_tokens": 5,
+      "feature_maps_available": 1,
+      "input_size": [
+        224,
+        224
+      ],
+      "padded_size": [
+        224,
+        224
+      ],
+      "model_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+      "backend": "transformers"
+    },
+    "assets": [
+      {
+        "name": "config.json",
+        "bytes": 745,
+        "sha256": "135ecd23e34a70b6fbed8b083fdecb319b7e3a54e3d849258bbe4ddcf1783bb5"
+      },
+      {
+        "name": "preprocessor_config.json",
+        "bytes": 585,
+        "sha256": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7"
+      },
+      {
+        "name": "model.safetensors",
+        "bytes": 1212559808,
+        "sha256": "dcb2e45127cccbf1601e5f42fef165eea275c8e5213197e8dcf3f48822718179"
+      },
+      {
+        "name": "LICENSE.md",
+        "bytes": 7503,
+        "sha256": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e"
+      },
+      {
+        "name": "README.md",
+        "bytes": 14520,
+        "sha256": "5395522a8a611d0578b6036f47e60445381ee4b2c7508f0e93d9e4c1e876fa63"
+      }
+    ]
+  },
+  "alignment": {
+    "student_aligned_shape": [
+      2,
+      64,
+      14,
+      14
+    ],
+    "teacher_aligned_shape": [
+      2,
+      64,
+      14,
+      14
+    ],
+    "metadata": {
+      "student_size": [
+        14,
+        14
+      ],
+      "teacher_size": [
+        14,
+        14
+      ],
+      "target_size": [
+        14,
+        14
+      ],
+      "teacher_resized": false,
+      "resize_ratio": null
+    },
+    "teacher_projection_frozen": true
+  },
+  "data_contract": {
+    "image": "ultralytics\\assets\\bus.jpg",
+    "image_repeated": 2,
+    "target_source": "deterministic_synthetic",
+    "target_class": 0,
+    "target_bbox_format": "normalized_xywh",
+    "target_bbox_xywh": [
+      0.5,
+      0.5,
+      0.35,
+      0.55
+    ],
+    "purpose": "gradient_chain_smoke_not_accuracy_evaluation"
+  },
+  "checks": {
+    "teacher_output_finite": true,
+    "student_p4_finite": true,
+    "student_shape_matches": true,
+    "teacher_shape_matches": true,
+    "aligned_shapes_equal": true,
+    "aligned_features_finite": true,
+    "teacher_frozen": true,
+    "teacher_not_in_optimizer": true,
+    "student_has_gradient": true,
+    "projector_has_gradient": true,
+    "finite_losses": true,
+    "foundation_loss_nonzero": true,
+    "foundation_in_total_loss": true,
+    "fixed_batch_foundation_loss_decreased": true
+  },
+  "non_blocking_observations": {
+    "fixed_batch_total_loss_saw_decrease": true
+  },
+  "steps": [
+    {
+      "step": 0,
+      "total_loss": 26.51146697998047,
+      "task_loss": 26.412952423095703,
+      "foundation_loss": 0.09851614385843277,
+      "loss_items": [
+        2.7320799827575684,
+        5.8961100578308105,
+        0.0803837776184082,
+        3.0,
+        0.09851614385843277
+      ],
+      "student_grad_norm": 3883.85888671875,
+      "projector_grad_norm": 0.031224315986037254,
+      "foundation_metrics": {
+        "foundation_loss": 0.09851614385843277,
+        "foundation_cosine_loss": 0.09851614385843277,
+        "foundation_relational_loss": 0.0,
+        "foundation_cosine_raw": 0.9851614236831665,
+        "foundation_relational_raw": 0.0,
+        "foundation_task_ratio": 0.011189526518696499,
+        "foundation_loss_weight": 0.05,
+        "foundation_effective_weight": 0.05,
+        "foundation_foreground_enabled": 0.0,
+        "foundation_foreground_mean_weight": 1.0
+      }
+    },
+    {
+      "step": 1,
+      "total_loss": 27.082725524902344,
+      "task_loss": 26.986495971679688,
+      "foundation_loss": 0.09622853249311447,
+      "loss_items": [
+        2.9543187618255615,
+        6.141217231750488,
+        0.08007733523845673,
+        3.0,
+        0.09622853249311447
+      ],
+      "student_grad_norm": 2444.932861328125,
+      "projector_grad_norm": 0.03562811762094498,
+      "foundation_metrics": {
+        "foundation_loss": 0.09622853249311447,
+        "foundation_cosine_loss": 0.09622853249311447,
+        "foundation_relational_loss": 0.0,
+        "foundation_cosine_raw": 0.9622852802276611,
+        "foundation_relational_raw": 0.0,
+        "foundation_task_ratio": 0.010697409466656857,
+        "foundation_loss_weight": 0.05,
+        "foundation_effective_weight": 0.05,
+        "foundation_foreground_enabled": 0.0,
+        "foundation_foreground_mean_weight": 1.0
+      }
+    },
+    {
+      "step": 2,
+      "total_loss": 26.789901733398438,
+      "task_loss": 26.692790985107422,
+      "foundation_loss": 0.09711135923862457,
+      "loss_items": [
+        3.3139162063598633,
+        5.84246826171875,
+        0.11047296971082687,
+        3.000000238418579,
+        0.09711135923862457
+      ],
+      "student_grad_norm": 2100.7412109375,
+      "projector_grad_norm": 0.034928396344184875,
+      "foundation_metrics": {
+        "foundation_loss": 0.09711135923862457,
+        "foundation_cosine_loss": 0.09711135923862457,
+        "foundation_relational_loss": 0.0,
+        "foundation_cosine_raw": 0.9711135625839233,
+        "foundation_relational_raw": 0.0,
+        "foundation_task_ratio": 0.010914335165239753,
+        "foundation_loss_weight": 0.05,
+        "foundation_effective_weight": 0.05,
+        "foundation_foreground_enabled": 0.0,
+        "foundation_foreground_mean_weight": 1.0
+      }
+    },
+    {
+      "step": 3,
+      "total_loss": 24.447471618652344,
+      "task_loss": 24.351152420043945,
+      "foundation_loss": 0.09631866216659546,
+      "loss_items": [
+        2.2030415534973145,
+        5.20803689956665,
+        0.05804974213242531,
+        3.0,
+        0.09631866216659546
+      ],
+      "student_grad_norm": 4437.822265625,
+      "projector_grad_norm": 0.03386891633272171,
+      "foundation_metrics": {
+        "foundation_loss": 0.09631866216659546,
+        "foundation_cosine_loss": 0.09631866216659546,
+        "foundation_relational_loss": 0.0,
+        "foundation_cosine_raw": 0.9631866216659546,
+        "foundation_relational_raw": 0.0,
+        "foundation_task_ratio": 0.011866213565541052,
+        "foundation_loss_weight": 0.05,
+        "foundation_effective_weight": 0.05,
+        "foundation_foreground_enabled": 0.0,
+        "foundation_foreground_mean_weight": 1.0
+      }
+    },
+    {
+      "step": 4,
+      "total_loss": 26.012142181396484,
+      "task_loss": 25.915327072143555,
+      "foundation_loss": 0.09681598842144012,
+      "loss_items": [
+        3.162916660308838,
+        5.792661666870117,
+        0.0968375951051712,
+        3.0,
+        0.09681598842144012
+      ],
+      "student_grad_norm": 2402.88525390625,
+      "projector_grad_norm": 0.03401639312505722,
+      "foundation_metrics": {
+        "foundation_loss": 0.09681598842144012,
+        "foundation_cosine_loss": 0.09681598842144012,
+        "foundation_relational_loss": 0.0,
+        "foundation_cosine_raw": 0.9681598544120789,
+        "foundation_relational_raw": 0.0,
+        "foundation_task_ratio": 0.01120757392252914,
+        "foundation_loss_weight": 0.05,
+        "foundation_effective_weight": 0.05,
+        "foundation_foreground_enabled": 0.0,
+        "foundation_foreground_mean_weight": 1.0
+      }
+    }
+  ],
+  "runtime": {
+    "device": "cuda:0",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "seed": 20260824
+  }
+}

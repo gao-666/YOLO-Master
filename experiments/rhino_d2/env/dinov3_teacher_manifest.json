@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "ModelScope",
+  "provided_by": "project mentor",
+  "access_mode": "local directory; no network fallback",
+  "license": {
+    "name": "DINOv3 License",
+    "model_card_license_id": "dinov3-license",
+    "model_card_license_type": "other",
+    "reference": "https://ai.meta.com/resources/models-and-libraries/dinov3-license/",
+    "note": "Recorded from the bundled LICENSE.md and model card; not Apache-2.0."
+  },
+  "vits16": {
+    "model_id": "facebook/dinov3-vits16-pretrain-lvd1689m",
+    "local_path": "E:/2026YOLO/model_cache/dinov3-vits16-pretrain-lvd1689m",
+    "hidden_size": 384,
+    "patch_size": 16,
+    "layers": 12,
+    "register_tokens": 4,
+    "files": {
+      "config.json": {"bytes": 743, "sha256": "9481247be9f95a134a5599402b4bfc838eecdf9a7fffbf4debd1c70ec213898b"},
+      "preprocessor_config.json": {"bytes": 585, "sha256": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7"},
+      "model.safetensors": {"bytes": 86406384, "sha256": "4610ad75edef83e75afdebf162d148dc628045ea6cbb83d67d4708c709c4f91d"},
+      "LICENSE.md": {"bytes": 7503, "sha256": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e"},
+      "README.md": {"bytes": 14519, "sha256": "e15ec258bf2fe83dd9473cb483ad0c7f49bc3ee6195e3c177f17d995fced3478"}
+    }
+  },
+  "vitl16": {
+    "model_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+    "local_path": "E:/2026YOLO/model_cache/dinov3-vitl16-pretrain-lvd1689m",
+    "hidden_size": 1024,
+    "patch_size": 16,
+    "layers": 24,
+    "register_tokens": 4,
+    "files": {
+      "config.json": {"bytes": 745, "sha256": "135ecd23e34a70b6fbed8b083fdecb319b7e3a54e3d849258bbe4ddcf1783bb5"},
+      "preprocessor_config.json": {"bytes": 585, "sha256": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7"},
+      "model.safetensors": {"bytes": 1212559808, "sha256": "dcb2e45127cccbf1601e5f42fef165eea275c8e5213197e8dcf3f48822718179"},
+      "LICENSE.md": {"bytes": 7503, "sha256": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e"},
+      "README.md": {"bytes": 14520, "sha256": "5395522a8a611d0578b6036f47e60445381ee4b2c7508f0e93d9e4c1e876fa63"}
+    }
+  }
+}
