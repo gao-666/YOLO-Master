@@ -4,14 +4,14 @@
   "claim": "p0_real_yolo_loss_synthetic_target_fixed_batch_smoke_no_accuracy_claim",
   "experiment_id": "d2_v3_p0_vits16_bf16_20260831",
   "source_state": {
-    "commit": "317f8a97f12262e91c2de07dc5becb731eda5d8a",
+    "commit": "818d3b1317d24e8372058994bb6ad3ff98e5de09",
     "dirty": true,
-    "porcelain_sha256": "75a8e57fd2046a03f7568b75d7db0e448273c6834b2ec59f857e21cd2cd8ad5b"
+    "porcelain_sha256": "9f5de2fa13dff215b93a025b757264fdf6d61688b2d055880015d2bd9c2a5f25"
   },
   "script_sha256": "af8a03a801a81d1ab93359357d4227656f7d8f6d2bfb0c9729c70d17c3a5161c",
   "config": {
     "path": "experiments\\rhino_d2\\configs\\d2_v3_p0_vits16.yaml",
-    "sha256": "8263c80fbd437ea36beba7cfc16415f398dbefb8e2f2e87c53dedd7385786d6b",
+    "sha256": "a25c15ba58672a72a0ef5df6a9f75d15acd39884ca5afa86d18e31ae302816c4",
     "experiment_id": "d2_v3_p0_vits16_bf16_20260831",
     "output_file": "d2_v3_p0_vits16.json",
     "teacher_smoke_output_file": "d2_v3_teacher_vits16_bf16.json",

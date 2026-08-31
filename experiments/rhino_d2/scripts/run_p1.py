@@ -37,10 +37,33 @@ def git_state() -> dict:
     porcelain = subprocess.run(
         ["git", "status", "--porcelain"], cwd=REPO_ROOT, check=True, capture_output=True, text=True
     ).stdout
+    experiment_porcelain = subprocess.run(
+        [
+            "git",
+            "status",
+            "--porcelain",
+            "--",
+            "experiments/rhino_d2/configs",
+            "experiments/rhino_d2/experiment_matrix.csv",
+            "experiments/rhino_d2/scripts",
+            "experiments/rhino_d2/tests",
+            "ultralytics/nn/foundation",
+            "ultralytics/nn/foundation_distill_model.py",
+            "ultralytics/cfg/default.yaml",
+            "ultralytics/cfg/__init__.py",
+            "ultralytics/engine/trainer.py",
+        ],
+        cwd=REPO_ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout
     return {
         "commit": commit,
         "dirty": bool(porcelain.strip()),
         "porcelain_sha256": hashlib.sha256(porcelain.encode()).hexdigest(),
+        "experiment_inputs_dirty": bool(experiment_porcelain.strip()),
+        "experiment_inputs_porcelain_sha256": hashlib.sha256(experiment_porcelain.encode()).hexdigest(),
     }
 
 

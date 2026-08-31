@@ -178,6 +178,8 @@ def test_p1_runner_records_commit_and_dirty_state():
     assert len(state["commit"]) == 40
     assert isinstance(state["dirty"], bool)
     assert len(state["porcelain_sha256"]) == 64
+    assert isinstance(state["experiment_inputs_dirty"], bool)
+    assert len(state["experiment_inputs_porcelain_sha256"]) == 64
 
 
 def test_post_run_args_audits_pass_for_original_and_corrected_pairs():
