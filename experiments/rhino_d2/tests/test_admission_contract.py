@@ -182,6 +182,29 @@ def test_p1_runner_records_commit_and_dirty_state():
     assert len(state["experiment_inputs_porcelain_sha256"]) == 64
 
 
+def test_p1_runner_replaces_unrepresentable_console_characters():
+    """A narrow Windows console must not interrupt the complete UTF-8 log tee."""
+    runner = _load_script("run_p1.py")
+
+    class AsciiStream:
+        encoding = "ascii"
+
+        def __init__(self):
+            self.output = ""
+            self.flushed = False
+
+        def write(self, value):
+            self.output += value
+
+        def flush(self):
+            self.flushed = True
+
+    stream = AsciiStream()
+    runner.console_write("epoch 1 ╸\n", stream=stream)
+    assert stream.output == "epoch 1 ?\n"
+    assert stream.flushed is True
+
+
 def test_post_run_args_audits_pass_for_original_and_corrected_pairs():
     """Pre-run config equality must be followed by actual resolved-args equality."""
     for name in ("d2_p1_resolved_args_audit.json", "d2_p1_corrected_resolved_args_audit.json"):

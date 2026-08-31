@@ -99,6 +99,15 @@ def resolve_yolo() -> str:
     raise RuntimeError("yolo CLI not found; activate the yolo-master-d2 environment first")
 
 
+def console_write(line: str, stream=None) -> None:
+    """Write subprocess output without failing on a narrow Windows console encoding."""
+    stream = stream or sys.stdout
+    encoding = getattr(stream, "encoding", None) or "utf-8"
+    safe_line = line.encode(encoding, errors="replace").decode(encoding, errors="replace")
+    stream.write(safe_line)
+    stream.flush()
+
+
 def run_arm(arm: str, seed: int, project: Path, dry_run: bool) -> dict:
     """Run one arm, tee its complete console output, and write a local manifest."""
     yolo = resolve_yolo()
@@ -148,8 +157,8 @@ def run_arm(arm: str, seed: int, project: Path, dry_run: bool) -> dict:
         )
         assert process.stdout is not None
         for line in process.stdout:
-            print(line, end="")
             log.write(line)
+            console_write(line)
         returncode = process.wait()
     manifest.update(
         {
