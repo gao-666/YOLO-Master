@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "status": "failed",
+  "claim": "engineering_pipeline_sanity_gate_not_foundation_efficacy",
+  "pre_registered_gate": {
+    "late_window": 10,
+    "late_median_map50_95_threshold": 0.01,
+    "late_median_precision_must_be_nonzero": true,
+    "late_median_recall_must_be_nonzero": true,
+    "final_detection_loss_retention_max": 0.9,
+    "uses_best_epoch": false
+  },
+  "checks": {
+    "completed_50_epochs": true,
+    "late_median_map_at_least_0p01": false,
+    "late_median_precision_nonzero": true,
+    "late_median_recall_nonzero": true,
+    "final_detection_loss_down_at_least_10pct": false
+  },
+  "observations": {
+    "epochs": 50,
+    "late_median_map50_95": 0.0,
+    "late_median_precision": 0.00015999999999999999,
+    "late_median_recall": 0.002345,
+    "initial_detection_loss": 9.28819,
+    "final_detection_loss": 9.49694,
+    "loss_retention": 1.022474777109426,
+    "final_map50_95": 0.0
+  },
+  "artifacts": {
+    "results": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_sanity_s20260824.csv",
+      "sha256": "7cc450e249addcebd3f33ae79780555bd87374a019afc31ee9f687c36c245924"
+    },
+    "args": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_sanity_s20260824.args.yaml",
+      "sha256": "d55dd4c8b8b2f009a42c660ceb85f1c2b44ae84d5cd064ad0fc658864c29a5f7"
+    },
+    "complete_log": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_sanity_s20260824.log",
+      "sha256": "48a4264346aa0a3f77483ddd9b4ed2cdb200190448161cf1419d83c384bf5f32"
+    },
+    "runtime_manifest": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_sanity_s20260824.manifest.json",
+      "sha256": "211fecdc21623bc51296eb8432479ae67c606cd8d044e53f119dc5f2c86670cb"
+    }
+  },
+  "runtime": {
+    "source_commit": "1a6ea0075862f4e8e652726dd145d767f294b19a",
+    "experiment_inputs_dirty": false,
+    "returncode": 0,
+    "checkpoint_count": 53,
+    "config_sha256": "c8d70db84baf70da0b406aa0ee7823d71c06b93106e35e03df9d3a8b60c63c5b",
+    "runner_sha256": "8d27181458096521bb7d72ed6583d9598484d3446e2a7881eb846513f3506bd0"
+  },
+  "decision": {
+    "formal_p1_unlocked": false,
+    "next_action": "improve_baseline_task_learning_signal_as_one_controlled_protocol_change",
+    "prohibited_until_gate_passes": [
+      "formal_off_vs_dinov3_s_training",
+      "validation_ap_based_kd_weight_selection",
+      "dinov3_l_capacity_experiment",
+      "new_loss_or_multistage_expansion"
+    ]
+  }
+}

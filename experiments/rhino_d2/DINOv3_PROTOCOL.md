@@ -47,7 +47,9 @@
 - dtype gate：通过；S=`[2,384,14,14]`、L=`[2,1024,14,14]`，BF16 输出均全有限。
 - P0-S：通过；P4 对齐无需 resize，KD `0.09785→0.09156`。
 - P0-L：通过；P4 对齐无需 resize，KD `0.09852→0.09682`。
-- baseline sanity：尚未运行；P1 协议仍未冻结。
+- baseline sanity：**失败**。OFF-only 完成 50/50 epoch，但最后 10 epoch 的 mAP50-95 中位数为 `0.00000`，检测 loss 为 `9.28819→9.49694`（retention=`1.02247`），没有达到预注册工程门。
+- protocol freeze：未解锁；正式 P1 配置、KD weight 和 paired runs 均未创建或启动。
+- 当前结论：失败发生在无 Teacher 的检测 baseline，不能归因于 DINOv3，也不是 Foundation efficacy no-go。下一轮只允许单变量改善 baseline 任务学习信号，通过同一工程门后再冻结 P1。
 
 ## 判读规则
 

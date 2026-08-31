@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import shutil
 import statistics
 from pathlib import Path
 
@@ -44,6 +45,11 @@ def main() -> None:
         raise ValueError("run directory must stay inside the repository")
     results_path = run_dir / "results.csv"
     args_path = run_dir / "args.yaml"
+    runtime_manifest_path = REPO_ROOT / "runs/rhino_d2/manifests" / f"{run_dir.name}.json"
+    complete_log_path = REPO_ROOT / "runs/rhino_d2/logs" / f"{run_dir.name}.log"
+    for required in (results_path, args_path, runtime_manifest_path, complete_log_path):
+        if not required.is_file():
+            raise FileNotFoundError(f"required baseline artifact is missing: {required}")
     rows = read_rows(results_path)
     if len(rows) < args.late_window:
         raise ValueError(f"need at least {args.late_window} epochs, found {len(rows)}")
@@ -61,8 +67,21 @@ def main() -> None:
         "late_median_recall_nonzero": late_median_recall > 0,
         "final_detection_loss_down_at_least_10pct": final_loss / initial_loss <= args.loss_retention_max,
     }
+    artifact_prefix = f"d2_{run_dir.name.replace('-', '_')}"
+    archive_paths = {
+        "results": EXPERIMENT_ROOT / "results" / f"{artifact_prefix}.csv",
+        "args": EXPERIMENT_ROOT / "results" / f"{artifact_prefix}.args.yaml",
+        "complete_log": EXPERIMENT_ROOT / "results" / f"{artifact_prefix}.log",
+        "runtime_manifest": EXPERIMENT_ROOT / "results" / f"{artifact_prefix}.manifest.json",
+    }
+    (EXPERIMENT_ROOT / "results").mkdir(parents=True, exist_ok=True)
+    for source, destination in zip(
+        (results_path, args_path, complete_log_path, runtime_manifest_path), archive_paths.values(), strict=True
+    ):
+        shutil.copy2(source, destination)
+    runtime_manifest = json.loads(runtime_manifest_path.read_text(encoding="utf-8"))
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "status": "passed" if all(checks.values()) else "failed",
         "claim": "engineering_pipeline_sanity_gate_not_foundation_efficacy",
         "pre_registered_gate": {
@@ -85,8 +104,30 @@ def main() -> None:
             "final_map50_95": rows[-1]["metrics/mAP50-95(B)"],
         },
         "artifacts": {
-            "results": {"path": str(results_path.relative_to(REPO_ROOT)), "sha256": sha256(results_path)},
-            "args": {"path": str(args_path.relative_to(REPO_ROOT)), "sha256": sha256(args_path)},
+            name: {"path": path.relative_to(REPO_ROOT).as_posix(), "sha256": sha256(path)}
+            for name, path in archive_paths.items()
+        },
+        "runtime": {
+            "source_commit": runtime_manifest["source_state"]["commit"],
+            "experiment_inputs_dirty": runtime_manifest["source_state"]["experiment_inputs_dirty"],
+            "returncode": runtime_manifest["returncode"],
+            "checkpoint_count": len(runtime_manifest["checkpoints"]),
+            "config_sha256": runtime_manifest["config_sha256"],
+            "runner_sha256": runtime_manifest["runner_sha256"],
+        },
+        "decision": {
+            "formal_p1_unlocked": all(checks.values()),
+            "next_action": (
+                "freeze_formal_p1_protocol"
+                if all(checks.values())
+                else "improve_baseline_task_learning_signal_as_one_controlled_protocol_change"
+            ),
+            "prohibited_until_gate_passes": [
+                "formal_off_vs_dinov3_s_training",
+                "validation_ap_based_kd_weight_selection",
+                "dinov3_l_capacity_experiment",
+                "new_loss_or_multistage_expansion",
+            ],
         },
     }
     output = EXPERIMENT_ROOT / "results" / "d2_v3_baseline_sanity.json"

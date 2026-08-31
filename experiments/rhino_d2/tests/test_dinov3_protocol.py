@@ -92,3 +92,26 @@ def test_new_scripts_never_mask_nonfinite_teacher_features():
     for name in ("d2_v3_teacher_smoke.py", "d2_v3_p0_train_smoke.py"):
         source = (ROOT / "scripts" / name).read_text(encoding="utf-8")
         assert "nan_to_num" not in source
+
+
+def test_failed_v3_baseline_gate_blocks_formal_p1_and_archives_evidence():
+    """A weak OFF baseline must fail closed before any DINOv3 efficacy comparison."""
+    result = load_result("d2_v3_baseline_sanity.json")
+    assert result["status"] == "failed"
+    assert result["claim"] == "engineering_pipeline_sanity_gate_not_foundation_efficacy"
+    assert result["checks"]["completed_50_epochs"] is True
+    assert result["checks"]["late_median_map_at_least_0p01"] is False
+    assert result["checks"]["final_detection_loss_down_at_least_10pct"] is False
+    assert result["runtime"]["experiment_inputs_dirty"] is False
+    assert result["runtime"]["returncode"] == 0
+    assert result["decision"]["formal_p1_unlocked"] is False
+    for artifact in result["artifacts"].values():
+        path = REPO_ROOT / artifact["path"]
+        assert path.is_file()
+        assert sha256(path) == artifact["sha256"]
+
+
+def test_formal_v3_p1_configs_do_not_exist_before_baseline_gate_passes():
+    """The failed sanity gate must leave formal DINOv3 ON/OFF inputs uncreated."""
+    assert not (ROOT / "configs" / "d2_v3_off.yaml").exists()
+    assert not (ROOT / "configs" / "d2_v3_vits16_on.yaml").exists()
