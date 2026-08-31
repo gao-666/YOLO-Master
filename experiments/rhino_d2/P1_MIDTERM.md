@@ -8,8 +8,10 @@ COCO128 三 seed 同预算闭环已完成。三个 paired ΔmAP50-95 为 `+0.000
 
 ## 已完成范围
 
-- 8.25–8.31：COCO128、10 epoch、seeds 20260824/25/26 的 off/on 最小闭环；每个 epoch 都保存可恢复 checkpoint，共 60 个 paired epoch checkpoint。
-- 9.1–9.7：完成去除 relational 项的 cosine-only 关键消融，再保存 10 个 epoch checkpoint；生成配对统计、曲线、CSV、checkpoint 哈希、完整日志运行器、回归测试和 PR 草稿。
+截至 2026-08-31 已完成：
+
+- 原计划 8.25–8.31：COCO128、10 epoch、seeds 20260824/25/26 的 off/on 最小闭环；每个 epoch 都保存可恢复 checkpoint，共 60 个 paired epoch checkpoint。
+- 提前完成原计划 9.1–9.7 的部分工作：去除 relational 项的 cosine-only 关键消融、权重校准、resolved-args 审计、PR 草稿与补充回归测试；另生成配对统计、曲线、CSV、checkpoint 和日志哈希。
 - 训练链修复：正式训练首次保存健康 checkpoint 时，Polars 在本机因 `sse3` CPU 特性检测崩溃。引擎现在会在 Polars 不可用/运行失败时退回标准 CSV 读取；未改变训练、损失或指标逻辑。
 
 ## 严格同预算设置
@@ -75,6 +77,7 @@ COCO128 三 seed 同预算闭环已完成。三个 paired ΔmAP50-95 为 `+0.000
 
 ## no-go 后的建议顺序
 
-1. 不修改判读线，不把 seed 20260824 的正值单独挑出来报告。
-2. 优先做 H4（KD weight 0.05→0.01）或 H3（align_dim 64→128）的单变量诊断；二选一，不同时改。
-3. 若 absolute mAP 仍接近 0，优先扩训练预算或数据验证 H6，再讨论学生容量和多 stage，避免在欠拟合协议上堆机制。
+1. 首先处理 H6：提升 baseline 的任务学习信号。增加训练预算或使用许可明确的 Student 预训练初始化，不改变判读线。
+2. baseline mAP 脱离近零区间后，再重新做 paired ON/OFF。
+3. 若仍 no-go，再单变量测试 H3：`align_dim 64→128`。
+4. 暂不扩 multi-stage，不继续堆新 loss。
