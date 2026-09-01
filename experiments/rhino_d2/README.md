@@ -6,7 +6,7 @@
 
 8.25–9.7 的首轮同预算数字、关键消融、竞争性解释和中期讲稿见 [`P1_MIDTERM.md`](P1_MIDTERM.md)；权重标定、事后真实参数审计和修正实验见 [`EXPERIMENT_CORRECTION.md`](EXPERIMENT_CORRECTION.md)；正式判读见 [`GO_NO_GO.md`](GO_NO_GO.md)；评审四节结构见 [`PR_DRAFT.md`](PR_DRAFT.md)。
 
-2026-08-31 起的 DINOv3 复验是独立 protocol，不覆盖上述 DINOv2 历史证据。研究红线和 gate 顺序见 [`DINOv3_PROTOCOL.md`](DINOv3_PROTOCOL.md)，S/L BF16 与 P0 证据见 [`DINOv3_P0_EVIDENCE.md`](DINOv3_P0_EVIDENCE.md)。OFF-only 50 epoch baseline sanity 的失败结果与停止决定见 [`DINOv3_BASELINE_SANITY.md`](DINOv3_BASELINE_SANITY.md)。9 月 1 日的数据规模单变量诊断与两步停止规则见 [`BASELINE_RECOVERY_PROTOCOL.md`](BASELINE_RECOVERY_PROTOCOL.md)；Candidate A 的完整负结果见 [`BASELINE_RECOVERY_A.md`](BASELINE_RECOVERY_A.md)。当前正式 P1 仍锁定，下一步仅允许 Candidate B 初始化单变量。
+2026-08-31 起的 DINOv3 复验是独立 protocol，不覆盖上述 DINOv2 历史证据。研究红线和 gate 顺序见 [`DINOv3_PROTOCOL.md`](DINOv3_PROTOCOL.md)，S/L BF16 与 P0 证据见 [`DINOv3_P0_EVIDENCE.md`](DINOv3_P0_EVIDENCE.md)。OFF-only 50 epoch baseline sanity 的失败结果与停止决定见 [`DINOv3_BASELINE_SANITY.md`](DINOv3_BASELINE_SANITY.md)。9 月 1 日的数据规模单变量诊断与两步停止规则见 [`BASELINE_RECOVERY_PROTOCOL.md`](BASELINE_RECOVERY_PROTOCOL.md)；Candidate A 的负结果见 [`BASELINE_RECOVERY_A.md`](BASELINE_RECOVERY_A.md)，Candidate B 的通过结果见 [`BASELINE_RECOVERY_B.md`](BASELINE_RECOVERY_B.md)。baseline admission 已通过，下一步冻结正式 DINOv3-S P1 protocol 与 train-only KD weight。
 
 ## 准入状态
 

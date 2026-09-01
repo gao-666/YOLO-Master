@@ -59,6 +59,10 @@ Candidate B 不替换 Student 架构。`model` 仍为 `yolo26-master-n.yaml`，�
 
 资格门只回答初始化是否足够兼容，不回答检测或 KD 是否有效。Candidate B 与 A 仅允许 `pretrained/name/project` 不同；其中唯一研究变量是 `pretrained`，其余两项只隔离输出。
 
+## Candidate B 结果（2026-09-01）
+
+Candidate B 完成 50/50 epoch，并通过全部工程门：后 10 epoch mAP50-95 中位数 `0.048125`，Precision `0.26385`，Recall `0.10655`，检测 loss retention `0.45103`。正式 P1 protocol 可以开始冻结，但该结果仍不产生 KD 结论。完整证据见 [`BASELINE_RECOVERY_B.md`](BASELINE_RECOVERY_B.md)。
+
 ## 许可边界
 
 COCO 图像保留各自 Flickr 许可，使用者需遵守 COCO 官方 Terms of Use；COCO annotations 与 Ultralytics 转换标签资产有各自条款。本仓库不提交图像或标签 payload，只提交可复现选择与完整性哈希。该记录不是法律意见。

@@ -200,3 +200,21 @@ def test_candidate_b_initialization_audit_passes_without_replacing_student():
     assert all(result["checks"].values())
     assert result["decision"]["candidate_b_training_allowed"] is True
     assert result["decision"]["formal_p1_unlocked"] is False
+
+
+def test_recovery_b_passes_the_frozen_gate_and_archives_complete_evidence():
+    """A qualified pretrained baseline may unlock protocol freeze, not claim KD efficacy."""
+    result = load_result("d2_v3_baseline_recovery_b.json")
+    assert result["status"] == "passed"
+    assert result["claim"] == "engineering_pipeline_sanity_gate_not_foundation_efficacy"
+    assert all(result["checks"].values())
+    assert result["observations"]["late_median_map50_95"] == 0.048125
+    assert result["runtime"]["source_commit"] == "a967a830330169fbe63ec868527e31fe9888b2e6"
+    assert result["runtime"]["experiment_inputs_dirty"] is False
+    assert result["runtime"]["returncode"] == 0
+    assert result["decision"]["formal_p1_unlocked"] is True
+    assert result["decision"]["next_action"] == "freeze_formal_p1_protocol"
+    for artifact in result["artifacts"].values():
+        path = REPO_ROOT / artifact["path"]
+        assert path.is_file()
+        assert sha256(path) == artifact["sha256"]

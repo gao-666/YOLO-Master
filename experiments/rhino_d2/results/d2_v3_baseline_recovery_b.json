@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "status": "passed",
+  "claim": "engineering_pipeline_sanity_gate_not_foundation_efficacy",
+  "pre_registered_gate": {
+    "late_window": 10,
+    "late_median_map50_95_threshold": 0.01,
+    "late_median_precision_must_be_nonzero": true,
+    "late_median_recall_must_be_nonzero": true,
+    "final_detection_loss_retention_max": 0.9,
+    "uses_best_epoch": false
+  },
+  "checks": {
+    "completed_50_epochs": true,
+    "late_median_map_at_least_0p01": true,
+    "late_median_precision_nonzero": true,
+    "late_median_recall_nonzero": true,
+    "final_detection_loss_down_at_least_10pct": true
+  },
+  "observations": {
+    "epochs": 50,
+    "late_median_map50_95": 0.048125,
+    "late_median_precision": 0.26385000000000003,
+    "late_median_recall": 0.10655,
+    "initial_detection_loss": 11.05673,
+    "final_detection_loss": 4.98691,
+    "loss_retention": 0.45102937306057034,
+    "final_map50_95": 0.0496
+  },
+  "artifacts": {
+    "results": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_recovery_b_s20260824.csv",
+      "sha256": "790f86252950778ac989dec3cce64731194d20d1fcf7397b2cb2c3ecf8e8e7ac"
+    },
+    "args": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_recovery_b_s20260824.args.yaml",
+      "sha256": "4f0c1d11446c2a1eb99a75136ca88de10668ca2ae80eb8f1405b63b9dd02e95c"
+    },
+    "complete_log": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_recovery_b_s20260824.log",
+      "sha256": "aa22e51c4917763b614f4ce225c2d77b6cc4f59746af4b2e9188c7906c68bf06"
+    },
+    "runtime_manifest": {
+      "path": "experiments/rhino_d2/results/d2_v3_baseline_recovery_b_s20260824.manifest.json",
+      "sha256": "53f3755d523212b78dcb7d47919d5195acb698870b6dbfd65a6ab9bd090d2548"
+    }
+  },
+  "runtime": {
+    "source_commit": "a967a830330169fbe63ec868527e31fe9888b2e6",
+    "experiment_inputs_dirty": false,
+    "returncode": 0,
+    "checkpoint_count": 53,
+    "config_sha256": "55e77e6ed27ea46c4491e9dd627b8edab686d6a943cad937afb3b806ded7dff8",
+    "runner_sha256": "3a21bdfab4a15af19434e31f8f0b1d37b50f47f5139355204035ef9a93496326"
+  },
+  "decision": {
+    "formal_p1_unlocked": true,
+    "next_action": "freeze_formal_p1_protocol",
+    "prohibited_until_gate_passes": [
+      "formal_off_vs_dinov3_s_training",
+      "validation_ap_based_kd_weight_selection",
+      "dinov3_l_capacity_experiment",
+      "new_loss_or_multistage_expansion"
+    ]
+  }
+}
