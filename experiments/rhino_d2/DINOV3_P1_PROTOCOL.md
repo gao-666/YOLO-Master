@@ -48,6 +48,8 @@ OFF 与 ON 从同一权重资产、同一模型构造和同一 seed 开始。正
 
 四个候选 ratio 分别为 `0.002623 / 0.006606 / 0.013207 / 0.026325`，均未进入 `[0.03,0.06]`，因此正式 P1 继续停止。完整证据与可能的 protocol correction 边界见 [`DINOV3_P1_CALIBRATION.md`](DINOV3_P1_CALIBRATION.md)。
 
+首轮结果固化后，单候选 0.15 的扩展规则另行版本化在 [`DINOV3_P1_CALIBRATION_EXTENSION_PROTOCOL.md`](DINOV3_P1_CALIBRATION_EXTENSION_PROTOCOL.md)。它保持同一 ratio 区间且仍不读取 validation AP；若该候选失败，不再扩展搜索。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

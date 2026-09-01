@@ -262,3 +262,13 @@ def test_v3_p1_calibration_fails_closed_without_consulting_validation_ap():
             path = ROOT / "results" / f"d2_v3_calibration_w{label}_s20260824.{suffix}"
             assert path.is_file()
             assert sha256(path) == record[digest_key]
+
+
+def test_v3_calibration_extension_is_one_candidate_and_keeps_the_band():
+    """The correction may test only the train-signal-derived 0.15 candidate."""
+    source = (ROOT / "scripts/calibrate_v3_p1_weight_extension.py").read_text(encoding="utf-8")
+    assert "WEIGHT = 0.15" in source
+    assert "TARGET_LOW = 0.03" in source
+    assert "TARGET_HIGH = 0.06" in source
+    assert '"uses_validation_metric": False' in source
+    assert '"no_further_candidates_if_failed": True' in source
