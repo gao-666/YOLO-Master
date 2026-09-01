@@ -25,6 +25,8 @@
 
 若要继续，必须先把“扩展标定候选”作为新的、显式版本化 protocol correction。根据近似线性 ratio，0.15 预计约为 3.95%，但这只是由训练信号外推的候选设计，不是已完成结果；新 protocol 必须先 commit，再运行，且仍禁止 validation AP。
 
+该 correction 后续已独立预注册并运行：0.15 的 ratio 为 `0.0392177`，通过 unchanged band 与机制恒等式。详见 [`DINOV3_P1_CALIBRATION_EXTENSION_PROTOCOL.md`](DINOV3_P1_CALIBRATION_EXTENSION_PROTOCOL.md) 与 [`results/d2_v3_p1_weight_calibration_extension.json`](results/d2_v3_p1_weight_calibration_extension.json)。
+
 ## 证据
 
 - 汇总与选择状态：[`results/d2_v3_p1_weight_calibration.json`](results/d2_v3_p1_weight_calibration.json)
@@ -32,3 +34,4 @@
 - weight 0.025：[`CSV`](results/d2_v3_calibration_w0p025_s20260824.csv) · [`args`](results/d2_v3_calibration_w0p025_s20260824.args.yaml) · [`完整日志`](results/d2_v3_calibration_w0p025_s20260824.log)
 - weight 0.05：[`CSV`](results/d2_v3_calibration_w0p05_s20260824.csv) · [`args`](results/d2_v3_calibration_w0p05_s20260824.args.yaml) · [`完整日志`](results/d2_v3_calibration_w0p05_s20260824.log)
 - weight 0.10：[`CSV`](results/d2_v3_calibration_w0p1_s20260824.csv) · [`args`](results/d2_v3_calibration_w0p1_s20260824.args.yaml) · [`完整日志`](results/d2_v3_calibration_w0p1_s20260824.log)
+- extension weight 0.15：[`CSV`](results/d2_v3_calibration_w0p15_s20260824.csv) · [`args`](results/d2_v3_calibration_w0p15_s20260824.args.yaml) · [`完整日志`](results/d2_v3_calibration_w0p15_s20260824.log)

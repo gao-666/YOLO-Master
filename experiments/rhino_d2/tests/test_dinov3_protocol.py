@@ -272,3 +272,29 @@ def test_v3_calibration_extension_is_one_candidate_and_keeps_the_band():
     assert "TARGET_HIGH = 0.06" in source
     assert '"uses_validation_metric": False' in source
     assert '"no_further_candidates_if_failed": True' in source
+
+
+def test_v3_calibration_extension_selects_0p15_from_training_signal_only():
+    """The single extension must enter the unchanged band and bind complete artifacts."""
+    result = load_result("d2_v3_p1_weight_calibration_extension.json")
+    assert result["status"] == "selected"
+    assert result["correction_contract"]["uses_validation_metric"] is False
+    assert result["selected_weight"] == 0.15
+    assert result["formal_p1_training_allowed"] is True
+    assert 0.03 <= result["record"]["foundation_task_ratio"] <= 0.06
+    assert result["record"]["mechanism_identity"]["passed"] is True
+    for suffix, digest_key in (("csv", "results_sha256"), ("args.yaml", "args_sha256"), ("log", "log_sha256")):
+        path = ROOT / "results" / f"d2_v3_calibration_w0p15_s20260824.{suffix}"
+        assert path.is_file()
+        assert sha256(path) == result["record"][digest_key]
+
+
+def test_formal_v3_p1_pair_differs_only_by_treatment_and_output_name():
+    """Formal OFF/ON must share every budget, asset, and teacher contract field."""
+    off = load_yaml("d2_v3_p1_off.yaml")
+    on = load_yaml("d2_v3_p1_on.yaml")
+    differences = {key for key in set(off) | set(on) if off.get(key) != on.get(key)}
+    assert differences == {"foundation_enabled", "foundation_loss_weight", "name"}
+    assert on["foundation_loss_weight"] == 0.15
+    assert off["pretrained"] == on["pretrained"]
+    assert off["data"] == on["data"]

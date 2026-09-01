@@ -11,3 +11,7 @@
 - 若 0.15 ratio 在 `[0.03,0.06]` 且机制恒等式通过：冻结 `foundation_loss_weight=0.15`，生成正式 ON 配置并做 pair audit。
 - 若失败：停止正式 P1，不能继续增加候选，需导师决定是否修改 training-signal 目标或 loss 设计。
 - 本扩展不产生检测或 KD efficacy 结论，不运行 validation。
+
+## 结果（2026-09-01）
+
+0.15 得到 Foundation/task ratio `0.0392177`，机制恒等式误差为 0，满足冻结规则。正式 P1 weight 因此锁定为 `0.15`；这仍不是检测或 KD efficacy 结论。

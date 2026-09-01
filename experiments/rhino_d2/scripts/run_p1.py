@@ -23,6 +23,8 @@ ARM_CONFIGS = {
     "v3-baseline-sanity": EXPERIMENT_ROOT / "configs" / "d2_v3_off_sanity.yaml",
     "v3-baseline-recovery-a": EXPERIMENT_ROOT / "configs" / "d2_v3_baseline_recovery_a.yaml",
     "v3-baseline-recovery-b": EXPERIMENT_ROOT / "configs" / "d2_v3_baseline_recovery_b.yaml",
+    "v3-p1-off": EXPERIMENT_ROOT / "configs" / "d2_v3_p1_off.yaml",
+    "v3-p1-on": EXPERIMENT_ROOT / "configs" / "d2_v3_p1_on.yaml",
 }
 
 

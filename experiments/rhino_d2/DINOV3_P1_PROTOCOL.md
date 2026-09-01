@@ -50,6 +50,8 @@ OFF 与 ON 从同一权重资产、同一模型构造和同一 seed 开始。正
 
 首轮结果固化后，单候选 0.15 的扩展规则另行版本化在 [`DINOV3_P1_CALIBRATION_EXTENSION_PROTOCOL.md`](DINOV3_P1_CALIBRATION_EXTENSION_PROTOCOL.md)。它保持同一 ratio 区间且仍不读取 validation AP；若该候选失败，不再扩展搜索。
 
+扩展候选得到 ratio `0.0392177` 且机制恒等式通过，因此正式 `foundation_loss_weight=0.15`。正式 OFF/ON 配置为 [`configs/d2_v3_p1_off.yaml`](configs/d2_v3_p1_off.yaml) 与 [`configs/d2_v3_p1_on.yaml`](configs/d2_v3_p1_on.yaml)，训练前必须通过独立 pair validator。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

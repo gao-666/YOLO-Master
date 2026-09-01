@@ -1,0 +1,568 @@
+Overriding E:\2026YOLO\YOLO-Master\ultralytics\cfg\default.yaml with experiments\rhino_d2\configs\d2_v3_p1_calibration.yaml
+WARNING no model scale passed. Assuming scale='n'.
+Ultralytics 8.4.101  Python-3.11.15 torch-2.11.0+cu128 CUDA:0 (NVIDIA GeForce RTX 5070 Ti, 16303MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=False, angle=1.0, augment=False, auto_augment=randaugment, batch=4, bgr=0.0, box=7.5, cache=False, cfg=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, cluster=False, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dis=6.0, distill_model=None, dnn=False, dropout=0.0, dynamic=False, embed=None, end2end=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, foundation_align_dim=64, foundation_backend=transformers, foundation_background_weight=0.25, foundation_boundary_weight=1.0, foundation_cache_teacher_features=False, foundation_cosine_weight=1.0, foundation_decay_start=0.7, foundation_dinov3_model=None, foundation_dinov3_weights=None, foundation_enabled=True, foundation_foreground_weight=1.5, foundation_foreground_weighting=False, foundation_gate_cosine=1.0, foundation_gate_cosine_low=0.9, foundation_gate_ema=0.9, foundation_gate_width=0.05, foundation_loss=cosine, foundation_loss_weight=0.15, foundation_model=facebook/dinov3-vits16-pretrain-lvd1689m, foundation_multiscale=False, foundation_multitask=False, foundation_multitask_enabled=False, foundation_multitask_negative_transfer_threshold=4.0, foundation_multitask_tasks=None, foundation_relation_mode=sampled, foundation_relation_samples=64, foundation_relation_weight=0.0, foundation_revision=None, foundation_router_distill=False, foundation_router_loss_weight=0.0, foundation_router_native_state=True, foundation_router_teachers=['dinov3', 'siglip2'], foundation_router_temperature=1.0, foundation_semantic_distill=False, foundation_semantic_image_weight=1.0, foundation_semantic_loss_weight=0.0, foundation_semantic_prompt_template=a photo of a {class_name}, foundation_semantic_prompts=None, foundation_semantic_temperature=0.07, foundation_semantic_text_weight=1.0, foundation_siglip2_model=google/siglip2-base-patch16-512, foundation_siglip2_weights=None, foundation_target_levels=['p4'], foundation_teacher=dinov3, foundation_teacher_device=0, foundation_teacher_dtype=bf16, foundation_warmup_floor=0.2, foundation_weight_schedule=constant, foundation_weights=E:/2026YOLO/model_cache/dinov3-vits16-pretrain-lvd1689m, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=256, iou=0.7, iou_type=iou, keras=False, kobj=1.0, latent_aux_gain=0.1, latent_inference_top_k=None, line_width=None, lora_adapter_budget=None, lora_adapter_dir=lora_adapter, lora_allow_depthwise=False, lora_allow_rtdetr_dora=False, lora_alpha=32, lora_alpha_warmup=3, lora_auto_r_ratio=0.0, lora_backend=auto, lora_beta1=0.85, lora_beta2=0.85, lora_bias=none, lora_boft_block_num=0, lora_boft_block_size=2, lora_boft_n_butterfly_factor=2, lora_delta_t=1, lora_dropout=0.05, lora_dropout_end=0.15, lora_dropout_start_ratio=0.3, lora_exclude_modules=None, lora_few_shot_adaptive_rank=True, lora_few_shot_adaptive_temperature=False, lora_few_shot_curriculum_sampling=False, lora_few_shot_distill_layers=None, lora_few_shot_distill_schedule=cosine, lora_few_shot_distill_weight=0.5, lora_few_shot_distill_weight_max=1.0, lora_few_shot_distill_weight_min=0.1, lora_few_shot_dropconnect=0.1, lora_few_shot_dropconnect_max=0.3, lora_few_shot_dropconnect_min=0.0, lora_few_shot_dropconnect_schedule=cosine, lora_few_shot_ema_decay=0.999, lora_few_shot_gradient_importance_weighted=False, lora_few_shot_hierarchical_distill=False, lora_few_shot_hook_cache=True, lora_few_shot_layerwise_rank=False, lora_few_shot_mode=False, lora_few_shot_rank_budget=0.5, lora_few_shot_response_distill=False, lora_few_shot_response_distill_weight=0.3, lora_few_shot_teacher=None, lora_few_shot_use_ema_teacher=False, lora_few_shot_variational_rank=False, lora_freeze_bn=False, lora_from_layer=None, lora_gradient_checkpointing=True, lora_hra_apply_gs=False, lora_include_attention=False, lora_include_head=False, lora_include_moe=False, lora_init_lora_weights=True, lora_init_r=12, lora_kernels=None, lora_last_n=None, lora_layer_decay=0.85, lora_lr_mult=2.0, lora_min_channels=0, lora_oft_block_share=False, lora_oft_block_size=0, lora_oft_coft=False, lora_oft_eps=6e-05, lora_only_3x3=False, lora_only_backbone=False, lora_orth_reg_weight=0.5, lora_ortho_frequency=10, lora_ortho_weight=0.0, lora_planner_backend=legacy, lora_planner_enabled=False, lora_planner_solver=ao, lora_quantization=none, lora_r=0, lora_rank_pattern=None, lora_save_adapters=True, lora_sensitivity_beta=1.0, lora_sensitivity_keep_risky=False, lora_sensitivity_max_layers=None, lora_sensitivity_num_batches=4, lora_sensitivity_select=False, lora_sensitivity_top_ratio=0.5, lora_skip_stem=True, lora_target_modules=None, lora_target_r=8, lora_tfinal=0, lora_tinit=0, lora_to_layer=None, lora_total_step=0, lora_type=lora, lora_use_dora=False, lora_use_rslora=True, lora_variant=lora, lora_vpeft_strict=False, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixture_aux_budget=3.0, mixup=0.0, moa_aux_gain=1.0, moa_aux_loss_coeff=0.01, moa_local_window_size=7, moa_mot_min_temperature=0.3, moa_mot_temperature_factor=0.97, moa_regional_max_kv_tokens=4096, moa_sparse_inference=False, moa_sparse_inference_threshold=0.02, moa_temperature=1.0, mode=train, model=ultralytics/cfg/models/26/yolo26-master-n.yaml, moe=0.3, moe_aux_gain=1.0, moe_balance_loss=1.0, moe_collapse_threshold=0.8, moe_dynamic_balance_max=2.0, moe_dynamic_balance_min=0.5, moe_dynamic_gini_alpha=1.0, moe_dynamic_gini_beta=0.8, moe_dynamic_gini_target=0.25, moe_dynamic_schedule=none, moe_expert_warmup_epochs=3, moe_map_saturation_decay_factor=0.8, moe_map_saturation_enabled=False, moe_map_saturation_min_scale=0.1, moe_map_saturation_threshold=0.001, moe_map_saturation_window_size=5, moe_noise_std=0.5, moe_num_experts=4, moe_prune_calibration_steps=8, moe_prune_keep_top_m=None, moe_prune_threshold=0.15, moe_router_lr_scale=0.5, moe_router_z_loss=0.1, moe_temperature=1.0, moe_top_k=2, moe_weight_threshold=0.01, molora_alpha=16, molora_balance_loss=0.01, molora_capacity_factor=0.0, molora_diversity_loss=0.0, molora_domain_experts=None, molora_expert_dropout=0.0, molora_expert_init=default, molora_export_mode=dynamic, molora_freeze_experts=None, molora_num_experts=0, molora_r=8, molora_router_hidden_dim=None, molora_router_type=linear, molora_router_z_loss=0.001, molora_share_moe_registry=True, molora_top_k=2, molora_top_k_warmup=None, molora_use_rslora=True, molora_warmup_steps=0, momentum=0.937, mosaic=1.0, mot_aux_gain=1.0, mot_balance_loss=0.01, mot_local_attn_window=0, mot_router_z_loss=0.01, mot_scene_aware_router=False, mot_scene_consistency=0.0, mot_scene_hidden_dim=None, mot_scene_inference_mode=dynamic, mot_sparse_train=False, mot_sparse_train_warmup_steps=0, mot_temperature=1.0, multi_scale=0.0, name=v3-calibration-w0p15-s20260824, nbs=64, nms=False, objectness_threshold=0.15, opset=None, optimize=False, optimizer=SGD, overlap_mask=True, overlap_ratio=0.2, patience=100, perspective=0.0, plots=False, pose=12.0, pre_export_prune=False, pretrained=experiments/rhino_d2/cache/yolo26n.pt, profile=False, project=E:\2026YOLO\YOLO-Master\runs\rhino_d2\v3_p1_weight_calibration_extension, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=False, save_conf=False, save_crop=False, save_dir=E:\2026YOLO\YOLO-Master\runs\rhino_d2\v3_p1_weight_calibration_extension\v3-calibration-w0p15-s20260824, save_frames=False, save_json=False, save_period=1, save_txt=False, scale=0.5, seed=20260824, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, sigma=0.1, simplify=True, single_cls=False, slice_size=640, source=None, sparse_sahi=False, sparse_sahi_fallback=True, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=False, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, weighted=False, workers=0, workspace=None
+Could not save font_manager cache [Errno 13] Permission denied: 'C:\\Users\\Administrator\\.matplotlib\\fontlist-v3.11.0.json.matplotlib-lock'
+WARNING no model scale passed. Assuming scale='n'.
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1    213104  ultralytics.nn.modules.moe.modules.A2C2fMoE  [64, 128, 1, True, 1, False, 2.0, 0.5, 1, True, 4, 2]
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1    351424  ultralytics.nn.modules.moe.modules.A2C2fMoE  [128, 128, 1, True, 1, False, 2.0, 0.5, 1, True, 8, 2]
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1   2437760  ultralytics.nn.modules.moe.modules.A2C2fMoE  [256, 256, 1, True, 1, False, 2.0, 0.5, 1, True, 16, 2]
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26-master-n summary: 622 layers, 5,115,336 parameters, 5,115,336 gradients
+
+Transferred 599/1164 items from pretrained weights
+
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 13186.29it/s]
+[34m[1mtrain: [0mFast image access  (ping: 0.00.0 ms, read: 2230.01140.2 MB/s, size: 185.6 KB)
+
+[K[34m[1mtrain: [0mScanning E:\2026YOLO\datasets\coco_d2_mini_2048_seed20260901\labels\train2017.cache... 2034 images, 14 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 2048/2048  0.0s
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 2653.1650.6 MB/s, size: 183.7 KB)
+
+[K[34m[1mval: [0mScanning E:\2026YOLO\datasets\coco_d2_mini_2048_seed20260901\labels\val2017.cache... 505 images, 7 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 512/512  0.0s
+[34m[1moptimizer:[0m SGD(lr=0.01, momentum=0.937) with parameter groups 235 weight(decay=0.0), 248 weight(decay=0.0005), 247 bias(decay=0.0), 36 router(lr=0.5x), 0 adapter(lr=2x)
+Image sizes 256 train, 256 val
+Using 0 dataloader workers
+Logging results to [1mE:\2026YOLO\YOLO-Master\runs\rhino_d2\v3_p1_weight_calibration_extension\v3-calibration-w0p15-s20260824[0m
+Starting training for 1 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_lossmixture_aux_loss foundation  Instances       Size
+
+[K        1/1     0.734G      4.139      8.071    0.06195          3     0.5926         83        256: 0% ──────────── 0/512  0.5s
+[K        1/1     0.734G      3.694      7.989    0.05138          3     0.6005         92        256: 0% ──────────── 1/512 1.1it/s 0.8s<8:04
+[K        1/1     0.734G      3.596      7.955    0.05136          3      0.599         54        256: 0% ──────────── 2/512 1.9it/s 1.1s<4:26
+[K        1/1     0.734G      3.602      7.928     0.0529          3     0.5996         49        256: 0% ──────────── 3/512 2.6it/s 1.3s<3:15
+[K        1/1     0.734G      3.534      8.058    0.05179          3     0.6004         36        256: 0% ──────────── 4/512 3.0it/s 1.5s<2:48
+[K        1/1     0.734G      3.576      8.055    0.04968          3     0.5995        151        256: 0% ──────────── 5/512 3.3it/s 1.8s<2:34
+[K        1/1     0.734G       3.52       8.06    0.04926          3     0.5995         50        256: 1% ──────────── 6/512 3.5it/s 2.1s<2:24
+[K        1/1     0.734G      3.529      8.055    0.04967          3     0.5992         72        256: 1% ──────────── 7/512 3.8it/s 2.3s<2:14
+[K        1/1     0.736G      3.527      8.084    0.04809          3     0.6003         49        256: 1% ──────────── 8/512 4.0it/s 2.5s<2:05
+[K        1/1     0.736G      3.494      8.053    0.04806          3     0.6011         40        256: 1% ──────────── 9/512 4.2it/s 2.7s<1:59
+[K        1/1     0.736G      3.514      8.017    0.04783          3      0.601         72        256: 1% ──────────── 10/512 4.3it/s 2.9s<1:56
+[K        1/1     0.736G      3.503      8.028    0.04746          3     0.6005         56        256: 2% ──────────── 11/512 4.6it/s 3.1s<1:49
+[K        1/1     0.736G      3.508      8.025    0.04954          3     0.6007         31        256: 2% ──────────── 12/512 4.7it/s 3.3s<1:47
+[K        1/1     0.736G        3.5      8.034     0.0491          3     0.6003         53        256: 2% ──────────── 13/512 4.9it/s 3.5s<1:42
+[K        1/1     0.736G      3.496       8.03    0.04895          3     0.6002         31        256: 2% ──────────── 14/512 4.9it/s 3.7s<1:42
+[K        1/1     0.736G      3.505      8.068    0.04904          3     0.5998         43        256: 2% ──────────── 15/512 4.9it/s 3.9s<1:42
+[K        1/1     0.736G      3.489      8.091    0.04876          3     0.5998         41        256: 3% ──────────── 16/512 4.8it/s 4.1s<1:43
+[K        1/1     0.736G      3.475      8.096    0.04872          3     0.5998         29        256: 3% ──────────── 17/512 4.8it/s 4.3s<1:43
+[K        1/1     0.736G      3.441       8.02    0.05014          3     0.5994         19        256: 3% ──────────── 18/512 4.9it/s 4.5s<1:42
+[K        1/1     0.738G      3.429      7.995    0.04973          3     0.5998         58        256: 3% ──────────── 19/512 4.8it/s 4.8s<1:44
+[K        1/1     0.738G      3.439      8.014    0.04977          3     0.5998         56        256: 3% ──────────── 20/512 4.7it/s 5.0s<1:44
+[K        1/1     0.738G      3.454      8.006    0.04966          3     0.5998         82        256: 4% ──────────── 21/512 4.7it/s 5.2s<1:44
+[K        1/1     0.738G       3.45      8.006    0.04992          3     0.6001         26        256: 4% ╸─────────── 22/512 4.8it/s 5.4s<1:43
+[K        1/1     0.738G      3.433      8.025    0.04981          3     0.6001         23        256: 4% ╸─────────── 23/512 4.8it/s 5.6s<1:42
+[K        1/1     0.738G      3.446      8.043    0.04963          3     0.5999        111        256: 4% ╸─────────── 24/512 4.7it/s 5.8s<1:44
+[K        1/1     0.738G      3.441      8.033     0.0493          3     0.5998         83        256: 4% ╸─────────── 25/512 4.7it/s 6.0s<1:43
+[K        1/1     0.738G      3.452       8.05    0.04932          3     0.5994         79        256: 5% ╸─────────── 26/512 4.8it/s 6.2s<1:42
+[K        1/1     0.738G      3.454      8.038     0.0496          3      0.599         40        256: 5% ╸─────────── 27/512 4.7it/s 6.5s<1:42
+[K        1/1     0.738G      3.467       8.02    0.04969          3     0.5992         98        256: 5% ╸─────────── 28/512 4.8it/s 6.7s<1:41
+[K        1/1     0.738G      3.472          8    0.04998      2.997     0.5993         29        256: 5% ╸─────────── 29/512 4.7it/s 6.9s<1:42
+[K        1/1     0.738G      3.464      7.998    0.04988      2.991      0.599         61        256: 5% ╸─────────── 30/512 4.7it/s 7.1s<1:42
+[K        1/1     0.738G      3.453      8.006    0.04983      2.986     0.5992         31        256: 6% ╸─────────── 31/512 4.7it/s 7.3s<1:42
+[K        1/1     0.738G      3.455      7.999    0.04989       2.98     0.5994         41        256: 6% ╸─────────── 32/512 4.7it/s 7.5s<1:42
+[K        1/1     0.738G      3.447      8.004    0.05036      2.972     0.5992         25        256: 6% ╸─────────── 33/512 4.6it/s 7.7s<1:44
+[K        1/1     0.738G      3.449      8.001    0.05009      2.965     0.5995         60        256: 6% ╸─────────── 34/512 4.6it/s 8.0s<1:44
+[K        1/1     0.738G      3.452      8.018    0.05008      2.957     0.5992         61        256: 6% ╸─────────── 35/512 4.5it/s 8.2s<1:46
+[K        1/1     0.738G      3.453      8.002    0.05055      2.948     0.5991         32        256: 7% ╸─────────── 36/512 4.4it/s 8.4s<1:49
+[K        1/1     0.738G      3.445          8    0.05109      2.938      0.599         12        256: 7% ╸─────────── 37/512 4.6it/s 8.6s<1:43
+[K        1/1     0.738G      3.446      8.009    0.05116      2.926      0.599         47        256: 7% ╸─────────── 38/512 4.8it/s 8.8s<1:38
+[K        1/1     0.738G       3.44      7.999    0.05136      2.914     0.5989         51        256: 7% ╸─────────── 39/512 4.8it/s 9.0s<1:39
+[K        1/1     0.738G      3.448      7.994    0.05174      2.904     0.5988         49        256: 7% ╸─────────── 40/512 5.0it/s 9.2s<1:34
+[K        1/1     0.738G      3.446      7.992    0.05177      2.893     0.5984         55        256: 8% ╸─────────── 41/512 5.0it/s 9.4s<1:34
+[K        1/1     0.738G      3.445      7.989    0.05176       2.88     0.5985         44        256: 8% ╸─────────── 42/512 5.3it/s 9.6s<1:29
+[K        1/1     0.738G      3.441      7.991    0.05174      2.869     0.5986         59        256: 8% ━─────────── 43/512 5.4it/s 9.8s<1:27
+[K        1/1     0.738G      3.433      8.004    0.05156      2.856     0.5988         41        256: 8% ━─────────── 44/512 5.3it/s 10.0s<1:28
+[K        1/1     0.738G      3.434      7.997    0.05161      2.843     0.5987         66        256: 8% ━─────────── 45/512 5.3it/s 10.2s<1:29
+[K        1/1     0.738G      3.433      8.012    0.05154      2.831     0.5987         54        256: 8% ━─────────── 46/512 5.2it/s 10.4s<1:30
+[K        1/1     0.738G      3.435      8.017    0.05154      2.819     0.5989         63        256: 9% ━─────────── 47/512 5.1it/s 10.6s<1:32
+[K        1/1     0.738G      3.436      8.007    0.05153      2.806      0.599         65        256: 9% ━─────────── 48/512 4.9it/s 10.8s<1:34
+[K        1/1     0.738G      3.444      8.003    0.05221      2.794     0.5988         26        256: 9% ━─────────── 49/512 5.0it/s 11.0s<1:33
+[K        1/1     0.738G      3.443      8.006    0.05208      2.782     0.5989         63        256: 9% ━─────────── 50/512 4.8it/s 11.2s<1:35
+[K        1/1     0.738G      3.447      8.007    0.05206       2.77     0.5989         62        256: 9% ━─────────── 51/512 4.8it/s 11.4s<1:36
+[K        1/1     0.738G      3.452      7.995    0.05211      2.758     0.5989         66        256: 10% ━─────────── 52/512 4.9it/s 11.6s<1:33
+[K        1/1     0.742G      3.456      8.001    0.05199      2.746     0.5989         67        256: 10% ━─────────── 53/512 4.8it/s 11.8s<1:36
+[K        1/1     0.742G      3.455      7.992    0.05174      2.734     0.5989         65        256: 10% ━─────────── 54/512 4.7it/s 12.0s<1:37
+[K        1/1     0.742G      3.449      7.992     0.0517      2.721     0.5989         69        256: 10% ━─────────── 55/512 4.4it/s 12.3s<1:44
+[K        1/1     0.742G       3.46      7.992    0.05144      2.709     0.5989         87        256: 10% ━─────────── 56/512 4.2it/s 12.6s<1:49
+[K        1/1     0.744G      3.467      8.002    0.05141      2.696     0.5989         88        256: 11% ━─────────── 57/512 4.1it/s 12.8s<1:50
+[K        1/1     0.744G      3.459      8.001    0.05132      2.684     0.5988         49        256: 11% ━─────────── 58/512 4.1it/s 13.1s<1:50
+[K        1/1     0.744G      3.457      8.005     0.0514      2.671     0.5987         37        256: 11% ━─────────── 59/512 3.9it/s 13.4s<1:58
+[K        1/1     0.744G      3.461      7.988    0.05154       2.66     0.5985         24        256: 11% ━─────────── 60/512 4.5it/s 13.6s<1:40
+[K        1/1     0.744G      3.464      7.983    0.05144      2.648     0.5987         47        256: 11% ━─────────── 61/512 4.6it/s 13.8s<1:38
+[K        1/1     0.744G      3.469      7.986    0.05148      2.637     0.5987         33        256: 12% ━─────────── 62/512 4.8it/s 14.0s<1:34
+[K        1/1     0.744G      3.468      7.984    0.05143      2.626     0.5988         64        256: 12% ━─────────── 63/512 4.8it/s 14.2s<1:34
+[K        1/1     0.744G      3.474      7.985    0.05134      2.615     0.5989         64        256: 12% ━─────────── 64/512 5.2it/s 14.3s<1:26
+[K        1/1     0.744G      3.485       7.98    0.05142      2.603     0.5988         57        256: 12% ━╸────────── 65/512 4.8it/s 14.6s<1:32
+[K        1/1     0.744G      3.477      7.981    0.05123      2.592     0.5988         51        256: 12% ━╸────────── 66/512 4.7it/s 14.8s<1:35
+[K        1/1     0.744G      3.479       7.98    0.05119      2.581     0.5988         58        256: 13% ━╸────────── 67/512 4.4it/s 15.1s<1:41
+[K        1/1     0.744G      3.481       7.99    0.05105       2.57     0.5989         76        256: 13% ━╸────────── 68/512 4.7it/s 15.3s<1:35
+[K        1/1     0.744G      3.483      7.983      0.051      2.559     0.5989         60        256: 13% ━╸────────── 69/512 4.4it/s 15.5s<1:40
+[K        1/1     0.744G      3.481      7.983    0.05115      2.548     0.5988         40        256: 13% ━╸────────── 70/512 4.5it/s 15.7s<1:37
+[K        1/1     0.744G      3.475      7.975    0.05118      2.537     0.5989         34        256: 13% ━╸────────── 71/512 4.6it/s 16.0s<1:37
+[K        1/1     0.744G      3.474      7.976     0.0513      2.526     0.5988         26        256: 14% ━╸────────── 72/512 5.1it/s 16.1s<1:26
+[K        1/1     0.744G      3.472      7.974    0.05124      2.515     0.5987         56        256: 14% ━╸────────── 73/512 5.3it/s 16.3s<1:22
+[K        1/1     0.744G       3.47      7.979    0.05114      2.505     0.5988         52        256: 14% ━╸────────── 74/512 5.9it/s 16.4s<1:14
+[K        1/1     0.744G      3.469      7.994    0.05105      2.495     0.5988         51        256: 14% ━╸────────── 75/512 5.8it/s 16.6s<1:16
+[K        1/1     0.744G      3.469      8.003    0.05089      2.485     0.5987         55        256: 14% ━╸────────── 76/512 6.2it/s 16.7s<1:10
+[K        1/1     0.744G      3.465      7.993    0.05078      2.475     0.5987         37        256: 15% ━╸────────── 77/512 5.7it/s 17.0s<1:16
+[K        1/1     0.744G      3.466      7.984    0.05074      2.465     0.5986         40        256: 15% ━╸────────── 78/512 5.7it/s 17.1s<1:16
+[K        1/1     0.744G      3.463      7.992    0.05062      2.454     0.5985         76        256: 15% ━╸────────── 79/512 5.7it/s 17.3s<1:16
+[K        1/1     0.744G      3.458      7.996    0.05051      2.444     0.5985         46        256: 15% ━╸────────── 80/512 5.9it/s 17.5s<1:13
+[K        1/1     0.744G      3.452      8.002     0.0504      2.435     0.5986         34        256: 15% ━╸────────── 81/512 5.8it/s 17.6s<1:15
+[K        1/1     0.744G      3.452       8.01    0.05046      2.425     0.5986         48        256: 16% ━╸────────── 82/512 6.1it/s 17.8s<1:11
+[K        1/1     0.744G      3.452      8.015    0.05031      2.416     0.5986         87        256: 16% ━╸────────── 83/512 5.8it/s 18.0s<1:14
+[K        1/1     0.744G      3.453      8.007    0.05019      2.407     0.5986         68        256: 16% ━╸────────── 84/512 6.1it/s 18.1s<1:10
+[K        1/1     0.744G      3.455      8.009     0.0502      2.397     0.5986         48        256: 16% ━╸────────── 85/512 5.9it/s 18.3s<1:12
+[K        1/1     0.744G       3.46      8.015     0.0504      2.388     0.5986         28        256: 16% ━━────────── 86/512 6.1it/s 18.5s<1:10
+[K        1/1     0.744G      3.456      8.015     0.0506      2.379     0.5985         31        256: 16% ━━────────── 87/512 6.0it/s 18.6s<1:11
+[K        1/1     0.744G      3.457      8.019    0.05054       2.37     0.5985        112        256: 17% ━━────────── 88/512 5.5it/s 18.9s<1:17
+[K        1/1     0.744G       3.46      8.021    0.05054      2.362     0.5986         69        256: 17% ━━────────── 89/512 5.7it/s 19.0s<1:14
+[K        1/1     0.744G      3.459      8.024    0.05058      2.353     0.5985         33        256: 17% ━━────────── 90/512 6.1it/s 19.2s<1:09
+[K        1/1     0.744G      3.461      8.026     0.0507      2.344     0.5985         73        256: 17% ━━────────── 91/512 6.1it/s 19.3s<1:10
+[K        1/1     0.744G      3.464      8.037    0.05073      2.336     0.5985         41        256: 17% ━━────────── 92/512 6.3it/s 19.5s<1:07
+[K        1/1     0.744G      3.462      8.037    0.05061      2.327     0.5985         50        256: 18% ━━────────── 93/512 6.1it/s 19.7s<1:08
+[K        1/1     0.744G      3.466      8.033    0.05061      2.319     0.5984         86        256: 18% ━━────────── 94/512 6.2it/s 19.8s<1:08
+[K        1/1     0.744G      3.468      8.034    0.05061       2.31     0.5984         69        256: 18% ━━────────── 95/512 5.4it/s 20.1s<1:18
+[K        1/1     0.744G      3.468      8.041    0.05058      2.302     0.5983         54        256: 18% ━━────────── 96/512 5.5it/s 20.3s<1:16
+[K        1/1     0.744G       3.47      8.037    0.05069      2.294     0.5983         30        256: 18% ━━────────── 97/512 5.1it/s 20.5s<1:22
+[K        1/1     0.744G      3.468       8.04    0.05066      2.286     0.5983         42        256: 19% ━━────────── 98/512 5.0it/s 20.7s<1:23
+[K        1/1     0.744G      3.473      8.049    0.05061      2.278     0.5982         89        256: 19% ━━────────── 99/512 4.7it/s 21.0s<1:29
+[K        1/1     0.744G      3.469      8.052    0.05063       2.27     0.5982         36        256: 19% ━━────────── 100/512 4.8it/s 21.2s<1:27
+[K        1/1     0.744G      3.464      8.046    0.05077      2.262     0.5982         18        256: 19% ━━────────── 101/512 4.6it/s 21.4s<1:29
+[K        1/1     0.744G       3.46      8.049    0.05084      2.254     0.5982         28        256: 19% ━━────────── 102/512 4.7it/s 21.6s<1:26
+[K        1/1     0.744G      3.463       8.05    0.05097      2.246     0.5981         30        256: 20% ━━────────── 103/512 4.5it/s 21.9s<1:31
+[K        1/1     0.744G      3.461      8.053    0.05095      2.238     0.5981         48        256: 20% ━━────────── 104/512 4.6it/s 22.1s<1:28
+[K        1/1     0.744G      3.456      8.051    0.05093      2.231      0.598         53        256: 20% ━━────────── 105/512 4.7it/s 22.3s<1:27
+[K        1/1     0.744G      3.456      8.058    0.05089      2.223     0.5981         55        256: 20% ━━────────── 106/512 4.6it/s 22.5s<1:28
+[K        1/1     0.744G      3.456       8.06    0.05087      2.216     0.5982         72        256: 20% ━━╸───────── 107/512 4.4it/s 22.8s<1:32
+[K        1/1     0.744G      3.453      8.059    0.05081      2.209     0.5981         84        256: 21% ━━╸───────── 108/512 4.5it/s 23.0s<1:29
+[K        1/1     0.744G      3.454      8.061    0.05076      2.202     0.5981         69        256: 21% ━━╸───────── 109/512 4.3it/s 23.3s<1:35
+[K        1/1     0.744G      3.457       8.06    0.05073      2.195      0.598         98        256: 21% ━━╸───────── 110/512 4.1it/s 23.5s<1:38
+[K        1/1     0.744G      3.456      8.061    0.05068      2.188      0.598         68        256: 21% ━━╸───────── 111/512 4.3it/s 23.7s<1:32
+[K        1/1     0.744G      3.456      8.064    0.05066      2.181     0.5981         50        256: 21% ━━╸───────── 112/512 4.5it/s 23.9s<1:28
+[K        1/1     0.744G      3.453      8.058    0.05084      2.174     0.5981         39        256: 22% ━━╸───────── 113/512 4.5it/s 24.1s<1:28
+[K        1/1     0.744G      3.452      8.057    0.05087      2.167     0.5981         49        256: 22% ━━╸───────── 114/512 4.5it/s 24.4s<1:28
+[K        1/1     0.744G      3.455      8.055    0.05095       2.16     0.5981         90        256: 22% ━━╸───────── 115/512 4.3it/s 24.6s<1:32
+[K        1/1     0.744G      3.453      8.052    0.05103      2.153     0.5981         46        256: 22% ━━╸───────── 116/512 4.8it/s 24.8s<1:23
+[K        1/1     0.744G      3.451      8.051    0.05106      2.147     0.5981         46        256: 22% ━━╸───────── 117/512 4.7it/s 25.0s<1:25
+[K        1/1     0.744G      3.453      8.048    0.05123       2.14     0.5982         32        256: 23% ━━╸───────── 118/512 4.9it/s 25.2s<1:21
+[K        1/1     0.744G      3.456      8.046    0.05121      2.134     0.5982         72        256: 23% ━━╸───────── 119/512 5.0it/s 25.4s<1:19
+[K        1/1     0.744G      3.456      8.048    0.05115      2.128     0.5981        120        256: 23% ━━╸───────── 120/512 5.3it/s 25.6s<1:14
+[K        1/1     0.744G      3.456      8.046    0.05118      2.121     0.5981        122        256: 23% ━━╸───────── 121/512 5.2it/s 25.8s<1:16
+[K        1/1     0.744G      3.459      8.045    0.05115      2.115     0.5981        107        256: 23% ━━╸───────── 122/512 5.3it/s 26.0s<1:13
+[K        1/1     0.744G      3.461      8.046    0.05116      2.108     0.5981         59        256: 24% ━━╸───────── 123/512 5.2it/s 26.2s<1:15
+[K        1/1     0.744G      3.461      8.045    0.05122      2.102     0.5981         32        256: 24% ━━╸───────── 124/512 5.5it/s 26.3s<1:11
+[K        1/1     0.744G      3.462      8.041    0.05129      2.096     0.5981         46        256: 24% ━━╸───────── 125/512 5.4it/s 26.5s<1:12
+[K        1/1     0.744G      3.459      8.037    0.05128       2.09     0.5981         48        256: 24% ━━╸───────── 126/512 5.7it/s 26.7s<1:08
+[K        1/1     0.744G      3.458      8.036     0.0513      2.084      0.598         41        256: 24% ━━╸───────── 127/512 5.5it/s 26.9s<1:10
+[K        1/1     0.744G      3.458      8.033    0.05138      2.078     0.5981         31        256: 25% ━━━───────── 128/512 5.7it/s 27.0s<1:07
+[K        1/1     0.744G      3.459      8.025    0.05142      2.072     0.5981         41        256: 25% ━━━───────── 129/512 5.6it/s 27.2s<1:09
+[K        1/1     0.744G      3.455      8.021    0.05145      2.067     0.5981         27        256: 25% ━━━───────── 130/512 5.8it/s 27.4s<1:05
+[K        1/1     0.744G      3.454      8.023    0.05153      2.061     0.5981         31        256: 25% ━━━───────── 131/512 5.7it/s 27.6s<1:07
+[K        1/1     0.744G      3.453      8.015    0.05158      2.055     0.5981         37        256: 25% ━━━───────── 132/512 5.8it/s 27.7s<1:06
+[K        1/1     0.744G      3.449      8.005     0.0516       2.05     0.5981         29        256: 25% ━━━───────── 133/512 5.4it/s 28.0s<1:10
+[K        1/1     0.744G      3.449      8.012    0.05153      2.044     0.5981         73        256: 26% ━━━───────── 134/512 5.4it/s 28.1s<1:10
+[K        1/1     0.744G      3.447      8.012    0.05159      2.039      0.598         20        256: 26% ━━━───────── 135/512 5.3it/s 28.3s<1:11
+[K        1/1     0.744G      3.449      8.006    0.05176      2.033      0.598         27        256: 26% ━━━───────── 136/512 5.7it/s 28.5s<1:06
+[K        1/1     0.744G       3.45      8.004    0.05169      2.028     0.5979         60        256: 26% ━━━───────── 137/512 5.6it/s 28.7s<1:07
+[K        1/1     0.744G      3.449      8.003    0.05172      2.023     0.5979         56        256: 26% ━━━───────── 138/512 5.9it/s 28.8s<1:03
+[K        1/1     0.744G       3.45      8.001    0.05172      2.017      0.598         30        256: 27% ━━━───────── 139/512 5.6it/s 29.0s<1:06
+[K        1/1     0.744G      3.448      8.003    0.05163      2.012      0.598         27        256: 27% ━━━───────── 140/512 5.4it/s 29.2s<1:09
+[K        1/1     0.744G      3.448      7.999    0.05166      2.007      0.598         52        256: 27% ━━━───────── 141/512 5.3it/s 29.4s<1:10
+[K        1/1     0.744G      3.446          8     0.0518      2.002     0.5981         26        256: 27% ━━━───────── 142/512 5.5it/s 29.6s<1:08
+[K        1/1     0.744G      3.444      7.997    0.05177      1.997     0.5981         42        256: 27% ━━━───────── 143/512 5.1it/s 29.8s<1:12
+[K        1/1     0.744G      3.441      7.996    0.05182      1.992     0.5982         33        256: 28% ━━━───────── 144/512 5.1it/s 30.0s<1:12
+[K        1/1     0.744G       3.44      7.991     0.0518      1.987     0.5982         46        256: 28% ━━━───────── 145/512 5.0it/s 30.2s<1:14
+[K        1/1     0.744G      3.438      7.994     0.0518      1.982     0.5982         41        256: 28% ━━━───────── 146/512 5.0it/s 30.4s<1:13
+[K        1/1     0.744G      3.437      7.987    0.05189      1.977     0.5983         32        256: 28% ━━━───────── 147/512 4.9it/s 30.7s<1:14
+[K        1/1     0.744G       3.43      7.989    0.05177      1.972     0.5983         27        256: 28% ━━━───────── 148/512 5.5it/s 30.8s<1:07
+[K        1/1     0.744G      3.432      7.998    0.05178      1.967     0.5983         24        256: 29% ━━━───────── 149/512 5.4it/s 31.0s<1:07
+[K        1/1     0.744G      3.432      8.002    0.05178      1.962     0.5982         43        256: 29% ━━━╸──────── 150/512 5.5it/s 31.2s<1:06
+[K        1/1     0.744G      3.431      7.995    0.05185      1.957     0.5982         32        256: 29% ━━━╸──────── 151/512 5.4it/s 31.4s<1:07
+[K        1/1     0.744G      3.431      7.991     0.0518      1.953     0.5982         61        256: 29% ━━━╸──────── 152/512 5.2it/s 31.6s<1:09
+[K        1/1     0.744G      3.431      7.988    0.05186      1.948     0.5982         33        256: 29% ━━━╸──────── 153/512 5.3it/s 31.8s<1:08
+[K        1/1     0.744G      3.429      7.988    0.05187      1.943     0.5982         41        256: 30% ━━━╸──────── 154/512 5.7it/s 31.9s<1:03
+[K        1/1     0.748G       3.43       7.99    0.05188      1.939     0.5982         57        256: 30% ━━━╸──────── 155/512 5.8it/s 32.1s<1:01
+[K        1/1     0.748G      3.429      7.985     0.0519      1.934     0.5982         32        256: 30% ━━━╸──────── 156/512 5.6it/s 32.3s<1:04
+[K        1/1     0.748G      3.432      7.985    0.05207      1.929     0.5982         22        256: 30% ━━━╸──────── 157/512 5.9it/s 32.4s<1:01
+[K        1/1     0.748G       3.43      7.988    0.05201      1.925     0.5982         75        256: 30% ━━━╸──────── 158/512 6.1it/s 32.6s<58.3s
+[K        1/1     0.748G      3.428      7.985    0.05196      1.921     0.5982         47        256: 31% ━━━╸──────── 159/512 5.9it/s 32.8s<59.9s
+[K        1/1     0.748G      3.431      7.984    0.05196      1.916     0.5982         63        256: 31% ━━━╸──────── 160/512 6.1it/s 32.9s<57.8s
+[K        1/1     0.748G      3.432      7.986    0.05198      1.912     0.5982         43        256: 31% ━━━╸──────── 161/512 5.7it/s 33.1s<1:02
+[K        1/1     0.748G      3.429      7.983    0.05196      1.908     0.5983         48        256: 31% ━━━╸──────── 162/512 5.6it/s 33.3s<1:03
+[K        1/1     0.748G      3.426      7.981    0.05201      1.904     0.5983         20        256: 31% ━━━╸──────── 163/512 5.6it/s 33.5s<1:03
+[K        1/1     0.748G      3.427      7.982    0.05204      1.899     0.5983         32        256: 32% ━━━╸──────── 164/512 5.3it/s 33.7s<1:06
+[K        1/1     0.748G      3.428      7.983    0.05203      1.895     0.5983         58        256: 32% ━━━╸──────── 165/512 4.9it/s 33.9s<1:10
+[K        1/1     0.748G      3.428      7.981    0.05207      1.891     0.5983         29        256: 32% ━━━╸──────── 166/512 5.1it/s 34.1s<1:08
+[K        1/1     0.748G      3.425      7.982    0.05207      1.887     0.5983         20        256: 32% ━━━╸──────── 167/512 5.2it/s 34.3s<1:06
+[K        1/1     0.748G      3.425      7.982    0.05206      1.883     0.5983         27        256: 32% ━━━╸──────── 168/512 4.9it/s 34.5s<1:10
+[K        1/1     0.748G      3.424      7.976    0.05213      1.879     0.5983         28        256: 33% ━━━╸──────── 169/512 5.2it/s 34.7s<1:06
+[K        1/1     0.748G       3.42      7.978    0.05205      1.875     0.5983         38        256: 33% ━━━╸──────── 170/512 5.2it/s 34.9s<1:05
+[K        1/1     0.748G      3.419      7.975    0.05199      1.871     0.5983         55        256: 33% ━━━━──────── 171/512 4.8it/s 35.2s<1:12
+[K        1/1     0.748G      3.418      7.979    0.05197      1.867     0.5982         67        256: 33% ━━━━──────── 172/512 5.1it/s 35.3s<1:06
+[K        1/1     0.748G      3.417       7.98     0.0519      1.863     0.5983         56        256: 33% ━━━━──────── 173/512 5.4it/s 35.5s<1:02
+[K        1/1     0.748G      3.418      7.977    0.05197      1.859     0.5983         43        256: 33% ━━━━──────── 174/512 5.0it/s 35.8s<1:08
+[K        1/1     0.748G      3.416      7.972    0.05203      1.855     0.5983         37        256: 34% ━━━━──────── 175/512 5.0it/s 36.0s<1:07
+[K        1/1     0.748G      3.418      7.976    0.05198      1.851     0.5983        114        256: 34% ━━━━──────── 176/512 5.3it/s 36.1s<1:03
+[K        1/1     0.748G      3.416      7.973    0.05196      1.847     0.5983         38        256: 34% ━━━━──────── 177/512 5.0it/s 36.4s<1:07
+[K        1/1     0.748G      3.416      7.975    0.05189      1.844     0.5983         97        256: 34% ━━━━──────── 178/512 4.9it/s 36.6s<1:08
+[K        1/1     0.748G      3.416      7.971    0.05189       1.84     0.5983         73        256: 34% ━━━━──────── 179/512 5.3it/s 36.7s<1:03
+[K        1/1     0.748G      3.415      7.974    0.05189      1.836     0.5983         33        256: 35% ━━━━──────── 180/512 5.1it/s 36.9s<1:05
+[K        1/1     0.748G      3.417      7.972    0.05188      1.833     0.5983         71        256: 35% ━━━━──────── 181/512 5.5it/s 37.1s<1:00
+[K        1/1     0.748G      3.418      7.974    0.05195      1.829     0.5983         43        256: 35% ━━━━──────── 182/512 5.8it/s 37.3s<57.3s
+[K        1/1     0.748G      3.418      7.977    0.05188      1.825     0.5983         72        256: 35% ━━━━──────── 183/512 5.6it/s 37.5s<59.3s
+[K        1/1     0.748G      3.416      7.975    0.05193      1.822     0.5983         30        256: 35% ━━━━──────── 184/512 5.4it/s 37.7s<1:01
+[K        1/1     0.748G      3.417      7.976    0.05192      1.818     0.5983         56        256: 36% ━━━━──────── 185/512 5.6it/s 37.8s<58.3s
+[K        1/1     0.748G      3.417      7.975    0.05189      1.815     0.5983         40        256: 36% ━━━━──────── 186/512 5.1it/s 38.1s<1:04
+[K        1/1     0.748G      3.415      7.974     0.0519      1.811     0.5982         21        256: 36% ━━━━──────── 187/512 5.4it/s 38.2s<59.8s
+[K        1/1     0.748G      3.415      7.973    0.05193      1.807     0.5982         26        256: 36% ━━━━──────── 188/512 5.3it/s 38.4s<1:01
+[K        1/1     0.748G      3.418      7.975    0.05195      1.804     0.5982         68        256: 36% ━━━━──────── 189/512 4.9it/s 38.7s<1:06
+[K        1/1     0.748G      3.419       7.97    0.05202        1.8     0.5982         27        256: 37% ━━━━──────── 190/512 5.2it/s 38.8s<1:02
+[K        1/1     0.748G      3.418      7.967    0.05201      1.797     0.5983         38        256: 37% ━━━━──────── 191/512 5.5it/s 39.0s<58.7s
+[K        1/1     0.748G      3.418      7.962    0.05199      1.794     0.5983         24        256: 37% ━━━━──────── 192/512 5.1it/s 39.2s<1:03
+[K        1/1     0.748G      3.419      7.963    0.05195       1.79     0.5983         60        256: 37% ━━━━╸─────── 193/512 4.9it/s 39.5s<1:04
+[K        1/1     0.748G      3.414      7.964     0.0519      1.787     0.5983         18        256: 37% ━━━━╸─────── 194/512 5.2it/s 39.6s<1:01
+[K        1/1     0.748G      3.413      7.964    0.05185      1.784     0.5983         35        256: 38% ━━━━╸─────── 195/512 4.9it/s 39.9s<1:05
+[K        1/1     0.748G      3.413      7.962    0.05178      1.781     0.5983         74        256: 38% ━━━━╸─────── 196/512 4.8it/s 40.1s<1:06
+[K        1/1     0.748G      3.412      7.966    0.05177      1.777     0.5983         36        256: 38% ━━━━╸─────── 197/512 5.1it/s 40.3s<1:02
+[K        1/1     0.748G      3.411      7.967    0.05167      1.774     0.5983         73        256: 38% ━━━━╸─────── 198/512 5.1it/s 40.5s<1:01
+[K        1/1     0.748G      3.411      7.967    0.05165      1.771     0.5983         35        256: 38% ━━━━╸─────── 199/512 5.5it/s 40.6s<57.4s
+[K        1/1     0.748G      3.412      7.966     0.0516      1.768     0.5983         54        256: 39% ━━━━╸─────── 200/512 5.7it/s 40.8s<54.8s
+[K        1/1     0.748G      3.411      7.972    0.05155      1.765     0.5983         75        256: 39% ━━━━╸─────── 201/512 5.2it/s 41.0s<59.4s
+[K        1/1     0.748G      3.412      7.973    0.05156      1.761     0.5983         46        256: 39% ━━━━╸─────── 202/512 5.3it/s 41.2s<59.0s
+[K        1/1     0.748G      3.412      7.978    0.05157      1.758     0.5982         63        256: 39% ━━━━╸─────── 203/512 5.4it/s 41.4s<57.2s
+[K        1/1     0.748G      3.411      7.977    0.05157      1.755     0.5982         29        256: 39% ━━━━╸─────── 204/512 5.2it/s 41.6s<59.4s
+[K        1/1     0.748G      3.408      7.977    0.05155      1.752     0.5982         16        256: 40% ━━━━╸─────── 205/512 5.1it/s 41.8s<1:00
+[K        1/1     0.748G       3.41      7.975    0.05157      1.749     0.5982         37        256: 40% ━━━━╸─────── 206/512 5.1it/s 42.0s<1:00
+[K        1/1     0.748G       3.41      7.975     0.0515      1.746     0.5982         61        256: 40% ━━━━╸─────── 207/512 4.9it/s 42.2s<1:02
+[K        1/1     0.748G       3.41      7.977    0.05143      1.743     0.5982         69        256: 40% ━━━━╸─────── 208/512 5.2it/s 42.4s<58.5s
+[K        1/1     0.748G       3.41      7.974     0.0514       1.74     0.5982         37        256: 40% ━━━━╸─────── 209/512 5.2it/s 42.6s<57.8s
+[K        1/1     0.748G       3.41      7.975    0.05138      1.737     0.5982         41        256: 41% ━━━━╸─────── 210/512 5.0it/s 42.8s<1:00
+[K        1/1     0.748G       3.41      7.976    0.05139      1.735     0.5982         36        256: 41% ━━━━╸─────── 211/512 4.7it/s 43.1s<1:04
+[K        1/1     0.748G      3.413      7.974    0.05138      1.732     0.5982         82        256: 41% ━━━━╸─────── 212/512 4.7it/s 43.3s<1:04
+[K        1/1     0.748G      3.415      7.971     0.0516      1.729     0.5982         21        256: 41% ━━━━╸─────── 213/512 4.3it/s 43.6s<1:09
+[K        1/1     0.748G      3.415      7.968    0.05158      1.726     0.5982         43        256: 41% ━━━━━─────── 214/512 4.2it/s 43.8s<1:11
+[K        1/1     0.748G      3.414      7.968    0.05153      1.723     0.5982         59        256: 41% ━━━━━─────── 215/512 4.3it/s 44.0s<1:09
+[K        1/1     0.748G      3.415      7.969    0.05152       1.72     0.5982         66        256: 42% ━━━━━─────── 216/512 4.0it/s 44.3s<1:14
+[K        1/1     0.748G      3.415      7.965    0.05156      1.717     0.5982         51        256: 42% ━━━━━─────── 217/512 4.1it/s 44.6s<1:12
+[K        1/1     0.748G      3.416      7.964    0.05153      1.715     0.5982         72        256: 42% ━━━━━─────── 218/512 4.1it/s 44.8s<1:12
+[K        1/1     0.748G      3.416      7.963    0.05151      1.712     0.5982         55        256: 42% ━━━━━─────── 219/512 4.0it/s 45.1s<1:13
+[K        1/1     0.748G      3.417      7.964    0.05157      1.709     0.5981         54        256: 42% ━━━━━─────── 220/512 4.5it/s 45.3s<1:05
+[K        1/1     0.748G      3.419      7.964    0.05155      1.706     0.5981         64        256: 43% ━━━━━─────── 221/512 4.8it/s 45.4s<1:00
+[K        1/1     0.748G      3.419      7.961    0.05153      1.704     0.5981         70        256: 43% ━━━━━─────── 222/512 4.4it/s 45.7s<1:07
+[K        1/1     0.748G      3.418      7.961    0.05149      1.701     0.5981         61        256: 43% ━━━━━─────── 223/512 4.4it/s 46.0s<1:06
+[K        1/1     0.748G      3.418       7.96    0.05147      1.698     0.5981         34        256: 43% ━━━━━─────── 224/512 4.8it/s 46.1s<1:01
+[K        1/1     0.748G       3.42      7.962    0.05146      1.696     0.5981         85        256: 43% ━━━━━─────── 225/512 4.7it/s 46.4s<1:01
+[K        1/1     0.748G      3.419      7.961    0.05144      1.693     0.5981         54        256: 44% ━━━━━─────── 226/512 4.6it/s 46.6s<1:02
+[K        1/1     0.748G      3.419      7.962    0.05141       1.69     0.5981         67        256: 44% ━━━━━─────── 227/512 4.9it/s 46.8s<58.3s
+[K        1/1     0.748G      3.421      7.961    0.05144      1.688     0.5981         65        256: 44% ━━━━━─────── 228/512 4.8it/s 47.0s<59.5s
+[K        1/1     0.748G       3.42      7.959    0.05144      1.685     0.5981         40        256: 44% ━━━━━─────── 229/512 4.8it/s 47.2s<58.7s
+[K        1/1     0.748G       3.42      7.953    0.05143      1.683     0.5981         40        256: 44% ━━━━━─────── 230/512 4.5it/s 47.5s<1:02
+[K        1/1     0.748G      3.421      7.951    0.05141       1.68     0.5981         66        256: 45% ━━━━━─────── 231/512 4.2it/s 47.7s<1:07
+[K        1/1     0.748G      3.421      7.951    0.05141      1.678     0.5981         29        256: 45% ━━━━━─────── 232/512 4.1it/s 48.0s<1:08
+[K        1/1     0.748G       3.42      7.946    0.05142      1.675     0.5981         24        256: 45% ━━━━━─────── 233/512 4.6it/s 48.2s<1:01
+[K        1/1     0.748G      3.422      7.945    0.05143      1.673      0.598         54        256: 45% ━━━━━─────── 234/512 4.6it/s 48.4s<1:01
+[K        1/1     0.748G      3.424      7.945    0.05141       1.67      0.598         53        256: 45% ━━━━━╸────── 235/512 5.4it/s 48.5s<51.5s
+[K        1/1     0.748G      3.423      7.945    0.05144      1.668      0.598         48        256: 46% ━━━━━╸────── 236/512 6.0it/s 48.7s<46.0s
+[K        1/1     0.748G      3.421      7.942    0.05139      1.665      0.598         24        256: 46% ━━━━━╸────── 237/512 6.2it/s 48.8s<44.4s
+[K        1/1     0.748G       3.42      7.942    0.05132      1.663      0.598         65        256: 46% ━━━━━╸────── 238/512 6.3it/s 49.0s<43.7s
+[K        1/1     0.748G       3.42      7.938    0.05137       1.66      0.598         37        256: 46% ━━━━━╸────── 239/512 6.6it/s 49.1s<41.6s
+[K        1/1     0.748G       3.42      7.937    0.05133      1.658     0.5981         86        256: 46% ━━━━━╸────── 240/512 6.4it/s 49.3s<42.4s
+[K        1/1     0.748G      3.416      7.935     0.0513      1.656     0.5981         17        256: 47% ━━━━━╸────── 241/512 6.9it/s 49.4s<39.2s
+[K        1/1     0.748G      3.413      7.933    0.05126      1.653     0.5981         21        256: 47% ━━━━━╸────── 242/512 6.9it/s 49.5s<39.2s
+[K        1/1     0.748G      3.412      7.934    0.05126      1.651     0.5981         36        256: 47% ━━━━━╸────── 243/512 6.7it/s 49.7s<40.1s
+[K        1/1     0.748G       3.41      7.936    0.05123      1.649     0.5981         52        256: 47% ━━━━━╸────── 244/512 7.0it/s 49.8s<38.3s
+[K        1/1     0.748G      3.412      7.936     0.0512      1.646     0.5981         78        256: 47% ━━━━━╸────── 245/512 6.8it/s 50.0s<39.2s
+[K        1/1     0.748G      3.413      7.937     0.0512      1.644     0.5981         59        256: 48% ━━━━━╸────── 246/512 6.7it/s 50.1s<39.5s
+[K        1/1     0.748G      3.413      7.939    0.05116      1.642      0.598         59        256: 48% ━━━━━╸────── 247/512 7.1it/s 50.3s<37.5s
+[K        1/1     0.748G      3.411      7.941    0.05111      1.639      0.598         63        256: 48% ━━━━━╸────── 248/512 7.3it/s 50.4s<36.2s
+[K        1/1     0.748G      3.411      7.941    0.05109      1.637      0.598         54        256: 48% ━━━━━╸────── 249/512 7.1it/s 50.6s<37.1s
+[K        1/1     0.748G      3.408      7.943    0.05104      1.635      0.598         57        256: 48% ━━━━━╸────── 250/512 7.4it/s 50.7s<35.4s
+[K        1/1     0.748G      3.409      7.943      0.051      1.633     0.5979         69        256: 49% ━━━━━╸────── 251/512 7.6it/s 50.8s<34.5s
+[K        1/1     0.748G      3.408      7.941    0.05095      1.631     0.5979         78        256: 49% ━━━━━╸────── 252/512 7.4it/s 50.9s<35.2s
+[K        1/1     0.748G      3.408      7.939    0.05094      1.628     0.5979         54        256: 49% ━━━━━╸────── 253/512 7.3it/s 51.1s<35.3s
+[K        1/1     0.748G      3.408      7.939    0.05089      1.626     0.5979         89        256: 49% ━━━━━╸────── 254/512 7.4it/s 51.2s<35.1s
+[K        1/1     0.748G       3.41      7.936    0.05087      1.624      0.598         59        256: 49% ━━━━━╸────── 255/512 7.3it/s 51.4s<35.1s
+[K        1/1     0.748G      3.409      7.934    0.05083      1.622      0.598         34        256: 50% ━━━━━━────── 256/512 7.4it/s 51.5s<34.4s
+[K        1/1     0.748G      3.411      7.933     0.0508       1.62      0.598        105        256: 50% ━━━━━━────── 257/512 7.4it/s 51.6s<34.6s
+[K        1/1     0.748G      3.411      7.929    0.05078      1.618      0.598         70        256: 50% ━━━━━━────── 258/512 7.5it/s 51.8s<33.8s
+[K        1/1     0.748G       3.41      7.925    0.05077      1.616      0.598         50        256: 50% ━━━━━━────── 259/512 6.9it/s 51.9s<36.4s
+[K        1/1     0.748G      3.412      7.921    0.05073      1.614      0.598        110        256: 50% ━━━━━━────── 260/512 7.3it/s 52.1s<34.7s
+[K        1/1     0.748G      3.412      7.921    0.05069      1.612      0.598         82        256: 50% ━━━━━━────── 261/512 7.4it/s 52.2s<33.8s
+[K        1/1     0.748G      3.413      7.921    0.05062       1.61      0.598         93        256: 51% ━━━━━━────── 262/512 7.6it/s 52.3s<32.9s
+[K        1/1     0.748G      3.412      7.921     0.0506      1.607      0.598         46        256: 51% ━━━━━━────── 263/512 7.3it/s 52.5s<34.3s
+[K        1/1     0.748G      3.413      7.919    0.05057      1.605      0.598        134        256: 51% ━━━━━━────── 264/512 7.5it/s 52.6s<33.0s
+[K        1/1     0.748G       3.41      7.919    0.05053      1.603      0.598         52        256: 51% ━━━━━━────── 265/512 7.6it/s 52.7s<32.4s
+[K        1/1     0.748G       3.41      7.918    0.05047      1.601      0.598         83        256: 51% ━━━━━━────── 266/512 7.6it/s 52.8s<32.5s
+[K        1/1     0.748G      3.412      7.916    0.05044      1.599      0.598        113        256: 52% ━━━━━━────── 267/512 6.2it/s 53.2s<39.2s
+[K        1/1     0.748G      3.412      7.913    0.05042      1.597      0.598         66        256: 52% ━━━━━━────── 268/512 6.4it/s 53.3s<38.1s
+[K        1/1     0.748G      3.411       7.91    0.05041      1.595      0.598         56        256: 52% ━━━━━━────── 269/512 6.4it/s 53.5s<38.3s
+[K        1/1     0.748G      3.411      7.909    0.05044      1.593      0.598         48        256: 52% ━━━━━━────── 270/512 6.7it/s 53.6s<36.3s
+[K        1/1     0.748G       3.41      7.908    0.05048      1.591      0.598         37        256: 52% ━━━━━━────── 271/512 6.6it/s 53.8s<36.3s
+[K        1/1     0.748G      3.411      7.906    0.05051      1.589      0.598         47        256: 53% ━━━━━━────── 272/512 7.1it/s 53.9s<34.0s
+[K        1/1     0.748G      3.411      7.901    0.05054      1.588      0.598         61        256: 53% ━━━━━━────── 273/512 7.4it/s 54.0s<32.2s
+[K        1/1     0.748G       3.41      7.899    0.05056      1.586      0.598         39        256: 53% ━━━━━━────── 274/512 7.6it/s 54.1s<31.5s
+[K        1/1     0.748G       3.41      7.898    0.05057      1.584      0.598         50        256: 53% ━━━━━━────── 275/512 7.3it/s 54.3s<32.5s
+[K        1/1     0.748G      3.409      7.897    0.05055      1.582      0.598         25        256: 53% ━━━━━━────── 276/512 7.3it/s 54.4s<32.5s
+[K        1/1     0.748G      3.408      7.894    0.05054       1.58      0.598         56        256: 54% ━━━━━━────── 277/512 7.5it/s 54.5s<31.4s
+[K        1/1     0.748G      3.405      7.894    0.05052      1.578      0.598         33        256: 54% ━━━━━━╸───── 278/512 7.3it/s 54.7s<32.3s
+[K        1/1     0.748G      3.405      7.893    0.05049      1.576      0.598         73        256: 54% ━━━━━━╸───── 279/512 6.8it/s 54.9s<34.1s
+[K        1/1     0.748G      3.403       7.89     0.0505      1.574      0.598         34        256: 54% ━━━━━━╸───── 280/512 7.0it/s 55.0s<33.3s
+[K        1/1     0.748G      3.402      7.888    0.05051      1.573      0.598         41        256: 54% ━━━━━━╸───── 281/512 7.5it/s 55.1s<30.7s
+[K        1/1     0.748G      3.402      7.887    0.05047      1.571      0.598         70        256: 55% ━━━━━━╸───── 282/512 7.6it/s 55.2s<30.5s
+[K        1/1     0.748G      3.402      7.886    0.05044      1.569      0.598        122        256: 55% ━━━━━━╸───── 283/512 6.9it/s 55.4s<33.3s
+[K        1/1     0.748G        3.4      7.887    0.05041      1.567     0.5979         62        256: 55% ━━━━━━╸───── 284/512 6.8it/s 55.6s<33.3s
+[K        1/1     0.748G      3.401      7.884    0.05036      1.565     0.5979         98        256: 55% ━━━━━━╸───── 285/512 6.7it/s 55.7s<33.9s
+[K        1/1     0.748G        3.4      7.881    0.05036      1.563     0.5979         70        256: 55% ━━━━━━╸───── 286/512 6.4it/s 55.9s<35.2s
+[K        1/1     0.748G      3.399      7.878    0.05038      1.562     0.5979         46        256: 56% ━━━━━━╸───── 287/512 6.2it/s 56.1s<36.1s
+[K        1/1     0.748G      3.397      7.878    0.05043       1.56     0.5979         28        256: 56% ━━━━━━╸───── 288/512 6.3it/s 56.2s<35.3s
+[K        1/1     0.748G      3.396      7.877    0.05044      1.558     0.5979         39        256: 56% ━━━━━━╸───── 289/512 6.6it/s 56.4s<33.8s
+[K        1/1     0.748G      3.396      7.875    0.05039      1.557     0.5979        105        256: 56% ━━━━━━╸───── 290/512 6.7it/s 56.5s<33.0s
+[K        1/1     0.748G      3.396      7.875    0.05037      1.555     0.5979         56        256: 56% ━━━━━━╸───── 291/512 6.4it/s 56.7s<34.8s
+[K        1/1     0.748G      3.396      7.875     0.0504      1.553     0.5979         44        256: 57% ━━━━━━╸───── 292/512 6.7it/s 56.8s<32.7s
+[K        1/1     0.748G      3.395      7.874    0.05037      1.551     0.5979         55        256: 57% ━━━━━━╸───── 293/512 6.5it/s 57.0s<33.5s
+[K        1/1     0.748G      3.396      7.874    0.05035       1.55     0.5979         57        256: 57% ━━━━━━╸───── 294/512 6.6it/s 57.1s<33.0s
+[K        1/1     0.748G      3.394      7.871    0.05038      1.548     0.5979         28        256: 57% ━━━━━━╸───── 295/512 6.5it/s 57.3s<33.3s
+[K        1/1     0.748G      3.394       7.87    0.05042      1.546     0.5979         25        256: 57% ━━━━━━╸───── 296/512 6.8it/s 57.4s<32.0s
+[K        1/1     0.748G      3.393       7.87    0.05041      1.544     0.5979         29        256: 58% ━━━━━━╸───── 297/512 7.0it/s 57.6s<30.6s
+[K        1/1     0.748G      3.391      7.867    0.05045      1.543     0.5979         19        256: 58% ━━━━━━╸───── 298/512 7.1it/s 57.7s<30.1s
+[K        1/1     0.748G      3.392      7.864    0.05046      1.541     0.5979         47        256: 58% ━━━━━━━───── 299/512 6.9it/s 57.9s<30.9s
+[K        1/1     0.748G      3.392      7.863    0.05043       1.54     0.5979         70        256: 58% ━━━━━━━───── 300/512 7.0it/s 58.0s<30.4s
+[K        1/1     0.748G      3.392      7.862     0.0504      1.538     0.5979         52        256: 58% ━━━━━━━───── 301/512 6.8it/s 58.2s<31.0s
+[K        1/1     0.748G      3.391      7.859    0.05037      1.536     0.5979         50        256: 58% ━━━━━━━───── 302/512 6.9it/s 58.3s<30.4s
+[K        1/1     0.748G      3.392      7.859    0.05033      1.535     0.5979        100        256: 59% ━━━━━━━───── 303/512 6.9it/s 58.5s<30.4s
+[K        1/1     0.748G      3.392      7.859    0.05032      1.533     0.5979         51        256: 59% ━━━━━━━───── 304/512 6.8it/s 58.6s<30.5s
+[K        1/1     0.748G      3.393      7.858    0.05028      1.532     0.5979         60        256: 59% ━━━━━━━───── 305/512 6.9it/s 58.7s<30.1s
+[K        1/1     0.748G      3.392      7.858    0.05025       1.53     0.5979         81        256: 59% ━━━━━━━───── 306/512 7.0it/s 58.9s<29.3s
+[K        1/1     0.748G      3.391      7.858     0.0503      1.528     0.5979         34        256: 59% ━━━━━━━───── 307/512 6.6it/s 59.1s<31.0s
+[K        1/1     0.748G      3.389      7.857     0.0503      1.527     0.5978         30        256: 60% ━━━━━━━───── 308/512 6.6it/s 59.2s<30.9s
+[K        1/1     0.748G      3.388      7.858     0.0503      1.525     0.5978         52        256: 60% ━━━━━━━───── 309/512 6.8it/s 59.3s<30.0s
+[K        1/1     0.748G      3.388      7.859    0.05028      1.524     0.5978         56        256: 60% ━━━━━━━───── 310/512 6.9it/s 59.5s<29.4s
+[K        1/1     0.748G      3.388      7.858    0.05034      1.522     0.5978         38        256: 60% ━━━━━━━───── 311/512 6.7it/s 59.6s<30.1s
+[K        1/1     0.748G      3.388      7.859    0.05033      1.521     0.5978         59        256: 60% ━━━━━━━───── 312/512 6.9it/s 59.8s<28.9s
+[K        1/1     0.748G      3.388       7.86    0.05032      1.519     0.5978         31        256: 61% ━━━━━━━───── 313/512 7.1it/s 59.9s<27.8s
+[K        1/1     0.748G      3.388       7.86     0.0503      1.518     0.5978         55        256: 61% ━━━━━━━───── 314/512 7.2it/s 1:00<27.6s
+[K        1/1     0.748G       3.39      7.861    0.05031      1.516     0.5977         60        256: 61% ━━━━━━━───── 315/512 6.8it/s 1:00<29.2s
+[K        1/1     0.748G       3.39      7.862    0.05031      1.515     0.5977        105        256: 61% ━━━━━━━───── 316/512 6.9it/s 1:00<28.3s
+[K        1/1     0.748G      3.389      7.861    0.05029      1.513     0.5977        107        256: 61% ━━━━━━━───── 317/512 6.8it/s 1:01<28.8s
+[K        1/1     0.748G      3.389      7.859    0.05027      1.512     0.5977         39        256: 62% ━━━━━━━───── 318/512 7.0it/s 1:01<27.7s
+[K        1/1     0.748G      3.388      7.857    0.05025       1.51     0.5977         48        256: 62% ━━━━━━━───── 319/512 6.6it/s 1:01<29.3s
+[K        1/1     0.748G      3.388      7.853    0.05026      1.509     0.5977         45        256: 62% ━━━━━━━───── 320/512 7.0it/s 1:01<27.3s
+[K        1/1     0.748G      3.388      7.854    0.05023      1.507     0.5977        148        256: 62% ━━━━━━━╸──── 321/512 7.0it/s 1:01<27.4s
+[K        1/1     0.748G      3.387      7.852    0.05024      1.506     0.5978         37        256: 62% ━━━━━━━╸──── 322/512 6.8it/s 1:01<27.7s
+[K        1/1     0.748G      3.386      7.852    0.05022      1.504     0.5978         52        256: 63% ━━━━━━━╸──── 323/512 6.5it/s 1:01<29.2s
+[K        1/1     0.748G      3.386      7.853    0.05019      1.503     0.5978         82        256: 63% ━━━━━━━╸──── 324/512 7.0it/s 1:02<26.8s
+[K        1/1     0.748G      3.386      7.853    0.05017      1.501     0.5978         48        256: 63% ━━━━━━━╸──── 325/512 7.0it/s 1:02<26.9s
+[K        1/1     0.748G      3.385      7.854    0.05015        1.5     0.5978         70        256: 63% ━━━━━━━╸──── 326/512 7.2it/s 1:02<26.0s
+[K        1/1     0.748G      3.385      7.853    0.05014      1.498     0.5978         45        256: 63% ━━━━━━━╸──── 327/512 6.6it/s 1:02<27.9s
+[K        1/1     0.748G      3.386      7.851    0.05014      1.497     0.5978         77        256: 64% ━━━━━━━╸──── 328/512 6.3it/s 1:02<29.4s
+[K        1/1     0.748G      3.385       7.85    0.05016      1.496     0.5978         28        256: 64% ━━━━━━━╸──── 329/512 5.9it/s 1:02<31.0s
+[K        1/1     0.748G      3.385       7.85    0.05015      1.494     0.5978         45        256: 64% ━━━━━━━╸──── 330/512 5.9it/s 1:03<30.9s
+[K        1/1     0.748G      3.384       7.85    0.05015      1.493     0.5978         36        256: 64% ━━━━━━━╸──── 331/512 5.4it/s 1:03<33.6s
+[K        1/1     0.748G      3.384      7.852    0.05013      1.491     0.5978         30        256: 64% ━━━━━━━╸──── 332/512 5.6it/s 1:03<32.1s
+[K        1/1     0.748G      3.383      7.851     0.0501       1.49     0.5978         30        256: 65% ━━━━━━━╸──── 333/512 6.1it/s 1:03<29.3s
+[K        1/1     0.748G      3.383      7.852     0.0501      1.489     0.5978         38        256: 65% ━━━━━━━╸──── 334/512 6.5it/s 1:03<27.4s
+[K        1/1     0.748G      3.384      7.851     0.0501      1.487     0.5978         41        256: 65% ━━━━━━━╸──── 335/512 6.2it/s 1:03<28.8s
+[K        1/1     0.748G      3.384      7.853    0.05009      1.486     0.5978         38        256: 65% ━━━━━━━╸──── 336/512 6.0it/s 1:04<29.6s
+[K        1/1     0.748G      3.383      7.851    0.05007      1.485     0.5977         42        256: 65% ━━━━━━━╸──── 337/512 5.8it/s 1:04<30.4s
+[K        1/1     0.748G      3.383      7.849    0.05009      1.483     0.5977         32        256: 66% ━━━━━━━╸──── 338/512 5.7it/s 1:04<30.6s
+[K        1/1     0.748G      3.385      7.846    0.05008      1.482     0.5977         63        256: 66% ━━━━━━━╸──── 339/512 5.5it/s 1:04<31.4s
+[K        1/1     0.748G      3.385      7.847    0.05007      1.481     0.5977         65        256: 66% ━━━━━━━╸──── 340/512 5.9it/s 1:04<29.2s
+[K        1/1     0.748G      3.384      7.845    0.05005      1.479     0.5977         42        256: 66% ━━━━━━━╸──── 341/512 6.0it/s 1:04<28.3s
+[K        1/1     0.748G      3.384      7.844    0.05004      1.478     0.5977         39        256: 66% ━━━━━━━━──── 342/512 6.4it/s 1:05<26.6s
+[K        1/1     0.748G      3.383      7.843    0.05003      1.477     0.5977         28        256: 66% ━━━━━━━━──── 343/512 5.9it/s 1:05<28.7s
+[K        1/1     0.748G      3.381      7.843    0.05003      1.475     0.5978         47        256: 67% ━━━━━━━━──── 344/512 6.0it/s 1:05<28.2s
+[K        1/1     0.748G       3.38      7.839    0.05004      1.474     0.5978         36        256: 67% ━━━━━━━━──── 345/512 6.4it/s 1:05<25.9s
+[K        1/1     0.748G       3.38      7.836    0.05001      1.473     0.5977         38        256: 67% ━━━━━━━━──── 346/512 6.5it/s 1:05<25.7s
+[K        1/1     0.748G       3.38      7.836       0.05      1.471     0.5977         33        256: 67% ━━━━━━━━──── 347/512 6.3it/s 1:05<26.1s
+[K        1/1     0.748G       3.38      7.836    0.04999       1.47     0.5977         52        256: 67% ━━━━━━━━──── 348/512 6.3it/s 1:06<25.9s
+[K        1/1     0.748G       3.38      7.835    0.04997      1.469     0.5977         46        256: 68% ━━━━━━━━──── 349/512 6.3it/s 1:06<25.8s
+[K        1/1     0.748G      3.381      7.836    0.04993      1.468     0.5977         59        256: 68% ━━━━━━━━──── 350/512 6.9it/s 1:06<23.5s
+[K        1/1     0.748G      3.381      7.836    0.04992      1.466     0.5977         45        256: 68% ━━━━━━━━──── 351/512 6.6it/s 1:06<24.5s
+[K        1/1     0.748G      3.381      7.834    0.04991      1.465     0.5977         43        256: 68% ━━━━━━━━──── 352/512 6.9it/s 1:06<23.3s
+[K        1/1     0.748G      3.379      7.834    0.04986      1.464     0.5977         44        256: 68% ━━━━━━━━──── 353/512 6.6it/s 1:06<24.1s
+[K        1/1     0.748G      3.379      7.835    0.04985      1.463     0.5977         44        256: 69% ━━━━━━━━──── 354/512 6.6it/s 1:07<24.0s
+[K        1/1     0.748G       3.38      7.832    0.04982      1.461     0.5977         53        256: 69% ━━━━━━━━──── 355/512 6.2it/s 1:07<25.5s
+[K        1/1     0.748G      3.379       7.83    0.04979       1.46     0.5977         40        256: 69% ━━━━━━━━──── 356/512 6.5it/s 1:07<24.1s
+[K        1/1     0.748G       3.38      7.829    0.04976      1.459     0.5977         48        256: 69% ━━━━━━━━──── 357/512 6.6it/s 1:07<23.6s
+[K        1/1     0.748G      3.379      7.828    0.04974      1.458     0.5977         44        256: 69% ━━━━━━━━──── 358/512 6.8it/s 1:07<22.7s
+[K        1/1     0.748G      3.378      7.827    0.04975      1.457     0.5976         37        256: 70% ━━━━━━━━──── 359/512 6.7it/s 1:07<22.7s
+[K        1/1     0.748G      3.378      7.824    0.04971      1.455     0.5976         56        256: 70% ━━━━━━━━──── 360/512 6.2it/s 1:07<24.5s
+[K        1/1     0.748G      3.377      7.823    0.04968      1.454     0.5976         95        256: 70% ━━━━━━━━──── 361/512 6.6it/s 1:08<22.7s
+[K        1/1     0.748G      3.376      7.822    0.04966      1.453     0.5976         64        256: 70% ━━━━━━━━──── 362/512 7.1it/s 1:08<21.2s
+[K        1/1     0.748G      3.375      7.823    0.04966      1.452     0.5976         64        256: 70% ━━━━━━━━╸─── 363/512 6.5it/s 1:08<22.8s
+[K        1/1     0.748G      3.376      7.823    0.04966      1.451     0.5976         62        256: 71% ━━━━━━━━╸─── 364/512 6.4it/s 1:08<23.1s
+[K        1/1     0.748G      3.377       7.82    0.04964      1.449     0.5976        102        256: 71% ━━━━━━━━╸─── 365/512 5.9it/s 1:08<24.9s
+[K        1/1     0.748G      3.377      7.818    0.04968      1.448     0.5976         22        256: 71% ━━━━━━━━╸─── 366/512 5.8it/s 1:08<25.2s
+[K        1/1     0.748G      3.376      7.817    0.04965      1.447     0.5976         51        256: 71% ━━━━━━━━╸─── 367/512 5.8it/s 1:09<24.9s
+[K        1/1     0.748G      3.377      7.816    0.04963      1.446     0.5976         86        256: 71% ━━━━━━━━╸─── 368/512 6.0it/s 1:09<24.2s
+[K        1/1     0.748G      3.376      7.814     0.0496      1.445     0.5976         65        256: 72% ━━━━━━━━╸─── 369/512 5.8it/s 1:09<24.6s
+[K        1/1     0.748G      3.377      7.811     0.0496      1.444     0.5976         39        256: 72% ━━━━━━━━╸─── 370/512 5.5it/s 1:09<26.0s
+[K        1/1     0.748G      3.378      7.809    0.04958      1.443     0.5976         80        256: 72% ━━━━━━━━╸─── 371/512 5.5it/s 1:09<25.7s
+[K        1/1     0.748G      3.377      7.808    0.04954      1.441     0.5976         71        256: 72% ━━━━━━━━╸─── 372/512 5.6it/s 1:10<24.9s
+[K        1/1     0.748G      3.378      7.808    0.04952       1.44     0.5976         42        256: 72% ━━━━━━━━╸─── 373/512 6.0it/s 1:10<23.1s
+[K        1/1     0.748G      3.378      7.805    0.04953      1.439     0.5976         40        256: 73% ━━━━━━━━╸─── 374/512 6.4it/s 1:10<21.7s
+[K        1/1     0.748G      3.378      7.803    0.04958      1.438     0.5976         42        256: 73% ━━━━━━━━╸─── 375/512 6.0it/s 1:10<23.0s
+[K        1/1     0.748G      3.377      7.803    0.04956      1.437     0.5976         72        256: 73% ━━━━━━━━╸─── 376/512 6.1it/s 1:10<22.3s
+[K        1/1     0.748G      3.377      7.803    0.04957      1.436     0.5976         32        256: 73% ━━━━━━━━╸─── 377/512 6.5it/s 1:10<20.8s
+[K        1/1     0.748G      3.377      7.803    0.04959      1.435     0.5976         42        256: 73% ━━━━━━━━╸─── 378/512 6.4it/s 1:10<20.8s
+[K        1/1     0.748G      3.378      7.804    0.04962      1.434     0.5976         44        256: 74% ━━━━━━━━╸─── 379/512 6.8it/s 1:11<19.5s
+[K        1/1     0.748G      3.377      7.804     0.0496      1.433     0.5976         85        256: 74% ━━━━━━━━╸─── 380/512 6.6it/s 1:11<19.9s
+[K        1/1     0.748G      3.377      7.805    0.04958      1.432     0.5976         73        256: 74% ━━━━━━━━╸─── 381/512 6.8it/s 1:11<19.2s
+[K        1/1     0.748G      3.377      7.807    0.04956      1.431     0.5976         77        256: 74% ━━━━━━━━╸─── 382/512 6.8it/s 1:11<19.1s
+[K        1/1     0.748G      3.378      7.805    0.04958      1.429     0.5976         52        256: 74% ━━━━━━━━╸─── 383/512 6.8it/s 1:11<19.1s
+[K        1/1     0.748G      3.378      7.804    0.04956      1.428     0.5976         40        256: 75% ━━━━━━━━━─── 384/512 6.9it/s 1:11<18.6s
+[K        1/1     0.748G      3.378      7.803    0.04954      1.427     0.5976         93        256: 75% ━━━━━━━━━─── 385/512 6.3it/s 1:12<20.2s
+[K        1/1     0.748G      3.378      7.803    0.04953      1.426     0.5976         97        256: 75% ━━━━━━━━━─── 386/512 6.4it/s 1:12<19.8s
+[K        1/1     0.748G      3.378      7.802    0.04949      1.425     0.5976         52        256: 75% ━━━━━━━━━─── 387/512 6.3it/s 1:12<19.7s
+[K        1/1     0.748G      3.377      7.803     0.0495      1.424     0.5976         30        256: 75% ━━━━━━━━━─── 388/512 6.3it/s 1:12<19.6s
+[K        1/1     0.748G      3.379      7.801    0.04949      1.423     0.5976         73        256: 75% ━━━━━━━━━─── 389/512 6.6it/s 1:12<18.7s
+[K        1/1     0.748G      3.379        7.8     0.0495      1.422     0.5976         86        256: 76% ━━━━━━━━━─── 390/512 6.4it/s 1:12<19.2s
+[K        1/1     0.748G      3.379        7.8    0.04947      1.421     0.5976         51        256: 76% ━━━━━━━━━─── 391/512 6.7it/s 1:12<18.0s
+[K        1/1     0.748G      3.379        7.8    0.04944       1.42     0.5976         54        256: 76% ━━━━━━━━━─── 392/512 6.7it/s 1:13<17.8s
+[K        1/1     0.748G      3.379        7.8    0.04941      1.419     0.5976         62        256: 76% ━━━━━━━━━─── 393/512 6.5it/s 1:13<18.2s
+[K        1/1     0.748G      3.379      7.797    0.04941      1.418     0.5976         43        256: 76% ━━━━━━━━━─── 394/512 6.6it/s 1:13<18.0s
+[K        1/1     0.748G       3.38      7.796    0.04942      1.417     0.5976         60        256: 77% ━━━━━━━━━─── 395/512 6.3it/s 1:13<18.6s
+[K        1/1     0.748G      3.379      7.794    0.04941      1.416     0.5976         42        256: 77% ━━━━━━━━━─── 396/512 6.7it/s 1:13<17.3s
+[K        1/1     0.748G      3.379      7.793    0.04943      1.415     0.5976         31        256: 77% ━━━━━━━━━─── 397/512 6.7it/s 1:13<17.1s
+[K        1/1     0.748G      3.379      7.793    0.04941      1.414     0.5976         79        256: 77% ━━━━━━━━━─── 398/512 6.7it/s 1:14<16.9s
+[K        1/1     0.748G       3.38      7.791    0.04945      1.413     0.5976         36        256: 77% ━━━━━━━━━─── 399/512 6.8it/s 1:14<16.6s
+[K        1/1     0.748G      3.379      7.789    0.04943      1.412     0.5976         43        256: 78% ━━━━━━━━━─── 400/512 6.6it/s 1:14<17.0s
+[K        1/1     0.748G      3.379       7.79    0.04939      1.411     0.5976         53        256: 78% ━━━━━━━━━─── 401/512 6.8it/s 1:14<16.4s
+[K        1/1     0.748G      3.379      7.787    0.04938       1.41     0.5976         40        256: 78% ━━━━━━━━━─── 402/512 6.9it/s 1:14<15.9s
+[K        1/1     0.748G      3.379      7.786    0.04936      1.409     0.5976         50        256: 78% ━━━━━━━━━─── 403/512 7.2it/s 1:14<15.1s
+[K        1/1     0.748G      3.379      7.786    0.04932      1.408     0.5976         51        256: 78% ━━━━━━━━━─── 404/512 7.1it/s 1:14<15.1s
+[K        1/1     0.748G      3.379      7.787     0.0493      1.407     0.5976         35        256: 79% ━━━━━━━━━─── 405/512 6.6it/s 1:15<16.2s
+[K        1/1     0.748G      3.379      7.788    0.04929      1.406     0.5976         64        256: 79% ━━━━━━━━━╸── 406/512 6.8it/s 1:15<15.5s
+[K        1/1     0.748G       3.38      7.789     0.0493      1.405     0.5976         60        256: 79% ━━━━━━━━━╸── 407/512 6.9it/s 1:15<15.2s
+[K        1/1     0.748G      3.381      7.786    0.04926      1.404     0.5976         55        256: 79% ━━━━━━━━━╸── 408/512 7.0it/s 1:15<14.8s
+[K        1/1     0.748G       3.38      7.786    0.04927      1.403     0.5976         15        256: 79% ━━━━━━━━━╸── 409/512 6.9it/s 1:15<15.0s
+[K        1/1     0.748G      3.379      7.786    0.04927      1.402     0.5976         34        256: 80% ━━━━━━━━━╸── 410/512 6.4it/s 1:15<16.0s
+[K        1/1     0.748G      3.379      7.785    0.04928      1.401     0.5976         58        256: 80% ━━━━━━━━━╸── 411/512 6.6it/s 1:15<15.4s
+[K        1/1     0.748G      3.379      7.784    0.04926        1.4     0.5976         80        256: 80% ━━━━━━━━━╸── 412/512 6.8it/s 1:16<14.8s
+[K        1/1     0.748G       3.38      7.783    0.04927      1.399     0.5976         56        256: 80% ━━━━━━━━━╸── 413/512 6.9it/s 1:16<14.3s
+[K        1/1     0.748G      3.379      7.781    0.04923      1.399     0.5975         83        256: 80% ━━━━━━━━━╸── 414/512 6.6it/s 1:16<14.9s
+[K        1/1     0.748G      3.379       7.78     0.0492      1.398     0.5975         72        256: 81% ━━━━━━━━━╸── 415/512 6.1it/s 1:16<16.0s
+[K        1/1     0.748G       3.38       7.78    0.04919      1.397     0.5975         70        256: 81% ━━━━━━━━━╸── 416/512 6.0it/s 1:16<16.0s
+[K        1/1     0.748G      3.379      7.779    0.04916      1.396     0.5975        108        256: 81% ━━━━━━━━━╸── 417/512 6.4it/s 1:16<14.9s
+[K        1/1     0.748G      3.377      7.779    0.04913      1.395     0.5975         25        256: 81% ━━━━━━━━━╸── 418/512 6.6it/s 1:17<14.1s
+[K        1/1     0.748G      3.378      7.779    0.04914      1.394     0.5975         52        256: 81% ━━━━━━━━━╸── 419/512 6.7it/s 1:17<14.0s
+[K        1/1     0.748G      3.378      7.779    0.04914      1.393     0.5975         45        256: 82% ━━━━━━━━━╸── 420/512 6.3it/s 1:17<14.6s
+[K        1/1     0.748G      3.378       7.78    0.04911      1.392     0.5975         48        256: 82% ━━━━━━━━━╸── 421/512 6.3it/s 1:17<14.5s
+[K        1/1     0.748G      3.377       7.78     0.0491      1.391     0.5975         36        256: 82% ━━━━━━━━━╸── 422/512 6.3it/s 1:17<14.4s
+[K        1/1     0.748G      3.375      7.781     0.0491       1.39     0.5975         43        256: 82% ━━━━━━━━━╸── 423/512 6.5it/s 1:17<13.7s
+[K        1/1     0.748G      3.375      7.783    0.04909       1.39     0.5975         55        256: 82% ━━━━━━━━━╸── 424/512 6.9it/s 1:18<12.8s
+[K        1/1     0.748G      3.373      7.784    0.04906      1.389     0.5975         77        256: 83% ━━━━━━━━━╸── 425/512 6.7it/s 1:18<13.0s
+[K        1/1     0.748G      3.373      7.783    0.04907      1.388     0.5975         50        256: 83% ━━━━━━━━━╸── 426/512 7.1it/s 1:18<12.1s
+[K        1/1     0.748G      3.372      7.781    0.04907      1.387     0.5975         32        256: 83% ━━━━━━━━━━── 427/512 6.9it/s 1:18<12.2s
+[K        1/1     0.748G      3.373       7.78    0.04905      1.386     0.5975         66        256: 83% ━━━━━━━━━━── 428/512 6.5it/s 1:18<12.8s
+[K        1/1     0.748G      3.373       7.78    0.04905      1.385     0.5975         65        256: 83% ━━━━━━━━━━── 429/512 6.3it/s 1:18<13.1s
+[K        1/1     0.748G      3.374      7.779    0.04904      1.384     0.5975         49        256: 83% ━━━━━━━━━━── 430/512 5.8it/s 1:18<14.0s
+[K        1/1     0.748G      3.373      7.779    0.04903      1.384     0.5975         29        256: 84% ━━━━━━━━━━── 431/512 6.0it/s 1:19<13.5s
+[K        1/1     0.748G      3.372      7.778      0.049      1.383     0.5975         47        256: 84% ━━━━━━━━━━── 432/512 6.3it/s 1:19<12.8s
+[K        1/1     0.748G      3.372      7.776      0.049      1.382     0.5975         46        256: 84% ━━━━━━━━━━── 433/512 6.5it/s 1:19<12.2s
+[K        1/1     0.748G       3.37      7.776    0.04899      1.381     0.5975         40        256: 84% ━━━━━━━━━━── 434/512 6.7it/s 1:19<11.7s
+[K        1/1     0.748G      3.369      7.774    0.04901       1.38     0.5975         22        256: 84% ━━━━━━━━━━── 435/512 6.2it/s 1:19<12.4s
+[K        1/1     0.748G      3.368      7.772      0.049      1.379     0.5975         36        256: 85% ━━━━━━━━━━── 436/512 6.0it/s 1:19<12.7s
+[K        1/1     0.748G      3.367      7.772    0.04899      1.378     0.5975         29        256: 85% ━━━━━━━━━━── 437/512 6.0it/s 1:20<12.4s
+[K        1/1     0.748G      3.366      7.771    0.04901      1.378     0.5975         33        256: 85% ━━━━━━━━━━── 438/512 6.3it/s 1:20<11.7s
+[K        1/1     0.748G      3.365       7.77    0.04898      1.377     0.5975         81        256: 85% ━━━━━━━━━━── 439/512 6.6it/s 1:20<11.1s
+[K        1/1     0.748G      3.366      7.768    0.04897      1.376     0.5975         54        256: 85% ━━━━━━━━━━── 440/512 6.0it/s 1:20<12.0s
+[K        1/1     0.748G      3.365      7.766    0.04897      1.375     0.5975         38        256: 86% ━━━━━━━━━━── 441/512 5.9it/s 1:20<12.0s
+[K        1/1     0.748G      3.365      7.766    0.04895      1.374     0.5975         71        256: 86% ━━━━━━━━━━── 442/512 6.3it/s 1:20<11.2s
+[K        1/1     0.748G      3.365      7.766    0.04892      1.374     0.5975         86        256: 86% ━━━━━━━━━━── 443/512 6.2it/s 1:21<11.2s
+[K        1/1     0.748G      3.364      7.764    0.04891      1.373     0.5975         19        256: 86% ━━━━━━━━━━── 444/512 6.2it/s 1:21<11.0s
+[K        1/1     0.748G      3.364      7.762    0.04891      1.372     0.5975         42        256: 86% ━━━━━━━━━━── 445/512 6.1it/s 1:21<11.0s
+[K        1/1     0.748G      3.363      7.763    0.04893      1.371     0.5975         32        256: 87% ━━━━━━━━━━── 446/512 6.4it/s 1:21<10.4s
+[K        1/1     0.748G      3.363      7.761    0.04896       1.37     0.5975         16        256: 87% ━━━━━━━━━━── 447/512 6.6it/s 1:21<9.8s
+[K        1/1     0.748G      3.363      7.761    0.04893       1.37     0.5975         75        256: 87% ━━━━━━━━━━── 448/512 6.8it/s 1:21<9.4s
+[K        1/1     0.748G      3.363      7.758    0.04893      1.369     0.5975         63        256: 87% ━━━━━━━━━━╸─ 449/512 6.8it/s 1:22<9.2s
+[K        1/1     0.748G      3.362       7.76     0.0489      1.368     0.5975         40        256: 87% ━━━━━━━━━━╸─ 450/512 6.3it/s 1:22<9.8s
+[K        1/1     0.748G      3.362      7.759    0.04889      1.367     0.5975         99        256: 88% ━━━━━━━━━━╸─ 451/512 6.3it/s 1:22<9.7s
+[K        1/1     0.748G      3.362      7.759    0.04889      1.366     0.5975         37        256: 88% ━━━━━━━━━━╸─ 452/512 6.6it/s 1:22<9.1s
+[K        1/1     0.748G      3.362      7.758    0.04888      1.366     0.5975         76        256: 88% ━━━━━━━━━━╸─ 453/512 6.2it/s 1:22<9.5s
+[K        1/1     0.748G      3.362      7.757    0.04885      1.365     0.5975         81        256: 88% ━━━━━━━━━━╸─ 454/512 5.9it/s 1:22<9.8s
+[K        1/1     0.748G      3.361      7.754    0.04884      1.364     0.5975         57        256: 88% ━━━━━━━━━━╸─ 455/512 5.5it/s 1:23<10.4s
+[K        1/1     0.748G      3.361      7.753    0.04881      1.363     0.5975         65        256: 89% ━━━━━━━━━━╸─ 456/512 5.6it/s 1:23<10.0s
+[K        1/1     0.748G      3.361      7.751    0.04881      1.362     0.5975         89        256: 89% ━━━━━━━━━━╸─ 457/512 5.6it/s 1:23<9.8s
+[K        1/1     0.748G       3.36      7.749     0.0488      1.362     0.5975         69        256: 89% ━━━━━━━━━━╸─ 458/512 6.1it/s 1:23<8.8s
+[K        1/1     0.748G      3.359      7.748    0.04881      1.361     0.5975         43        256: 89% ━━━━━━━━━━╸─ 459/512 6.4it/s 1:23<8.3s
+[K        1/1     0.748G      3.359      7.747    0.04882       1.36     0.5975         28        256: 89% ━━━━━━━━━━╸─ 460/512 6.2it/s 1:23<8.4s
+[K        1/1     0.748G      3.358      7.746    0.04879      1.359     0.5975         48        256: 90% ━━━━━━━━━━╸─ 461/512 6.6it/s 1:24<7.7s
+[K        1/1     0.748G      3.358      7.744    0.04879      1.359     0.5975         29        256: 90% ━━━━━━━━━━╸─ 462/512 7.3it/s 1:24<6.9s
+[K        1/1     0.748G      3.357      7.743    0.04879      1.358     0.5975         33        256: 90% ━━━━━━━━━━╸─ 463/512 7.1it/s 1:24<6.9s
+[K        1/1     0.748G      3.357      7.742    0.04878      1.357     0.5975         87        256: 90% ━━━━━━━━━━╸─ 464/512 7.2it/s 1:24<6.7s
+[K        1/1     0.748G      3.357       7.74    0.04876      1.356     0.5975         35        256: 90% ━━━━━━━━━━╸─ 465/512 7.2it/s 1:24<6.5s
+[K        1/1     0.748G      3.357       7.74    0.04876      1.356     0.5975         41        256: 91% ━━━━━━━━━━╸─ 466/512 6.9it/s 1:24<6.7s
+[K        1/1     0.748G      3.356      7.739    0.04875      1.355     0.5974         58        256: 91% ━━━━━━━━━━╸─ 467/512 6.6it/s 1:24<6.8s
+[K        1/1     0.748G      3.355      7.739    0.04875      1.354     0.5975         42        256: 91% ━━━━━━━━━━╸─ 468/512 6.4it/s 1:25<6.9s
+[K        1/1     0.748G      3.354      7.737    0.04877      1.353     0.5974         29        256: 91% ━━━━━━━━━━╸─ 469/512 6.6it/s 1:25<6.5s
+[K        1/1     0.748G      3.354      7.735    0.04875      1.353     0.5974         38        256: 91% ━━━━━━━━━━━─ 470/512 6.8it/s 1:25<6.2s
+[K        1/1     0.748G      3.353      7.735    0.04876      1.352     0.5974         32        256: 91% ━━━━━━━━━━━─ 471/512 6.8it/s 1:25<6.0s
+[K        1/1     0.748G      3.352      7.734    0.04875      1.351     0.5974         23        256: 92% ━━━━━━━━━━━─ 472/512 6.6it/s 1:25<6.1s
+[K        1/1     0.748G      3.351      7.734    0.04872      1.351     0.5974         39        256: 92% ━━━━━━━━━━━─ 473/512 6.8it/s 1:25<5.8s
+[K        1/1     0.748G       3.35      7.732     0.0487       1.35     0.5974         47        256: 92% ━━━━━━━━━━━─ 474/512 6.8it/s 1:25<5.6s
+[K        1/1     0.748G      3.349       7.73    0.04868      1.349     0.5974         41        256: 92% ━━━━━━━━━━━─ 475/512 6.8it/s 1:26<5.5s
+[K        1/1     0.748G      3.349      7.728    0.04867      1.348     0.5974         52        256: 92% ━━━━━━━━━━━─ 476/512 6.6it/s 1:26<5.5s
+[K        1/1     0.748G      3.348      7.728    0.04866      1.348     0.5974         28        256: 93% ━━━━━━━━━━━─ 477/512 6.7it/s 1:26<5.2s
+[K        1/1     0.748G      3.347      7.728    0.04865      1.347     0.5974         25        256: 93% ━━━━━━━━━━━─ 478/512 6.3it/s 1:26<5.4s
+[K        1/1     0.748G      3.346      7.725    0.04866      1.346     0.5974         30        256: 93% ━━━━━━━━━━━─ 479/512 6.4it/s 1:26<5.2s
+[K        1/1     0.748G      3.345      7.724    0.04865      1.346     0.5974         26        256: 93% ━━━━━━━━━━━─ 480/512 6.6it/s 1:26<4.8s
+[K        1/1     0.748G      3.345      7.723    0.04863      1.345     0.5974         41        256: 93% ━━━━━━━━━━━─ 481/512 6.7it/s 1:27<4.6s
+[K        1/1     0.748G      3.344      7.723    0.04862      1.344     0.5974         50        256: 94% ━━━━━━━━━━━─ 482/512 6.6it/s 1:27<4.5s
+[K        1/1     0.748G      3.344      7.722    0.04865      1.344     0.5974         22        256: 94% ━━━━━━━━━━━─ 483/512 6.6it/s 1:27<4.4s
+[K        1/1     0.748G      3.343      7.723    0.04865      1.343     0.5974         44        256: 94% ━━━━━━━━━━━─ 484/512 6.4it/s 1:27<4.4s
+[K        1/1     0.748G      3.344      7.722    0.04866      1.342     0.5974         65        256: 94% ━━━━━━━━━━━─ 485/512 6.4it/s 1:27<4.2s
+[K        1/1     0.748G      3.343       7.72    0.04866      1.341     0.5974         27        256: 94% ━━━━━━━━━━━─ 486/512 6.3it/s 1:27<4.1s
+[K        1/1     0.748G      3.342      7.721    0.04866      1.341     0.5974         41        256: 95% ━━━━━━━━━━━─ 487/512 6.2it/s 1:27<4.1s
+[K        1/1     0.748G      3.341      7.721    0.04863       1.34     0.5973         58        256: 95% ━━━━━━━━━━━─ 488/512 6.0it/s 1:28<4.0s
+[K        1/1     0.748G       3.34      7.719    0.04862      1.339     0.5973         53        256: 95% ━━━━━━━━━━━─ 489/512 6.6it/s 1:28<3.5s
+[K        1/1     0.748G       3.34      7.718    0.04859      1.339     0.5973         46        256: 95% ━━━━━━━━━━━─ 490/512 6.4it/s 1:28<3.5s
+[K        1/1     0.748G       3.34      7.717    0.04856      1.338     0.5973         87        256: 95% ━━━━━━━━━━━╸ 491/512 6.6it/s 1:28<3.2s
+[K        1/1     0.748G       3.34      7.716    0.04853      1.337     0.5973        128        256: 96% ━━━━━━━━━━━╸ 492/512 6.7it/s 1:28<3.0s
+[K        1/1     0.748G       3.34      7.715    0.04852      1.337     0.5973         48        256: 96% ━━━━━━━━━━━╸ 493/512 6.5it/s 1:28<2.9s
+[K        1/1     0.748G      3.341      7.714    0.04855      1.336     0.5973         24        256: 96% ━━━━━━━━━━━╸ 494/512 6.8it/s 1:29<2.7s
+[K        1/1     0.748G      3.341      7.712    0.04855      1.335     0.5973         49        256: 96% ━━━━━━━━━━━╸ 495/512 6.9it/s 1:29<2.5s
+[K        1/1     0.748G      3.341       7.71    0.04852      1.335     0.5973         79        256: 96% ━━━━━━━━━━━╸ 496/512 6.6it/s 1:29<2.4s
+[K        1/1     0.748G       3.34      7.707    0.04847      1.334     0.5973         42        256: 97% ━━━━━━━━━━━╸ 497/512 6.8it/s 1:29<2.2s
+[K        1/1     0.748G       3.34      7.707    0.04845      1.333     0.5973         58        256: 97% ━━━━━━━━━━━╸ 498/512 6.5it/s 1:29<2.1s
+[K        1/1     0.748G      3.339      7.706    0.04843      1.333     0.5973         50        256: 97% ━━━━━━━━━━━╸ 499/512 6.3it/s 1:29<2.1s
+[K        1/1     0.748G       3.34      7.704    0.04842      1.332     0.5973         67        256: 97% ━━━━━━━━━━━╸ 500/512 6.4it/s 1:29<1.9s
+[K        1/1     0.748G       3.34      7.704     0.0484      1.331     0.5973         26        256: 97% ━━━━━━━━━━━╸ 501/512 6.6it/s 1:30<1.7s
+[K        1/1     0.748G      3.341      7.703    0.04837      1.331     0.5973         53        256: 98% ━━━━━━━━━━━╸ 502/512 6.4it/s 1:30<1.6s
+[K        1/1     0.748G       3.34      7.701    0.04834       1.33     0.5973         61        256: 98% ━━━━━━━━━━━╸ 503/512 6.1it/s 1:30<1.5s
+[K        1/1     0.748G       3.34      7.701    0.04836      1.329     0.5973         39        256: 98% ━━━━━━━━━━━╸ 504/512 6.4it/s 1:30<1.3s
+[K        1/1     0.748G       3.34      7.698    0.04837      1.329     0.5973         31        256: 98% ━━━━━━━━━━━╸ 505/512 6.5it/s 1:30<1.1s
+[K        1/1     0.748G      3.339      7.696    0.04835      1.328     0.5973         26        256: 98% ━━━━━━━━━━━╸ 506/512 6.8it/s 1:30<0.9s
+[K        1/1     0.748G       3.34      7.693    0.04833      1.327     0.5973         42        256: 99% ━━━━━━━━━━━╸ 507/512 7.2it/s 1:31<0.7s
+[K        1/1     0.748G      3.339      7.695    0.04833      1.327     0.5973         38        256: 99% ━━━━━━━━━━━╸ 508/512 6.7it/s 1:31<0.6s
+[K        1/1     0.748G      3.338      7.693    0.04831      1.326     0.5973         18        256: 99% ━━━━━━━━━━━╸ 509/512 6.5it/s 1:31<0.5s
+[K        1/1     0.748G      3.337      7.692     0.0483      1.326     0.5973         70        256: 99% ━━━━━━━━━━━╸ 510/512 6.2it/s 1:31<0.3s
+[K        1/1     0.748G      3.337      7.692    0.04829      1.325     0.5973         26        256: 99% ━━━━━━━━━━━╸ 511/512 5.8it/s 1:31<0.2s
+[K        1/1     0.748G      3.337      7.692    0.04829      1.325     0.5973         26        256: 100% ━━━━━━━━━━━━ 512/512 5.6it/s 1:31
+
+1 epochs completed in 0.026 hours.
+ Learn more at https://docs.ultralytics.com/modes/train
