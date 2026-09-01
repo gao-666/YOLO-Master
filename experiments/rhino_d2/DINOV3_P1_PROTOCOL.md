@@ -44,6 +44,10 @@ OFF 与 ON 从同一权重资产、同一模型构造和同一 seed 开始。正
 
 若没有候选入区间，停止正式 P1，先报告 `no_candidate_in_band`；不得看 AP 后扩展候选。选定后生成正式 ON 配置、做 fail-closed pair audit 并 commit，三 seed 完成前不再修改 protocol。
 
+### 标定结果（2026-09-01）
+
+四个候选 ratio 分别为 `0.002623 / 0.006606 / 0.013207 / 0.026325`，均未进入 `[0.03,0.06]`，因此正式 P1 继续停止。完整证据与可能的 protocol correction 边界见 [`DINOV3_P1_CALIBRATION.md`](DINOV3_P1_CALIBRATION.md)。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

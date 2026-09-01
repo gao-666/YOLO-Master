@@ -240,3 +240,25 @@ def test_v3_p1_calibration_changes_only_treatment_budget_and_output_from_off():
     assert calibration["foundation_loss"] == "cosine"
     assert calibration["foundation_teacher_dtype"] == "bf16"
     assert calibration["val"] is False
+
+
+def test_v3_p1_calibration_fails_closed_without_consulting_validation_ap():
+    """No in-band candidate must keep formal P1 locked with complete evidence."""
+    result = load_result("d2_v3_p1_weight_calibration.json")
+    assert result["status"] == "no_candidate_in_band"
+    assert result["selection_contract"]["uses_validation_metric"] is False
+    assert result["selection_contract"]["candidate_weights"] == [0.01, 0.025, 0.05, 0.1]
+    assert result["selected_weight"] is None
+    assert result["formal_p1_training_allowed"] is False
+    assert result["source_state"]["commit"] == "9c5f63b9d3c47cd4d4ee9fcc0daea27bf2f57c7a"
+    assert result["source_state"]["experiment_inputs_dirty"] is False
+    labels = {0.01: "0p01", 0.025: "0p025", 0.05: "0p05", 0.1: "0p1"}
+    for record in result["records"]:
+        assert record["uses_validation"] is False
+        assert record["mechanism_identity"]["passed"] is True
+        assert record["foundation_task_ratio"] < 0.03
+        label = labels[record["weight"]]
+        for suffix, digest_key in (("csv", "results_sha256"), ("args.yaml", "args_sha256"), ("log", "log_sha256")):
+            path = ROOT / "results" / f"d2_v3_calibration_w{label}_s20260824.{suffix}"
+            assert path.is_file()
+            assert sha256(path) == record[digest_key]

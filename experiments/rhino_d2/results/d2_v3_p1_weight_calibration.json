@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "status": "no_candidate_in_band",
+  "claim": "train_only_signal_calibration_not_detection_or_kd_efficacy",
+  "selection_contract": {
+    "uses_validation_metric": false,
+    "epochs": 1,
+    "same_seed_initialization_data_and_order": true,
+    "candidate_weights": [
+      0.01,
+      0.025,
+      0.05,
+      0.1
+    ],
+    "target_foundation_task_ratio": [
+      0.03,
+      0.06
+    ],
+    "rule": "smallest candidate inside the frozen ratio band with mechanism identity passing"
+  },
+  "source_state": {
+    "commit": "9c5f63b9d3c47cd4d4ee9fcc0daea27bf2f57c7a",
+    "dirty": true,
+    "porcelain_sha256": "9f5de2fa13dff215b93a025b757264fdf6d61688b2d055880015d2bd9c2a5f25",
+    "experiment_inputs_dirty": false,
+    "experiment_inputs_porcelain_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "config": {
+    "path": "experiments\\rhino_d2\\configs\\d2_v3_p1_calibration.yaml",
+    "sha256": "7f21354b9939d2c4885b07df8f7ca61b44b10fe3ae5b9844225e138964bd9aef"
+  },
+  "records": [
+    {
+      "weight": 0.01,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\v3_p1_weight_calibration\\v3-calibration-w0p01-s20260824",
+      "args_sha256": "3e698cf6aa5021db736f4eaf0889e0dae6fcd2182731806ecdc6656d09597bdb",
+      "results_sha256": "e3b05c574e2184c3eeb6aaf298b6b665bcb398eb03b3852e9e80dbfe1f7c7b56",
+      "log": "runs\\rhino_d2\\logs\\v3-calibration-w0p01-s20260824.log",
+      "log_sha256": "8b56e5571a8887f58c8b41a2d67ba0dce82f1a61cb55435bcbe753dffdb5c834",
+      "started_utc": "2026-09-01T08:00:41.493419+00:00",
+      "finished_utc": "2026-09-01T08:02:12.551704+00:00",
+      "uses_validation": false,
+      "foundation_task_ratio": 0.00262319,
+      "foundation_loss": 0.0399036,
+      "task_loss": 15.211860368482647,
+      "mechanism_identity": {
+        "formula": "cosine_raw * weight * batch_size = foundation_loss",
+        "reconstructed": 0.039903640000000004,
+        "observed": 0.0399036,
+        "absolute_error": 4.000000000670134e-08,
+        "passed": true
+      }
+    },
+    {
+      "weight": 0.025,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\v3_p1_weight_calibration\\v3-calibration-w0p025-s20260824",
+      "args_sha256": "0077ec1af09947800f52e5abe705bbb0f91b22c8a33aaeeb170b9a39db6c1baa",
+      "results_sha256": "f41ac711070adf4e3489f500606ae5c65476cd778f145e55b3695f785eb2b771",
+      "log": "runs\\rhino_d2\\logs\\v3-calibration-w0p025-s20260824.log",
+      "log_sha256": "3ec86f9cd1527600459171e053d243317b803508e5633d2d5251d881a2c59b8e",
+      "started_utc": "2026-09-01T08:02:12.561704+00:00",
+      "finished_utc": "2026-09-01T08:03:34.204438+00:00",
+      "uses_validation": false,
+      "foundation_task_ratio": 0.00660571,
+      "foundation_loss": 0.0997795,
+      "task_loss": 15.105037914168197,
+      "mechanism_identity": {
+        "formula": "cosine_raw * weight * batch_size = foundation_loss",
+        "reconstructed": 0.09977950000000001,
+        "observed": 0.0997795,
+        "absolute_error": 1.3877787807814457e-17,
+        "passed": true
+      }
+    },
+    {
+      "weight": 0.05,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\v3_p1_weight_calibration\\v3-calibration-w0p05-s20260824",
+      "args_sha256": "069ef5ab210d110c7001de0e1918accaa72977881638144c2d12a85eb46bfd35",
+      "results_sha256": "c9322e304db8ad58aa4c1af5082140131729f4415ca2158fb615cc448c563925",
+      "log": "runs\\rhino_d2\\logs\\v3-calibration-w0p05-s20260824.log",
+      "log_sha256": "2291fc414e9bbbb2968ff9f6297404509dfd5f89f2cb03cc8a1091e496c39847",
+      "started_utc": "2026-09-01T08:03:34.214437+00:00",
+      "finished_utc": "2026-09-01T08:04:55.023629+00:00",
+      "uses_validation": false,
+      "foundation_task_ratio": 0.0132067,
+      "foundation_loss": 0.199645,
+      "task_loss": 15.116948215678406,
+      "mechanism_identity": {
+        "formula": "cosine_raw * weight * batch_size = foundation_loss",
+        "reconstructed": 0.1996454,
+        "observed": 0.199645,
+        "absolute_error": 4.0000000001150227e-07,
+        "passed": true
+      }
+    },
+    {
+      "weight": 0.1,
+      "seed": 20260824,
+      "run_dir": "runs\\rhino_d2\\v3_p1_weight_calibration\\v3-calibration-w0p1-s20260824",
+      "args_sha256": "dc41d311d920be468858d31c1daeb74e6348caf7daca4db3e267155a8bc98a8e",
+      "results_sha256": "daa3e9055a23ce07e8d7329b1b129dd00d24832d42786b7ee151c46f08a08022",
+      "log": "runs\\rhino_d2\\logs\\v3-calibration-w0p1-s20260824.log",
+      "log_sha256": "72c8673da9fdf4d943050d815e8acaa053df732599324dcc0dbe162eb2984603",
+      "started_utc": "2026-09-01T08:04:55.033629+00:00",
+      "finished_utc": "2026-09-01T08:06:16.817059+00:00",
+      "uses_validation": false,
+      "foundation_task_ratio": 0.0263252,
+      "foundation_loss": 0.398861,
+      "task_loss": 15.151299895157493,
+      "mechanism_identity": {
+        "formula": "cosine_raw * weight * batch_size = foundation_loss",
+        "reconstructed": 0.39886160000000004,
+        "observed": 0.398861,
+        "absolute_error": 6.000000000172534e-07,
+        "passed": true
+      }
+    }
+  ],
+  "selected_weight": null,
+  "formal_p1_training_allowed": false
+}

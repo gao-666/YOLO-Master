@@ -8,6 +8,8 @@
 
 2026-08-31 起的 DINOv3 复验是独立 protocol，不覆盖上述 DINOv2 历史证据。研究红线和 gate 顺序见 [`DINOv3_PROTOCOL.md`](DINOv3_PROTOCOL.md)，S/L BF16 与 P0 证据见 [`DINOv3_P0_EVIDENCE.md`](DINOv3_P0_EVIDENCE.md)。OFF-only 50 epoch baseline sanity 的失败结果与停止决定见 [`DINOv3_BASELINE_SANITY.md`](DINOv3_BASELINE_SANITY.md)。9 月 1 日的数据规模单变量诊断与两步停止规则见 [`BASELINE_RECOVERY_PROTOCOL.md`](BASELINE_RECOVERY_PROTOCOL.md)；Candidate A 的负结果见 [`BASELINE_RECOVERY_A.md`](BASELINE_RECOVERY_A.md)，Candidate B 的通过结果见 [`BASELINE_RECOVERY_B.md`](BASELINE_RECOVERY_B.md)。baseline admission 已通过，下一步冻结正式 DINOv3-S P1 protocol 与 train-only KD weight。
 
+正式 DINOv3-S P1 的冻结条件见 [`DINOV3_P1_PROTOCOL.md`](DINOV3_P1_PROTOCOL.md)。首轮 train-only 权重标定没有候选进入 `[3%,6%]`，证据见 [`DINOV3_P1_CALIBRATION.md`](DINOV3_P1_CALIBRATION.md)；因此正式三 seed ON/OFF 尚未启动。
+
 ## 准入状态
 
 | 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |
