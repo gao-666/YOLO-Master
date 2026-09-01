@@ -218,3 +218,25 @@ def test_recovery_b_passes_the_frozen_gate_and_archives_complete_evidence():
         path = REPO_ROOT / artifact["path"]
         assert path.is_file()
         assert sha256(path) == artifact["sha256"]
+
+
+def test_v3_p1_calibration_changes_only_treatment_budget_and_output_from_off():
+    """Calibration must inherit the qualified baseline and disable validation."""
+    off = load_yaml("d2_v3_p1_off.yaml")
+    calibration = load_yaml("d2_v3_p1_calibration.yaml")
+    differences = {key for key in set(off) | set(calibration) if off.get(key) != calibration.get(key)}
+    assert differences == {
+        "epochs",
+        "foundation_enabled",
+        "foundation_loss_weight",
+        "name",
+        "project",
+        "save",
+        "val",
+    }
+    assert off["pretrained"] == calibration["pretrained"] == "experiments/rhino_d2/cache/yolo26n.pt"
+    assert off["data"] == calibration["data"]
+    assert calibration["foundation_teacher"] == "dinov3"
+    assert calibration["foundation_loss"] == "cosine"
+    assert calibration["foundation_teacher_dtype"] == "bf16"
+    assert calibration["val"] is False

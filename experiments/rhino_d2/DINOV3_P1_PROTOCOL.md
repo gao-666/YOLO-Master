@@ -1,0 +1,57 @@
+# D2 DINOv3-S 正式 P1 Protocol
+
+## 准入与研究问题
+
+Candidate B 已通过预注册 baseline 工程门，因此 2026-09-01 起允许冻结正式 P1。P1 只回答：在同一可解释 Student baseline 上，单 stage DINOv3-S/16 特征蒸馏是否改善 YOLO-Master-N？
+
+Candidate B 本身不产生 KD 结论。DINOv3-L 保持 `ready-but-not-started`，直到 S 的三 seed Go/No-Go 完成。
+
+## 冻结共同条件
+
+| 项目 | 冻结值 |
+| --- | --- |
+| source protocol commit | 本文件、配置与标定脚本所在 commit；每次运行清单另记精确 commit/hash/dirty |
+| Student | `ultralytics/cfg/models/26/yolo26-master-n.yaml` |
+| Student init | Ultralytics YOLO26n v8.4.0 partial transfer；SHA-256 `9b09cc8b...4fef` |
+| init coverage | target `41.41%`、source `82.35%`；stem/shared-deep/head 100% |
+| dataset | frozen COCO mini train=2048、val=512；选择与 payload hash 见 dataset manifest |
+| budget | 50 epoch、imgsz=256、batch=4、workers=0 |
+| optimizer | SGD、lr0=0.01、AMP=false |
+| augmentation | hsv_h/s/v=`0.015/0.7/0.4`、translate=`0.1`、scale=`0.5`、fliplr=`0.5`、mosaic=`1.0`、close_mosaic=`10`；其余几何/mixup/cutmix/copy-paste 为 0 |
+| validation | 每 epoch；每个 seed 使用最后 10 epoch mAP50-95 中位数，不选 best epoch |
+| paired seeds | `20260824`、`20260825`、`20260826` |
+
+## Teacher 与 treatment
+
+| 项目 | 冻结值 |
+| --- | --- |
+| Teacher | `facebook/dinov3-vits16-pretrain-lvd1689m` |
+| local asset | `E:/2026YOLO/model_cache/dinov3-vits16-pretrain-lvd1689m`；仅本地加载 |
+| weights hash | `model.safetensors` SHA-256 `4610ad75...f91d` |
+| license | DINOv3 License；不是 Apache-2.0 |
+| dtype/device | BF16 / CUDA:0 |
+| Student stage | P4，256 输入时 `16×16` |
+| Teacher dense grid | patch16，256 输入时 `16×16`；禁止空间 resize |
+| projector | 1×1，align_dim=64 |
+| loss | cosine-only feature alignment；label detection loss 保持主任务正确性 |
+| KD weight | 先按下述 train-only 规则标定；未冻结前禁止正式 ON/OFF |
+
+OFF 与 ON 从同一权重资产、同一模型构造和同一 seed 开始。正式配对只允许 `foundation_enabled`、`foundation_loss_weight` 和输出 identity 不同；Teacher 元数据保留在 OFF 配置中但不会构造 Teacher。
+
+## Train-only KD weight 标定
+
+候选固定为 `0.01, 0.025, 0.05, 0.10`。每个候选使用相同 seed/init/data 训练 1 epoch，`val=false`、`save=false`。选择规则是：Foundation/task training-loss ratio 落在 `[0.03, 0.06]` 的**最小**候选，并且 loss 机制恒等式通过。不得读取或使用 validation AP。
+
+若没有候选入区间，停止正式 P1，先报告 `no_candidate_in_band`；不得看 AP 后扩展候选。选定后生成正式 ON 配置、做 fail-closed pair audit 并 commit，三 seed 完成前不再修改 protocol。
+
+## 统计与 Go/No-Go
+
+对每个 seed 计算：
+
+`d_i = median_last10(ON_i mAP50-95) - median_last10(OFF_i mAP50-95)`。
+
+报告 mean Δ、sample SD、paired 95% CI。Go：mean Δ `>=0.003` 且 CI 下界 `>0`。No-Go：`|mean Δ|<0.003` 且 CI 含 0。其余为 inconclusive；结果模糊时增加 seed，不修改判读线。
+
+## 停止规则
+
+在 S 主实验结束前禁止 DINOv3-L capacity、multi-stage、新 loss、align_dim 消融或基于 validation AP 调权。若正式 S 为 no-go，才进入 P2 的容量/维度/优化/数据机制诊断。
