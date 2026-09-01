@@ -173,3 +173,30 @@ def test_failed_recovery_a_gate_is_bound_to_complete_evidence_and_blocks_p1():
         path = REPO_ROOT / artifact["path"]
         assert path.is_file()
         assert sha256(path) == artifact["sha256"]
+
+
+def test_recovery_b_changes_only_student_initialization_and_output_identity():
+    """Candidate B must retain Candidate A data, budget, model, and gate."""
+    recovery_a = load_yaml("d2_v3_baseline_recovery_a.yaml")
+    recovery_b = load_yaml("d2_v3_baseline_recovery_b.yaml")
+    differences = {key for key in set(recovery_a) | set(recovery_b) if recovery_a.get(key) != recovery_b.get(key)}
+    assert differences == {"pretrained", "name", "project"}
+    assert recovery_b["model"] == "ultralytics/cfg/models/26/yolo26-master-n.yaml"
+    assert recovery_b["pretrained"] == "experiments/rhino_d2/cache/yolo26n.pt"
+    assert recovery_b["foundation_enabled"] is False
+
+
+def test_candidate_b_initialization_audit_passes_without_replacing_student():
+    """Partial transfer must cover all shared families before Candidate B training."""
+    result = load_result("d2_v3_student_init_audit.json")
+    assert result["status"] == "passed"
+    assert result["source"]["sha256"] == "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"
+    assert result["target"]["architecture_replaced"] is False
+    assert result["observations"]["target_parameter_coverage"] >= 0.40
+    assert result["observations"]["source_parameter_coverage"] >= 0.80
+    assert result["observations"]["groups"]["stem"]["coverage"] == 1.0
+    assert result["observations"]["groups"]["shared_deep_backbone"]["coverage"] == 1.0
+    assert result["observations"]["groups"]["head"]["coverage"] == 1.0
+    assert all(result["checks"].values())
+    assert result["decision"]["candidate_b_training_allowed"] is True
+    assert result["decision"]["formal_p1_unlocked"] is False

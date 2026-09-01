@@ -1,0 +1,36 @@
+# Baseline Recovery candidate B: relative to candidate A, change only Student initialization and output identity.
+model: ultralytics/cfg/models/26/yolo26-master-n.yaml
+data: experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901.yaml
+task: detect
+mode: train
+epochs: 50
+imgsz: 256
+batch: 4
+workers: 0
+device: 0
+seed: 20260824
+deterministic: true
+pretrained: experiments/rhino_d2/cache/yolo26n.pt
+optimizer: SGD
+lr0: 0.01
+amp: false
+val: true
+plots: false
+save: true
+save_period: 1
+project: runs/rhino_d2/v3_baseline_recovery_b
+name: v3-baseline-recovery-b-s20260824
+foundation_enabled: false
+foundation_teacher: none
+foundation_backend: transformers
+foundation_model:
+foundation_target_levels: [p4]
+foundation_align_dim: 64
+foundation_loss: hybrid
+foundation_loss_weight: 0.0
+foundation_cosine_weight: 1.0
+foundation_relation_weight: 1.0
+foundation_relation_mode: sampled
+foundation_relation_samples: 64
+foundation_teacher_dtype: fp32
+foundation_teacher_device: 0

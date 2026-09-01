@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "claim": "candidate_b_initialization_compatibility_not_detection_or_kd_efficacy",
+  "source": {
+    "name": "Ultralytics YOLO26n",
+    "release": "ultralytics/assets v8.4.0",
+    "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt",
+    "license": "AGPL-3.0",
+    "bytes": 5544453,
+    "sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "payload_committed": false
+  },
+  "target": {
+    "name": "YOLO-Master-N",
+    "config": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
+    "config_sha256": "be403b10940030d6eb960f3e82cc40b1e142ab28bb8e16010f0ba1d95cb60306",
+    "architecture_replaced": false
+  },
+  "pre_registered_qualification": {
+    "minimum_target_parameter_coverage": 0.4,
+    "minimum_source_parameter_coverage": 0.8,
+    "stem_must_be_fully_transferred": true,
+    "shared_deep_backbone_must_be_fully_transferred": true,
+    "head_must_be_fully_transferred": true
+  },
+  "observations": {
+    "matched_state_items": 599,
+    "target_state_items": 1164,
+    "matched_parameter_keys": 309,
+    "target_parameter_keys": 762,
+    "matched_parameter_numel": 2118296,
+    "source_parameter_numel": 2572280,
+    "target_parameter_numel": 5115336,
+    "source_parameter_coverage": 0.8235091047630896,
+    "target_parameter_coverage": 0.4141069130160756,
+    "matched_parameter_keyset_sha256": "277256578640d904ff35c7ba69f7cd827723576e03ec3935d8f2448136083d79",
+    "groups": {
+      "stem": {
+        "matched_parameter_keys": 21,
+        "target_parameter_keys": 21,
+        "matched_parameter_numel": 48768,
+        "target_parameter_numel": 48768,
+        "coverage": 1.0
+      },
+      "moe_backbone": {
+        "matched_parameter_keys": 9,
+        "target_parameter_keys": 462,
+        "matched_parameter_numel": 5248,
+        "target_parameter_numel": 3002288,
+        "coverage": 0.0017480001918536796
+      },
+      "shared_deep_backbone": {
+        "matched_parameter_keys": 33,
+        "target_parameter_keys": 33,
+        "matched_parameter_numel": 857472,
+        "target_parameter_numel": 857472,
+        "coverage": 1.0
+      },
+      "head": {
+        "matched_parameter_keys": 246,
+        "target_parameter_keys": 246,
+        "matched_parameter_numel": 1206808,
+        "target_parameter_numel": 1206808,
+        "coverage": 1.0
+      }
+    }
+  },
+  "checks": {
+    "asset_size_matches": true,
+    "asset_sha256_matches": true,
+    "target_parameter_coverage_at_least_0p40": true,
+    "source_parameter_coverage_at_least_0p80": true,
+    "stem_fully_transferred": true,
+    "shared_deep_backbone_fully_transferred": true,
+    "head_fully_transferred": true
+  },
+  "decision": {
+    "candidate_b_training_allowed": true,
+    "formal_p1_unlocked": false
+  }
+}

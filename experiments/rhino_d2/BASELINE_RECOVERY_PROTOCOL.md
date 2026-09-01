@@ -51,6 +51,14 @@ Candidate A 完成 50/50 epoch，但后 10 epoch mAP50-95 中位数为 `0.00546`
 
 正式 P1 仍未解锁。下一步只审计并运行 Candidate B 的 Student 预训练初始化；详细证据和边界见 [`BASELINE_RECOVERY_A.md`](BASELINE_RECOVERY_A.md)。
 
+## Candidate B：训练前资格协议
+
+Candidate B 不替换 Student 架构。`model` 仍为 `yolo26-master-n.yaml`，仅通过训练器的 same-name/same-shape 迁移，把官方 Ultralytics YOLO26n 初始化加载到兼容参数；MoE 专属参数保持 Student 自己的初始化。
+
+资产冻结为 `ultralytics/assets` release `v8.4.0` 的 `yolo26n.pt`，SHA-256 为 `9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef`，许可记录为 AGPL-3.0，权重 payload 不提交 Git。训练前必须通过：目标参数覆盖率 `>=40%`、源参数覆盖率 `>=80%`，并且 stem、共享深层 backbone、完整检测 head 均 100% 迁移。覆盖不足时 Candidate B 不执行。
+
+资格门只回答初始化是否足够兼容，不回答检测或 KD 是否有效。Candidate B 与 A 仅允许 `pretrained/name/project` 不同；其中唯一研究变量是 `pretrained`，其余两项只隔离输出。
+
 ## 许可边界
 
 COCO 图像保留各自 Flickr 许可，使用者需遵守 COCO 官方 Terms of Use；COCO annotations 与 Ultralytics 转换标签资产有各自条款。本仓库不提交图像或标签 payload，只提交可复现选择与完整性哈希。该记录不是法律意见。
