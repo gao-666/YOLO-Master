@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "dataset_id": "d2_coco_mini_2048_seed20260901",
+  "protocol_role": "baseline_recovery_candidate_a_data_only",
+  "generator": {
+    "path": "experiments/rhino_d2/scripts/prepare_d2_coco_mini.py",
+    "sha256_lf_canonical": "2361be1ddac7336031c953dc6d03308efda4a3910f83b55b05ad2b38ae8cc378"
+  },
+  "dataset_root": "E:\\2026YOLO\\datasets\\coco_d2_mini_2048_seed20260901",
+  "source": {
+    "coco_terms": "https://cocodataset.org/#termsofuse",
+    "image_base_url": "http://images.cocodataset.org/{split}/{filename}",
+    "label_archive": {
+      "url": "https://github.com/ultralytics/assets/releases/download/v0.0.0/coco2017labels.zip",
+      "path": "E:\\2026YOLO\\datasets\\coco_d2_sources\\coco2017labels.zip",
+      "bytes": 48639045,
+      "sha256": "51a5175c894a7a1010f90eb4cba613473445f02633b684ed46c0292a997d0234"
+    },
+    "source_lists": {
+      "train2017": {
+        "count": 118287,
+        "sha256": "521d40ccd3df3ac9ba48c1be569828ed7e03b7b2d698186e830ae236364a985b"
+      },
+      "val2017": {
+        "count": 5000,
+        "sha256": "4d010d0d7200a7b9176acd164d36c9769350a2e41661152f2cf8ba16c9e2aa73"
+      }
+    },
+    "license_boundary": "COCO images retain their individual Flickr terms; COCO annotations and the Ultralytics label conversion asset have separate terms. No image or label payload is committed to Git."
+  },
+  "selection": {
+    "seed": 20260901,
+    "method": "independent split-specific SHA256-derived seed; random.sample; lexicographic output",
+    "splits": {
+      "train2017": {
+        "size": 2048,
+        "list_path": "experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901/train2017.txt",
+        "list_sha256_lf_canonical": "114efb611a22670567329a4794564a14bccaeacc02239b097cfc3abf17ef6e39",
+        "missing_label_count": 14
+      },
+      "val2017": {
+        "size": 512,
+        "list_path": "experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901/val2017.txt",
+        "list_sha256_lf_canonical": "e43d8874b2c46bb728683d925ea3e04bb9c96411d610f867ce2895d7752cdf36",
+        "missing_label_count": 7
+      }
+    }
+  },
+  "dataset_yaml": {
+    "path": "experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901.yaml",
+    "sha256_lf_canonical": "2f287ab822604a5b83f78d8ee2931bef19b5674f64f58c4ce0ad0198252bb570"
+  },
+  "payload": {
+    "images": {
+      "count": 2560,
+      "bytes": 415905150,
+      "inventory_sha256": "a8a267d23b3accc74ed583a50d676ffc8a27a7eeb6df126cb158d9d95cddd165"
+    },
+    "labels": {
+      "count": 2539,
+      "bytes": 732960,
+      "inventory_sha256": "766e731453a6fe436d076be624e9a83416c23d981861529c7991127b75c0e2ee"
+    },
+    "missing_images": 0
+  }
+}

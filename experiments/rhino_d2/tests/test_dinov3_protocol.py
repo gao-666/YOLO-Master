@@ -17,6 +17,12 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sha256_text_lf(path: Path) -> str:
+    """Hash UTF-8 text after cross-platform LF normalization."""
+    text = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
 def load_yaml(name: str) -> dict:
     """Load one D2 config."""
     value = yaml.safe_load((ROOT / "configs" / name).read_text(encoding="utf-8"))
@@ -115,3 +121,31 @@ def test_formal_v3_p1_configs_do_not_exist_before_baseline_gate_passes():
     """The failed sanity gate must leave formal DINOv3 ON/OFF inputs uncreated."""
     assert not (ROOT / "configs" / "d2_v3_off.yaml").exists()
     assert not (ROOT / "configs" / "d2_v3_vits16_on.yaml").exists()
+
+
+def test_recovery_a_changes_only_data_and_output_identity():
+    """Candidate A must isolate dataset scale from every training hyperparameter."""
+    sanity = load_yaml("d2_v3_off_sanity.yaml")
+    recovery = load_yaml("d2_v3_baseline_recovery_a.yaml")
+    differences = {key for key in set(sanity) | set(recovery) if sanity.get(key) != recovery.get(key)}
+    assert differences == {"data", "name", "project"}
+    assert recovery["pretrained"] is False
+    assert recovery["foundation_enabled"] is False
+
+
+def test_recovery_a_dataset_selection_and_payload_are_frozen():
+    """The committed lists and downloaded payload must match the frozen manifest."""
+    manifest_path = ROOT / "datasets/d2_coco_mini_2048_seed20260901/manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert manifest["protocol_role"] == "baseline_recovery_candidate_a_data_only"
+    generator = REPO_ROOT / manifest["generator"]["path"]
+    assert sha256_text_lf(generator) == manifest["generator"]["sha256_lf_canonical"]
+    assert manifest["selection"]["seed"] == 20260901
+    assert manifest["payload"]["missing_images"] == 0
+    assert manifest["payload"]["images"]["count"] == 2560
+    for split, expected_size in (("train2017", 2048), ("val2017", 512)):
+        record = manifest["selection"]["splits"][split]
+        path = REPO_ROOT / record["list_path"]
+        assert record["size"] == expected_size
+        assert len(path.read_text(encoding="utf-8").splitlines()) == expected_size
+        assert sha256_text_lf(path) == record["list_sha256_lf_canonical"]

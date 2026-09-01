@@ -37,9 +37,20 @@ def main() -> None:
     parser.add_argument("--late-window", type=int, default=10)
     parser.add_argument("--map-threshold", type=float, default=0.01)
     parser.add_argument("--loss-retention-max", type=float, default=0.90)
+    parser.add_argument("--output-name", default="d2_v3_baseline_sanity.json")
+    parser.add_argument(
+        "--failure-next-action",
+        choices=(
+            "improve_baseline_task_learning_signal_as_one_controlled_protocol_change",
+            "run_pretrained_candidate_b_on_same_dataset",
+        ),
+        default="improve_baseline_task_learning_signal_as_one_controlled_protocol_change",
+    )
     args = parser.parse_args()
     if args.late_window <= 0 or args.map_threshold <= 0 or not 0 < args.loss_retention_max < 1:
         parser.error("gate values must be positive and loss-retention-max must be below 1")
+    if Path(args.output_name).name != args.output_name or not args.output_name.endswith(".json"):
+        parser.error("--output-name must be one JSON filename without directories")
     run_dir = args.run_dir.resolve()
     if REPO_ROOT not in run_dir.parents:
         raise ValueError("run directory must stay inside the repository")
@@ -117,11 +128,7 @@ def main() -> None:
         },
         "decision": {
             "formal_p1_unlocked": all(checks.values()),
-            "next_action": (
-                "freeze_formal_p1_protocol"
-                if all(checks.values())
-                else "improve_baseline_task_learning_signal_as_one_controlled_protocol_change"
-            ),
+            "next_action": ("freeze_formal_p1_protocol" if all(checks.values()) else args.failure_next_action),
             "prohibited_until_gate_passes": [
                 "formal_off_vs_dinov3_s_training",
                 "validation_ap_based_kd_weight_selection",
@@ -130,7 +137,7 @@ def main() -> None:
             ],
         },
     }
-    output = EXPERIMENT_ROOT / "results" / "d2_v3_baseline_sanity.json"
+    output = EXPERIMENT_ROOT / "results" / args.output_name
     output.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(payload, indent=2, ensure_ascii=False))
     if payload["status"] != "passed":

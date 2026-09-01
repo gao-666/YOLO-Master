@@ -50,6 +50,7 @@
 - baseline sanity：**失败**。OFF-only 完成 50/50 epoch，但最后 10 epoch 的 mAP50-95 中位数为 `0.00000`，检测 loss 为 `9.28819→9.49694`（retention=`1.02247`），没有达到预注册工程门。
 - protocol freeze：未解锁；正式 P1 配置、KD weight 和 paired runs 均未创建或启动。
 - 当前结论：失败发生在无 Teacher 的检测 baseline，不能归因于 DINOv3，也不是 Foundation efficacy no-go。下一轮只允许单变量改善 baseline 任务学习信号，通过同一工程门后再冻结 P1。
+- 2026-09-01：进入 Baseline Recovery / Protocol Qualification。Candidate A 只把数据改为冻结的 COCO mini；若失败，Candidate B 才允许只改变 Student 初始化。正式 P1 继续锁定。
 
 ## 判读规则
 

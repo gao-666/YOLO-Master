@@ -1,0 +1,50 @@
+# D2 Baseline Recovery / Protocol Qualification
+
+## 阶段定位
+
+DINOv3 S/L 的 BF16 与单 stage P0 已通过，但 `COCO128 + scratch + 50e` 的 OFF baseline 未通过预注册工程门。当前阶段只诊断 Student baseline，不产生 KD、Teacher capacity 或 DINOv3 efficacy 结论。
+
+## 诊断预算与停止规则
+
+只允许两项按顺序执行的单变量候选：
+
+1. **Candidate A（数据规模）**：从 COCO128 改为冻结的 COCO mini，其他训练项不变。
+2. **Candidate B（Student 初始化）**：仅当 A 失败时，在同一 COCO mini 上只把 scratch 改为许可与哈希明确的 Student 初始化。
+
+若 B 仍失败，停止 KD efficacy，转为数据、标签、loss、优化器、模型构造和评测管线的正控检查。禁止形成 epoch、optimizer、lr、imgsz、batch、pretrained、data 同时试探的无解释调参链。
+
+## Candidate A：2026-09-01 预注册
+
+研究问题：在保持 Student 与训练配方不变时，扩大并规范化数据是否足以让 OFF baseline 进入可解释区间？
+
+| 项目 | 冻结值 |
+| --- | --- |
+| 唯一研究变量 | `coco128.yaml` → `d2_coco_mini_2048_seed20260901.yaml` |
+| 数据来源 | COCO 2017 官方 train2017/val2017 split |
+| 子集 | train=2048，val=512，官方 split 互斥 |
+| 选择 | seed `20260901`；split-specific SHA-256 派生 seed；`random.sample`；输出排序 |
+| Student | `ultralytics/cfg/models/26/yolo26-master-n.yaml` |
+| 初始化 | scratch，`pretrained=false` |
+| 预算 | 50 epoch，batch=4，imgsz=256，workers=0 |
+| 优化 | SGD，lr0=0.01，AMP=false |
+| 训练 seed | `20260824`，deterministic=true |
+| Foundation | disabled；Teacher=none；weight=0 |
+| 评测 | 每 epoch val；不使用 best epoch 过门 |
+
+`d2_v3_baseline_recovery_a.yaml` 与失败的 `d2_v3_off_sanity.yaml` 只允许 `data/name/project` 不同。数据图像与标签不进入 Git；Git 只保存生成脚本、选择清单、dataset YAML、源/选择/payload 哈希清单。
+
+## 工程门与分叉
+
+继续使用既有门槛，不根据 Candidate A 结果修改：
+
+- 完成 50 epoch；
+- 最后 10 epoch mAP50-95 中位数 `>=0.01`；
+- 最后 10 epoch Precision、Recall 中位数均 `>0`；
+- final/initial detection loss `<=0.90`；
+- 不使用 best epoch 选择协议。
+
+若全部通过：将数据规模视为强解释，冻结新的 DINOv3 P1 protocol，再做不看 validation AP 的 DINOv3-S train-only KD weight calibration。若任一失败：不启动 KD，进入 Candidate B；数据、预算和工程门全部沿用 A，只允许 Student 初始化改变。
+
+## 许可边界
+
+COCO 图像保留各自 Flickr 许可，使用者需遵守 COCO 官方 Terms of Use；COCO annotations 与 Ultralytics 转换标签资产有各自条款。本仓库不提交图像或标签 payload，只提交可复现选择与完整性哈希。该记录不是法律意见。
