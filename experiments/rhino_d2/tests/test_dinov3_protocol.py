@@ -311,3 +311,33 @@ def test_formal_v3_p1_pair_validation_binds_current_files_and_allows_training():
         path = REPO_ROOT / record["path"]
         assert path.is_file()
         assert sha256(path) == record["sha256"]
+
+
+def test_v3_p1_first_pair_uses_registered_last10_metric_and_stays_pending():
+    """A single paired seed is directional evidence and cannot issue Go/No-Go."""
+    result = load_result("d2_v3_p1_first_pair.json")
+    assert result["status"] == "completed_first_of_three_paired_seeds"
+    assert result["protocol"]["paired_metric"] == "median_last10(metrics/mAP50-95(B))"
+    assert result["protocol"]["uses_best_epoch"] is False
+    assert result["pair"]["off_late_median_map50_95"] == 0.048125
+    assert result["pair"]["on_late_median_map50_95"] == 0.049464999999999995
+    assert result["pair"]["delta"] == 0.001339999999999994
+    assert result["decision"]["status"] == "pending_more_seeds"
+    assert result["decision"]["go_no_go_allowed"] is False
+    assert result["decision"]["required_next_seeds"] == [20260825, 20260826]
+
+
+def test_v3_p1_first_pair_binds_complete_logs_and_mechanism_identity():
+    """Both arms must be complete while only ON activates the distillation loss."""
+    result = load_result("d2_v3_p1_first_pair.json")
+    assert result["arms"]["off"]["foundation_loss_nonzero"] is False
+    assert result["arms"]["on"]["foundation_loss_nonzero"] is True
+    assert result["arms"]["on"]["foundation_loss_final"] < result["arms"]["on"]["foundation_loss_first"]
+    assert result["arms"]["off"]["source_commit"] == result["arms"]["on"]["source_commit"]
+    for arm in ("off", "on"):
+        assert all(result["arms"][arm]["checks"].values())
+        for artifact in result["arms"][arm]["artifacts"].values():
+            path = REPO_ROOT / artifact["path"]
+            assert path.is_file()
+            assert path.stat().st_size == artifact["bytes"]
+            assert sha256(path) == artifact["sha256"]

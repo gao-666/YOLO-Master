@@ -54,6 +54,10 @@ OFF 与 ON 从同一权重资产、同一模型构造和同一 seed 开始。正
 
 Pair validator 已通过，观察差异严格为 `foundation_enabled`、`foundation_loss_weight` 与输出 `name`；正式三 seed 训练已获准。审计证据见 [`results/d2_v3_p1_pair_validation.json`](results/d2_v3_p1_pair_validation.json)。
 
+### 正式训练进展（2026-09-01）
+
+第一组 paired seed `20260824` 已完成：OFF/ON 的末 10 轮 mAP50-95 中位数分别为 `0.048125 / 0.049465`，配对差值 `+0.001340`。当前仅为方向性单 seed 证据，状态保持 `pending_more_seeds`，不得计算或声称 Go/No-Go。完整说明见 [`DINOV3_P1_FIRST_PAIR.md`](DINOV3_P1_FIRST_PAIR.md)。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

@@ -1,0 +1,297 @@
+{
+  "schema_version": 2,
+  "arm": "v3-p1-on",
+  "seed": 20260824,
+  "config": "experiments\\rhino_d2\\configs\\d2_v3_p1_on.yaml",
+  "config_sha256": "ce191227535f1f4b7747538d305c9d42eaa635faf65b5fe685d1adc69f586166",
+  "command": [
+    "C:\\Users\\Administrator\\.conda\\envs\\yolo-master-d2\\Scripts\\yolo.exe",
+    "cfg=experiments\\rhino_d2\\configs\\d2_v3_p1_on.yaml",
+    "seed=20260824",
+    "name=v3-p1-on-s20260824",
+    "project=E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p1",
+    "exist_ok=False"
+  ],
+  "run_dir": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p1\\v3-p1-on-s20260824",
+  "log": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\logs\\v3-p1-on-s20260824.log",
+  "started_utc": "2026-09-01T09:19:00.403103+00:00",
+  "dry_run": false,
+  "source_state": {
+    "commit": "323ae1f8490b17737bf0fb62deae285025b2ffd6",
+    "dirty": true,
+    "porcelain_sha256": "9f5de2fa13dff215b93a025b757264fdf6d61688b2d055880015d2bd9c2a5f25",
+    "experiment_inputs_dirty": false,
+    "experiment_inputs_porcelain_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runner_sha256": "6425f995375ff3ac4dcdd069101784107c9bff984583cb4b1d0d19b8514bcc0b",
+  "finished_utc": "2026-09-01T10:19:03.828839+00:00",
+  "returncode": 0,
+  "log_sha256": "a02ee4d896e7f127bce7ab0dab5fdf27ded3b63cf0615d7cdbdb2a4a2f9182ac",
+  "checkpoints": [
+    {
+      "name": "best.pt",
+      "bytes": 10833469,
+      "sha256": "39bf42675d51f87bff923ab7f564181d3c4940cf1ca197544fe42fdda442fb8c"
+    },
+    {
+      "name": "epoch0.pt",
+      "bytes": 16288593,
+      "sha256": "a28841d32b8b42e3dc8cce1ea2a79d594560e239bd8c210dd6419c77cc4da95f"
+    },
+    {
+      "name": "epoch1.pt",
+      "bytes": 16288849,
+      "sha256": "e06f2f915fc3eec046a1490eaf065f7485547e997b9e10e1b99f5ac08bd77f98"
+    },
+    {
+      "name": "epoch10.pt",
+      "bytes": 21439937,
+      "sha256": "520a9f1895c8fec75d96e4e17601647c1bc7d990f5cce72c008a0ed2cf99a96d"
+    },
+    {
+      "name": "epoch11.pt",
+      "bytes": 21440257,
+      "sha256": "4683cd84500ff946738fb206467cbf380a681f403353d8b58fdb404b4296f71d"
+    },
+    {
+      "name": "epoch12.pt",
+      "bytes": 21440513,
+      "sha256": "36aad99cfcf44cd90afda710b23282e13035be45dc2d310c74240fccf4972d93"
+    },
+    {
+      "name": "epoch13.pt",
+      "bytes": 21440769,
+      "sha256": "805a8cc360f49cf7571826dfc4366c035fca18363423b9c789db30944590d778"
+    },
+    {
+      "name": "epoch14.pt",
+      "bytes": 21441089,
+      "sha256": "ce4994522fa17a6b6cf629746cdc1fcfd64fbe0f12d046310fe2e63a0ae972d0"
+    },
+    {
+      "name": "epoch15.pt",
+      "bytes": 21441345,
+      "sha256": "b38dbee04dae30422e0203f06393d19aeb77115ad5366f7a958332ecae2d0556"
+    },
+    {
+      "name": "epoch16.pt",
+      "bytes": 21441601,
+      "sha256": "510ace5402343fddd6421a82ebdcc0b69f3edfd7548b175efba1d0f019ba022c"
+    },
+    {
+      "name": "epoch17.pt",
+      "bytes": 21441921,
+      "sha256": "f323f2f0bcbe95d7cb42fb47ffd908eff4e0c0695d925bb71e05430197e7c89b"
+    },
+    {
+      "name": "epoch18.pt",
+      "bytes": 21442177,
+      "sha256": "9bdfc7d32b2fa6a8edd48e9e82d4a2d57000fcf7c69474096f1e45e9c88460d4"
+    },
+    {
+      "name": "epoch19.pt",
+      "bytes": 21442433,
+      "sha256": "0c7105f3224afeb0bbcd16b1060774a142d6c4bec982b89af2cd1a7818def358"
+    },
+    {
+      "name": "epoch2.pt",
+      "bytes": 16289169,
+      "sha256": "10412981fa866e51874863b78e1ee24c09db6002ee8621b8d4896db27ac17094"
+    },
+    {
+      "name": "epoch20.pt",
+      "bytes": 21442753,
+      "sha256": "bcaeb053df75977c20fc703e122c55e5667bb3301cbd073bdb0d4c89ed2fcdd8"
+    },
+    {
+      "name": "epoch21.pt",
+      "bytes": 21443009,
+      "sha256": "1106a89c48b950f88cc2137c4c360c7443a86a6a5fd6d915f89a73b907845454"
+    },
+    {
+      "name": "epoch22.pt",
+      "bytes": 21443329,
+      "sha256": "b7c88621e2cfd0dfc4152053f7857ef5ad10d3b59c692c1c3cec65a6319a38d9"
+    },
+    {
+      "name": "epoch23.pt",
+      "bytes": 21443585,
+      "sha256": "f8054f35523fc9ab0ba0b881a5f625f931ea857263d95ce4ff01375be0f18dce"
+    },
+    {
+      "name": "epoch24.pt",
+      "bytes": 21443841,
+      "sha256": "fac6208aae6f858e76ab128ec303dae5b2e359e6d968e7a44867cd2f10368cdc"
+    },
+    {
+      "name": "epoch25.pt",
+      "bytes": 21444161,
+      "sha256": "10acf2abefe19fe7c87fe00c97707d123aec51aaaa4ca759e6bf732b38dee45e"
+    },
+    {
+      "name": "epoch26.pt",
+      "bytes": 21444417,
+      "sha256": "9f8c1211790b3b561b533bafe30828cc75bea715b32fcb7b34ecb77129b00591"
+    },
+    {
+      "name": "epoch27.pt",
+      "bytes": 21444673,
+      "sha256": "f281a892aacdf1587f7bce8c251eaab496781f9a663494148c7c277e918b23a6"
+    },
+    {
+      "name": "epoch28.pt",
+      "bytes": 21444993,
+      "sha256": "b33594400b6226d25a03d1c164755da7cebdf86fb3f3641fddcad6ca1d8713ce"
+    },
+    {
+      "name": "epoch29.pt",
+      "bytes": 21445249,
+      "sha256": "04f5fe4899571f6029bed4b45ec044f1d6a515a7137d2cdd0d3c5f1890bcc383"
+    },
+    {
+      "name": "epoch3.pt",
+      "bytes": 21438017,
+      "sha256": "e9701b89982477c921901ac02ae865d2c6df31492fe2022013b96a69257eb3be"
+    },
+    {
+      "name": "epoch30.pt",
+      "bytes": 21445505,
+      "sha256": "6a0b8736106299ef714d6e32ab32036745f718b3d48c6349e0f48790bfaa770e"
+    },
+    {
+      "name": "epoch31.pt",
+      "bytes": 21445825,
+      "sha256": "ce4e329aa0a858fabebb5188eeb2804fbfa958950676fd7ddbc48bdb7cdb86a0"
+    },
+    {
+      "name": "epoch32.pt",
+      "bytes": 21446081,
+      "sha256": "416fe225dfe200de0004e748d19defd59be217a6f68a11371dcf20ce41df5f6d"
+    },
+    {
+      "name": "epoch33.pt",
+      "bytes": 21446401,
+      "sha256": "8137c940d30d8bae71173e59fba686383b868be367487f9d0e25759848ce3840"
+    },
+    {
+      "name": "epoch34.pt",
+      "bytes": 21446657,
+      "sha256": "4ad5606d3a4b24897369809b6ec738e97480228a89d0b1d57a97a38807e313eb"
+    },
+    {
+      "name": "epoch35.pt",
+      "bytes": 21446913,
+      "sha256": "ad67220024d2cafd366612ec1340c6d9ca9d81995906942dd9fb66fc9dfefbe4"
+    },
+    {
+      "name": "epoch36.pt",
+      "bytes": 21447233,
+      "sha256": "727e288b686d569d0c1b919e82bb2f25997c67b021ef8111ec6be2f1687faf96"
+    },
+    {
+      "name": "epoch37.pt",
+      "bytes": 21447489,
+      "sha256": "9f9ac3117a29b3311ae6da8e01bfd74360a41181ee3a9e7f0d01e0f9e8c2abf7"
+    },
+    {
+      "name": "epoch38.pt",
+      "bytes": 21447745,
+      "sha256": "c66b55d958ddd0bf78a3d5d6da76fdb4a10b8ee2d4c0afca7d4eb2687c60d5de"
+    },
+    {
+      "name": "epoch39.pt",
+      "bytes": 21448065,
+      "sha256": "39b8534c81e483a70601b97972661cbd2e825c051f80dd3e2b8032e5581aa1c6"
+    },
+    {
+      "name": "epoch4.pt",
+      "bytes": 21438273,
+      "sha256": "039d58dfcce2d903014a4079450c96f14d5d3cee166c4b49a029899f4335da29"
+    },
+    {
+      "name": "epoch40.pt",
+      "bytes": 21448321,
+      "sha256": "4fcdf9c3c84559a78a872f125c6b50cc35f465b01ce2feeb82667f67fffc98fc"
+    },
+    {
+      "name": "epoch41.pt",
+      "bytes": 21448577,
+      "sha256": "eb9f6b7be09c71e881fba46266fbb9c9b3d6ceb310a7c1eb6624572504c0f396"
+    },
+    {
+      "name": "epoch42.pt",
+      "bytes": 21448897,
+      "sha256": "b23eea61f14b0133760b5f41f046c21965b54ca283caeb3aaa2a8543e606311b"
+    },
+    {
+      "name": "epoch43.pt",
+      "bytes": 21449153,
+      "sha256": "e9250a432e03b1c0fb9b49f12219929e26b54801438b9fd19bcf696642592432"
+    },
+    {
+      "name": "epoch44.pt",
+      "bytes": 21449409,
+      "sha256": "f02bee790a5c41286e0eeb6a18842a96330cf62c42d69a8b100d68950c22c00c"
+    },
+    {
+      "name": "epoch45.pt",
+      "bytes": 21449729,
+      "sha256": "4a47cf888bf85ebdcbb61953e9bb6c4cc410c666d5770dbdd25c0641fb759e8e"
+    },
+    {
+      "name": "epoch46.pt",
+      "bytes": 21449985,
+      "sha256": "f1ea8b491a5e70887bc88642f1d6e4ff4f1aac5905e6b2d2f3090e538ae58bd9"
+    },
+    {
+      "name": "epoch47.pt",
+      "bytes": 21450305,
+      "sha256": "4d55b6ca1cc7a7c28fb9a071e75cd6d9bb25a882bd4dbbbb215bdb5eede2822f"
+    },
+    {
+      "name": "epoch48.pt",
+      "bytes": 21450561,
+      "sha256": "3bc57ce25886fd680dc89109aa953d647d644eabafbd692afd35db9ff3c6836f"
+    },
+    {
+      "name": "epoch49.pt",
+      "bytes": 21450817,
+      "sha256": "97ad1ceb8bbe8eeb0f22b2205caa007294253b4a5aabc170538861d0d7a95279"
+    },
+    {
+      "name": "epoch5.pt",
+      "bytes": 21438529,
+      "sha256": "135ea687000e273e554fb3cc6a2cad4efdf6a4c71fd48229d58bcb6cf918a228"
+    },
+    {
+      "name": "epoch6.pt",
+      "bytes": 21438849,
+      "sha256": "8b9a0c8f90283c643f9df11d120e70a4100967cd03b47604dd0dc4ca6adcd040"
+    },
+    {
+      "name": "epoch7.pt",
+      "bytes": 21439105,
+      "sha256": "49959ecba514a93c4bee10354acbfe9ffa5e7f42c0bafef538964946a19c0542"
+    },
+    {
+      "name": "epoch8.pt",
+      "bytes": 21439425,
+      "sha256": "fa43ac9b3324e1d53e720e99e45cf04d2cda2bfb1a4a05e07ac4f8076ee7dbf8"
+    },
+    {
+      "name": "epoch9.pt",
+      "bytes": 21439681,
+      "sha256": "fc95019c28a61ed3ec20b379a23927568ff7112b3d8e3970f58da941af0e382d"
+    },
+    {
+      "name": "last.pt",
+      "bytes": 10833469,
+      "sha256": "ccd0d742debeb712a46c442f0935f54ff0a1cad33abe506d78c3920c3e9eaf43"
+    },
+    {
+      "name": "last_healthy.pt",
+      "bytes": 32383696,
+      "sha256": "a157a5af2c00778f4958943fe4f9984324d243a731429d45a652309a041df5ca"
+    }
+  ]
+}
