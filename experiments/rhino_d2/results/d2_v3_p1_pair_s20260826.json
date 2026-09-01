@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "status": "completed_third_of_three_paired_seeds",
+  "claim": "single_seed_directional_evidence_not_a_go_no_go_decision",
+  "protocol": {
+    "seed": 20260826,
+    "epochs": 50,
+    "late_window": 10,
+    "paired_metric": "median_last10(metrics/mAP50-95(B))",
+    "uses_best_epoch": false,
+    "pre_registered_threshold": 0.003,
+    "summarizer_sha256": "3a22ec4d49c7fdf38ea720656db4689fb65643083ac463db0304f89620a97cd9"
+  },
+  "arms": {
+    "off": {
+      "arm": "off",
+      "seed": 20260826,
+      "epochs_completed": 50,
+      "metric_contract": "median of epochs 41-50",
+      "late_median_map50_95": 0.05696,
+      "late_median_precision": 0.31329,
+      "late_median_recall": 0.1131,
+      "final_map50_95": 0.05807,
+      "best_map50_95_audit_only": 0.05997,
+      "foundation_loss_first": 0.0,
+      "foundation_loss_final": 0.0,
+      "foundation_loss_nonzero": false,
+      "late_median_foundation_task_ratio": 0.0,
+      "source_commit": "ef16bbf90a1d79a84dbad35558c4efd856673355",
+      "checks": {
+        "returncode_zero": true,
+        "completed_50_epochs": true,
+        "experiment_inputs_clean": true,
+        "config_hash_verified": true,
+        "log_hash_verified": true,
+        "checkpoint_manifest_complete": true
+      },
+      "artifacts": {
+        "results": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_off_s20260826.csv",
+          "bytes": 7498,
+          "sha256": "fe2ad963c3f7aa8c384e92cc77e42d3effcbb2d27112eb0c882e5b0b913943ca"
+        },
+        "args": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_off_s20260826.args.yaml",
+          "bytes": 8386,
+          "sha256": "1f6fe1dd40b7207a9bda8a13a246647eaec8e5b41a06e24b99e304e1d098d9d8"
+        },
+        "complete_log": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_off_s20260826.log",
+          "bytes": 4356422,
+          "sha256": "0f9174bfa3ab14aac735fad1e2dcdfaea4ac0a67baedb52f375496894f4630a1"
+        },
+        "runtime_manifest": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_off_s20260826.manifest.json",
+          "bytes": 9555,
+          "sha256": "417c09a4add03264fe826b33db615299c44e2ab3bafdc4634918d355c3426674"
+        }
+      }
+    },
+    "on": {
+      "arm": "on",
+      "seed": 20260826,
+      "epochs_completed": 50,
+      "metric_contract": "median of epochs 41-50",
+      "late_median_map50_95": 0.04967,
+      "late_median_precision": 0.275965,
+      "late_median_recall": 0.10666500000000001,
+      "final_map50_95": 0.0507,
+      "best_map50_95_audit_only": 0.05189,
+      "foundation_loss_first": 0.602066,
+      "foundation_loss_final": 0.203361,
+      "foundation_loss_nonzero": true,
+      "late_median_foundation_task_ratio": 0.02769465,
+      "source_commit": "ef16bbf90a1d79a84dbad35558c4efd856673355",
+      "checks": {
+        "returncode_zero": true,
+        "completed_50_epochs": true,
+        "experiment_inputs_clean": true,
+        "config_hash_verified": true,
+        "log_hash_verified": true,
+        "checkpoint_manifest_complete": true
+      },
+      "artifacts": {
+        "results": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_on_s20260826.csv",
+          "bytes": 11072,
+          "sha256": "94605c7b5a3e43ca0c3e5c4abc446f6b9c7ad97b86595db96ae254bcc0fa6803"
+        },
+        "args": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_on_s20260826.args.yaml",
+          "bytes": 8384,
+          "sha256": "70ac81ae3f9f11e77d5cd60622aa7a74813e5f7f11a256fd94d1f164900660d8"
+        },
+        "complete_log": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_on_s20260826.log",
+          "bytes": 4734890,
+          "sha256": "dd2333eb16a5d29b112458406fecdd6d68fcf7aa1ec8fe10ed52002222205280"
+        },
+        "runtime_manifest": {
+          "path": "experiments/rhino_d2/results/d2_v3_p1_on_s20260826.manifest.json",
+          "bytes": 9549,
+          "sha256": "b9f1dd93c597299cad7c41abacc78b3db65da3c2a8759fcd2f606ec3c66ca2da"
+        }
+      }
+    }
+  },
+  "pair": {
+    "off_late_median_map50_95": 0.05696,
+    "on_late_median_map50_95": 0.04967,
+    "delta": -0.007289999999999998,
+    "absolute_delta_below_0p003": false
+  },
+  "decision": {
+    "status": "pending_three_seed_aggregate",
+    "reason": "an individual pair cannot issue the decision; aggregate all three registered paired seeds",
+    "required_next_seeds": [],
+    "confidence_interval_95": null,
+    "go_no_go_allowed": false,
+    "rule_unchanged_after_observing_results": true
+  },
+  "artifacts": {
+    "pair_csv": {
+      "path": "experiments/rhino_d2/results/d2_v3_p1_pair_s20260826.csv",
+      "bytes": 109,
+      "sha256": "988aa7faf9d8d08666c0495ef264aaba4ba9bf7c7ce07312b2614a9d8aafeb23"
+    },
+    "curve": {
+      "path": "experiments/rhino_d2/results/d2_v3_p1_pair_s20260826.png",
+      "bytes": 122475,
+      "sha256": "8daad9384ecd755a6b73b474fc025c6af5809c53adb828bd4e0a7d1183249ff6"
+    }
+  }
+}

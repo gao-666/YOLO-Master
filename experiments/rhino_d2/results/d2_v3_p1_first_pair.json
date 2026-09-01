@@ -9,7 +9,7 @@
     "paired_metric": "median_last10(metrics/mAP50-95(B))",
     "uses_best_epoch": false,
     "pre_registered_threshold": 0.003,
-    "summarizer_sha256": "b9f4048f7e878c20944ffd242ff6c6ca8f3ea03d004a34eabcf1649590d7a761"
+    "summarizer_sha256": "3a22ec4d49c7fdf38ea720656db4689fb65643083ac463db0304f89620a97cd9"
   },
   "arms": {
     "off": {

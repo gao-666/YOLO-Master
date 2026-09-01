@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "completed_three_seed_formal_p1",
+  "claim": "formal_decision_for_frozen_dinov3_s_coco_mini_50_epoch_protocol_not_a_general_kd_claim",
+  "protocol": {
+    "seeds": [
+      20260824,
+      20260825,
+      20260826
+    ],
+    "epochs": 50,
+    "late_window": 10,
+    "paired_metric": "median_last10(metrics/mAP50-95(B))",
+    "uses_best_epoch": false,
+    "pre_registered_threshold": 0.003,
+    "t_critical_95_df2": 4.302652729911275,
+    "summarizer_sha256": "3a22ec4d49c7fdf38ea720656db4689fb65643083ac463db0304f89620a97cd9"
+  },
+  "input_audit": {
+    "all_runs_returncode_zero": true,
+    "all_experiment_inputs_clean": true,
+    "off_config_hash_constant": true,
+    "on_config_hash_constant": true,
+    "runner_hash_constant": true,
+    "paired_metric_constant": true
+  },
+  "pairs": [
+    {
+      "seed": 20260824,
+      "off_late_median_map50_95": 0.048125,
+      "on_late_median_map50_95": 0.049464999999999995,
+      "delta": 0.001339999999999994
+    },
+    {
+      "seed": 20260825,
+      "off_late_median_map50_95": 0.0545,
+      "on_late_median_map50_95": 0.05394,
+      "delta": -0.000559999999999998
+    },
+    {
+      "seed": 20260826,
+      "off_late_median_map50_95": 0.05696,
+      "on_late_median_map50_95": 0.04967,
+      "delta": -0.007289999999999998
+    }
+  ],
+  "statistics": {
+    "n": 3,
+    "paired_deltas": [
+      0.001339999999999994,
+      -0.000559999999999998,
+      -0.007289999999999998
+    ],
+    "mean_delta": -0.0021700000000000005,
+    "sample_standard_deviation": 0.0045346774968017265,
+    "standard_error": 0.0026180972734666155,
+    "confidence_interval_95": [
+      -0.013434763380854397,
+      0.009094763380854397
+    ],
+    "confidence_interval_contains_zero": true
+  },
+  "decision": {
+    "status": "no_go",
+    "reason": "absolute mean delta is below 0.003 and the paired 95% CI contains zero",
+    "rule_unchanged_after_observing_results": true,
+    "expand_to_multistage_or_vitl": false
+  },
+  "artifacts": {
+    "per_seed_json": {
+      "20260824": {
+        "path": "experiments/rhino_d2/results/d2_v3_p1_first_pair.json",
+        "sha256": "cee5c17abfed751deb5b95a395ac7ef6f988064f131a889c07433e423701cbb1"
+      },
+      "20260825": {
+        "path": "experiments/rhino_d2/results/d2_v3_p1_pair_s20260825.json",
+        "sha256": "a46aa82fbe511def9afe24cae0aba392e32d45d4f924701fe56d54f745dc9b32"
+      },
+      "20260826": {
+        "path": "experiments/rhino_d2/results/d2_v3_p1_pair_s20260826.json",
+        "sha256": "3a20ed9ded4e98ecb3763bd82fdf1ad2724cc6a67a38a8ea85a6f553b819e7c5"
+      }
+    },
+    "aggregate_csv": {
+      "path": "experiments/rhino_d2/results/d2_v3_p1_three_seed_results.csv",
+      "bytes": 217,
+      "sha256": "69ac3872b2b5d7dc2b0be0e564ed2d0c01d5651f9e0b426394abcc7a14ec82bf"
+    },
+    "curve": {
+      "path": "experiments/rhino_d2/results/d2_v3_p1_three_seed_results.png",
+      "bytes": 64626,
+      "sha256": "eb778693fb0b19dc63af953b5866d041a5b34565981272c48e64dc3f8b2aed02"
+    }
+  }
+}

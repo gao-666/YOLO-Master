@@ -60,6 +60,8 @@ Pair validator 已通过，观察差异严格为 `foundation_enabled`、`foundat
 
 第二组 paired seed `20260825` 也已完成：OFF/ON 分别为 `0.054500 / 0.053940`，差值 `-0.000560`。两组方向不一致，当前仍保持 `pending_more_seeds`；只剩冻结协议的 seed `20260826`。完整说明见 [`DINOV3_P1_SECOND_PAIR.md`](DINOV3_P1_SECOND_PAIR.md)。
 
+第三组 seed `20260826` 的 OFF/ON 为 `0.056960 / 0.049670`，差值 `-0.007290`。三 seed mean Δ=`-0.002170`，paired 95% t CI=`[-0.013435,0.009095]`。由于 `|mean Δ|<0.003` 且 CI 包含 0，正式判定 **No-Go**。见 [`DINOV3_P1_GO_NO_GO.md`](DINOV3_P1_GO_NO_GO.md)。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

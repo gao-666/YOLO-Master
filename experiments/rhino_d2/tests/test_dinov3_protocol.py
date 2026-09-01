@@ -376,3 +376,50 @@ def test_v3_p1_seed24_and_seed25_keep_training_inputs_byte_identical():
         assert manifests[(20260824, arm)]["config_sha256"] == manifests[(20260825, arm)]["config_sha256"]
     assert len({manifest["runner_sha256"] for manifest in manifests.values()}) == 1
     assert all(manifest["source_state"]["experiment_inputs_dirty"] is False for manifest in manifests.values())
+
+
+def test_v3_p1_seed26_pair_is_complete_before_aggregate_decision():
+    """The last individual pair remains non-decisional even after all runs finish."""
+    result = load_result("d2_v3_p1_pair_s20260826.json")
+    assert result["status"] == "completed_third_of_three_paired_seeds"
+    assert result["pair"]["off_late_median_map50_95"] == 0.05696
+    assert result["pair"]["on_late_median_map50_95"] == 0.04967
+    assert result["pair"]["delta"] == -0.007289999999999998
+    assert result["decision"]["status"] == "pending_three_seed_aggregate"
+    assert result["decision"]["go_no_go_allowed"] is False
+    assert result["arms"]["off"]["foundation_loss_nonzero"] is False
+    assert result["arms"]["on"]["foundation_loss_nonzero"] is True
+    for arm in ("off", "on"):
+        assert all(result["arms"][arm]["checks"].values())
+        for artifact in result["arms"][arm]["artifacts"].values():
+            path = REPO_ROOT / artifact["path"]
+            assert path.is_file()
+            assert path.stat().st_size == artifact["bytes"]
+            assert sha256(path) == artifact["sha256"]
+
+
+def test_v3_p1_three_seed_result_applies_the_frozen_no_go_rule():
+    """The formal decision must use registered medians and the paired df=2 t interval."""
+    result = load_result("d2_v3_p1_three_seed_results.json")
+    assert result["status"] == "completed_three_seed_formal_p1"
+    assert all(result["input_audit"].values())
+    assert result["protocol"]["uses_best_epoch"] is False
+    assert result["statistics"]["paired_deltas"] == [
+        0.001339999999999994,
+        -0.000559999999999998,
+        -0.007289999999999998,
+    ]
+    assert result["statistics"]["mean_delta"] == -0.0021700000000000005
+    assert result["statistics"]["sample_standard_deviation"] == 0.0045346774968017265
+    assert result["statistics"]["confidence_interval_95"] == [
+        -0.013434763380854397,
+        0.009094763380854397,
+    ]
+    assert result["statistics"]["confidence_interval_contains_zero"] is True
+    assert result["decision"]["status"] == "no_go"
+    assert result["decision"]["rule_unchanged_after_observing_results"] is True
+    assert result["decision"]["expand_to_multistage_or_vitl"] is False
+    for artifact in result["artifacts"]["per_seed_json"].values():
+        path = REPO_ROOT / artifact["path"]
+        assert path.is_file()
+        assert sha256(path) == artifact["sha256"]
