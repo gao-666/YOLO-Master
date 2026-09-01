@@ -8,7 +8,7 @@
 
 2026-08-31 起的 DINOv3 复验是独立 protocol，不覆盖上述 DINOv2 历史证据。研究红线和 gate 顺序见 [`DINOv3_PROTOCOL.md`](DINOv3_PROTOCOL.md)，S/L BF16 与 P0 证据见 [`DINOv3_P0_EVIDENCE.md`](DINOv3_P0_EVIDENCE.md)。OFF-only 50 epoch baseline sanity 的失败结果与停止决定见 [`DINOv3_BASELINE_SANITY.md`](DINOv3_BASELINE_SANITY.md)。9 月 1 日的数据规模单变量诊断与两步停止规则见 [`BASELINE_RECOVERY_PROTOCOL.md`](BASELINE_RECOVERY_PROTOCOL.md)；Candidate A 的负结果见 [`BASELINE_RECOVERY_A.md`](BASELINE_RECOVERY_A.md)，Candidate B 的通过结果见 [`BASELINE_RECOVERY_B.md`](BASELINE_RECOVERY_B.md)。baseline admission 已通过，下一步冻结正式 DINOv3-S P1 protocol 与 train-only KD weight。
 
-正式 DINOv3-S P1 的冻结条件见 [`DINOV3_P1_PROTOCOL.md`](DINOV3_P1_PROTOCOL.md)。首轮 train-only 权重标定没有候选进入 `[3%,6%]`，证据见 [`DINOV3_P1_CALIBRATION.md`](DINOV3_P1_CALIBRATION.md)；独立预注册的单候选扩展随后以 ratio `3.922%` 选定 weight `0.15`。正式 OFF/ON pair audit 已通过，结果见 [`results/d2_v3_p1_pair_validation.json`](results/d2_v3_p1_pair_validation.json)。seed `20260824` 的第一组正式配对也已完成，末 10 轮中位数差值为 `+0.001340`；单 seed 不作 Go/No-Go，详见 [`DINOV3_P1_FIRST_PAIR.md`](DINOV3_P1_FIRST_PAIR.md)。
+正式 DINOv3-S P1 的冻结条件见 [`DINOV3_P1_PROTOCOL.md`](DINOV3_P1_PROTOCOL.md)。首轮 train-only 权重标定没有候选进入 `[3%,6%]`，证据见 [`DINOV3_P1_CALIBRATION.md`](DINOV3_P1_CALIBRATION.md)；独立预注册的单候选扩展随后以 ratio `3.922%` 选定 weight `0.15`。正式 OFF/ON pair audit 已通过，结果见 [`results/d2_v3_p1_pair_validation.json`](results/d2_v3_p1_pair_validation.json)。seed `20260824 / 20260825` 的正式差值现为 `+0.001340 / -0.000560`，仍为 `pending_more_seeds`；见 [`DINOV3_P1_FIRST_PAIR.md`](DINOV3_P1_FIRST_PAIR.md) 与 [`DINOV3_P1_SECOND_PAIR.md`](DINOV3_P1_SECOND_PAIR.md)。
 
 ## 准入状态
 

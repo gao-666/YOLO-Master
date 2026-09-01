@@ -98,7 +98,7 @@ def summarize_arm(arm: str, seed: int, run_dir: Path, manifest_path: Path) -> tu
     )
 
 
-def plot_pair(off_rows: list[dict[str, float]], on_rows: list[dict[str, float]], output: Path) -> None:
+def plot_pair(seed: int, off_rows: list[dict[str, float]], on_rows: list[dict[str, float]], output: Path) -> None:
     """Plot the full metric trace and ON distillation loss."""
     import matplotlib
 
@@ -117,7 +117,7 @@ def plot_pair(off_rows: list[dict[str, float]], on_rows: list[dict[str, float]],
     for axis in axes:
         axis.grid(alpha=0.25)
         axis.legend()
-    fig.suptitle("D2 DINOv3-S formal P1 — first paired seed 20260824")
+    fig.suptitle(f"D2 DINOv3-S formal P1 — paired seed {seed}")
     fig.tight_layout()
     fig.savefig(output, dpi=180)
     plt.close(fig)
@@ -139,7 +139,8 @@ def build_summary(seed: int, run_root: Path, manifest_root: Path) -> dict:
         raise RuntimeError("ON did not activate foundation loss")
 
     delta = arms["on"]["late_median_map50_95"] - arms["off"]["late_median_map50_95"]
-    pair_csv = RESULTS_ROOT / "d2_v3_p1_first_pair.csv"
+    stem = "d2_v3_p1_first_pair" if seed == 20260824 else f"d2_v3_p1_pair_s{seed}"
+    pair_csv = RESULTS_ROOT / f"{stem}.csv"
     with pair_csv.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(
             handle,
@@ -154,11 +155,13 @@ def build_summary(seed: int, run_root: Path, manifest_root: Path) -> dict:
                 "delta": delta,
             }
         )
-    curve_path = RESULTS_ROOT / "d2_v3_p1_first_pair.png"
-    plot_pair(rows["off"], rows["on"], curve_path)
+    curve_path = RESULTS_ROOT / f"{stem}.png"
+    plot_pair(seed, rows["off"], rows["on"], curve_path)
+    required_next_seeds = [value for value in (20260824, 20260825, 20260826) if value > seed]
+    ordinal = {20260824: "first", 20260825: "second", 20260826: "third"}.get(seed, "additional")
     return {
         "schema_version": 1,
-        "status": "completed_first_of_three_paired_seeds",
+        "status": f"completed_{ordinal}_of_three_paired_seeds",
         "claim": "single_seed_directional_evidence_not_a_go_no_go_decision",
         "protocol": {
             "seed": seed,
@@ -179,7 +182,7 @@ def build_summary(seed: int, run_root: Path, manifest_root: Path) -> dict:
         "decision": {
             "status": "pending_more_seeds",
             "reason": "one paired seed cannot estimate the pre-registered paired 95% confidence interval",
-            "required_next_seeds": [20260825, 20260826],
+            "required_next_seeds": required_next_seeds,
             "confidence_interval_95": None,
             "go_no_go_allowed": False,
             "rule_unchanged_after_observing_results": True,
@@ -207,7 +210,8 @@ def main() -> None:
     parser.add_argument("--manifest-root", type=Path, default=REPO_ROOT / "runs/rhino_d2/manifests")
     args = parser.parse_args()
     result = build_summary(args.seed, args.run_root.resolve(), args.manifest_root.resolve())
-    output = RESULTS_ROOT / "d2_v3_p1_first_pair.json"
+    stem = "d2_v3_p1_first_pair" if args.seed == 20260824 else f"d2_v3_p1_pair_s{args.seed}"
+    output = RESULTS_ROOT / f"{stem}.json"
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
 

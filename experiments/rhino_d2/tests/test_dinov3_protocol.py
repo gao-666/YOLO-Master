@@ -341,3 +341,38 @@ def test_v3_p1_first_pair_binds_complete_logs_and_mechanism_identity():
             assert path.is_file()
             assert path.stat().st_size == artifact["bytes"]
             assert sha256(path) == artifact["sha256"]
+
+
+def test_v3_p1_second_pair_is_complete_and_keeps_the_decision_pending():
+    """The second paired seed must use last-10 medians without an early decision."""
+    result = load_result("d2_v3_p1_pair_s20260825.json")
+    assert result["status"] == "completed_second_of_three_paired_seeds"
+    assert result["protocol"]["uses_best_epoch"] is False
+    assert result["pair"]["off_late_median_map50_95"] == 0.0545
+    assert result["pair"]["on_late_median_map50_95"] == 0.05394
+    assert result["pair"]["delta"] == -0.000559999999999998
+    assert result["decision"]["status"] == "pending_more_seeds"
+    assert result["decision"]["required_next_seeds"] == [20260826]
+    assert result["decision"]["go_no_go_allowed"] is False
+    assert result["arms"]["off"]["foundation_loss_nonzero"] is False
+    assert result["arms"]["on"]["foundation_loss_nonzero"] is True
+    for arm in ("off", "on"):
+        assert all(result["arms"][arm]["checks"].values())
+        for artifact in result["arms"][arm]["artifacts"].values():
+            path = REPO_ROOT / artifact["path"]
+            assert path.is_file()
+            assert path.stat().st_size == artifact["bytes"]
+            assert sha256(path) == artifact["sha256"]
+
+
+def test_v3_p1_seed24_and_seed25_keep_training_inputs_byte_identical():
+    """An evidence-only commit between seeds must not alter configs or the runner."""
+    manifests = {
+        (seed, arm): load_result(f"d2_v3_p1_{arm}_s{seed}.manifest.json")
+        for seed in (20260824, 20260825)
+        for arm in ("off", "on")
+    }
+    for arm in ("off", "on"):
+        assert manifests[(20260824, arm)]["config_sha256"] == manifests[(20260825, arm)]["config_sha256"]
+    assert len({manifest["runner_sha256"] for manifest in manifests.values()}) == 1
+    assert all(manifest["source_state"]["experiment_inputs_dirty"] is False for manifest in manifests.values())

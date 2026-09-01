@@ -58,6 +58,8 @@ Pair validator 已通过，观察差异严格为 `foundation_enabled`、`foundat
 
 第一组 paired seed `20260824` 已完成：OFF/ON 的末 10 轮 mAP50-95 中位数分别为 `0.048125 / 0.049465`，配对差值 `+0.001340`。当前仅为方向性单 seed 证据，状态保持 `pending_more_seeds`，不得计算或声称 Go/No-Go。完整说明见 [`DINOV3_P1_FIRST_PAIR.md`](DINOV3_P1_FIRST_PAIR.md)。
 
+第二组 paired seed `20260825` 也已完成：OFF/ON 分别为 `0.054500 / 0.053940`，差值 `-0.000560`。两组方向不一致，当前仍保持 `pending_more_seeds`；只剩冻结协议的 seed `20260826`。完整说明见 [`DINOV3_P1_SECOND_PAIR.md`](DINOV3_P1_SECOND_PAIR.md)。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

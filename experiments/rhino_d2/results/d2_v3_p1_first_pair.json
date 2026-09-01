@@ -9,7 +9,7 @@
     "paired_metric": "median_last10(metrics/mAP50-95(B))",
     "uses_best_epoch": false,
     "pre_registered_threshold": 0.003,
-    "summarizer_sha256": "449671927f56499e1f9994c29dd5add793b4befca27953739e39668435582975"
+    "summarizer_sha256": "b9f4048f7e878c20944ffd242ff6c6ca8f3ea03d004a34eabcf1649590d7a761"
   },
   "arms": {
     "off": {
@@ -130,8 +130,8 @@
     },
     "curve": {
       "path": "experiments/rhino_d2/results/d2_v3_p1_first_pair.png",
-      "bytes": 119203,
-      "sha256": "ac8d78a66f709ecf2d0d2078e931117f4603f6727936c9a5300dc2699bcaf049"
+      "bytes": 118606,
+      "sha256": "8cdc51b5d3a47f0d37d0fe86cc718d9ab8592cc8768fc0e07e5a5213d044cbec"
     }
   }
 }
