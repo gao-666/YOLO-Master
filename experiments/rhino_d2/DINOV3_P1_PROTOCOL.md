@@ -52,6 +52,8 @@ OFF 与 ON 从同一权重资产、同一模型构造和同一 seed 开始。正
 
 扩展候选得到 ratio `0.0392177` 且机制恒等式通过，因此正式 `foundation_loss_weight=0.15`。正式 OFF/ON 配置为 [`configs/d2_v3_p1_off.yaml`](configs/d2_v3_p1_off.yaml) 与 [`configs/d2_v3_p1_on.yaml`](configs/d2_v3_p1_on.yaml)，训练前必须通过独立 pair validator。
 
+Pair validator 已通过，观察差异严格为 `foundation_enabled`、`foundation_loss_weight` 与输出 `name`；正式三 seed 训练已获准。审计证据见 [`results/d2_v3_p1_pair_validation.json`](results/d2_v3_p1_pair_validation.json)。
+
 ## 统计与 Go/No-Go
 
 对每个 seed 计算：

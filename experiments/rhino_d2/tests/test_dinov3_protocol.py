@@ -298,3 +298,16 @@ def test_formal_v3_p1_pair_differs_only_by_treatment_and_output_name():
     assert on["foundation_loss_weight"] == 0.15
     assert off["pretrained"] == on["pretrained"]
     assert off["data"] == on["data"]
+
+
+def test_formal_v3_p1_pair_validation_binds_current_files_and_allows_training():
+    """Committed pair evidence must match the current configs and calibration result."""
+    result = load_result("d2_v3_p1_pair_validation.json")
+    assert result["status"] == "passed"
+    assert result["allowed_differences"] == ["foundation_enabled", "foundation_loss_weight", "name"]
+    assert all(result["checks"].values())
+    assert result["decision"]["formal_three_seed_training_allowed"] is True
+    for record in result["files"].values():
+        path = REPO_ROOT / record["path"]
+        assert path.is_file()
+        assert sha256(path) == record["sha256"]

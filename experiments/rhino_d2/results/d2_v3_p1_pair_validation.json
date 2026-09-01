@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "claim": "formal_p1_controlled_pair_contract_not_kd_efficacy",
+  "allowed_differences": [
+    "foundation_enabled",
+    "foundation_loss_weight",
+    "name"
+  ],
+  "observed_differences": {
+    "foundation_enabled": {
+      "off": false,
+      "on": true
+    },
+    "foundation_loss_weight": {
+      "off": 0.0,
+      "on": 0.15
+    },
+    "name": {
+      "off": "v3-p1-off-s20260824",
+      "on": "v3-p1-on-s20260824"
+    }
+  },
+  "checks": {
+    "differences_exactly_treatment_and_name": true,
+    "calibration_selected": true,
+    "calibration_used_no_validation_metric": true,
+    "on_weight_matches_calibration": true,
+    "same_student_initialization": true,
+    "same_data": true,
+    "same_teacher_contract": true
+  },
+  "files": {
+    "off": {
+      "path": "experiments\\rhino_d2\\configs\\d2_v3_p1_off.yaml",
+      "sha256": "c9328ce28be986d0fcc701be9934a7fda2502e80c740c76f3f91f21723a0c40b"
+    },
+    "on": {
+      "path": "experiments\\rhino_d2\\configs\\d2_v3_p1_on.yaml",
+      "sha256": "ce191227535f1f4b7747538d305c9d42eaa635faf65b5fe685d1adc69f586166"
+    },
+    "calibration": {
+      "path": "experiments\\rhino_d2\\results\\d2_v3_p1_weight_calibration_extension.json",
+      "sha256": "21966ff09bfa89996b973e5b080344c9fc3a65c3dfcbf8ada483867a580759eb"
+    }
+  },
+  "decision": {
+    "formal_three_seed_training_allowed": true
+  }
+}
