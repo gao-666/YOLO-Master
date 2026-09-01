@@ -149,3 +149,27 @@ def test_recovery_a_dataset_selection_and_payload_are_frozen():
         assert record["size"] == expected_size
         assert len(path.read_text(encoding="utf-8").splitlines()) == expected_size
         assert sha256_text_lf(path) == record["list_sha256_lf_canonical"]
+
+
+def test_failed_recovery_a_gate_is_bound_to_complete_evidence_and_blocks_p1():
+    """Candidate A must fail closed on mAP while preserving every archived artifact."""
+    result = load_result("d2_v3_baseline_recovery_a.json")
+    assert result["status"] == "failed"
+    assert result["claim"] == "engineering_pipeline_sanity_gate_not_foundation_efficacy"
+    assert result["checks"] == {
+        "completed_50_epochs": True,
+        "late_median_map_at_least_0p01": False,
+        "late_median_precision_nonzero": True,
+        "late_median_recall_nonzero": True,
+        "final_detection_loss_down_at_least_10pct": True,
+    }
+    assert result["observations"]["late_median_map50_95"] == 0.00546
+    assert result["runtime"]["source_commit"] == "3d40f3b3f775f1985d9ff58e3de643a9a14eb6d8"
+    assert result["runtime"]["experiment_inputs_dirty"] is False
+    assert result["runtime"]["returncode"] == 0
+    assert result["decision"]["formal_p1_unlocked"] is False
+    assert result["decision"]["next_action"] == "run_pretrained_candidate_b_on_same_dataset"
+    for artifact in result["artifacts"].values():
+        path = REPO_ROOT / artifact["path"]
+        assert path.is_file()
+        assert sha256(path) == artifact["sha256"]

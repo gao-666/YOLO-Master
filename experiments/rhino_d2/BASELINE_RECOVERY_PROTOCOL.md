@@ -45,6 +45,12 @@ DINOv3 S/L 的 BF16 与单 stage P0 已通过，但 `COCO128 + scratch + 50e` �
 
 若全部通过：将数据规模视为强解释，冻结新的 DINOv3 P1 protocol，再做不看 validation AP 的 DINOv3-S train-only KD weight calibration。若任一失败：不启动 KD，进入 Candidate B；数据、预算和工程门全部沿用 A，只允许 Student 初始化改变。
 
+## Candidate A 结果（2026-09-01）
+
+Candidate A 完成 50/50 epoch，但后 10 epoch mAP50-95 中位数为 `0.00546`，低于 `0.01`，因此 **失败关闭**。Precision 中位数 `0.245115`、Recall 中位数 `0.01684` 均非零，检测 loss `9.36099→6.59439`（retention=`0.70445`），其余四项检查通过。
+
+正式 P1 仍未解锁。下一步只审计并运行 Candidate B 的 Student 预训练初始化；详细证据和边界见 [`BASELINE_RECOVERY_A.md`](BASELINE_RECOVERY_A.md)。
+
 ## 许可边界
 
 COCO 图像保留各自 Flickr 许可，使用者需遵守 COCO 官方 Terms of Use；COCO annotations 与 Ultralytics 转换标签资产有各自条款。本仓库不提交图像或标签 payload，只提交可复现选择与完整性哈希。该记录不是法律意见。
