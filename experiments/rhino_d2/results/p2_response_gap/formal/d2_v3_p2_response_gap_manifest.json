@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "path": "experiments/rhino_d2/results/p2_response_gap/formal/d2_v3_p2_response_gap_result.json",
+    "sha256": "2e1e84027872ff94340aefadc87a5c8dacb928f2d44b169e1a15774dc6382aaf"
+  },
+  "raw": {
+    "path": "experiments/rhino_d2/results/p2_response_gap/formal/d2_v3_p2_response_gap_raw.csv",
+    "rows": 6144,
+    "sha256": "8729d546f2e08603ef7f736a78e2c674f919f1ca07c28d60443cb7d42340a921"
+  },
+  "protocol": {
+    "head": "6a0074bbf2258ad94b6a657dbf452083b3638201",
+    "source_commit": "dbad1300e487128261ee45fb1e2f6bbeb565e8f1",
+    "protected_inputs_unchanged": true,
+    "protocol_sha256": "26900a03928bc02c5b3304dea35c517a8e12b1e3a7d50d03b013dd871b835de0",
+    "config_sha256": "1e7a864ade5841f7f390685359433db92290fbebacb0c94c88cb2b411b2c7dbc",
+    "diagnostic_list_sha256": "c0e00ba5e15de01d21afb35ae50937681186905d717498d4549565a3613dd582",
+    "runner_sha256": "72f5d6a76216b3b73259c2551ae9483d7d9e3b39fe67fd862f0dbc6bed1c58d6"
+  }
+}

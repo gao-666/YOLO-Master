@@ -1,0 +1,16 @@
+{
+  "source_result_sha256": "2e1e84027872ff94340aefadc87a5c8dacb928f2d44b169e1a15774dc6382aaf",
+  "source_raw_sha256": "8729d546f2e08603ef7f736a78e2c674f919f1ca07c28d60443cb7d42340a921",
+  "summarizer_sha256": "79875a4583ef0bcbdef2584bc89ad3c9b32dc205c16e86780eb565217e3b8da9",
+  "condition_summary": {
+    "path": "d2_v3_p2_response_gap_condition_summary.csv",
+    "rows": 24,
+    "sha256": "4d2bcc3c394dcd66c79dc531b5e9f0bc102bdd749e20eaeaceb353b286a8b3a3"
+  },
+  "report": {
+    "path": "DINOV3_P2_RESPONSE_GAP_RESULT.md",
+    "sha256": "b2fef76e22d732eac8407ee24d707830fb77c11702a704462aba7ceb482843e0"
+  },
+  "hypothesis_decisions_unchanged": true,
+  "secondary_breakdown_does_not_override_primary": true
+}
