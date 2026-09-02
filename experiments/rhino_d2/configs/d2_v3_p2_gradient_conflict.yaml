@@ -1,0 +1,44 @@
+protocol_id: dinov3_p2_gradient_conflict_v1
+p1_commit: 931f9dbcf1e6880bc2832102e127b08f34881f11
+p1_config: experiments/rhino_d2/configs/d2_v3_p1_on.yaml
+data: experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901.yaml
+teacher_model: facebook/dinov3-vits16-pretrain-lvd1689m
+teacher_weights: E:/2026YOLO/model_cache/dinov3-vits16-pretrain-lvd1689m
+teacher_dtype: bf16
+student_level: p4
+align_dim: 64
+foundation_loss: cosine
+foundation_loss_weight: 0.15
+imgsz: 256
+batch_size: 4
+device: cuda:0
+seeds: [20260824, 20260825, 20260826]
+checkpoints:
+  early: 9
+  middle: 24
+  late: 49
+checkpoint_pattern: runs/rhino_d2/v3_p1/v3-p1-on-s{seed}/weights/epoch{epoch}.pt
+subset:
+  split: train
+  size: 64
+  selection_seed: dinov3-p2-gradient-conflict-v1-20260902
+  method: sha256_rank_without_replacement
+  augmentation: disabled
+gradient:
+  task: d_L_detect_d_F_P4
+  auxiliary: d_weighted_L_KD_d_F_P4
+  norm_epsilon: 1.0e-12
+  batchnorm_running_stats: frozen
+  checkpoint_weights: ema
+statistics:
+  bootstrap_replicates: 10000
+  bootstrap_seed: 20260902
+  confidence_level: 0.95
+p1_paired_delta:
+  20260824: 0.00134
+  20260825: -0.00056
+  20260826: -0.00729
+decision:
+  support: pooled_late_ci_upper_below_zero_and_at_least_two_seed_late_ci_uppers_below_zero
+  refute: pooled_late_ci_lower_at_or_above_zero
+  otherwise: inconclusive
