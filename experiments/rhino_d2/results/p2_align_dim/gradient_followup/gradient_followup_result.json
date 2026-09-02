@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "claim": "paired_local_gradient_followup_not_accuracy_or_information_fidelity_proof",
+  "generated_at_utc": "2026-09-02T08:56:19.477686+00:00",
+  "pairing": {
+    "seeds": [
+      20260824,
+      20260825,
+      20260826
+    ],
+    "epochs": [
+      9,
+      24,
+      49
+    ],
+    "images": 64,
+    "raw_pairs": 576,
+    "subset": {
+      "on64_hash": "1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676",
+      "on128_hash": "1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676",
+      "expected_hash": "1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676",
+      "identical": true
+    }
+  },
+  "inputs": {
+    "on64_raw": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_gradient_conflict\\gradient_conflict_raw.csv",
+      "sha256": "b6ef445e9907ac32dffd2761df89401a719a6f48f91b73c7126dd326f5160317"
+    },
+    "on128_raw": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p2_align_dim\\gradient_probe_on128\\gradient_conflict_raw.csv",
+      "sha256": "65c2491caea344ea0ec8e256b91efb50fa77fedeb49c7d598b8e414ed7f39ef6"
+    },
+    "archived_on128": {
+      "raw": {
+        "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\on128_gradient_raw.csv",
+        "bytes": 206651,
+        "sha256": "65c2491caea344ea0ec8e256b91efb50fa77fedeb49c7d598b8e414ed7f39ef6"
+      },
+      "summary": {
+        "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\on128_gradient_summary.csv",
+        "bytes": 2917,
+        "sha256": "6b773a763a19133c8a6503f3fcce0d5329ca048fa0d5039601a51f2358d2a35e"
+      },
+      "result": {
+        "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\on128_gradient_result.json",
+        "bytes": 17210,
+        "sha256": "1dea320ea0abafd0945d2a128e2aed1a723f7f8804ca6a4da5ef15af0c542dba"
+      },
+      "preparation": {
+        "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\on128_preparation_manifest.json",
+        "bytes": 4508,
+        "sha256": "6fb854ae5a40158645bf113d0aeac44a44105552fd5801fbe9a7a2851ea404a0"
+      },
+      "subset": {
+        "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\diagnostic_train64.txt",
+        "bytes": 2368,
+        "sha256": "1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676"
+      }
+    }
+  },
+  "summaries": [
+    {
+      "seed": 20260824,
+      "epoch": 9,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": -0.004424310376407448,
+      "delta_cosine_median": -0.003023431490873918,
+      "delta_cosine_ci_low": -0.010777229384984821,
+      "delta_cosine_ci_high": 0.003406889285543002,
+      "delta_cosine_q25": -0.018634013133123517,
+      "delta_cosine_q75": 0.01477512190467678,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.003080548172874842,
+      "delta_norm_ratio_median": -0.0005836763884872198,
+      "delta_norm_ratio_ci_low": -0.0016117931809276342,
+      "delta_norm_ratio_ci_high": 0.00025453371927142143,
+      "delta_norm_ratio_q25": -0.002683374914340675,
+      "delta_norm_ratio_q75": 0.0012168644461780787,
+      "norm_ratio_shift": "no_detectable_shift",
+      "negative_fraction_on64": 0.34375,
+      "negative_fraction_on128": 0.5
+    },
+    {
+      "seed": 20260824,
+      "epoch": 24,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": 0.0028061235290124387,
+      "delta_cosine_median": 0.0007397891022264957,
+      "delta_cosine_ci_low": -0.004801166011020541,
+      "delta_cosine_ci_high": 0.009533136035315692,
+      "delta_cosine_q25": -0.011335963172314223,
+      "delta_cosine_q75": 0.01664276811061427,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0032787808086141013,
+      "delta_norm_ratio_median": -0.002366372907999903,
+      "delta_norm_ratio_ci_low": -0.002951536327600479,
+      "delta_norm_ratio_ci_high": -0.002029130235314369,
+      "delta_norm_ratio_q25": -0.00354555482044816,
+      "delta_norm_ratio_q75": -0.0014156342949718237,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.4375,
+      "negative_fraction_on128": 0.359375
+    },
+    {
+      "seed": 20260824,
+      "epoch": 49,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": 0.0009075787423853399,
+      "delta_cosine_median": -0.002286738279508427,
+      "delta_cosine_ci_low": -0.006537273526191711,
+      "delta_cosine_ci_high": 0.006958055775612593,
+      "delta_cosine_q25": -0.013123215117957443,
+      "delta_cosine_q75": 0.016734138880565297,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0018709561691139243,
+      "delta_norm_ratio_median": -0.0015424350276589394,
+      "delta_norm_ratio_ci_low": -0.0016912310384213924,
+      "delta_norm_ratio_ci_high": -0.0012221205979585648,
+      "delta_norm_ratio_q25": -0.0021994681155774742,
+      "delta_norm_ratio_q75": -0.0008504446304868907,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.390625,
+      "negative_fraction_on128": 0.390625
+    },
+    {
+      "seed": 20260825,
+      "epoch": 9,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": -0.009254912330902698,
+      "delta_cosine_median": -0.007326086284592748,
+      "delta_cosine_ci_low": -0.011373212561011314,
+      "delta_cosine_ci_high": -0.0012166248634457588,
+      "delta_cosine_q25": -0.019132810411974788,
+      "delta_cosine_q75": 0.011628727545030415,
+      "cosine_shift": "decrease",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0031493800015596207,
+      "delta_norm_ratio_median": -0.0022489922121167183,
+      "delta_norm_ratio_ci_low": -0.0029029380530118942,
+      "delta_norm_ratio_ci_high": -0.0010775579139590263,
+      "delta_norm_ratio_q25": -0.004001536872237921,
+      "delta_norm_ratio_q75": -0.0004254229133948684,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.421875,
+      "negative_fraction_on128": 0.625
+    },
+    {
+      "seed": 20260825,
+      "epoch": 24,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": -8.73363838422847e-05,
+      "delta_cosine_median": -0.0015231706202030182,
+      "delta_cosine_ci_low": -0.008548306534066796,
+      "delta_cosine_ci_high": 0.004258065742760664,
+      "delta_cosine_q25": -0.014406473717826884,
+      "delta_cosine_q75": 0.012797380069969222,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.001926012395415455,
+      "delta_norm_ratio_median": -0.0015412866487167776,
+      "delta_norm_ratio_ci_low": -0.0018173223186749965,
+      "delta_norm_ratio_ci_high": -0.000958896242082119,
+      "delta_norm_ratio_q25": -0.0026065524434670806,
+      "delta_norm_ratio_q75": -0.0005787408445030451,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.4375,
+      "negative_fraction_on128": 0.421875
+    },
+    {
+      "seed": 20260825,
+      "epoch": 49,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": 0.0008596964817115804,
+      "delta_cosine_median": -0.0017597975675016642,
+      "delta_cosine_ci_low": -0.007118032313883305,
+      "delta_cosine_ci_high": 0.004549691453576088,
+      "delta_cosine_q25": -0.00999569718260318,
+      "delta_cosine_q75": 0.009891988709568977,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0014382730423676549,
+      "delta_norm_ratio_median": -0.0010838211746886373,
+      "delta_norm_ratio_ci_low": -0.0014885722193866968,
+      "delta_norm_ratio_ci_high": -0.0008231718093156815,
+      "delta_norm_ratio_q25": -0.0018298017675988376,
+      "delta_norm_ratio_q75": -0.0005663467163685709,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.3125,
+      "negative_fraction_on128": 0.265625
+    },
+    {
+      "seed": 20260826,
+      "epoch": 9,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": -0.0055146902627711825,
+      "delta_cosine_median": -0.0057421098463237286,
+      "delta_cosine_ci_low": -0.013934073969721794,
+      "delta_cosine_ci_high": -0.00048022158443927765,
+      "delta_cosine_q25": -0.02245153475087136,
+      "delta_cosine_q75": 0.012054049817379564,
+      "cosine_shift": "decrease",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0007276213145814836,
+      "delta_norm_ratio_median": -0.0010939294006675482,
+      "delta_norm_ratio_ci_low": -0.0018514404073357582,
+      "delta_norm_ratio_ci_high": -0.00047753332182765007,
+      "delta_norm_ratio_q25": -0.002650954993441701,
+      "delta_norm_ratio_q75": 0.00046748050954192877,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.421875,
+      "negative_fraction_on128": 0.53125
+    },
+    {
+      "seed": 20260826,
+      "epoch": 24,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": -0.0016377516230932088,
+      "delta_cosine_median": -0.00508070969954133,
+      "delta_cosine_ci_low": -0.0106086116284132,
+      "delta_cosine_ci_high": 0.006949935661396012,
+      "delta_cosine_q25": -0.016183746280148625,
+      "delta_cosine_q75": 0.016037168068578467,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0035357619181013433,
+      "delta_norm_ratio_median": -0.001441270112991333,
+      "delta_norm_ratio_ci_low": -0.0019044019281864166,
+      "delta_norm_ratio_ci_high": -0.001306659891270101,
+      "delta_norm_ratio_q25": -0.0027532074018381536,
+      "delta_norm_ratio_q75": -0.00099205068545416,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.4375,
+      "negative_fraction_on128": 0.4375
+    },
+    {
+      "seed": 20260826,
+      "epoch": 49,
+      "delta_cosine_n": 64,
+      "delta_cosine_mean": 0.0020218399668010534,
+      "delta_cosine_median": 0.0026800642954185605,
+      "delta_cosine_ci_low": -0.0035538282245397568,
+      "delta_cosine_ci_high": 0.009310258086770773,
+      "delta_cosine_q25": -0.009722300572320819,
+      "delta_cosine_q75": 0.015872395859332755,
+      "cosine_shift": "no_detectable_shift",
+      "delta_norm_ratio_n": 64,
+      "delta_norm_ratio_mean": -0.0020975381303287577,
+      "delta_norm_ratio_median": -0.0012258720817044377,
+      "delta_norm_ratio_ci_low": -0.0016360861482098699,
+      "delta_norm_ratio_ci_high": -0.0008413017494603992,
+      "delta_norm_ratio_q25": -0.002073003794066608,
+      "delta_norm_ratio_q75": -0.0006526096258312464,
+      "norm_ratio_shift": "decrease",
+      "negative_fraction_on64": 0.484375,
+      "negative_fraction_on128": 0.34375
+    }
+  ],
+  "pooled_late": {
+    "cluster_unit": "image",
+    "images": 64,
+    "seed_observations_per_image": 3,
+    "delta_cosine_n": 64,
+    "delta_cosine_mean": 0.001263038396965991,
+    "delta_cosine_median": 0.0016375507305686674,
+    "delta_cosine_ci_low": -0.0013289494478764632,
+    "delta_cosine_ci_high": 0.004543825440729658,
+    "delta_cosine_q25": -0.004226204686953375,
+    "delta_cosine_q75": 0.009456562955165282,
+    "cosine_shift": "no_detectable_shift",
+    "delta_norm_ratio_n": 64,
+    "delta_norm_ratio_mean": -0.0018022557806034456,
+    "delta_norm_ratio_median": -0.0012061291684707007,
+    "delta_norm_ratio_ci_low": -0.001608591681967179,
+    "delta_norm_ratio_ci_high": -0.0010593098122626543,
+    "delta_norm_ratio_q25": -0.0021920286235399544,
+    "delta_norm_ratio_q75": -0.0009788833752584953,
+    "norm_ratio_shift": "decrease"
+  },
+  "boundaries": {
+    "p1_no_go_unchanged": true,
+    "p2_01_inconclusive_unchanged": true,
+    "p2_02_map_decision_unchanged": true,
+    "no_information_fidelity_claim": true,
+    "no_causal_claim": true
+  },
+  "artifacts": {
+    "paired_raw": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\gradient_on128_minus_on64_raw.csv",
+      "sha256": "11a21fca383d5328e7fc939566c4d20d2ca515919d7d8515c8c6e04ed8e712b6"
+    },
+    "summary": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\gradient_on128_minus_on64_summary.csv",
+      "sha256": "b7467064747f4b38fbbad8944170db45346897953c54e9a1884d32e4facf6b0a"
+    },
+    "report": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_align_dim\\gradient_followup\\DINOv3_P2_ALIGN_DIM_GRADIENT_FOLLOWUP.md",
+      "sha256": "f41892868b3e7b8e4b9805234ad59c29ba5096d4823ec2926448c28e3f2f07b8"
+    }
+  }
+}

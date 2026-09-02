@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "status": "completed_three_seed_p2_02",
+  "claim": "single_variable_align_dim_diagnosis_not_a_revision_of_p1",
+  "protocol": {
+    "seeds": [
+      20260824,
+      20260825,
+      20260826
+    ],
+    "epochs": 50,
+    "late_window": 10,
+    "paired_metric": "median_last10(metrics/mAP50-95(B))",
+    "uses_best_epoch": false,
+    "only_training_change": "foundation_align_dim: 64 -> 128",
+    "threshold": 0.003,
+    "t_critical_95_df2": 4.302652729911275,
+    "summarizer_sha256": "e0798f801c07473feb87f154fb6532544856fec74b3ada9b03a328e082af6aed"
+  },
+  "p1_reference": {
+    "path": "experiments/rhino_d2/results/d2_v3_p1_three_seed_results.json",
+    "sha256": "d251c231a8ca85ca1a8718de8345f5bde2244148b4a78f1515a6d7b3241469dd"
+  },
+  "seeds": [
+    {
+      "seed": 20260824,
+      "epochs_completed": 50,
+      "late_median_map50_95": 0.05557,
+      "late_median_foundation_loss": 0.18773050000000002,
+      "late_median_foundation_task_ratio": 0.02532335,
+      "final_map50_95": 0.05708,
+      "best_map50_95_audit_only": 0.05936,
+      "source_commit": "710ae2325e97b317f77488e3cb0956b868275385",
+      "checks": {
+        "returncode_zero": true,
+        "completed_50_epochs": true,
+        "arm_is_on128": true,
+        "seed_matches": true,
+        "config_hash_verified": true,
+        "preflight_hash_verified": true,
+        "log_hash_verified": true,
+        "has_epoch9_24_49_checkpoints": true
+      },
+      "artifacts": {
+        "results": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260824.csv",
+          "bytes": 11072,
+          "sha256": "bf344c3a6b491f5f78f188be66fe0f1c956cf9be12c19ca46ce95914443f0d6a"
+        },
+        "args": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260824.args.yaml",
+          "bytes": 8417,
+          "sha256": "fd5422312e391b780737167be844ca6e4f2d0d425756d5796b46b6ca222d21f8"
+        },
+        "complete_log": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260824.log",
+          "bytes": 4735316,
+          "sha256": "a42344d07701548a9f06150e01773a53bfb25975aa64dcb2057083bbd4c0abf1"
+        },
+        "runtime_manifest": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260824.manifest.json",
+          "bytes": 9672,
+          "sha256": "650c47834f31b00ee6064aa988663dd1a58c89c4d708cefe5508031729196a08"
+        }
+      }
+    },
+    {
+      "seed": 20260825,
+      "epochs_completed": 50,
+      "late_median_map50_95": 0.044355,
+      "late_median_foundation_loss": 0.214769,
+      "late_median_foundation_task_ratio": 0.0284945,
+      "final_map50_95": 0.04855,
+      "best_map50_95_audit_only": 0.04914,
+      "source_commit": "710ae2325e97b317f77488e3cb0956b868275385",
+      "checks": {
+        "returncode_zero": true,
+        "completed_50_epochs": true,
+        "arm_is_on128": true,
+        "seed_matches": true,
+        "config_hash_verified": true,
+        "preflight_hash_verified": true,
+        "log_hash_verified": true,
+        "has_epoch9_24_49_checkpoints": true
+      },
+      "artifacts": {
+        "results": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260825.csv",
+          "bytes": 11064,
+          "sha256": "a65f0874fe1aa91ca1d8328e4368ac85f6b065ef7824ccc39488928b8a8fab15"
+        },
+        "args": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260825.args.yaml",
+          "bytes": 8417,
+          "sha256": "0c365960a189b00f5d0209bc829cf7e36ff7dd6ebe187821b9e72d6c3dbe8023"
+        },
+        "complete_log": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260825.log",
+          "bytes": 4736295,
+          "sha256": "7db65a30f44ae0454cfb72a1f3f2672446b9bf59b82e2bee3e37d7f9cbffb0f5"
+        },
+        "runtime_manifest": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260825.manifest.json",
+          "bytes": 9672,
+          "sha256": "d805bf9418f4ac57675353239f5bc8dcc7520bce6ff4680f8624520c0945d363"
+        }
+      }
+    },
+    {
+      "seed": 20260826,
+      "epochs_completed": 50,
+      "late_median_map50_95": 0.04919,
+      "late_median_foundation_loss": 0.218332,
+      "late_median_foundation_task_ratio": 0.0292549,
+      "final_map50_95": 0.05175,
+      "best_map50_95_audit_only": 0.05383,
+      "source_commit": "710ae2325e97b317f77488e3cb0956b868275385",
+      "checks": {
+        "returncode_zero": true,
+        "completed_50_epochs": true,
+        "arm_is_on128": true,
+        "seed_matches": true,
+        "config_hash_verified": true,
+        "preflight_hash_verified": true,
+        "log_hash_verified": true,
+        "has_epoch9_24_49_checkpoints": true
+      },
+      "artifacts": {
+        "results": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260826.csv",
+          "bytes": 11064,
+          "sha256": "98f06c3c9cefa179e67a10ca28b968b49f8bb3e3ad15bda8b0e190dd687b671e"
+        },
+        "args": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260826.args.yaml",
+          "bytes": 8417,
+          "sha256": "c665622e7582ae6fe506fe8ecdc6913c1b1e08aa31ced1b4778a3c88f794bede"
+        },
+        "complete_log": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260826.log",
+          "bytes": 4742121,
+          "sha256": "7f0f7ea8be1233532e9bc415133bf818cfe87327dae5b52ee743a4e154f1286d"
+        },
+        "runtime_manifest": {
+          "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align128_s20260826.manifest.json",
+          "bytes": 9672,
+          "sha256": "3da7a0c90794c17c019f4bd8ba7cc53d4b2d07d53a95e68cb10950ea3475602d"
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "seed": 20260824,
+      "off": 0.048125,
+      "on64": 0.049464999999999995,
+      "on128": 0.05557,
+      "delta_dim": 0.006105000000000006,
+      "delta_off": 0.007445
+    },
+    {
+      "seed": 20260825,
+      "off": 0.0545,
+      "on64": 0.05394,
+      "on128": 0.044355,
+      "delta_dim": -0.009585000000000003,
+      "delta_off": -0.010145000000000001
+    },
+    {
+      "seed": 20260826,
+      "off": 0.05696,
+      "on64": 0.04967,
+      "on128": 0.04919,
+      "delta_dim": -0.00048000000000000126,
+      "delta_off": -0.007769999999999999
+    }
+  ],
+  "primary_on128_minus_on64": {
+    "statistics": {
+      "n": 3,
+      "paired_deltas": [
+        0.006105000000000006,
+        -0.009585000000000003,
+        -0.00048000000000000126
+      ],
+      "mean_delta": -0.0013199999999999993,
+      "sample_standard_deviation": 0.007878656294064368,
+      "standard_error": 0.004548744332230602,
+      "confidence_interval_95": [
+        -0.020891667218740435,
+        0.018251667218740438
+      ],
+      "confidence_interval_contains_zero": true
+    },
+    "decision": "no_support",
+    "reason": "absolute mean delta is below 0.003 and the paired 95% CI contains zero"
+  },
+  "secondary_on128_minus_off": {
+    "statistics": {
+      "n": 3,
+      "paired_deltas": [
+        0.007445,
+        -0.010145000000000001,
+        -0.007769999999999999
+      ],
+      "mean_delta": -0.00349,
+      "sample_standard_deviation": 0.009544151350434463,
+      "standard_error": 0.0055103183513598684,
+      "confidence_interval_95": [
+        -0.027198986297158733,
+        0.020218986297158733
+      ],
+      "confidence_interval_contains_zero": true
+    },
+    "decision": "inconclusive",
+    "reason": "the comparison satisfies neither the pre-registered support nor no-support rule"
+  },
+  "boundaries": {
+    "p1_no_go_unchanged": true,
+    "p2_01_inconclusive_unchanged": true,
+    "no_256_or_512_search_if_no_support": true,
+    "inconclusive_requires_more_seeds_not_more_dimensions": true,
+    "gradient_probe_is_follow_up_mechanism_evidence": true
+  },
+  "artifacts": {
+    "aggregate_csv": {
+      "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align_dim_three_seed_results.csv",
+      "sha256": "e71bb797e46754897d1f9520b4326c5538711a3522e082cca3d9b3e9db4c5824"
+    },
+    "plot": {
+      "path": "experiments/rhino_d2/results/p2_align_dim/d2_v3_p2_align_dim_three_seed_results.png",
+      "sha256": "e3adf0e9870422e028562a31b3e58a7385558480eb933d320436defb19030919"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "protocol_id": "dinov3_p2_align128_gradient_followup_v1",
+  "source_state": {
+    "commit": "710ae2325e97b317f77488e3cb0956b868275385",
+    "dirty": true,
+    "porcelain_sha256": "c4d2502d7ea855059c0a57bca5f9e2e4a577be8b28272d6fcbb99267e629522f",
+    "protected_inputs_clean": true
+  },
+  "train_list": {
+    "path": "E:\\2026YOLO\\datasets\\coco_d2_mini_2048_seed20260901\\train2017.txt",
+    "count": 2048,
+    "sha256": "114efb611a22670567329a4794564a14bccaeacc02239b097cfc3abf17ef6e39"
+  },
+  "selection": {
+    "split": "train",
+    "size": 64,
+    "selection_seed": "dinov3-p2-gradient-conflict-v1-20260902",
+    "method": "sha256_rank_without_replacement",
+    "augmentation": "disabled",
+    "selected_list": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\p2_align_dim\\gradient_probe_on128\\diagnostic_train64.txt",
+    "selected_list_sha256": "1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676",
+    "selected_count": 64
+  },
+  "checkpoints": {
+    "20260824:early": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260824\\weights\\epoch9.pt",
+      "bytes": 21522369,
+      "sha256": "e5e5701df474c12809a1d45a7adc5b130ec7b7f258e11df02276a860c23cc212"
+    },
+    "20260824:middle": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260824\\weights\\epoch24.pt",
+      "bytes": 21526593,
+      "sha256": "45dda955453eb9254d6fefa336d9d852a4029cfb9f5485c596a204976c81e9d3"
+    },
+    "20260824:late": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260824\\weights\\epoch49.pt",
+      "bytes": 21533569,
+      "sha256": "e94ca9326c2ab5a412361a8b710bac964c7a85ca0136d31740167c457665a87b"
+    },
+    "20260825:early": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260825\\weights\\epoch9.pt",
+      "bytes": 21522369,
+      "sha256": "b504e5b9bbb876ec7d6502fe3d9b0df57f153dd688ab910ee40d6707a302895f"
+    },
+    "20260825:middle": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260825\\weights\\epoch24.pt",
+      "bytes": 21526593,
+      "sha256": "f11e47e5d56ae010f8d45bdb129b46b7f771e0b97c4d1b31b5d17686a1ee6ac7"
+    },
+    "20260825:late": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260825\\weights\\epoch49.pt",
+      "bytes": 21533569,
+      "sha256": "19c08c5bdbeea3cfe7adf0ccb14cca5c0bfce3f55341e9fe3e20ab9bb6790a28"
+    },
+    "20260826:early": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260826\\weights\\epoch9.pt",
+      "bytes": 21522369,
+      "sha256": "df6e59143e8bc436a47000db24e91aeeae199830ba9a7be1be58c0633c20a46d"
+    },
+    "20260826:middle": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260826\\weights\\epoch24.pt",
+      "bytes": 21526593,
+      "sha256": "050e53dbe271f5ed748c446272e3e9877b11533ca63573b9530d59d7f6029074"
+    },
+    "20260826:late": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p2_align_dim\\v3-p2-align128-s20260826\\weights\\epoch49.pt",
+      "bytes": 21533569,
+      "sha256": "71e551f090462a2395378aa37894eacf4c5a5fddbe3f3a0b646c47b0cfccfd92"
+    }
+  },
+  "inputs": {
+    "config": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\configs\\d2_v3_p2_align128_gradient_probe.yaml",
+      "sha256": "4b4eccdb026c4f2dfc6445fdec3b488347310469a346384d11e2d73c17d062d6"
+    },
+    "protocol": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\DINOV3_P2_ALIGN_DIM_PROTOCOL.md",
+      "sha256": "351585df8225ab86834af7c245169e1761e8f70e5dbaa46038dd567fdf6c92ab"
+    },
+    "script": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\scripts\\probe_gradient_conflict.py",
+      "sha256": "9a3248be7c49a9671f8de3acc97c0744bbd489894fb01ed2ab48a333e98b2839"
+    },
+    "p1_config": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\configs\\d2_v3_p2_align128.yaml",
+      "sha256": "d825d37e3e8ea58ab85726015082ad28599ae4f484a55a2b21dac894c705cd36"
+    },
+    "data_yaml": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\datasets\\d2_coco_mini_2048_seed20260901.yaml",
+      "sha256": "2f287ab822604a5b83f78d8ee2931bef19b5674f64f58c4ce0ad0198252bb570"
+    }
+  }
+}
