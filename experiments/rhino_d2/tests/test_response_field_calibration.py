@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 import torch
 import yaml
+from torch import nn
 
 from ultralytics.nn.foundation import RESPONSE_FIELD_CONDITIONS
 
@@ -74,6 +75,14 @@ def test_analytic_gradient_scaling_matches_explicit_concatenated_gradient():
             alpha,
         )
         assert analytic == pytest.approx(float(explicit), rel=1e-6)
+
+
+def test_state_digest_supports_scalar_integer_buffers_and_detects_changes():
+    """Checkpoint auditing covers zero-dimensional counters such as num_batches_tracked."""
+    module = nn.BatchNorm2d(2)
+    first = MODULE.state_digest(module)
+    module.num_batches_tracked.add_(1)
+    assert MODULE.state_digest(module) != first
 
 
 def test_selection_rule_chooses_signal_matched_alpha_one_with_frozen_ties():

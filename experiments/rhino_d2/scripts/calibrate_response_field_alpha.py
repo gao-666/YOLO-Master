@@ -42,7 +42,7 @@ def tensor_digest(tensor: torch.Tensor) -> str:
         raise ValueError("tensor digest requires one finite tensor")
     value = tensor.detach().contiguous().cpu()
     header = f"{tuple(value.shape)}|{value.dtype}|".encode()
-    raw = value.view(torch.uint8).numpy().tobytes()
+    raw = value.reshape(-1).view(torch.uint8).numpy().tobytes()
     return hashlib.sha256(header + raw).hexdigest()
 
 
@@ -52,7 +52,7 @@ def state_digest(module: nn.Module) -> str:
     for name, tensor in module.state_dict().items():
         value = tensor.detach().contiguous().cpu()
         digest.update(f"{name}\0{tuple(value.shape)}\0{value.dtype}\0".encode())
-        digest.update(value.view(torch.uint8).numpy().tobytes())
+        digest.update(value.reshape(-1).view(torch.uint8).numpy().tobytes())
     return digest.hexdigest()
 
 
