@@ -61,6 +61,30 @@ def state_tensor_digests(module: nn.Module) -> dict[str, str]:
     return {name: tensor_digest(tensor) for name, tensor in module.state_dict().items()}
 
 
+def buffer_snapshot(module: nn.Module) -> dict[str, torch.Tensor]:
+    """Clone every persistent and non-persistent model buffer for one frozen observation."""
+    return {name: value.detach().clone() for name, value in module.named_buffers()}
+
+
+def restore_buffer_snapshot(module: nn.Module, snapshot: dict[str, torch.Tensor]) -> list[str]:
+    """Restore all model buffers exactly and return names that changed transiently."""
+    current = dict(module.named_buffers())
+    if current.keys() != snapshot.keys():
+        raise RuntimeError("model buffer structure changed during calibration")
+    changed = []
+    with torch.no_grad():
+        for name, saved in snapshot.items():
+            value = current[name]
+            if value.shape != saved.shape or value.dtype != saved.dtype or value.device != saved.device:
+                raise RuntimeError(f"model buffer metadata changed during calibration: {name}")
+            if not torch.equal(value, saved):
+                changed.append(name)
+            value.copy_(saved)
+            if not torch.equal(value, saved):
+                raise RuntimeError(f"model buffer restore was not bitwise exact: {name}")
+    return changed
+
+
 def load_yaml(path: Path) -> dict[str, Any]:
     """Load one YAML mapping."""
     value = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -512,6 +536,7 @@ def measure_seed(
     rows: list[dict[str, Any]] = []
     manifest_records: list[dict[str, Any]] = []
     autograd_calls = 0
+    transient_buffer_changes: set[str] = set()
     try:
         for batch_index, cpu_batch in enumerate(batches):
             for condition_index, (_, _, condition_id) in enumerate(config["conditions"]):
@@ -520,6 +545,7 @@ def measure_seed(
                 teacher_clean = clean_teacher[batch_index].to(device)
                 teacher_perturbed, input_manifest = perturbed_teacher[(batch_index, condition_index)]
                 teacher_perturbed = teacher_perturbed.to(device)
+                initial_buffers = buffer_snapshot(wrapper)
                 initial_bn = BatchNormBufferSnapshot(roots)
                 tap.clear()
                 predictions = student(clean)
@@ -615,6 +641,7 @@ def measure_seed(
                 rows.append(row)
                 manifest_records.extend({"seed": seed, **record} for record in input_manifest)
                 initial_bn.restore()
+                transient_buffer_changes.update(restore_buffer_snapshot(wrapper, initial_buffers))
                 if not initial_bn.matches():
                     raise RuntimeError("calibration observation did not restore its initial BN state")
                 del (
@@ -660,6 +687,7 @@ def measure_seed(
         "state_sha256_after": final_state,
         "checkpoint_state_unchanged": initial_state == final_state,
         "changed_state_keys": changed_state_keys,
+        "transient_buffer_changes_restored": sorted(transient_buffer_changes),
         "parameter_grads_remain_none": no_parameter_grads,
         "autograd_grad_calls": autograd_calls,
         "optimizer_steps": 0,

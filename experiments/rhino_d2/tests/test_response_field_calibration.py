@@ -85,6 +85,18 @@ def test_state_digest_supports_scalar_integer_buffers_and_detects_changes():
     assert MODULE.state_digest(module) != first
 
 
+def test_full_buffer_snapshot_restores_task_ema_and_batchnorm_exactly():
+    """Train-only calibration observations cannot accumulate hidden model state."""
+    module = nn.Sequential(nn.BatchNorm2d(2))
+    module.register_buffer("task_ema", torch.tensor([1.0, 0.1]))
+    snapshot = MODULE.buffer_snapshot(module)
+    module(torch.rand(2, 2, 4, 4))
+    module.task_ema.add_(2)
+    changed = MODULE.restore_buffer_snapshot(module, snapshot)
+    assert set(changed) == {"0.running_mean", "0.running_var", "0.num_batches_tracked", "task_ema"}
+    assert all(torch.equal(dict(module.named_buffers())[name], value) for name, value in snapshot.items())
+
+
 def test_selection_rule_chooses_signal_matched_alpha_one_with_frozen_ties():
     """The exact score and deterministic tie policy select from accepted candidates only."""
     rows = [raw_row(seed) for seed in frozen_config()["checkpoints"]]
