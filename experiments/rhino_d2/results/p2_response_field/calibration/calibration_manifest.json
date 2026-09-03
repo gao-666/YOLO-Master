@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "protocol_id": "dinov3_p2_response_field_alpha_calibration_v1",
+  "generated_at_utc": "2026-09-03T05:34:36.437477+00:00",
+  "source_state": {
+    "commit": "173f4604a8891adda1c5c84dae1558767cb50071",
+    "branch": "rhino-d2-foundation-distillation",
+    "dirty": true,
+    "ignored_user_scope": [
+      "?? experiments/study/"
+    ],
+    "calibration_scope_clean": true
+  },
+  "frozen_inputs": {
+    "config": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\configs\\d2_v3_p2_response_field_calibration.yaml",
+      "sha256": "e74ecadb2a31cc0dfc0c11bf89db74a5a1186177e657da2e0b1374f18cdb1b04"
+    },
+    "protocol": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md",
+      "sha256": "c2c5da2839083d8b0cc96e376a8ca8241a68a20a80dd13273e3ca05b7c01fa97"
+    },
+    "amendment": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md",
+      "sha256": "29b0c20c15c092356d8585b36365a9a2c5c1d91660ff611a62838178a43cc001"
+    },
+    "p1_config": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\configs\\d2_v3_p1_on.yaml",
+      "sha256": "ce191227535f1f4b7747538d305c9d42eaa635faf65b5fe685d1adc69f586166"
+    },
+    "data": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\datasets\\d2_coco_mini_2048_seed20260901.yaml",
+      "sha256": "2f287ab822604a5b83f78d8ee2931bef19b5674f64f58c4ce0ad0198252bb570"
+    },
+    "train_subset": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\results\\p2_gradient_conflict\\diagnostic_train64.txt",
+      "sha256": "1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676"
+    }
+  },
+  "implementation": {
+    "response.py": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\ultralytics\\nn\\foundation\\response.py",
+      "sha256": "164cf8cc7787b27b2f7bae468823ea60dfcb946bdf605b615703b0e594946c05"
+    },
+    "calibration_script": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\scripts\\calibrate_response_field_alpha.py",
+      "sha256": "3389bb62969f7a34e78770cfebd1f295889b7f214a2959e283a467da388ba8bf"
+    },
+    "calibration_config": {
+      "path": "E:\\2026YOLO\\YOLO-Master\\experiments\\rhino_d2\\configs\\d2_v3_p2_response_field_calibration.yaml",
+      "sha256": "e74ecadb2a31cc0dfc0c11bf89db74a5a1186177e657da2e0b1374f18cdb1b04"
+    }
+  },
+  "dataset": {
+    "split": "train",
+    "augmentation": false,
+    "image_count": 64,
+    "batch_count": 16,
+    "batch_size": 4,
+    "dataset_root": "E:\\2026YOLO\\datasets\\coco_d2_mini_2048_seed20260901",
+    "ordered_images_sha256": "2e0b76bdd85be2ac8522c86bc173bc6a053dbdbbfc92c145bac42682ebc6b86c"
+  },
+  "teacher": {
+    "model": "facebook/dinov3-vits16-pretrain-lvd1689m",
+    "dtype": "bf16",
+    "metadata": {
+      "grid_size": [
+        16,
+        16
+      ],
+      "patch_size": 16,
+      "hidden_dim": 384,
+      "num_register_tokens": 4,
+      "prefix_tokens": 5,
+      "feature_maps_available": 1,
+      "input_size": [
+        256,
+        256
+      ],
+      "padded_size": [
+        256,
+        256
+      ],
+      "model_id": "facebook/dinov3-vits16-pretrain-lvd1689m",
+      "backend": "transformers"
+    },
+    "assets": [
+      {
+        "name": "config.json",
+        "path": "E:\\2026YOLO\\model_cache\\dinov3-vits16-pretrain-lvd1689m\\config.json",
+        "bytes": 743,
+        "sha256": "9481247be9f95a134a5599402b4bfc838eecdf9a7fffbf4debd1c70ec213898b"
+      },
+      {
+        "name": "preprocessor_config.json",
+        "path": "E:\\2026YOLO\\model_cache\\dinov3-vits16-pretrain-lvd1689m\\preprocessor_config.json",
+        "bytes": 585,
+        "sha256": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7"
+      },
+      {
+        "name": "model.safetensors",
+        "path": "E:\\2026YOLO\\model_cache\\dinov3-vits16-pretrain-lvd1689m\\model.safetensors",
+        "bytes": 86406384,
+        "sha256": "4610ad75edef83e75afdebf162d148dc628045ea6cbb83d67d4708c709c4f91d"
+      },
+      {
+        "name": "LICENSE.md",
+        "path": "E:\\2026YOLO\\model_cache\\dinov3-vits16-pretrain-lvd1689m\\LICENSE.md",
+        "bytes": 7503,
+        "sha256": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e"
+      },
+      {
+        "name": "README.md",
+        "path": "E:\\2026YOLO\\model_cache\\dinov3-vits16-pretrain-lvd1689m\\README.md",
+        "bytes": 14519,
+        "sha256": "e15ec258bf2fe83dd9473cb483ad0c7f49bc3ee6195e3c177f17d995fced3478"
+      }
+    ]
+  },
+  "checkpoints": {
+    "20260824": {
+      "checkpoint_path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p1\\v3-p1-on-s20260824\\weights\\epoch49.pt",
+      "checkpoint_sha256_before": "97ad1ceb8bbe8eeb0f22b2205caa007294253b4a5aabc170538861d0d7a95279",
+      "checkpoint_sha256_after": "97ad1ceb8bbe8eeb0f22b2205caa007294253b4a5aabc170538861d0d7a95279",
+      "checkpoint_file_unchanged": true,
+      "state_sha256_before": "67d3c8e346bf0e709a2b97052fe385db7ea2cff0d2a3d67dafec6bbd5c2d4612",
+      "state_sha256_after": "67d3c8e346bf0e709a2b97052fe385db7ea2cff0d2a3d67dafec6bbd5c2d4612",
+      "checkpoint_state_unchanged": true,
+      "changed_state_keys": [],
+      "transient_buffer_changes_restored": [
+        "student_model._mixture_loss_ema_buf"
+      ],
+      "parameter_grads_remain_none": true,
+      "autograd_grad_calls": 512,
+      "optimizer_steps": 0,
+      "student_forward_batches": 256,
+      "teacher_forward_batches": 144
+    },
+    "20260825": {
+      "checkpoint_path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p1\\v3-p1-on-s20260825\\weights\\epoch49.pt",
+      "checkpoint_sha256_before": "80b6df03c240d2f6660330e03874a5af11822688ae39bd0df08ae43616e38bb4",
+      "checkpoint_sha256_after": "80b6df03c240d2f6660330e03874a5af11822688ae39bd0df08ae43616e38bb4",
+      "checkpoint_file_unchanged": true,
+      "state_sha256_before": "162fd99da71645e44a76a3ddbed17a2a8e361bb01962ab12d05775c019c5a139",
+      "state_sha256_after": "162fd99da71645e44a76a3ddbed17a2a8e361bb01962ab12d05775c019c5a139",
+      "checkpoint_state_unchanged": true,
+      "changed_state_keys": [],
+      "transient_buffer_changes_restored": [
+        "student_model._mixture_loss_ema_buf"
+      ],
+      "parameter_grads_remain_none": true,
+      "autograd_grad_calls": 512,
+      "optimizer_steps": 0,
+      "student_forward_batches": 256,
+      "teacher_forward_batches": 144
+    },
+    "20260826": {
+      "checkpoint_path": "E:\\2026YOLO\\YOLO-Master\\runs\\rhino_d2\\v3_p1\\v3-p1-on-s20260826\\weights\\epoch49.pt",
+      "checkpoint_sha256_before": "ec25b599e7a928db4c36fad826791f56bca49d4eb4f29e34b1eda64faaa60eba",
+      "checkpoint_sha256_after": "ec25b599e7a928db4c36fad826791f56bca49d4eb4f29e34b1eda64faaa60eba",
+      "checkpoint_file_unchanged": true,
+      "state_sha256_before": "7b6c907b323f91ccc4dae0a822cf7c9769e796f1fd20cbbd518c9b19cf202a08",
+      "state_sha256_after": "7b6c907b323f91ccc4dae0a822cf7c9769e796f1fd20cbbd518c9b19cf202a08",
+      "checkpoint_state_unchanged": true,
+      "changed_state_keys": [],
+      "transient_buffer_changes_restored": [
+        "student_model._mixture_loss_ema_buf"
+      ],
+      "parameter_grads_remain_none": true,
+      "autograd_grad_calls": 512,
+      "optimizer_steps": 0,
+      "student_forward_batches": 256,
+      "teacher_forward_batches": 144
+    }
+  },
+  "execution": {
+    "observation_unit": "seed_batch_condition",
+    "raw_observations": 384,
+    "rolling_manifest_records": 1536,
+    "rolling_manifest_sha256": "abdb1c3652b3a14f2277248d6fe03ad23e5e2774d741ea0035789f8af9bd0029",
+    "optimizer_steps": 0,
+    "alpha_forward_reruns": 0,
+    "no_validation_access": true,
+    "no_response128_access": true,
+    "formal_training_started": false
+  },
+  "decision": {
+    "status": "failed",
+    "selected_alpha": null,
+    "selected_alpha_label": null,
+    "formal_training_authorized": false,
+    "accepted_alpha_count": 0,
+    "accepted_alphas": [],
+    "selection_rule": "minimum_abs_log_r_loss_plus_abs_log_r_grad_then_closest_to_one_then_smaller_alpha",
+    "failure_action": "stop_p2_04_no_formal_training"
+  },
+  "checks": {
+    "train_split_only": true,
+    "train64_sha256_exact": true,
+    "all_64_images_x_8_conditions_x_3_seeds": true,
+    "alpha_uses_cached_raw_values_only": true,
+    "no_validation_access": true,
+    "no_response128_access": true,
+    "optimizer_steps": 0,
+    "checkpoint_state_unchanged": true,
+    "checkpoint_files_unchanged": true,
+    "parameter_grads_remain_none": true,
+    "formal_training_started": false
+  },
+  "runtime": {
+    "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "device": "cuda:0",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti"
+  },
+  "artifacts": {
+    "calibration_raw.csv": {
+      "sha256": "39cf682d665069300f39ef0609c13e208229feea5f0a00f2635cb725140c7180"
+    },
+    "calibration_summary.csv": {
+      "sha256": "f12723709e7a87de28d7c9e42be0099cf41eaa7a721f016107c84233d3f84965"
+    },
+    "calibration_result.json": {
+      "sha256": "accf0953ffdff0612a876573050345686d997c9cba5cc8d60bd3f8234682ac44"
+    },
+    "calibration.log": {
+      "sha256": "5534c677695bdeb115fd8220bfe4780e5ce0d3b9cd8c1420e1374a650a9d08fc"
+    }
+  }
+}
