@@ -56,6 +56,11 @@ def state_digest(module: nn.Module) -> str:
     return digest.hexdigest()
 
 
+def state_tensor_digests(module: nn.Module) -> dict[str, str]:
+    """Return per-key state hashes for fail-closed mutation diagnostics."""
+    return {name: tensor_digest(tensor) for name, tensor in module.state_dict().items()}
+
+
 def load_yaml(path: Path) -> dict[str, Any]:
     """Load one YAML mapping."""
     value = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -500,6 +505,7 @@ def measure_seed(
     projector.train()
     roots = {"student": student, "projector": projector}
     initial_state = state_digest(wrapper)
+    initial_tensor_states = state_tensor_digests(wrapper)
     if any(parameter.grad is not None for parameter in wrapper.parameters()):
         raise RuntimeError("checkpoint entered calibration with populated parameter gradients")
     tap = StudentFeatureTap(student, target="p4")
@@ -638,6 +644,11 @@ def measure_seed(
     finally:
         tap.close()
     final_state = state_digest(wrapper)
+    final_tensor_states = state_tensor_digests(wrapper)
+    changed_state_keys = [
+        name for name, digest in initial_tensor_states.items() if final_tensor_states.get(name) != digest
+    ]
+    changed_state_keys.extend(name for name in final_tensor_states if name not in initial_tensor_states)
     file_after = sha256(checkpoint_path)
     no_parameter_grads = all(parameter.grad is None for parameter in wrapper.parameters())
     runtime = {
@@ -648,6 +659,7 @@ def measure_seed(
         "state_sha256_before": initial_state,
         "state_sha256_after": final_state,
         "checkpoint_state_unchanged": initial_state == final_state,
+        "changed_state_keys": changed_state_keys,
         "parameter_grads_remain_none": no_parameter_grads,
         "autograd_grad_calls": autograd_calls,
         "optimizer_steps": 0,
