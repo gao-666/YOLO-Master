@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "status": "passed_synthetic_implementation_gate",
+  "authorization_boundary": "synthetic_only_no_alpha_calibration_no_formal_training",
+  "created_utc": "2026-09-03T03:38:32.394095+00:00",
+  "source_state": {
+    "commit": "ead45e35aee4ac4b70a6258b7e620f25422d2907",
+    "branch": "rhino-d2-foundation-distillation",
+    "experiment_inputs_dirty": false,
+    "experiment_input_status": [],
+    "input_sha256": {
+      "experiments/rhino_d2/DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md": "c2c5da2839083d8b0cc96e376a8ca8241a68a20a80dd13273e3ca05b7c01fa97",
+      "experiments/rhino_d2/DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md": "29b0c20c15c092356d8585b36365a9a2c5c1d91660ff611a62838178a43cc001",
+      "experiments/rhino_d2/scripts/smoke_response_field.py": "566dcf751564ffd90c044663d702c56d502444148bf528f1e57ff632e171a598",
+      "experiments/rhino_d2/tests/test_response_field.py": "96b866df2676954b849ff268358458589a0c5da06719b85d3d359ef62ba7e8c5",
+      "ultralytics/nn/foundation/__init__.py": "3eef6d5f3c591120329c4e2e35969d5c8d3065bb767c130b1c662bd2f46cc1f9",
+      "ultralytics/nn/foundation/response.py": "d3a92339d4148167a8a837015b2a53bee110c1241426da0ddbe154b1d36ee31c"
+    }
+  },
+  "protocol": {
+    "payload_version": "dinov3-p2-response-field-v1",
+    "global_batch_index_version": "epoch-major-v1",
+    "lambda": 0.15,
+    "synthetic_alpha": 1.0,
+    "cosine_epsilon": 1e-06,
+    "bn_contract": "train_semantics_with_post_clean_buffer_snapshot_restore"
+  },
+  "paired_view": {
+    "shape": [
+      4,
+      3,
+      16,
+      16
+    ],
+    "records": [
+      {
+        "image_id": "train2017/synthetic_0000.jpg",
+        "condition_id": "contrast:0.75",
+        "noise_seed": null,
+        "epoch_index": 7,
+        "batch_index_within_epoch": 3,
+        "num_batches_per_epoch": 512,
+        "global_batch_index": 3587,
+        "global_batch_index_version": "epoch-major-v1",
+        "clean_tensor_sha256": "85e1624358b2e76b280255928cce278fb74c756393d851cc701c97180f59fd01",
+        "perturbed_tensor_sha256": "03fb091d2226f9578fd16787c7229e73368fece150b9778a21242b997549fc73"
+      },
+      {
+        "image_id": "train2017/synthetic_0001.jpg",
+        "condition_id": "brightness:0.6",
+        "noise_seed": null,
+        "epoch_index": 7,
+        "batch_index_within_epoch": 3,
+        "num_batches_per_epoch": 512,
+        "global_batch_index": 3587,
+        "global_batch_index_version": "epoch-major-v1",
+        "clean_tensor_sha256": "a3bab4659576ad268e50ad719f5678d2f79d64da88fc73466fa0057a96a1791b",
+        "perturbed_tensor_sha256": "755949109d0e1a2e07b2bf2eb3f792c472f5fd5610d4f2673770c548bf8641b6"
+      },
+      {
+        "image_id": "train2017/synthetic_0002.jpg",
+        "condition_id": "gaussian_noise:0.06",
+        "noise_seed": 3641276947630322344,
+        "epoch_index": 7,
+        "batch_index_within_epoch": 3,
+        "num_batches_per_epoch": 512,
+        "global_batch_index": 3587,
+        "global_batch_index_version": "epoch-major-v1",
+        "clean_tensor_sha256": "049ba1cc60197efe174a47867ff1939661ad77e26f3c5f7b9f2eecf050125985",
+        "perturbed_tensor_sha256": "24611d9174e20845d038c7d1d213e1dd8ea8fd61f11c26c24bad1a71717999d6"
+      },
+      {
+        "image_id": "train2017/synthetic_0003.jpg",
+        "condition_id": "gaussian_noise:0.06",
+        "noise_seed": 6463815080894518018,
+        "epoch_index": 7,
+        "batch_index_within_epoch": 3,
+        "num_batches_per_epoch": 512,
+        "global_batch_index": 3587,
+        "global_batch_index_version": "epoch-major-v1",
+        "clean_tensor_sha256": "2dbb284a4c91d07f7375677c3de66e37a16cabf8a37e002360a5e7cdb21d384c",
+        "perturbed_tensor_sha256": "b72f03aa24c63b166a36909e3eada7343ee153ecfc06f3e758e45edf1ed298bd"
+      }
+    ]
+  },
+  "arms": {
+    "A": {
+      "arm": "A",
+      "task_loss": 0.34537550806999207,
+      "foundation_loss": 0.0,
+      "static_clean_loss": 0.8169839382171631,
+      "static_perturbed_loss": 0.80022794008255,
+      "response_loss": 0.8420326113700867,
+      "bn_changed_during_perturbed_forward": true,
+      "bn_buffers_restored_bitwise": true,
+      "clean_bn_training_flags": {
+        "student.bn": [
+          true
+        ],
+        "projector.student_proj.1": [
+          true
+        ]
+      },
+      "perturbed_bn_training_flags": {
+        "student.bn": [
+          true
+        ],
+        "projector.student_proj.1": [
+          true
+        ]
+      },
+      "bn_training_flags_match_and_true": true,
+      "perturbed_feature_gradient_norm": 0.0,
+      "projector_gradient_norm": 0.0
+    },
+    "B": {
+      "arm": "B",
+      "task_loss": 0.34537550806999207,
+      "foundation_loss": 0.2425817847251892,
+      "static_clean_loss": 0.8169839382171631,
+      "static_perturbed_loss": 0.80022794008255,
+      "response_loss": 0.8420326113700867,
+      "bn_changed_during_perturbed_forward": true,
+      "bn_buffers_restored_bitwise": true,
+      "clean_bn_training_flags": {
+        "student.bn": [
+          true
+        ],
+        "projector.student_proj.1": [
+          true
+        ]
+      },
+      "perturbed_bn_training_flags": {
+        "student.bn": [
+          true
+        ],
+        "projector.student_proj.1": [
+          true
+        ]
+      },
+      "bn_training_flags_match_and_true": true,
+      "perturbed_feature_gradient_norm": 0.007921924814581871,
+      "projector_gradient_norm": 0.09033600986003876
+    },
+    "C": {
+      "arm": "C",
+      "task_loss": 0.34537550806999207,
+      "foundation_loss": 0.24885250627994537,
+      "static_clean_loss": 0.8169839382171631,
+      "static_perturbed_loss": 0.80022794008255,
+      "response_loss": 0.8420326113700867,
+      "bn_changed_during_perturbed_forward": true,
+      "bn_buffers_restored_bitwise": true,
+      "clean_bn_training_flags": {
+        "student.bn": [
+          true
+        ],
+        "projector.student_proj.1": [
+          true
+        ]
+      },
+      "perturbed_bn_training_flags": {
+        "student.bn": [
+          true
+        ],
+        "projector.student_proj.1": [
+          true
+        ]
+      },
+      "bn_training_flags_match_and_true": true,
+      "perturbed_feature_gradient_norm": 0.02970878593623638,
+      "projector_gradient_norm": 0.1036367267370224
+    }
+  },
+  "optimization": {
+    "steps": 12,
+    "objective": "unweighted_clean_static_plus_response_synthetic_only",
+    "loss_curve": [
+      2.1094279289245605,
+      1.871009111404419,
+      1.730756402015686,
+      1.6208316087722778,
+      1.529468297958374,
+      1.4485394954681396,
+      1.38014817237854,
+      1.3204269409179688,
+      1.2655611038208008,
+      1.2181352376937866,
+      1.176607370376587,
+      1.1397250890731812
+    ],
+    "first": 2.1094279289245605,
+    "last": 1.1397250890731812
+  },
+  "checks": {
+    "experiment_inputs_clean": true,
+    "same_clean_tensor_for_abc": true,
+    "same_perturbed_tensor_for_abc": true,
+    "same_paired_manifest_for_abc": true,
+    "all_bn_buffers_restored_bitwise": true,
+    "all_bn_flags_match_and_are_train": true,
+    "bc_perturbed_gradients_finite_nonzero": true,
+    "arm_a_perturbed_branch_no_effect": true,
+    "response_objective_decreased": true,
+    "no_validation_or_formal_metrics_read": true,
+    "no_calibration_executed": true
+  },
+  "claim": "The Response-Field code path, deterministic paired-view contract, gradients, and BN rollback work on synthetic tensors; this is not alpha calibration and contains no detection efficacy evidence."
+}

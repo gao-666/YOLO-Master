@@ -10,6 +10,8 @@
 
 正式 DINOv3-S P1 的冻结条件见 [`DINOV3_P1_PROTOCOL.md`](DINOV3_P1_PROTOCOL.md)。首轮 train-only 权重标定没有候选进入 `[3%,6%]`，证据见 [`DINOV3_P1_CALIBRATION.md`](DINOV3_P1_CALIBRATION.md)；独立预注册的单候选扩展随后以 ratio `3.922%` 选定 weight `0.15`。正式三 seed 差值为 `+0.001340 / -0.000560 / -0.007290`，mean Δ=`-0.002170`，paired 95% CI=`[-0.013435,0.009095]`，按冻结规则判定 No-Go。正式建议书见 [`DINOV3_P1_GO_NO_GO.md`](DINOV3_P1_GO_NO_GO.md)。
 
+P2-04 Response-Field 的原始预注册、BN/resume 修正案与 synthetic implementation gate 分别见 [`DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md`](DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md)、[`DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md`](DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md) 和 [`DINOV3_P2_RESPONSE_FIELD_IMPLEMENTATION_EVIDENCE.md`](DINOV3_P2_RESPONSE_FIELD_IMPLEMENTATION_EVIDENCE.md)。当前仅通过实现与合成 smoke，未执行 alpha calibration，也未授权 formal training。
+
 ## 准入状态
 
 | 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |
