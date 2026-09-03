@@ -269,6 +269,11 @@ def test_batchnorm_restore_fails_closed_on_buffer_metadata_or_mode_mismatch():
     student.bn.running_mean = torch.zeros(3)
     with pytest.raises(RuntimeError, match="metadata changed"):
         snapshot.restore()
+    student = TinyStudent().train()
+    snapshot = BatchNormBufferSnapshot({"student": student})
+    student.bn.running_var = None
+    with pytest.raises(TypeError, match="missing during restore"):
+        snapshot.restore()
     student = TinyStudent().eval()
     with pytest.raises(RuntimeError, match="must all be in train mode"):
         BatchNormBufferSnapshot({"student": student})
