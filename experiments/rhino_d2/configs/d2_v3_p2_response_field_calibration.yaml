@@ -1,0 +1,65 @@
+protocol_id: dinov3_p2_response_field_alpha_calibration_v1
+protocol_commit: 3da75f7da2ec49b254b646915e58574b30c9bb45
+amendment_commit: 6ed5809b42a1ee9af4eafd828863c594d85f4682
+protocol: experiments/rhino_d2/DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md
+protocol_sha256: c2c5da2839083d8b0cc96e376a8ca8241a68a20a80dd13273e3ca05b7c01fa97
+amendment: experiments/rhino_d2/DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md
+amendment_sha256: 29b0c20c15c092356d8585b36365a9a2c5c1d91660ff611a62838178a43cc001
+p1_config: experiments/rhino_d2/configs/d2_v3_p1_on.yaml
+p1_config_sha256: ce191227535f1f4b7747538d305c9d42eaa635faf65b5fe685d1adc69f586166
+data: experiments/rhino_d2/datasets/d2_coco_mini_2048_seed20260901.yaml
+data_sha256: 2f287ab822604a5b83f78d8ee2931bef19b5674f64f58c4ce0ad0198252bb570
+train_subset: experiments/rhino_d2/results/p2_gradient_conflict/diagnostic_train64.txt
+train_subset_sha256: 1ad936698234fd07651993dbdefe7a98ffaf74861432a103b6e397bb45b9b676
+split: train
+subset_size: 64
+augmentation: disabled
+teacher_model: facebook/dinov3-vits16-pretrain-lvd1689m
+teacher_weights: E:/2026YOLO/model_cache/dinov3-vits16-pretrain-lvd1689m
+teacher_dtype: bf16
+teacher_asset_sha256:
+  config.json: 9481247be9f95a134a5599402b4bfc838eecdf9a7fffbf4debd1c70ec213898b
+  preprocessor_config.json: 960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7
+  model.safetensors: 4610ad75edef83e75afdebf162d148dc628045ea6cbb83d67d4708c709c4f91d
+  LICENSE.md: 25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e
+  README.md: e15ec258bf2fe83dd9473cb483ad0c7f49bc3ee6195e3c177f17d995fced3478
+student_level: p4
+align_dim: 64
+foundation_loss: cosine
+lambda: 0.15
+cosine_epsilon: 1.0e-6
+gradient_norm_epsilon: 1.0e-12
+imgsz: 256
+batch_size: 4
+device: cuda:0
+checkpoint_epoch: 49
+checkpoint_weights: ema
+checkpoints:
+  20260824:
+    path: runs/rhino_d2/v3_p1/v3-p1-on-s20260824/weights/epoch49.pt
+    sha256: 97ad1ceb8bbe8eeb0f22b2205caa007294253b4a5aabc170538861d0d7a95279
+  20260825:
+    path: runs/rhino_d2/v3_p1/v3-p1-on-s20260825/weights/epoch49.pt
+    sha256: 80b6df03c240d2f6660330e03874a5af11822688ae39bd0df08ae43616e38bb4
+  20260826:
+    path: runs/rhino_d2/v3_p1/v3-p1-on-s20260826/weights/epoch49.pt
+    sha256: ec25b599e7a928db4c36fad826791f56bca49d4eb4f29e34b1eda64faaa60eba
+calibration_epoch_index: 49
+num_batches_per_epoch: 16
+conditions:
+  - [brightness, 0.8, "brightness:0.8"]
+  - [brightness, 0.6, "brightness:0.6"]
+  - [contrast, 0.75, "contrast:0.75"]
+  - [contrast, 0.5, "contrast:0.5"]
+  - [gaussian_blur, 1.0, "gaussian_blur:1.0"]
+  - [gaussian_blur, 2.0, "gaussian_blur:2.0"]
+  - [gaussian_noise, 0.03, "gaussian_noise:0.03"]
+  - [gaussian_noise, 0.06, "gaussian_noise:0.06"]
+alpha_candidates: [0.25, 0.5, 1.0, 2.0, 4.0]
+acceptance_band: [0.5, 2.0]
+minimum_passing_seeds: 2
+observation_unit: seed_batch_condition
+aggregation: median
+selection_score: abs_log_r_loss_plus_abs_log_r_grad
+tie_break: [closest_to_one, smaller_alpha]
+formal_training_authorized: false

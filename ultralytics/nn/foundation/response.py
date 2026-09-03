@@ -100,11 +100,18 @@ def response_field_condition(
     )
     condition_index = int.from_bytes(hashlib.sha256(payload).digest()[:8], "big") % len(RESPONSE_FIELD_CONDITIONS)
     family, value, condition_id = RESPONSE_FIELD_CONDITIONS[condition_index]
-    noise_seed = None
-    if family == "gaussian_noise":
-        noise_payload = payload + b"\0" + condition_id.encode() + b"\0noise"
-        noise_seed = int.from_bytes(hashlib.sha256(noise_payload).digest()[:8], "big") % (2**63)
+    noise_seed = response_field_noise_seed(payload, condition_id) if family == "gaussian_noise" else None
     return ResponseFieldCondition(family, value, condition_id, condition_index, noise_seed)
+
+
+def response_field_noise_seed(payload: bytes, condition_id: str) -> int:
+    """Return the frozen Gaussian-noise seed for one payload and condition ID."""
+    if not isinstance(payload, bytes) or not payload:
+        raise ValueError("payload must be non-empty bytes.")
+    if not isinstance(condition_id, str) or not condition_id:
+        raise ValueError("condition_id must be a non-empty string.")
+    noise_payload = payload + b"\0" + condition_id.encode() + b"\0noise"
+    return int.from_bytes(hashlib.sha256(noise_payload).digest()[:8], "big") % (2**63)
 
 
 def _gaussian_kernel1d(sigma: float, *, dtype: torch.dtype) -> torch.Tensor:
@@ -193,6 +200,62 @@ def build_response_field_paired_view(
                 "image_id": normalized_path,
                 "condition_id": condition.condition_id,
                 "noise_seed": condition.noise_seed,
+                "epoch_index": epoch_index,
+                "batch_index_within_epoch": batch_index_within_epoch,
+                "num_batches_per_epoch": num_batches_per_epoch,
+                "global_batch_index": global_index,
+                "global_batch_index_version": GLOBAL_BATCH_INDEX_VERSION,
+                "clean_tensor_sha256": tensor_sha256(image),
+                "perturbed_tensor_sha256": tensor_sha256(perturbed),
+            }
+        )
+    return torch.stack(perturbed_images), records
+
+
+def apply_response_field_condition_batch(
+    clean_images: torch.Tensor,
+    normalized_image_paths: list[str],
+    *,
+    family: str,
+    value: float,
+    condition_id: str,
+    seed: int,
+    epoch_index: int,
+    batch_index_within_epoch: int,
+    num_batches_per_epoch: int,
+) -> tuple[torch.Tensor, list[dict[str, object]]]:
+    """Apply one explicitly selected frozen condition to a complete calibration batch."""
+    if not isinstance(clean_images, torch.Tensor) or clean_images.ndim != 4:
+        raise ValueError("clean_images must be a BCHW torch.Tensor.")
+    if clean_images.device.type != "cpu" or clean_images.dtype != torch.float32:
+        raise ValueError("response-field perturbations require a CPU FP32 clean tensor.")
+    if not torch.isfinite(clean_images).all() or (clean_images < 0).any() or (clean_images > 1).any():
+        raise ValueError("clean_images must be finite and scaled to the frozen [0, 1] range.")
+    if len(normalized_image_paths) != clean_images.shape[0]:
+        raise ValueError("normalized_image_paths must contain exactly one path per image.")
+    frozen = {(item[0], item[1], item[2]): index for index, item in enumerate(RESPONSE_FIELD_CONDITIONS)}
+    key = (family, float(value), condition_id)
+    if key not in frozen:
+        raise ValueError(f"Condition {key!r} is not one of the eight frozen response-field conditions.")
+    global_index = logical_global_batch_index(epoch_index, batch_index_within_epoch, num_batches_per_epoch)
+    perturbed_images, records = [], []
+    for image, path in zip(clean_images, normalized_image_paths):
+        normalized_path = _validated_normalized_path(path)
+        payload = _response_field_payload(
+            seed=seed,
+            epoch_index=epoch_index,
+            global_batch_index=global_index,
+            normalized_image_path=normalized_path,
+        )
+        noise_seed = response_field_noise_seed(payload, condition_id) if family == "gaussian_noise" else None
+        condition = ResponseFieldCondition(family, float(value), condition_id, frozen[key], noise_seed)
+        perturbed = _perturb_one(image, condition)
+        perturbed_images.append(perturbed)
+        records.append(
+            {
+                "image_id": normalized_path,
+                "condition_id": condition_id,
+                "noise_seed": noise_seed,
                 "epoch_index": epoch_index,
                 "batch_index_within_epoch": batch_index_within_epoch,
                 "num_batches_per_epoch": num_batches_per_epoch,
@@ -385,11 +448,13 @@ __all__ = [
     "RESPONSE_FIELD_PAYLOAD_VERSION",
     "BatchNormBufferSnapshot",
     "ResponseFieldCondition",
+    "apply_response_field_condition_batch",
     "build_response_field_paired_view",
     "logical_global_batch_index",
     "preserve_batchnorm_buffers",
     "response_field_condition",
     "response_field_kd_loss",
+    "response_field_noise_seed",
     "strict_cosine_kd_loss",
     "tensor_sha256",
 ]

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -13,9 +14,13 @@ REPO_ROOT = EXPERIMENT_ROOT.parents[1]
 RESULT = EXPERIMENT_ROOT / "results/p2_response_field/smoke/d2_v3_p2_response_field_smoke.json"
 
 
-def sha256(path: Path) -> str:
-    """Return one file SHA-256 digest."""
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def archived_source_hashes(commit: str, relative_path: str) -> set[str]:
+    """Return canonical Git and Windows-checkout hashes for an archived source file."""
+    content = subprocess.check_output(("git", "show", f"{commit}:{relative_path}"), cwd=REPO_ROOT)
+    return {
+        hashlib.sha256(content).hexdigest(),
+        hashlib.sha256(content.replace(b"\n", b"\r\n")).hexdigest(),
+    }
 
 
 def test_response_field_smoke_is_clean_synthetic_evidence_not_calibration():
@@ -27,7 +32,7 @@ def test_response_field_smoke_is_clean_synthetic_evidence_not_calibration():
     assert result["source_state"]["experiment_inputs_dirty"] is False
     assert result["source_state"]["experiment_input_status"] == []
     for relative_path, expected_hash in result["source_state"]["input_sha256"].items():
-        assert sha256(REPO_ROOT / relative_path) == expected_hash
+        assert expected_hash in archived_source_hashes(result["source_state"]["commit"], relative_path)
     assert all(result["checks"].values())
     assert result["checks"]["no_calibration_executed"] is True
     assert result["checks"]["no_validation_or_formal_metrics_read"] is True

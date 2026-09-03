@@ -11,8 +11,10 @@ from torch import nn
 from torch.nn.modules.batchnorm import _BatchNorm
 
 from ultralytics.nn.foundation import (
+    RESPONSE_FIELD_CONDITIONS,
     BatchNormBufferSnapshot,
     P4AlignmentProjector,
+    apply_response_field_condition_batch,
     build_response_field_paired_view,
     logical_global_batch_index,
     preserve_batchnorm_buffers,
@@ -303,3 +305,28 @@ def test_pair_generation_fails_closed_on_ambiguous_position_or_nonportable_path(
             batch_index_within_epoch=0,
             num_batches_per_epoch=2,
         )
+
+
+@pytest.mark.parametrize("family,value,condition_id", RESPONSE_FIELD_CONDITIONS)
+def test_exhaustive_calibration_conditions_are_deterministic_and_frozen(family, value, condition_id):
+    """Calibration can enumerate all eight conditions without resampling between alpha candidates."""
+    clean = torch.rand((2, 3, 16, 16), generator=torch.Generator().manual_seed(9))
+    kwargs = {
+        "family": family,
+        "value": value,
+        "condition_id": condition_id,
+        "seed": 20260824,
+        "epoch_index": 49,
+        "batch_index_within_epoch": 3,
+        "num_batches_per_epoch": 16,
+    }
+    first, first_records = apply_response_field_condition_batch(
+        clean, ["images/train2017/a.jpg", "images/train2017/b.jpg"], **kwargs
+    )
+    second, second_records = apply_response_field_condition_batch(
+        clean, ["images/train2017/a.jpg", "images/train2017/b.jpg"], **kwargs
+    )
+    assert torch.equal(first, second)
+    assert first_records == second_records
+    assert {record["condition_id"] for record in first_records} == {condition_id}
+    assert {record["global_batch_index"] for record in first_records} == {49 * 16 + 3}
