@@ -1,0 +1,17 @@
+protocol_id: dinov3_p2_response_gradient_geometry_v1
+p2_04_endpoint: 769d1b66c96d5ff444fa4f9e4d4ec9961dd989b5
+base_config: experiments/rhino_d2/configs/d2_v3_p2_response_field_calibration.yaml
+base_config_sha256: e74ecadb2a31cc0dfc0c11bf89db74a5a1186177e657da2e0b1374f18cdb1b04
+base_script_sha256: 3389bb62969f7a34e78770cfebd1f295889b7f214a2959e283a467da388ba8bf
+dataset_root: E:/2026YOLO/datasets/coco_d2_mini_2048_seed20260901
+expected_tap_index: 19
+bootstrap_replicates: 10000
+bootstrap_seed: 20260908
+bootstrap_cluster: fixed_batch_block
+vector_rtol: 0.0002
+vector_atol: 0.0000002
+relative_l2_tolerance: 0.0002
+maximum_wall_seconds: 900
+training_runs: 0
+alpha_selection_authorized: false
+formal_training_authorized: false
