@@ -12,6 +12,8 @@
 
 P2-04 Response-Field 的原始预注册、BN/resume 修正案、synthetic implementation gate 与 train64-only calibration 结果分别见 [`DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md`](DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL.md)、[`DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md`](DINOV3_P2_RESPONSE_FIELD_TRAIN_PROTOCOL_AMENDMENT.md)、[`DINOV3_P2_RESPONSE_FIELD_IMPLEMENTATION_EVIDENCE.md`](DINOV3_P2_RESPONSE_FIELD_IMPLEMENTATION_EVIDENCE.md) 和 [`DINOV3_P2_RESPONSE_FIELD_CALIBRATION_RESULT.md`](DINOV3_P2_RESPONSE_FIELD_CALIBRATION_RESULT.md)。Calibration 为 **Failed**（0 个候选通过），未选择 alpha，P2-04 已按预注册停止且未授权 formal training。
 
+2026-09-08 的独立 **P2-05 Response Gradient Geometry Probe** 已完成（0训练）：预注册见 [`DINOV3_P2_RESPONSE_GRADIENT_GEOMETRY_PROTOCOL.md`](DINOV3_P2_RESPONSE_GRADIENT_GEOMETRY_PROTOCOL.md)，完整分解、审计与接手说明见 [`DINOV3_P2_RESPONSE_GRADIENT_GEOMETRY_RESULT.md`](DINOV3_P2_RESPONSE_GRADIENT_GEOMETRY_RESULT.md)。冻结规则判为 H1 Support：小 response norm 的 cosine 几何贡献在三个 seed、四类扰动中占主导；这不是检测收益 Go，不撤销 P2-04 停止状态，不授权更小 alpha 或正式训练。注意现有 tap 实际为 neck/FPN P4（第19层），本轮未换层。
+
 ## 准入状态
 
 | 环境安装 | 基线/最小任务 | 复现命令 | 配置文件 | 完整日志 | 结果证据 | 设计说明 | 风险与降级 | 代码/方案链接 |

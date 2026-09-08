@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "device": "cpu",
+  "observations": [
+    {
+      "scale": 1.0,
+      "loss": 0.29289329051971436,
+      "gradient_norm": 0.24999999572143225,
+      "relative_error": 1.7114270947149228e-08
+    },
+    {
+      "scale": 0.5,
+      "loss": 0.29289329051971436,
+      "gradient_norm": 0.4999999914428645,
+      "relative_error": 1.7114270947149228e-08
+    },
+    {
+      "scale": 0.25,
+      "loss": 0.29289329051971436,
+      "gradient_norm": 0.999999982885729,
+      "relative_error": 1.7114270947149228e-08
+    },
+    {
+      "scale": 0.125,
+      "loss": 0.29289329051971436,
+      "gradient_norm": 1.999999965771458,
+      "relative_error": 1.7114270947149228e-08
+    }
+  ]
+}

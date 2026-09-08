@@ -1,0 +1,56 @@
+{"event": "start", "protocol_commit": "aebf564db30d6329484f7e8fe5d66d82d5647746", "source_commit": "8a990995add82afcef6d2d8b865b997eeb1a473b", "training_runs": 0, "utc": "2026-09-08T14:04:42.112269+00:00"}
+{"event": "teacher_cache_start", "seed": 20260824, "utc": "2026-09-08T14:04:44.491456+00:00"}
+{"batch_index": 0, "elapsed": 19.45, "event": "batch_complete", "observations": 8, "seed": 20260824, "utc": "2026-09-08T14:05:01.565723+00:00"}
+{"batch_index": 1, "elapsed": 21.94, "event": "batch_complete", "observations": 16, "seed": 20260824, "utc": "2026-09-08T14:05:04.051896+00:00"}
+{"batch_index": 2, "elapsed": 24.43, "event": "batch_complete", "observations": 24, "seed": 20260824, "utc": "2026-09-08T14:05:06.537815+00:00"}
+{"batch_index": 3, "elapsed": 26.96, "event": "batch_complete", "observations": 32, "seed": 20260824, "utc": "2026-09-08T14:05:09.070731+00:00"}
+{"batch_index": 4, "elapsed": 29.53, "event": "batch_complete", "observations": 40, "seed": 20260824, "utc": "2026-09-08T14:05:11.642805+00:00"}
+{"batch_index": 5, "elapsed": 32.05, "event": "batch_complete", "observations": 48, "seed": 20260824, "utc": "2026-09-08T14:05:14.162154+00:00"}
+{"batch_index": 6, "elapsed": 34.58, "event": "batch_complete", "observations": 56, "seed": 20260824, "utc": "2026-09-08T14:05:16.692524+00:00"}
+{"batch_index": 7, "elapsed": 37.14, "event": "batch_complete", "observations": 64, "seed": 20260824, "utc": "2026-09-08T14:05:19.250389+00:00"}
+{"batch_index": 8, "elapsed": 39.67, "event": "batch_complete", "observations": 72, "seed": 20260824, "utc": "2026-09-08T14:05:21.786750+00:00"}
+{"batch_index": 9, "elapsed": 42.28, "event": "batch_complete", "observations": 80, "seed": 20260824, "utc": "2026-09-08T14:05:24.394549+00:00"}
+{"batch_index": 10, "elapsed": 44.87, "event": "batch_complete", "observations": 88, "seed": 20260824, "utc": "2026-09-08T14:05:26.983356+00:00"}
+{"batch_index": 11, "elapsed": 47.41, "event": "batch_complete", "observations": 96, "seed": 20260824, "utc": "2026-09-08T14:05:29.523303+00:00"}
+{"batch_index": 12, "elapsed": 49.95, "event": "batch_complete", "observations": 104, "seed": 20260824, "utc": "2026-09-08T14:05:32.064836+00:00"}
+{"batch_index": 13, "elapsed": 52.57, "event": "batch_complete", "observations": 112, "seed": 20260824, "utc": "2026-09-08T14:05:34.678613+00:00"}
+{"batch_index": 14, "elapsed": 55.13, "event": "batch_complete", "observations": 120, "seed": 20260824, "utc": "2026-09-08T14:05:37.241157+00:00"}
+{"batch_index": 15, "elapsed": 57.75, "event": "batch_complete", "observations": 128, "seed": 20260824, "utc": "2026-09-08T14:05:39.857608+00:00"}
+{"event": "seed_complete", "file_unchanged": true, "parameter_grads_none": true, "seed": 20260824, "state_unchanged": true, "utc": "2026-09-08T14:05:39.936725+00:00"}
+{"event": "teacher_cache_start", "seed": 20260825, "utc": "2026-09-08T14:05:39.954251+00:00"}
+{"batch_index": 0, "elapsed": 62.91, "event": "batch_complete", "observations": 136, "seed": 20260825, "utc": "2026-09-08T14:05:45.026472+00:00"}
+{"batch_index": 1, "elapsed": 65.53, "event": "batch_complete", "observations": 144, "seed": 20260825, "utc": "2026-09-08T14:05:47.637203+00:00"}
+{"batch_index": 2, "elapsed": 68.11, "event": "batch_complete", "observations": 152, "seed": 20260825, "utc": "2026-09-08T14:05:50.219343+00:00"}
+{"batch_index": 3, "elapsed": 70.74, "event": "batch_complete", "observations": 160, "seed": 20260825, "utc": "2026-09-08T14:05:52.847660+00:00"}
+{"batch_index": 4, "elapsed": 73.33, "event": "batch_complete", "observations": 168, "seed": 20260825, "utc": "2026-09-08T14:05:55.444352+00:00"}
+{"batch_index": 5, "elapsed": 75.98, "event": "batch_complete", "observations": 176, "seed": 20260825, "utc": "2026-09-08T14:05:58.096117+00:00"}
+{"batch_index": 6, "elapsed": 78.66, "event": "batch_complete", "observations": 184, "seed": 20260825, "utc": "2026-09-08T14:06:00.767401+00:00"}
+{"batch_index": 7, "elapsed": 81.34, "event": "batch_complete", "observations": 192, "seed": 20260825, "utc": "2026-09-08T14:06:03.447668+00:00"}
+{"batch_index": 8, "elapsed": 84.0, "event": "batch_complete", "observations": 200, "seed": 20260825, "utc": "2026-09-08T14:06:06.111506+00:00"}
+{"batch_index": 9, "elapsed": 86.61, "event": "batch_complete", "observations": 208, "seed": 20260825, "utc": "2026-09-08T14:06:08.719826+00:00"}
+{"batch_index": 10, "elapsed": 89.25, "event": "batch_complete", "observations": 216, "seed": 20260825, "utc": "2026-09-08T14:06:11.358727+00:00"}
+{"batch_index": 11, "elapsed": 91.91, "event": "batch_complete", "observations": 224, "seed": 20260825, "utc": "2026-09-08T14:06:14.020288+00:00"}
+{"batch_index": 12, "elapsed": 94.57, "event": "batch_complete", "observations": 232, "seed": 20260825, "utc": "2026-09-08T14:06:16.680161+00:00"}
+{"batch_index": 13, "elapsed": 97.26, "event": "batch_complete", "observations": 240, "seed": 20260825, "utc": "2026-09-08T14:06:19.371192+00:00"}
+{"batch_index": 14, "elapsed": 99.97, "event": "batch_complete", "observations": 248, "seed": 20260825, "utc": "2026-09-08T14:06:22.077372+00:00"}
+{"batch_index": 15, "elapsed": 102.53, "event": "batch_complete", "observations": 256, "seed": 20260825, "utc": "2026-09-08T14:06:24.639763+00:00"}
+{"event": "seed_complete", "file_unchanged": true, "parameter_grads_none": true, "seed": 20260825, "state_unchanged": true, "utc": "2026-09-08T14:06:24.713202+00:00"}
+{"event": "teacher_cache_start", "seed": 20260826, "utc": "2026-09-08T14:06:24.728047+00:00"}
+{"batch_index": 0, "elapsed": 107.28, "event": "batch_complete", "observations": 264, "seed": 20260826, "utc": "2026-09-08T14:06:29.392500+00:00"}
+{"batch_index": 1, "elapsed": 109.61, "event": "batch_complete", "observations": 272, "seed": 20260826, "utc": "2026-09-08T14:06:31.718597+00:00"}
+{"batch_index": 2, "elapsed": 111.97, "event": "batch_complete", "observations": 280, "seed": 20260826, "utc": "2026-09-08T14:06:34.078101+00:00"}
+{"batch_index": 3, "elapsed": 114.27, "event": "batch_complete", "observations": 288, "seed": 20260826, "utc": "2026-09-08T14:06:36.386481+00:00"}
+{"batch_index": 4, "elapsed": 116.57, "event": "batch_complete", "observations": 296, "seed": 20260826, "utc": "2026-09-08T14:06:38.678716+00:00"}
+{"batch_index": 5, "elapsed": 119.02, "event": "batch_complete", "observations": 304, "seed": 20260826, "utc": "2026-09-08T14:06:41.136105+00:00"}
+{"batch_index": 6, "elapsed": 121.44, "event": "batch_complete", "observations": 312, "seed": 20260826, "utc": "2026-09-08T14:06:43.556622+00:00"}
+{"batch_index": 7, "elapsed": 123.75, "event": "batch_complete", "observations": 320, "seed": 20260826, "utc": "2026-09-08T14:06:45.858881+00:00"}
+{"batch_index": 8, "elapsed": 126.15, "event": "batch_complete", "observations": 328, "seed": 20260826, "utc": "2026-09-08T14:06:48.257913+00:00"}
+{"batch_index": 9, "elapsed": 128.5, "event": "batch_complete", "observations": 336, "seed": 20260826, "utc": "2026-09-08T14:06:50.612158+00:00"}
+{"batch_index": 10, "elapsed": 130.86, "event": "batch_complete", "observations": 344, "seed": 20260826, "utc": "2026-09-08T14:06:52.973928+00:00"}
+{"batch_index": 11, "elapsed": 133.25, "event": "batch_complete", "observations": 352, "seed": 20260826, "utc": "2026-09-08T14:06:55.356933+00:00"}
+{"batch_index": 12, "elapsed": 135.6, "event": "batch_complete", "observations": 360, "seed": 20260826, "utc": "2026-09-08T14:06:57.712039+00:00"}
+{"batch_index": 13, "elapsed": 137.99, "event": "batch_complete", "observations": 368, "seed": 20260826, "utc": "2026-09-08T14:07:00.098466+00:00"}
+{"batch_index": 14, "elapsed": 140.58, "event": "batch_complete", "observations": 376, "seed": 20260826, "utc": "2026-09-08T14:07:02.690071+00:00"}
+{"batch_index": 15, "elapsed": 143.22, "event": "batch_complete", "observations": 384, "seed": 20260826, "utc": "2026-09-08T14:07:05.332562+00:00"}
+{"event": "seed_complete", "file_unchanged": true, "parameter_grads_none": true, "seed": 20260826, "state_unchanged": true, "utc": "2026-09-08T14:07:05.409658+00:00"}
+{"alpha_selection_authorized": false, "elapsed_seconds": 148.386, "event": "complete", "formal_training_authorized": false, "leave_family_out_amplification": true, "passing_families": 4, "passing_seeds": 3, "pooled_dominance_ci": [1.8200982993394996, 2.0019822552253856], "status": "H1_support", "utc": "2026-09-08T14:07:10.498001+00:00"}

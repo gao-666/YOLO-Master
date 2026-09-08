@@ -1,0 +1,2 @@
+# Preserve exact bytes for the SHA-256 audited artifacts (CSV includes CRLF).
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol
