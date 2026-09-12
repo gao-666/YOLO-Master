@@ -1,0 +1,8 @@
+{
+  "state_before": "9769a466d42da7a5e94da6b4b1f432ae944703b4ca2475d835c508343e7a13b9",
+  "state_after": "9769a466d42da7a5e94da6b4b1f432ae944703b4ca2475d835c508343e7a13b9",
+  "pending_gradients_restored": true,
+  "fresh_model": true,
+  "next_batch_index": 16,
+  "fresh_process_dataloader_resume_claimed": false
+}

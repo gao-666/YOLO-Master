@@ -1,0 +1,7 @@
+{
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-B-s20260824\\weights\\best.pt": "9b7737b7dc6e339e04e19048d70bb0870a8770b2db3c755f1386524212758880",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-B-s20260824\\weights\\epoch0.pt": "9b7737b7dc6e339e04e19048d70bb0870a8770b2db3c755f1386524212758880",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-B-s20260824\\weights\\last.pt": "9b7737b7dc6e339e04e19048d70bb0870a8770b2db3c755f1386524212758880",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-B-s20260824\\weights\\last_healthy.pt": "4c1a5a7b73fc538f4cecb94600421cbbea2b24f74321fbf4092dc06142ef8588",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-B-s20260824\\weights\\pilot_handoff16.pt": "3126662edb18127154d152deb792fb8f93d28f1f12b9cd83b28cede2be2876b8"
+}

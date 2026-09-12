@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<REPOSITORY>\experiments\rhino_d2\scripts\run_normalized_response_formal.py", line 272, in <module>
+    main()
+  File "<REPOSITORY>\experiments\rhino_d2\scripts\run_normalized_response_formal.py", line 268, in main
+    run_one(args.arm, args.seed, args.mode == "pilot")
+  File "<REPOSITORY>\experiments\rhino_d2\scripts\run_normalized_response_formal.py", line 103, in run_one
+    settings, cfg, hashes = check_inputs()
+                            ^^^^^^^^^^^^^^
+  File "<REPOSITORY>\experiments\rhino_d2\scripts\run_normalized_response_formal.py", line 71, in check_inputs
+    if gate["status"] != "feasibility_go":
+       ~~~~^^^^^^^^^^
+KeyError: 'status'

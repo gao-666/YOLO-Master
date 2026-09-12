@@ -1,0 +1,7 @@
+{
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-Cnorm-s20260824\\weights\\best.pt": "4bc53351566b4873c2f5e9281c72aba9e80e2d3d266b56316051925b449d58ae",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-Cnorm-s20260824\\weights\\epoch0.pt": "4bc53351566b4873c2f5e9281c72aba9e80e2d3d266b56316051925b449d58ae",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-Cnorm-s20260824\\weights\\last.pt": "4bc53351566b4873c2f5e9281c72aba9e80e2d3d266b56316051925b449d58ae",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-Cnorm-s20260824\\weights\\last_healthy.pt": "1f086d981288a0d07eca9043f407e595190cda8947cf97812076b532c2d70807",
+  "runs\\rhino_d2\\p2_normalized_response_formal\\pilot-Cnorm-s20260824\\weights\\pilot_handoff16.pt": "55ea064f00057d5dc5482fe86050be088cb84ba574b319986694d6f24d246664"
+}

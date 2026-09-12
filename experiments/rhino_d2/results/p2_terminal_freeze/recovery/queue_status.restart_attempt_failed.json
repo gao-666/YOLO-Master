@@ -1,0 +1,11 @@
+{
+  "status": "stopped_error",
+  "started_at": "2026-09-09T14:45:32.768203+00:00",
+  "completed": [],
+  "implementation_commit": "aa6354dd61f9458460c9722a7da2fefa295ec706",
+  "automatic_retries": 0,
+  "public_push": false,
+  "current": "formal-B-s20260824",
+  "error": "CalledProcessError: Command '['<USER_HOME>\\\\.conda\\\\envs\\\\yolo-master-d2\\\\python.exe', '-u', '<REPOSITORY>\\\\experiments\\\\rhino_d2\\\\scripts\\\\run_normalized_response_formal.py', 'formal', '--arm', 'B', '--seed', '20260824']' returned non-zero exit status 1.",
+  "traceback": "Traceback (most recent call last):\n  File \"<REPOSITORY>\\experiments\\rhino_d2\\scripts\\complete_normalized_response_formal.py\", line 158, in queue\n    subprocess.run(\n  File \"<USER_HOME>\\.conda\\envs\\yolo-master-d2\\Lib\\subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['<USER_HOME>\\\\.conda\\\\envs\\\\yolo-master-d2\\\\python.exe', '-u', '<REPOSITORY>\\\\experiments\\\\rhino_d2\\\\scripts\\\\run_normalized_response_formal.py', 'formal', '--arm', 'B', '--seed', '20260824']' returned non-zero exit status 1.\n"
+}

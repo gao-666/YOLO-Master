@@ -1,0 +1,13 @@
+{
+  "authorized": true,
+  "time": "2026-09-09T12:41:10.670214+00:00",
+  "pilot_gate_sha256": "143e1263bf9f4c782a21c2950b12bb5527590e794dd50c88d2ae49310d26f6f7",
+  "six_run_order": [
+    "B24",
+    "Cnorm24",
+    "B25",
+    "Cnorm25",
+    "B26",
+    "Cnorm26"
+  ]
+}

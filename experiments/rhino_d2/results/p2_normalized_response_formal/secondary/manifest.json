@@ -1,0 +1,75 @@
+{
+  "status": "completed",
+  "optimizer_steps": 0,
+  "checkpoint_audits": [
+    {
+      "path": "<REPOSITORY>\\runs\\rhino_d2\\p2_normalized_response_formal\\formal-B-s20260824\\weights\\epoch49.pt",
+      "sha256": "acbc1fcc2bde2a6a97b8417007be873fe513ef859b6193e0679a6d239b8b8f05",
+      "state_before": "68ed87580a30a5f060ea200868549e6648d0e6fd89fc46ab4644509362362147",
+      "state_after": "68ed87580a30a5f060ea200868549e6648d0e6fd89fc46ab4644509362362147"
+    },
+    {
+      "path": "<REPOSITORY>\\runs\\rhino_d2\\p2_normalized_response_formal\\formal-Cnorm-s20260824\\weights\\epoch49.pt",
+      "sha256": "2198ea57d6aa9a1cf33976dd7e4895956c5ae751c13558e51573b99ed0f576c4",
+      "state_before": "e91721036c8255db09093bad2aec4576cc8c69edc38798811ba703e13fda25e8",
+      "state_after": "e91721036c8255db09093bad2aec4576cc8c69edc38798811ba703e13fda25e8"
+    },
+    {
+      "path": "<REPOSITORY>\\runs\\rhino_d2\\p2_normalized_response_formal\\formal-B-s20260825\\weights\\epoch49.pt",
+      "sha256": "4994e0c61a56cf1ae823a53da6a5c2e52f95bbe7f92b6634075a25acf075e3d4",
+      "state_before": "2048743543e73e0c0c2f3901b8f4f7bc9e7319fc3989b35716ee43c3b02aff94",
+      "state_after": "2048743543e73e0c0c2f3901b8f4f7bc9e7319fc3989b35716ee43c3b02aff94"
+    },
+    {
+      "path": "<REPOSITORY>\\runs\\rhino_d2\\p2_normalized_response_formal\\formal-Cnorm-s20260825\\weights\\epoch49.pt",
+      "sha256": "01878fc1a03138c9f0f809edcbd5658119b3a4b8fe6e512a9bea2dd5733264b7",
+      "state_before": "df19378842a3a571994108aa7c4e8b62b8c63218ca84da42494c97506f0e12a9",
+      "state_after": "df19378842a3a571994108aa7c4e8b62b8c63218ca84da42494c97506f0e12a9"
+    },
+    {
+      "path": "<REPOSITORY>\\runs\\rhino_d2\\p2_normalized_response_formal\\formal-B-s20260826\\weights\\epoch49.pt",
+      "sha256": "2d6d2914db9cc9040a9cc77aa9d9fa54a237cf81ce50691ef288da37d26120b3",
+      "state_before": "2a8d7d31e054b54dd0daf0a11285cc29d8346f31ae01f0aba55debc38900a1ce",
+      "state_after": "2a8d7d31e054b54dd0daf0a11285cc29d8346f31ae01f0aba55debc38900a1ce"
+    },
+    {
+      "path": "<REPOSITORY>\\runs\\rhino_d2\\p2_normalized_response_formal\\formal-Cnorm-s20260826\\weights\\epoch49.pt",
+      "sha256": "b4dc29fe906926fd1f1aa50f2d3367c7d9fa91641df291e8232555ed4a6bc7a1",
+      "state_before": "18a64838ff097366f9d5e578c2a73802959f6293290d3c49aca3c2f421cac0c7",
+      "state_after": "18a64838ff097366f9d5e578c2a73802959f6293290d3c49aca3c2f421cac0c7"
+    }
+  ],
+  "teacher_metadata": {
+    "grid_size": [
+      16,
+      16
+    ],
+    "patch_size": 16,
+    "hidden_dim": 384,
+    "num_register_tokens": 4,
+    "prefix_tokens": 5,
+    "feature_maps_available": 1,
+    "input_size": [
+      256,
+      256
+    ],
+    "padded_size": [
+      256,
+      256
+    ],
+    "model_id": "facebook/dinov3-vits16-pretrain-lvd1689m",
+    "backend": "transformers"
+  },
+  "data_audit": {
+    "dataset_root": "<WORKSPACE>\\datasets\\coco_d2_mini_2048_seed20260901",
+    "full_dataset_count": 2048,
+    "batch_count": 32
+  },
+  "p203_config_sha256": "1e7a864ade5841f7f390685359433db92290fbebacb0c94c88cb2b411b2c7dbc",
+  "evaluator_sha256": "c5afaf975a83dfef24b4f28ff71a570d9c544ffd7385a861f6f03a4b3197c9b6",
+  "p203_helpers_sha256": "72f5d6a76216b3b73259c2551ae9483d7d9e3b39fe67fd862f0dbc6bed1c58d6",
+  "mechanism_support": true,
+  "validation_images": 512,
+  "square_preprocessing_same_all_conditions": true,
+  "no_treatment_selection": true
+}

@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "arm": "B",
+  "seed": 20260824,
+  "pilot": true,
+  "base_commit": "c7524a3895a87adf5621740a8d52d97081a6fca0",
+  "experiment_commit": "2d932b82a3ad819669345a91996ebf9ae90ffb72",
+  "dirty_scoped": false,
+  "dirty_tree": true,
+  "git_status_porcelain": "?? experiments/study/",
+  "input_hashes": {
+    "<REPOSITORY>\\experiments\\rhino_d2\\cache\\yolo26n.pt": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "<REPOSITORY>\\experiments\\rhino_d2\\datasets\\d2_coco_mini_2048_seed20260901.yaml": "2f287ab822604a5b83f78d8ee2931bef19b5674f64f58c4ce0ad0198252bb570",
+    "<TEACHER_S_ASSET_PATH>\\config.json": "9481247be9f95a134a5599402b4bfc838eecdf9a7fffbf4debd1c70ec213898b",
+    "<TEACHER_S_ASSET_PATH>\\preprocessor_config.json": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7",
+    "<TEACHER_S_ASSET_PATH>\\model.safetensors": "4610ad75edef83e75afdebf162d148dc628045ea6cbb83d67d4708c709c4f91d",
+    "<TEACHER_S_ASSET_PATH>\\LICENSE.md": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e",
+    "<TEACHER_S_ASSET_PATH>\\README.md": "e15ec258bf2fe83dd9473cb483ad0c7f49bc3ee6195e3c177f17d995fced3478",
+    "<REPOSITORY>\\experiments\\rhino_d2\\DINOV3_P2_NORMALIZED_RESPONSE_FORMAL_PROTOCOL.md": "0941e71dfe840d8bd6907ba6deaacbf8ac90e5381d01e5fe0c435b7dcf4097ae",
+    "<REPOSITORY>\\experiments\\rhino_d2\\configs\\d2_v3_p2_normalized_response_formal.yaml": "efca1cf4526d7c408f944ac0b70078e2b3c167b2d7c4d118e4a2eaa120db37f9",
+    "<REPOSITORY>\\experiments\\rhino_d2\\scripts\\run_normalized_response_formal.py": "344c274fb4d5ec36c881d02562d1340e1d4d6a146d03442b16025734c0b98f92",
+    "<REPOSITORY>\\experiments\\rhino_d2\\scripts\\normalized_response_trainer.py": "99edd3ddbd9501df707060218a8e39e8f37b519c1c8a4a20282c5eee58eacde9",
+    "<REPOSITORY>\\experiments\\rhino_d2\\scripts\\probe_response_gradient_normalization.py": "0752c812466ec866f932058019929f6781f2f214bb1b535c9c006ae1aa22547a",
+    "<REPOSITORY>\\ultralytics\\nn\\foundation\\response.py": "164cf8cc7787b27b2f7bae468823ea60dfcb946bdf605b615703b0e594946c05",
+    "<REPOSITORY>\\ultralytics\\cfg\\default.yaml": "5772e7b7b7cc021d681de3e96cba19b7bc8edd5aadf58c8f20fb0735b654fbb2",
+    "<REPOSITORY>\\ultralytics\\engine\\trainer.py": "c842502b8430cd922b36e95b03defc71a5b944a9bcdc5c99b3e42d47c1b9c76b"
+  },
+  "validation_access_authorized": false,
+  "started_at": "2026-09-09T12:32:04.185224+00:00",
+  "elapsed_seconds": 19.31300000000192
+}

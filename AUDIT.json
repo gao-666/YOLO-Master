@@ -1,0 +1,11 @@
+{
+  "status": "local_sanitization_checks_passed",
+  "file_count": 84,
+  "unchanged": 41,
+  "path_sanitized": 43,
+  "required_unchanged_files": 16,
+  "credential_signature_hits": 0,
+  "residual_identifier_pattern_hits": 0,
+  "limitations": "Pattern-based checks are not a guarantee that no sensitive information exists. Human review and publication authorization remain required.",
+  "public_access_verified": false
+}

@@ -1,0 +1,68 @@
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 2120.9313.1 MB/s, size: 139.7 KB)
+[K[34m[1mval: [0mScanning <WORKSPACE>\datasets\coco_d2_mini_2048_seed20260901\labels\train2017.cache... 2034 images, 14 backgrounds, 0 corrupt: 100% â”â”â”â”â”â”â”â”â”â”â”â” 2048/2048  0.0s
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 211/211 [00:00<00:00, 10549.76it/s]
+teacher cached: clean
+teacher cached: brightness:0.8
+teacher cached: brightness:0.6
+teacher cached: contrast:0.75
+teacher cached: contrast:0.5
+teacher cached: gaussian_blur:1.0
+teacher cached: gaussian_blur:2.0
+teacher cached: gaussian_noise:0.03
+teacher cached: gaussian_noise:0.06
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 2752.81046.0 MB/s, size: 222.2 KB)
+[K[34m[1mval: [0mScanning <WORKSPACE>\datasets\coco_d2_mini_2048_seed20260901\labels\val2017.cache... 505 images, 7 backgrounds, 0 corrupt: 100% â”â”â”â”â”â”â”â”â”â”â”â” 512/512  0.0s
+secondary B 20260824 clean complete
+secondary B 20260824 brightness:0.8 complete
+secondary B 20260824 brightness:0.6 complete
+secondary B 20260824 contrast:0.75 complete
+secondary B 20260824 contrast:0.5 complete
+secondary B 20260824 gaussian_blur:1.0 complete
+secondary B 20260824 gaussian_blur:2.0 complete
+secondary B 20260824 gaussian_noise:0.03 complete
+secondary B 20260824 gaussian_noise:0.06 complete
+secondary Cnorm 20260824 clean complete
+secondary Cnorm 20260824 brightness:0.8 complete
+secondary Cnorm 20260824 brightness:0.6 complete
+secondary Cnorm 20260824 contrast:0.75 complete
+secondary Cnorm 20260824 contrast:0.5 complete
+secondary Cnorm 20260824 gaussian_blur:1.0 complete
+secondary Cnorm 20260824 gaussian_blur:2.0 complete
+secondary Cnorm 20260824 gaussian_noise:0.03 complete
+secondary Cnorm 20260824 gaussian_noise:0.06 complete
+secondary B 20260825 clean complete
+secondary B 20260825 brightness:0.8 complete
+secondary B 20260825 brightness:0.6 complete
+secondary B 20260825 contrast:0.75 complete
+secondary B 20260825 contrast:0.5 complete
+secondary B 20260825 gaussian_blur:1.0 complete
+secondary B 20260825 gaussian_blur:2.0 complete
+secondary B 20260825 gaussian_noise:0.03 complete
+secondary B 20260825 gaussian_noise:0.06 complete
+secondary Cnorm 20260825 clean complete
+secondary Cnorm 20260825 brightness:0.8 complete
+secondary Cnorm 20260825 brightness:0.6 complete
+secondary Cnorm 20260825 contrast:0.75 complete
+secondary Cnorm 20260825 contrast:0.5 complete
+secondary Cnorm 20260825 gaussian_blur:1.0 complete
+secondary Cnorm 20260825 gaussian_blur:2.0 complete
+secondary Cnorm 20260825 gaussian_noise:0.03 complete
+secondary Cnorm 20260825 gaussian_noise:0.06 complete
+secondary B 20260826 clean complete
+secondary B 20260826 brightness:0.8 complete
+secondary B 20260826 brightness:0.6 complete
+secondary B 20260826 contrast:0.75 complete
+secondary B 20260826 contrast:0.5 complete
+secondary B 20260826 gaussian_blur:1.0 complete
+secondary B 20260826 gaussian_blur:2.0 complete
+secondary B 20260826 gaussian_noise:0.03 complete
+secondary B 20260826 gaussian_noise:0.06 complete
+secondary Cnorm 20260826 clean complete
+secondary Cnorm 20260826 brightness:0.8 complete
+secondary Cnorm 20260826 brightness:0.6 complete
+secondary Cnorm 20260826 contrast:0.75 complete
+secondary Cnorm 20260826 contrast:0.5 complete
+secondary Cnorm 20260826 gaussian_blur:1.0 complete
+secondary Cnorm 20260826 gaussian_blur:2.0 complete
+secondary Cnorm 20260826 gaussian_noise:0.03 complete
+secondary Cnorm 20260826 gaussian_noise:0.06 complete

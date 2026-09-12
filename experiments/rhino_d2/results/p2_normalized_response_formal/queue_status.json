@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "started_at": "2026-09-09T14:50:43.961446+00:00",
+  "completed": [
+    "formal-B-s20260824",
+    "formal-Cnorm-s20260824",
+    "formal-B-s20260825",
+    "formal-Cnorm-s20260825",
+    "formal-B-s20260826",
+    "formal-Cnorm-s20260826"
+  ],
+  "implementation_commit": "aa6354dd61f9458460c9722a7da2fefa295ec706",
+  "automatic_retries": 0,
+  "public_push": false,
+  "current": null,
+  "primary_status": "No detectable change",
+  "finished_at": "2026-09-10T02:15:47.700123+00:00"
+}

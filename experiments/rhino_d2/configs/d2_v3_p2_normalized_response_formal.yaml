@@ -1,0 +1,20 @@
+# P2-07 is an independent final experiment, conditional on P2-06 Go.
+base_config: experiments/rhino_d2/configs/d2_v3_p1_on.yaml
+base_config_sha256: ce191227535f1f4b7747538d305c9d42eaa635faf65b5fe685d1adc69f586166
+gate_commit: 2a0397102434ddadadc23c8f979319817dbfd738
+arms: [B, Cnorm]
+seeds: [20260824, 20260825, 20260826]
+epochs: 50
+lambda: 0.15
+epsilon: 0.000001
+response_coefficient: 1.0
+primary: late10_median_map50_95
+ap_threshold: 0.003
+pilot_batches_per_arm: 32
+pilot_reload_after_batch: 16
+formal_order: [B24, Cnorm24, B25, Cnorm25, B26, Cnorm26]
+project: runs/rhino_d2/p2_normalized_response_formal
+output: experiments/rhino_d2/results/p2_normalized_response_formal
+allow_new_arms: false
+allow_alpha_search: false
+route_final: true

@@ -1,0 +1,2 @@
+epoch,time,train/box_loss,train/cls_loss,train/dfl_loss,train/mixture_aux_loss,train/foundation,train/foundation_loss,train/foundation_clean_static_raw,train/foundation_second_raw,train/foundation_loss_weight,lr/pg0,lr/pg1,lr/pg2,lr/pg3,lr/pg4
+1,13.1751,3.40981,8.04997,0.05129,2.99165,1.1938,1.1938,0.995473,0.994197,0.15,0.000201823,0.000201823,0.0981836,0.000100911,0.000403646
